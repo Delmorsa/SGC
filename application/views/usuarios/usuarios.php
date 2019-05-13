@@ -76,13 +76,14 @@
 											<td>".$key["FECHABAJA"]."</td>
 											<td>".$estado."</td>
 											<td class='text-center'>
-												<a onclick='Editar(".'"'.$key["NOMBREUSUARIO"].'","'.$key["NOMBRES"].'",
+												<a onclick='Editar(".'"'.$key["IDUSUARIO"].'","'.$key["NOMBREUSUARIO"].'","'.$key["NOMBRES"].'",
 												       "'.$key["APELLIDOS"].'","'.$key["CORREO"].'","'.$key["IDROL"].'",
 												       "'.$key["NOMBRE_ROL"].'","'.$key["SEXO"].'"'.")'
 												  href='javascript:void(0)' class='btn btn-primary btn-xs'>
 												  <i class='fa fa-pencil'></i>
 												</a>
-												<a href='javascript:void(0)' class='btn btn-danger btn-xs'>
+												<a onclick='darDeBaja(".'"'.$key["IDUSUARIO"].'","'.$key["ESTADO"].'"'.")'
+												 href='javascript:void(0)' class='btn btn-danger btn-xs'>
 												  <i class='fa fa-trash'></i>
 												</a>
 											</td>
@@ -115,8 +116,8 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<input type="hidden" id="idRol" class="form-control">
 					<div class="col-xs-6">
+						<input autocomplete="off" type="hidden" id="Id" class="form-control">
 						<div class="form-group has-feedback">
 							<label for="usuario">Nombre de usuario</label>
 							<input autocomplete="off" type="text" id="usuario" class="form-control" placeholder="Nombre de usuario">

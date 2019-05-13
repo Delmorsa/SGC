@@ -147,11 +147,20 @@ class Usuarios_model extends CI_Model{
 			$mensaje[0]["tipo"] = "success";
 			echo json_encode($mensaje);
 		}else{
-			$mensaje[0]["mensaje"] = "No se pudo actualizado el usuario. Ocurrió un error inesperado en el servidor, contáctece con 
+			$mensaje[0]["mensaje"] = "No se pudo actualizar el usuario. Ocurrió un error inesperado en el servidor, contáctece con 
 			el administrador";
 			$mensaje[0]["tipo"] = "error";
 			echo json_encode($mensaje);
 		}
+	}
+
+	public function modificarEstadoUsuario($idUser, $estado, $fechabaja){
+		$this->db->where("IDUSUARIO",$idUser);
+		$data = array(
+			"ESTADO" => $estado,
+			"FECHABAJA" => $fechabaja
+		);
+		$this->db->update("Usuarios", $data);
 	}
 
 }

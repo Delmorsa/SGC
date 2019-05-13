@@ -81,15 +81,29 @@ class Usuarios_controller extends CI_Controller{
 	}
 
     public function actualizarUsuario(){
-		$idUsuario = $this->input->get_post("");
+		$idUsuario = $this->input->get_post("iduser");
 		$idrol = $this->input->get_post("idrol");
 		$usuario = $this->input->get_post("usuario");
 		$nombre = $this->input->get_post("nombre");
 		$apellido = $this->input->get_post("apellido");
 		$sexo = $this->input->get_post("sexo");
 		$correo = $this->input->get_post("correo");
-		$this->Usuaios_model->actualizarUsuario($idUsuario,$idrol, $usuario, $nombre, $apellido, $sexo, $correo);
+		$this->Usuarios_model->actualizarUsuario($idUsuario,$idrol, $usuario, $nombre, $apellido, $sexo, $correo);
     }
+
+	public function modificarEstadoUsuario(){
+		$iduser = $this->input->get_post("iduser");
+		$estado = $this->input->get_post("estado");
+		if($estado == 1){
+			$estado = 0;
+			$fechabaja = gmdate(date("Y-m-d H:i:s"));
+		}else{
+			$estado = 1;
+			$fechabaja = NULL;
+		}
+		$this->Usuarios_model->modificarEstadoUsuario($iduser, $estado, $fechabaja);
+	}
+
 }
 ?>
 

@@ -15,5 +15,7 @@ $route["modificarEstadoRol"] = "Usuarios_controller/modificarEstadoRol";
 
 $route["Usuarios"] = "Usuarios_controller/usuarios";
 $route["guardarUsuario"] = "Usuarios_controller/guardarUsuario";
+$route["actualizarUsuario"] = "Usuarios_controller/actualizarUsuario";
+$route["modificarEstadoUsuario"] = "Usuarios_controller/modificarEstadoUsuario";
 
 $route["Perfil"] = "Usuarios_controller/perfil";
