@@ -30,9 +30,10 @@ class Usuarios_controller extends CI_Controller{
 		$this->load->view('header/menu');
 		$this->load->view('usuarios/perfil');
 		$this->load->view('footer/footer');
-		//$this->load->view('jsview/usuarios/jsRoles');
+		$this->load->view('jsview/usuarios/jsPerfil');
 	}
 
+	//region Funciones para modulo Roles
 	public function guardarRol(){
 		$rol = $this->input->get_post("rol");
 		$desc = $this->input->get_post("desc");
@@ -58,7 +59,9 @@ class Usuarios_controller extends CI_Controller{
 		}
 		$this->Usuarios_model->modificarEstadoRol($idrol, $estado, $fechabaja);
 	}
+	//endregion
 
+	//region Funciones para modulo usuarios
 	public function usuarios(){
 		$data["roles"] = $this->Usuarios_model->mostrarRoles();
 		$data["usuarios"] = $this->Usuarios_model->mostrarUsuarios();
@@ -103,6 +106,7 @@ class Usuarios_controller extends CI_Controller{
 		}
 		$this->Usuarios_model->modificarEstadoUsuario($iduser, $estado, $fechabaja);
 	}
+	//endregion
 
 }
 ?>

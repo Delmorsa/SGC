@@ -112,16 +112,7 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<div class="checkbox">
-											<label>
-												<input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn btn-danger">Submit</button>
+										<button type="button" class="btn btn-primary">Actualizar</button>
 									</div>
 								</div>
 							</div>
