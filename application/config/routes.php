@@ -19,3 +19,7 @@ $route["actualizarUsuario"] = "Usuarios_controller/actualizarUsuario";
 $route["modificarEstadoUsuario"] = "Usuarios_controller/modificarEstadoUsuario";
 
 $route["Perfil"] = "Usuarios_controller/perfil";
+$route["actualizarPassword"] = "Usuarios_controller/actualizarPassword";
+$route["actualizarDatPerfil"] = "Usuarios_controller/actualizarDatPerfil";
+
+$route["Productos"] = "CalendarioCodigo_controller";

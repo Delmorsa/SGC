@@ -199,51 +199,27 @@
             </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="<?php echo base_url("index.php/Perfil")?>"><i class="fa fa-circle-o text-primary"></i> Mi Perfil</a></li>
 						<li>
 							<a href="<?php echo base_url("index.php/Roles")?>">
-								<i class="fa fa-circle-o text-primary"></i> Roles
+								<i class="fa fa-circle-o text-warning"></i> Roles
 							</a>
 						</li>
-						<li><a href="<?php echo base_url("index.php/Usuarios")?>"><i class="fa fa-circle-o text-primary"></i> Crear y administrar usuarios</a></li>
+						<li><a href="<?php echo base_url("index.php/Perfil")?>"><i class="fa fa-circle-o text-warning"></i> Mi Perfil</a></li>
+						<li><a href="<?php echo base_url("index.php/Usuarios")?>"><i class="fa fa-circle-o text-warning"></i> Crear y administrar usuarios</a></li>
 					</ul>
 				</li>
 				<li class="treeview">
 					<a href="#">
-						<i class="fa fa-files-o"></i>
-						<span>Layout Options</span>
-						<span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-						<li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-						<li class="active"><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-						<li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="../widgets.html">
-						<i class="fa fa-th"></i> <span>Widgets</span>
-						<span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-					</a>
-				</li>
-				<li class="treeview">
-					<a href="#">
-						<i class="fa fa-pie-chart"></i>
-						<span>Charts</span>
+						<i class="fa fa-calendar"></i>
+						<span>Calendario de codigos</span>
 						<span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-						<li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-						<li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-						<li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+						<li><a href="<?php echo base_url("index.php/Productos")?>"><i class="fa fa-circle-o text-warning"></i> Productos</a></li>
+						<li><a href="#"><i class="fa fa-circle-o text-warning"></i> Encabezado</a></li>
+						<li><a href="#"><i class="fa fa-circle-o text-warning"></i> Fechas de vencimiento</a></li>
 					</ul>
 				</li>
 				<li class="treeview">

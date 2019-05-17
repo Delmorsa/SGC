@@ -43,7 +43,7 @@ class Login_controller extends CI_Controller {
 					"logged" => 1
 				);
 				$this->session->set_userdata($session_data);
-				redirect("Usuarios");
+				redirect("Perfil");
 			}
 		}
 	}

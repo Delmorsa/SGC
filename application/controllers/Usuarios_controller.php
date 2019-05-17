@@ -26,9 +26,10 @@ class Usuarios_controller extends CI_Controller{
 	}
 
 	public function perfil(){
+		$data["usuarios"] = $this->Usuarios_model->mostrarUsuariosPerfil();
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
-		$this->load->view('usuarios/perfil');
+		$this->load->view('usuarios/perfil',$data);
 		$this->load->view('footer/footer');
 		$this->load->view('jsview/usuarios/jsPerfil');
 	}
@@ -105,6 +106,23 @@ class Usuarios_controller extends CI_Controller{
 			$fechabaja = NULL;
 		}
 		$this->Usuarios_model->modificarEstadoUsuario($iduser, $estado, $fechabaja);
+	}
+
+    public function actualizarPassword(){
+		$idUser = $this->input->get_post("idUser");
+		$password = $this->input->get_post("password");
+		$newPassword = $this->input->get_post("newPassword");
+		$this->Usuarios_model->actualizarPassword($idUser, $password, $newPassword);
+	}
+
+	public function actualizarDatPerfil(){
+		$IdUser = $this->input->get_post("IdUser");
+		$nombre = $this->input->get_post("nombre");
+		$apellido = $this->input->get_post("apellido");
+		$correo = $this->input->get_post("correo");
+		$username = $this->input->get_post("username");
+		$sexo = $this->input->get_post("sexo");
+		$this->Usuarios_model->actualizarDatPerfil($IdUser, $nombre, $apellido, $correo, $username, $sexo);
 	}
 	//endregion
 

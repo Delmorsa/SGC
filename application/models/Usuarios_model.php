@@ -163,4 +163,63 @@ class Usuarios_model extends CI_Model{
 		$this->db->update("Usuarios", $data);
 	}
 
+	//region Funciones para modulo Perfil
+	public function mostrarUsuariosPerfil(){
+		$query = $this->db->query("SELECT T1.*,T2.NOMBRE_ROL
+  									FROM Usuarios T1
+									inner join Roles T2 on T1.IDROL = T2.IDROL
+									where T1.IDUSUARIO = '".$this->session->userdata("id")."' ");
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}
+		return 0;
+	}
+
+	public function actualizarPassword($idUser, $password, $newPassword){
+		$mensaje = array();
+		$query = $this->db->select("PASSWORD")
+			->where("IDUSUARIO", $idUser)
+			->where("PASSWORD", md5($password))
+			->get("Usuarios");
+		if($query->num_rows() > 0){
+			$this->db->where("IDUSUARIO", $idUser);
+			$data = array(
+				"PASSWORD" => md5($newPassword)
+			);
+			$this->db->update("Usuarios",$data);
+			$mensaje[0]["mensaje"] = "La contraseña se actualizó con éxito, cierre e inicie sesión de nuevo";
+			$mensaje[0]["tipo"] = "success";
+			echo json_encode($mensaje);
+		}else{
+			$mensaje[0]["mensaje"] = "La contraseña que intentas cambiar es errónea o no existe.
+			                          Si el problema persiste contáctece con el administrador";
+			$mensaje[0]["tipo"] = "error";
+			echo json_encode($mensaje);
+		}
+	}
+
+	public function actualizarDatPerfil($IdUser, $nombre, $apellido, $correo, $username, $sexo){
+		$mensaje = array();
+		$this->db->where("IDUSUARIO", $IdUser);
+		$data = array(
+			"NOMBRES" => $nombre,
+			"APELLIDOS" => $apellido,
+			"CORREO" => $correo,
+			"NOMBREUSUARIO" => $username,
+			"SEXO" => $sexo
+		);
+		$upd = $this->db->update("Usuarios",$data);
+		if($upd){
+			$mensaje[0]["mensaje"] = "Datos actualizados correctamente";
+			$mensaje[0]["tipo"] = "success";
+			echo json_encode($mensaje);
+		}else{
+			$mensaje[0]["mensaje"] = "Error al actualizar los datos del usuario, si el problema persiste
+										contáctece con el administrador";
+			$mensaje[0]["tipo"] = "error";
+			echo json_encode($mensaje);
+		}
+	}
+	//endregion
+
 }
