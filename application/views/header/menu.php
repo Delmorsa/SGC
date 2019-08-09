@@ -193,6 +193,23 @@
 				<li class="header">Menu principal</li>
 				<li class="treeview">
 					<a href="#">
+						<i class="fa fa-key"></i> <span>Autorizaciones</span>
+						<span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+					</a>
+					<ul class="treeview-menu">
+						<li>
+							<a href="<?php echo base_url("index.php/CategoriasAut")?>">
+								<i class="fa fa-circle-o text-warning"></i> Crear Categorias
+							</a>
+						</li>
+						<li><a href="<?php echo base_url("index.php/Permisos")?>"><i class="fa fa-circle-o text-warning"></i> Crear Permisos</a></li>
+						<li><a href="<?php echo base_url("index.php/Asignar_Permiso")?>"><i class="fa fa-circle-o text-warning"></i> Asignar Permisos</a></li>
+					</ul>
+				</li>
+				<li class="treeview">
+					<a href="#">
 						<i class="fa fa-users"></i> <span>Usuarios</span>
 						<span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -210,33 +227,29 @@
 				</li>
 				<li class="treeview">
 					<a href="#">
-						<i class="fa fa-calendar"></i>
-						<span>Calendario de codigos</span>
+						<i class="fa fa-map-marker"></i>
+						<span>Areas</span>
 						<span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="<?php echo base_url("index.php/Productos")?>"><i class="fa fa-circle-o text-warning"></i> Productos</a></li>
-						<li><a href="#"><i class="fa fa-circle-o text-warning"></i> Encabezado</a></li>
-						<li><a href="#"><i class="fa fa-circle-o text-warning"></i> Fechas de vencimiento</a></li>
+						<li><a href="<?php echo base_url("index.php/Areas")?>"><i class="fa fa-circle-o text-warning"></i> Crear y administrar áreas</a></li>
 					</ul>
 				</li>
 				<li class="treeview">
 					<a href="#">
-						<i class="fa fa-laptop"></i>
-						<span>UI Elements</span>
+						<i class="fa fa-bookmark"></i>
+						<span>Elementos</span>
 						<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-						<li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-						<li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-						<li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-						<li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-						<li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+						<li><a href="<?php echo base_url("index.php/Simbologia")?>"><i class="fa fa-circle-o text-warning">
+						</i> Simbología</a></li>
+						<li><a href="<?php echo base_url("index.php/CatReportes")?>"><i class="fa fa-circle-o text-warning">
+						</i> Categorias Reportes</a></li>
 					</ul>
 				</li>
 				<li class="treeview">

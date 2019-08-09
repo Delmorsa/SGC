@@ -32,6 +32,7 @@
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/skin-blue.min.css">
 
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/datatables.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/treeview.css">
 
 
 </head>

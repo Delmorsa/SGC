@@ -27,6 +27,8 @@
 <script src="<?php echo base_url()?>assets/js/adminlte.min.js"></script>
 <script src="<?php echo base_url()?>assets/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url()?>assets/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.numeric.js"></script>
+<script src="<?php echo base_url()?>assets/js/jstree.js"></script>
 
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url()?>assets/js/demo.js"></script>
