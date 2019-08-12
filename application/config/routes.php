@@ -47,4 +47,7 @@ $route["asignarPermiso"] = "Autorizaciones_controller/asignarPermiso";
 $route["getAuthAsig/(:any)"] = "Autorizaciones_controller/getAuthAsig/$1";
 /*************************************************************************************/
 $route["CatReportes"] = "CategoriaReporte_controller";
+$route["guardarCatRep"] = "CategoriaReporte_controller/guardarCatRep";
+$route["actualizarCatRep"] = "CategoriaReporte_controller/actualizarCatRep";
+$route["Baja_AltaCatRep"] = "CategoriaReporte_controller/Baja_AltaCatRep";
 /*************************************************************************************/
