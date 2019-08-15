@@ -33,6 +33,7 @@
 
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/datatables.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/treeview.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap-datepicker.min.css">
 
 
 </head>

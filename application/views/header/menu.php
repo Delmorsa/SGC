@@ -250,6 +250,8 @@
 						</i> Simbología</a></li>
 						<li><a href="<?php echo base_url("index.php/CatReportes")?>"><i class="fa fa-circle-o text-warning">
 						</i> Categorias Reportes</a></li>
+						<li><a href="<?php echo base_url("index.php/Informes")?>"><i class="fa fa-circle-o text-warning">
+						</i> Informes</a></li>
 					</ul>
 				</li>
 				<li class="treeview">
