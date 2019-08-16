@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-14 08:30:56
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-15 10:56:26
+ * @Last Modified time: 2019-08-15 15:44:31
  */
 ?>
 <script type="text/javascript">
@@ -97,46 +97,61 @@ $("#btnGuardar").click(function(){
 		cancelButtonText: "Cancelar",
 		allowOutsideClick: false
 	}).then((result)=>{
+		let validtable = $('#tblcrear').DataTable();
 		if(result.value){
-			$("#loading").modal("show");
-		    let nombre = $("#nombreRpt").html(),
-		    mensaje = '', tipo = '',	
-			table = $("#tblcrear").DataTable();
-			let datos = new Array(), i = 0;
-			
-			table.rows().eq(0).each(function(i, index){
-				let row = table.row(index);
-				let data = row.data();
-				datos[i] = data[0]+","+data[1]+","+data[2];
-				i++;
-			});
+			if($("#ddlAreas option:selected").val() == "" || $("#version").val() == "" || $("#observaciones").val() == ""){
+				Swal.fire({
+					text: "Debe ingresar un Area, Version u Observacion",
+					type: "error",
+					allowOutsideClick: false
+				});
+			}else if (!validtable.data().count() ) {
+		    	Swal.fire({
+		    		text: "No se ha agregado ningún registro a la tabla",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
+			}else{
+				$("#loading").modal("show");
+			    let nombre = $("#nombreRpt").html(),
+			    mensaje = '', tipo = '',	
+				table = $("#tblcrear").DataTable();
+				let datos = new Array(), i = 0;
+				
+				table.rows().eq(0).each(function(i, index){
+					let row = table.row(index);
+					let data = row.data();
+					datos[i] = data[0]+","+data[1]+","+data[2];
+					i++;
+				});
 
-			let form_data = {
-			    enc: [$("#idmonitoreo").val(),$("#ddlAreas option:selected").val(),$("#version").val(),nombre,$("#observaciones").val()],
-			    datos: datos	
-			};
+				let form_data = {
+				    enc: [$("#idmonitoreo").val(),$("#ddlAreas option:selected").val(),$("#version").val(),nombre,$("#observaciones").val()],
+				    datos: datos	
+				};
 
-			$.ajax({
-				url: 'guardarCNS',
-				type: 'POST',
-				data: form_data,
-				success: function(data)
-				{
-					$("#loading").modal("hide");
-					let obj = jQuery.parseJSON(data);
-					$.each(obj, function(index, val) {
-						mensaje = val["mensaje"];
-						tipo = val["tipo"]; 
-					});
-					Swal.fire({
-						type: tipo,
-						text: mensaje,
-						allowOutsideClick: false
-					}).then((result)=>{
-						window.location.href = "reporte_6";  
-					});				
-				}
-			});
+				$.ajax({
+					url: 'guardarCNS',
+					type: 'POST',
+					data: form_data,
+					success: function(data)
+					{
+						$("#loading").modal("hide");
+						let obj = jQuery.parseJSON(data);
+						$.each(obj, function(index, val) {
+							mensaje = val["mensaje"];
+							tipo = val["tipo"]; 
+						});
+						Swal.fire({
+							type: tipo,
+							text: mensaje,
+							allowOutsideClick: false
+						}).then((result)=>{
+							window.location.href = "reporte_6";  
+						});				
+					}
+				});
+			}
 		}
 	});
 });

@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-12 11:22:39
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-13 08:29:00
+ * @Last Modified time: 2019-08-16 10:33:39
  */
 ?>
 <div class="content-wrapper">
@@ -28,39 +28,41 @@
 			</div>
 			<div class="box-body">
 				<div class="row">
-			          <!-- small box -->
-			          <?php 
-			          	$colores = array("red","aqua","green","yellow");
-			          	$i = 0;
-			          	$e = 0;
-			          	if(!$rpts){
-			          	}else{
-			          		foreach ($rpts as $key) {
-			          			echo '
-								<div class="col-lg-3 col-xs-6">
-									<div class="small-box bg-'.$colores[$e].'">
-							            <div class="inner">
-							              <p class="text-bold">'.$key["SIGLA"].'</p>
+			          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			          	<!-- small box -->
+				          <?php 
+				          	$colores = array("red","aqua","green","yellow");
+				          	$i = 0;
+				          	$e = 0;
+				          	if(!$rpts){
+				          	}else{
+				          		foreach ($rpts as $key) {
+				          			echo '
+									<div class="col-xs-2 col-sm-2 col-md-4 col-lg-3">
+										<div class="small-box bg-'.$colores[$e].'">
+								            <div class="inner">
+								              <p class="text-bold">'.$key["SIGLA"].'</p>
 
-							              <p style="font-size:9pt;">'.$key["NOMBRE"].'</p>
-							            </div>
-							            <div class="icon">
-							              <i class="fa fa-file-text-o"></i>
-							            </div>
-							            <a href="'.base_url("index.php/reporte_".$key["IDTIPOREPORTE"]."").'" class="small-box-footer">
-							              Crear reporte <i class="fa fa-arrow-circle-right"></i>
-							            </a>
-						           </div>
-						         </div>
-			          			';
-			          			$i++;
-			          			$e++;
-			          			if ($e == 4) {
-			          				$e=0;
-			          			}
-			          		}
-			          	}
+								              <p style="font-size:9pt;">'.$key["NOMBRE"].'</p>
+								            </div>
+								            <div class="icon">
+								              <i class="fa fa-file-text-o"></i>
+								            </div>
+								            <a href="'.base_url("index.php/reporte_".$key["IDTIPOREPORTE"]."").'" class="small-box-footer">
+								              Crear informe <i class="fa fa-arrow-circle-right"></i>
+								            </a>
+							           </div>
+							         </div>
+				          			';
+				          			$i++;
+				          			$e++;
+				          			if ($e == 4) {
+				          				$e=0;
+				          			}
+				          		}
+				          	}
 			          ?>
+			          </div>
                 </div>
 			</div>
 		</div>

@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-13 13:58:55
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-15 10:43:36
+ * @Last Modified time: 2019-08-16 15:48:22
  */
 ?>
 <div class="content-wrapper">
@@ -43,15 +43,79 @@
 				<table class="table table-bordered table-condensed table-striped" id="tblracymp">
 					<thead>
 					<tr>
-						<th>Fecha de ingreso <br>a premezcla</th>
+						<!--<th>Fecha de ingreso <br>a premezcla</th>
 						<th>Canitdad de nitrito <br>solicitado</th>
 						<th>Cantidad Kg. <br>sal de cura obtenida</th>
 						<th>Monitoreado por</th>
+						<th>Acciones</th>-->
+						<th>Monitoreo</th>
+						<th>Dia</th>
+						<th>Hora</th>
+						<th>Area</th>
+						<th>Observaciones</th>
+						<th>Monitoreado por</th>
+						<th>Estado</th>
 						<th>Acciones</th>
 					</tr>
 					</thead>
 					<tbody>
-						
+						<?php
+						$estado = '';
+							if(!$cns)
+							{}else{
+								foreach ($cns as $key) {
+									switch ($key["ESTADOENC"]) {
+										case 'A':
+												$estado = "<span class='text-success text-bold'>Activo</span>";
+											break; 
+										
+										default:
+											$estado = "<span class='text-danger text-bold'>Inactivo</span>";
+											break;
+									}
+									echo "
+										<tr>
+											<td>".$key["SIGLA"]."</td>
+											<td>".$key["DIA"]."</td>
+											<td>".$key["HORA"]."</td>
+											<td>".$key["AREA"]."</td>
+											<td>".$key["OBSERVACIONES"]."</td>
+											<td>".$key["MONITOREADO_POR"]."</td>
+											<td>".$estado."</td>";
+											if($key["ESTADOENC"] == "A"){
+												echo "
+													<td class='text-center'>
+													    <a class='btn btn-success btn-xs' href='javascript:void(0)'>
+														  <i class='fa fa-eye'></i>
+														</a>
+														<a class='btn btn-primary btn-xs' href='javascript:void(0)'>
+														  <i class='fa fa-pencil'></i>
+														</a>
+														<a class='btn btn-danger btn-xs' href='javascript:void(0)'>
+														  <i class='fa fa-trash'></i> 	
+														</a>						
+													</td>
+												";
+											}else{
+                                               echo "
+													<td class='text-center'>
+													<a class='btn btn-success btn-xs disabled' href='javascript:void(0)'>
+														  <i class='fa fa-eye'></i>
+														</a>
+														<a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
+														  <i class='fa fa-pencil'></i>
+														</a>
+														<a class='btn btn-danger btn-xs disabled' href='javascript:void(0)'>
+														  <i class='fa fa-trash' aria-hidden='true'></i> 	
+														</a>						
+													</td>
+												";
+											}
+										echo"</tr>
+									";
+								}
+							}
+						?>
 					</tbody>
 				</table>
 			</div>

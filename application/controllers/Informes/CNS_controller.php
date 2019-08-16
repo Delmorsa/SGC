@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-13 13:59:25
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-15 10:25:39
+ * @Last Modified time: 2019-08-16 14:59:35
  */
 class CNS_controller extends CI_Controller
 {
@@ -20,9 +20,10 @@ class CNS_controller extends CI_Controller
 
 	public function index()
 	{
+		$data["cns"] = $this->CNS_model->mostrarCNS();
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
-		$this->load->view('informes/cns/CNS');
+		$this->load->view('informes/cns/CNS',$data);
 		$this->load->view('footer/footer');	
 	}
 
