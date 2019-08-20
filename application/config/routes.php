@@ -47,6 +47,9 @@ $route["asignarPermiso"] = "Autorizaciones_controller/asignarPermiso";
 $route["getAuthAsig/(:any)"] = "Autorizaciones_controller/getAuthAsig/$1";
 /*************************************************************************************/
 $route["CatReportes"] = "CategoriaReporte_controller";
+
+/*************************************************************************************/
+
 $route["guardarCatRep"] = "CategoriaReporte_controller/guardarCatRep";
 $route["actualizarCatRep"] = "CategoriaReporte_controller/actualizarCatRep";
 $route["Baja_AltaCatRep"] = "CategoriaReporte_controller/Baja_AltaCatRep";
@@ -60,4 +63,9 @@ $route["guardarCNS"] = "Informes/CNS_controller/guardarCNS";
 $route["mostrarCNSDetalle/(:any)"] = "Informes/CNS_controller/mostrarCNSDetalle/$1";
 $route["editarCNS/(:any)"] = "Informes/CNS_controller/editarCNS/$1";
 $route["BajaAltaCNS"] = "Informes/CNS_controller/BajaAltaCNS";
+
+/********************ALDER*****************************/
+$route["monitoreos"] = "Monitoreo_controller/index";
+$route["crearmonitoreo"] = "Monitoreo_controller/crearmonitoreo";
 /*************************************************************************************/
+

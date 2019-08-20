@@ -132,7 +132,7 @@ class Autorizaciones_model extends CI_Model{
 					if($actualizar){
 						$mensaje[0]["mensaje"] = "La operación se llevo a cabo con éxito.";
 						$mensaje[0]["tipo"] = "success";
-							echo json_encode($mensaje);
+						echo json_encode($mensaje);
 					}else{
 						$mensaje[0]["mensaje"] = "Fallo en la operación.
 						 Ocurrió un error inesperado en el servidor, si el error persiste contáctece con el administrador.";
