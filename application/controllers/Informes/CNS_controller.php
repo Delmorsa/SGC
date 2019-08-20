@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-13 13:59:25
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-16 14:59:35
+ * @Last Modified time: 2019-08-19 17:04:05
  */
 class CNS_controller extends CI_Controller
 {
@@ -25,6 +25,7 @@ class CNS_controller extends CI_Controller
 		$this->load->view('header/menu');
 		$this->load->view('informes/cns/CNS',$data);
 		$this->load->view('footer/footer');	
+		$this->load->view('jsview/informes/cns/jsCNS');
 	}
 
 	public function	nuevoCNS()
@@ -36,7 +37,23 @@ class CNS_controller extends CI_Controller
 		$this->load->view('informes/cns/crearCNS',$data);
 		$this->load->view('footer/footer');	
 		$this->load->view('jsview/informes/cns/jsCNS');
+	}
+
+	public function	editarCNS($id)
+	{
+		$data["monit"] = $this->CNS_model->editarCNS($id);
+		$data["areas"] = $this->CNS_model->mostrarAreas();
+		$this->load->view('header/header');
+		$this->load->view('header/menu');
+		$this->load->view('informes/cns/editarCNS',$data);
+		$this->load->view('footer/footer');	
+		$this->load->view('jsview/informes/cns/jseditarCNS');
 	}		
+
+	public function mostrarCNSDetalle($idreporte)
+	{
+		$this->CNS_model->mostrarCNSDetalle($idreporte);
+	}
 
 	public function guardarCNS()
 	{
@@ -45,5 +62,17 @@ class CNS_controller extends CI_Controller
 			$this->input->post("datos")
 		);
 	}
+
+	public function BajaAltaCNS()
+ 	{
+ 		$id = $this->input->get_post("id");
+ 		$estado = $this->input->get_post("estado");
+        if($estado == "I"){
+			$estado = "A";
+		}else{
+			$estado = "I";
+		}
+ 		$this->CNS_model->BajaAlta($id,$estado);
+ 	}
 
 }

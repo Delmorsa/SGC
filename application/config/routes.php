@@ -57,4 +57,7 @@ $route["reporte_2"] = "Informes/racymp_controller";
 $route["reporte_6"] = "Informes/CNS_controller";
 $route["nuevoCNS"] = "Informes/CNS_controller/nuevoCNS";
 $route["guardarCNS"] = "Informes/CNS_controller/guardarCNS";
+$route["mostrarCNSDetalle/(:any)"] = "Informes/CNS_controller/mostrarCNSDetalle/$1";
+$route["editarCNS/(:any)"] = "Informes/CNS_controller/editarCNS/$1";
+$route["BajaAltaCNS"] = "Informes/CNS_controller/BajaAltaCNS";
 /*************************************************************************************/

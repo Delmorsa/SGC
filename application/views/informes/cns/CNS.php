@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-13 13:58:55
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-16 15:48:22
+ * @Last Modified time: 2019-08-19 17:08:02
  */
 ?>
 <div class="content-wrapper">
@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<div class="box-body">
-				<table class="table table-bordered table-condensed table-striped" id="tblracymp">
+				<table class="table table-bordered table-condensed table-striped" id="tblCNS">
 					<thead>
 					<tr>
 						<!--<th>Fecha de ingreso <br>a premezcla</th>
@@ -48,6 +48,7 @@
 						<th>Cantidad Kg. <br>sal de cura obtenida</th>
 						<th>Monitoreado por</th>
 						<th>Acciones</th>-->
+						<th>CodReporte</th>
 						<th>Monitoreo</th>
 						<th>Dia</th>
 						<th>Hora</th>
@@ -64,7 +65,7 @@
 							if(!$cns)
 							{}else{
 								foreach ($cns as $key) {
-									switch ($key["ESTADOENC"]) {
+									switch ($key["ESTADODET"]) {
 										case 'A':
 												$estado = "<span class='text-success text-bold'>Activo</span>";
 											break; 
@@ -75,6 +76,7 @@
 									}
 									echo "
 										<tr>
+											<td>".$key["IDREPORTE"]."</td>
 											<td>".$key["SIGLA"]."</td>
 											<td>".$key["DIA"]."</td>
 											<td>".$key["HORA"]."</td>
@@ -82,16 +84,16 @@
 											<td>".$key["OBSERVACIONES"]."</td>
 											<td>".$key["MONITOREADO_POR"]."</td>
 											<td>".$estado."</td>";
-											if($key["ESTADOENC"] == "A"){
+											if($key["ESTADODET"] == "A"){
 												echo "
 													<td class='text-center'>
-													    <a class='btn btn-success btn-xs' href='javascript:void(0)'>
+													    <a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
 														  <i class='fa fa-eye'></i>
 														</a>
-														<a class='btn btn-primary btn-xs' href='javascript:void(0)'>
+														<a class='btn btn-primary btn-xs' href='".base_url("index.php/editarCNS/".$key["IDREPORTE"]."")."'>
 														  <i class='fa fa-pencil'></i>
 														</a>
-														<a class='btn btn-danger btn-xs' href='javascript:void(0)'>
+														<a onclick='baja(".'"'.$key["IDREPORTE"].'","'.$key["ESTADODET"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
 														  <i class='fa fa-trash'></i> 	
 														</a>						
 													</td>
@@ -105,8 +107,8 @@
 														<a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
 														  <i class='fa fa-pencil'></i>
 														</a>
-														<a class='btn btn-danger btn-xs disabled' href='javascript:void(0)'>
-														  <i class='fa fa-trash' aria-hidden='true'></i> 	
+														<a onclick='baja(".'"'.$key["IDREPORTE"].'","'.$key["ESTADODET"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+														  <i class='fa fa-undo' aria-hidden='true'></i> 	
 														</a>						
 													</td>
 												";
