@@ -48,3 +48,8 @@ $route["getAuthAsig/(:any)"] = "Autorizaciones_controller/getAuthAsig/$1";
 /*************************************************************************************/
 $route["CatReportes"] = "CategoriaReporte_controller";
 /*************************************************************************************/
+
+
+/********************ALDER*****************************/
+$route["monitoreos"] = "Monitoreo_controller/index";
+$route["crearmonitoreo"] = "Monitoreo_controller/crearmonitoreo";
