@@ -25,7 +25,7 @@ $route["actualizarDatPerfil"] = "Usuarios_controller/actualizarDatPerfil";
 $route["Areas"] = "Areas_controller";
 $route["guardarAreas"] = "Areas_controller/guardarAreas";
 $route["actualizarAreas"] = "Areas_controller/actualizarAreas";
-$route["Baja_Alta"] = "Areas_controller/Baja_Alta";
+$route["Baja_AltaAreas"] = "Areas_controller/Baja_Alta";
 /*************************************************************************************/
 $route["Simbologia"] = "Siglas_controller";
 $route["guardarSimbologia"] = "Siglas_controller/guardarSimbologia";
@@ -47,9 +47,25 @@ $route["asignarPermiso"] = "Autorizaciones_controller/asignarPermiso";
 $route["getAuthAsig/(:any)"] = "Autorizaciones_controller/getAuthAsig/$1";
 /*************************************************************************************/
 $route["CatReportes"] = "CategoriaReporte_controller";
+
 /*************************************************************************************/
 
+$route["guardarCatRep"] = "CategoriaReporte_controller/guardarCatRep";
+$route["actualizarCatRep"] = "CategoriaReporte_controller/actualizarCatRep";
+$route["Baja_AltaCatRep"] = "CategoriaReporte_controller/Baja_AltaCatRep";
+/*************************************************************************************/
+$route["Informes"] = "Informes_controller";
+$route["reporte_2"] = "Informes/racymp_controller";
+
+$route["reporte_6"] = "Informes/CNS_controller";
+$route["nuevoCNS"] = "Informes/CNS_controller/nuevoCNS";
+$route["guardarCNS"] = "Informes/CNS_controller/guardarCNS";
+$route["mostrarCNSDetalle/(:any)"] = "Informes/CNS_controller/mostrarCNSDetalle/$1";
+$route["editarCNS/(:any)"] = "Informes/CNS_controller/editarCNS/$1";
+$route["BajaAltaCNS"] = "Informes/CNS_controller/BajaAltaCNS";
 
 /********************ALDER*****************************/
 $route["monitoreos"] = "Monitoreo_controller/index";
 $route["crearmonitoreo"] = "Monitoreo_controller/crearmonitoreo";
+/*************************************************************************************/
+

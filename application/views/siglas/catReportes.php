@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-09 10:54:32
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-09 14:59:39
+ * @Last Modified time: 2019-08-12 09:38:47
  */
 ?>
 <div class="content-wrapper">
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 			<div class="box-body">
-				<table class="table table-bordered table-condensed table-striped" id="tblsiglas">
+				<table class="table table-bordered table-condensed table-striped" id="tblsiglasRep">
 					<thead>
 					<tr>
 						<th>Siglas</th>
@@ -70,13 +70,13 @@
 									<td>".date_format(new DateTime($key["FECHACREA"]),"Y-m-d")."</td>
 									<td>".$key["FECHAEDITA"]."</td>
 									<td>".$estado."</td>";
-								         if($key["ESTADO"] == "A"){
+								         if($key["ESTADO"] == "A"){ //id,estado,sigla
 												echo "
 													<td class='text-center'>
-														<a class='btn btn-primary btn-xs' href='javascript:void(0)'>
+														<a onclick='editar(".'"'.$key["IDTIPOREPORTE"].'","'.$key["SIGLA"].'","'.$key["NOMBRE"].'"'.")' class='btn btn-primary btn-xs' href='javascript:void(0)'>
 														  <i class='fa fa-pencil'></i>
 														</a>
-														<a class='btn btn-danger btn-xs' href='javascript:void(0)'>
+														<a onclick='Baja(".'"'.$key["IDTIPOREPORTE"].'","'.$key["ESTADO"].'","'.$key["SIGLA"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
 														  <i class='fa fa-trash'></i> 	
 														</a>						
 													</td>
@@ -87,7 +87,7 @@
 														<a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
 														  <i class='fa fa-pencil'></i>
 														</a>
-														<a  class='btn btn-danger btn-xs' href='javascript:void(0)'>
+														<a onclick='Baja(".'"'.$key["IDTIPOREPORTE"].'","'.$key["ESTADO"].'","'.$key["SIGLA"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
 														  <i class='fa fa-undo' aria-hidden='true'></i> 	
 														</a>						
 													</td>

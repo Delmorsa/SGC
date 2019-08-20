@@ -168,7 +168,7 @@
 						estado: estado
 					};
 					$.ajax({
-						url: "Baja_Alta",
+						url: "Baja_AltaAreas",
 						type: "POST",
 						data: form_data,
 						success: function(data){
