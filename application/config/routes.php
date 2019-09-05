@@ -42,6 +42,7 @@ $route["guardarPermisos"] = "Autorizaciones_controller/guardarPermisos";
 $route["actualizarPermisos"] = "Autorizaciones_controller/actualizarPermisos";
 $route["bajaPermisos"] = "Autorizaciones_controller/bajaPermisos";
 
+
 $route["Asignar_Permiso"] = "Autorizaciones_controller/indexAsignar";
 $route["asignarPermiso"] = "Autorizaciones_controller/asignarPermiso";
 $route["getAuthAsig/(:any)"] = "Autorizaciones_controller/getAuthAsig/$1";
@@ -59,5 +60,15 @@ $route["nuevoCNS"] = "Informes/CNS_controller/nuevoCNS";
 $route["guardarCNS"] = "Informes/CNS_controller/guardarCNS";
 $route["mostrarCNSDetalle/(:any)"] = "Informes/CNS_controller/mostrarCNSDetalle/$1";
 $route["editarCNS/(:any)"] = "Informes/CNS_controller/editarCNS/$1";
+$route["actualizarCNS"] = "Informes/CNS_controller/actualizarCNS";
 $route["BajaAltaCNS"] = "Informes/CNS_controller/BajaAltaCNS";
+
+$route["reporte_8"] = "Informes/Veced_controller";
+$route["nuevoVECED"] = "Informes/Veced_controller/nuevoVECED";
+$route["getProductosSAP"] = "Informes/Veced_controller/getProductosSAP";
+$route["guardarVeced"] = "Informes/Veced_controller/guardarVeced";
+$route["mostrarVecedAjax/(:any)"] = "Informes/Veced_controller/mostrarVecedAjax/$1";
+$route["BajaAltaVeced"] = "Informes/Veced_controller/BajaAltaVeced";
+$route["editarVeced/(:any)"] = "Informes/Veced_controller/editarVeced/$1";
+$route["actualizarVeced"] = "Informes/Veced_controller/actualizarVeced";
 /*************************************************************************************/

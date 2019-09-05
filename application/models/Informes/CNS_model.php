@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-13 14:31:59
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-20 09:07:01
+ * @Last Modified time: 2019-08-20 16:00:52
  */
 class CNS_model extends CI_Model
 {
@@ -159,7 +159,7 @@ class CNS_model extends CI_Model
 		return 0;
 	}
 
-	public function actualizarCMS($enc,$datos)
+	public function actualizarCNS($enc,$datos)
 	{
 		$this->db->trans_begin();
 
@@ -167,10 +167,9 @@ class CNS_model extends CI_Model
 		$mensaje = array();
 		    $this->db->where("IDREPORTE",$enc[0]);
 			$encabezado = array(
-		      "IDMONITOREO" => $enc[1],
-		      "IDAREA" => $enc[2],
-		      "VERSION" => $enc[3],
-		      "OBSERVACIONES" => $enc[4],
+		      "IDAREA" => $enc[1],
+		      "VERSION" => $enc[2],
+		      "OBSERVACIONES" => $enc[3],
 		      "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
 		      "IDUSUARIOEDITA" => $this->session->userdata("id"),
 			);
@@ -178,33 +177,39 @@ class CNS_model extends CI_Model
 			if($guardarEnc){
 				$num = 1; $bandera = false; 
 				$idreporte = $enc[0];
-				for ($i=0; $i < count($datos); $i++) { 
-					$array = explode(",",$datos[$i]);
-					$idpeso = $this->db->query("SELECT ISNULL(MAX(IDPESO),0)+1 AS IDPESO FROM ReportesPeso");
-					$rpt = array(
-						"IDPESO" => $idpeso->result_array()[0]["IDPESO"],
-		                "IDREPORTE" => $idreporte,
-		                "ESTADO" => "A",
-		                "NUMERO" => $num,
-		                "HORA" => gmdate(date("H:i:s")),
-		                "FECHAINGRESO" => $array[0],
-		                "CANTIDADNITRITO" => $array[1],
-		                "CANTIDADKG" => $array[2],
-		                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
-		                "IDUSUARIOCREA" => $this->session->userdata("id")
-				    );	
-				    $num++;	
-				    $guardarRpt = $this->db->insert("ReportesPeso",$rpt);
-				    if($guardarRpt){
+				$delete = $this->db->where("IDREPORTE",$enc[0])->delete("ReportesPeso");
+
+				  if($delete){
+				  	for ($i=0; $i < count($datos); $i++) { 
+						$array = explode(",",$datos[$i]);
+						$idpeso = $this->db->query("SELECT ISNULL(MAX(IDPESO),0)+1 AS IDPESO FROM ReportesPeso");
+						$rpt = array(
+							"IDPESO" => $idpeso->result_array()[0]["IDPESO"],
+			                "IDREPORTE" => $idreporte,
+			                "ESTADO" => "A",
+			                "NUMERO" => $num,
+			                "HORA" => gmdate(date("H:i:s")),
+			                "FECHAINGRESO" => $array[0],
+			                "CANTIDADNITRITO" => $array[1],
+			                "CANTIDADKG" => $array[2],
+			                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
+			                "IDUSUARIOCREA" => $this->session->userdata("id"),
+			                "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+			                "IDUSUARIOEDITA" => $this->session->userdata("id"),
+					    );	
+					    $num++;	
+					    $guardarRpt = $this->db->insert("ReportesPeso",$rpt);
+				   	 if($guardarRpt){
 					    $bandera = true;
-				    }
+				     }
+				  }
 				}
 				if($bandera == true){
-					$mensaje[0]["mensaje"] = "Datos guardados correctamente";
+					$mensaje[0]["mensaje"] = "Datos actualizados correctamente";
 					$mensaje[0]["tipo"] = "success";
 					echo json_encode($mensaje);
 				}else{
-					$mensaje[0]["mensaje"] = "Error al guardar los datos del informe COD(2_DET)";
+					$mensaje[0]["mensaje"] = "Error al actualizar los datos del informe COD(2_DET)";
 					$mensaje[0]["tipo"] = "error";
 					echo json_encode($mensaje);
 				}

@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-19 14:24:32
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-19 16:57:58
+ * @Last Modified time: 2019-08-20 16:02:39
  */
 ?>
 <script type="text/javascript">
@@ -88,7 +88,7 @@
    });
 
 
-$("#btnGuardar").click(function(){
+$("#btnActualizar").click(function(){
 	Swal.fire({
 		text: "¿Estas seguro que todos los datos están correctos?",
 		type: 'question',
@@ -101,7 +101,7 @@ $("#btnGuardar").click(function(){
 	}).then((result)=>{
 		let validtable = $('#tblcrear').DataTable();
 		if(result.value){
-			/*if($("#ddlAreas option:selected").val() == "" || $("#version").val() == "" || $("#observaciones").val() == ""){
+			if($("#ddlAreas option:selected").val() == "" || $("#version").val() == "" || $("#observaciones").val() == ""){
 				Swal.fire({
 					text: "Debe ingresar un Area, Version u Observacion",
 					type: "error",
@@ -128,12 +128,12 @@ $("#btnGuardar").click(function(){
 				});
 
 				let form_data = {
-				    enc: [$("#idmonitoreo").val(),$("#ddlAreas option:selected").val(),$("#version").val(),nombre,$("#observaciones").val()],
+				    enc: [$("#idreporte").val(),$("#ddlAreas option:selected").val(),$("#version").val(),$("#observaciones").val()],
 				    datos: datos	
 				};
 
 				$.ajax({
-					url: 'guardarCNS',
+					url: '<?php echo base_url("index.php/actualizarCNS")?>',
 					type: 'POST',
 					data: form_data,
 					success: function(data)
@@ -149,11 +149,11 @@ $("#btnGuardar").click(function(){
 							text: mensaje,
 							allowOutsideClick: false
 						}).then((result)=>{
-							window.location.href = "reporte_6";  
+							window.location.href = "<?php echo base_url("index.php/reporte_6")?>";  
 						});				
 					}
 				});
-			}*/
+			}
 		}
 	});
 });

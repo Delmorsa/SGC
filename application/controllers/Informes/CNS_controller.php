@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-13 13:59:25
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-19 17:04:05
+ * @Last Modified time: 2019-08-20 15:43:47
  */
 class CNS_controller extends CI_Controller
 {
@@ -58,6 +58,14 @@ class CNS_controller extends CI_Controller
 	public function guardarCNS()
 	{
 		$this->CNS_model->guardarCNS(
+			$this->input->post("enc"),
+			$this->input->post("datos")
+		);
+	}
+
+	public function actualizarCNS()
+	{
+		$this->CNS_model->actualizarCNS(
 			$this->input->post("enc"),
 			$this->input->post("datos")
 		);

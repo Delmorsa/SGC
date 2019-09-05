@@ -77,7 +77,7 @@
 									echo "
 										<tr>
 											<td>".$key["IDREPORTE"]."</td>
-											<td>".$key["SIGLA"]."</td>
+											<td>ISO-HACCP-".$key["SIGLA"]."</td>
 											<td>".$key["DIA"]."</td>
 											<td>".$key["HORA"]."</td>
 											<td>".$key["AREA"]."</td>
