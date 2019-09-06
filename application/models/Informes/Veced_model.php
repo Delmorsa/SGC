@@ -47,7 +47,7 @@ class Veced_model extends CI_Model
 			echo json_encode($json);
 		}
 	}
-
+ 
 	public function guardarVeced($enc,$datos)
 	{
 		$this->db->trans_begin();
