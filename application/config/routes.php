@@ -71,4 +71,13 @@ $route["mostrarVecedAjax/(:any)"] = "Informes/Veced_controller/mostrarVecedAjax/
 $route["BajaAltaVeced"] = "Informes/Veced_controller/BajaAltaVeced";
 $route["editarVeced/(:any)"] = "Informes/Veced_controller/editarVeced/$1";
 $route["actualizarVeced"] = "Informes/Veced_controller/actualizarVeced";
+
+$route["reporte_9"] = "Informes/Pccn3_controller";
+$route["nuevoPCCN3"] = "Informes/Pccn3_controller/nuevoPCCN3";
+/*$route["getProductosSAP"] = "Informes/Veced_controller/getProductosSAP";*/
+$route["guardarPccn3"] = "Informes/Pccn3_controller/guardarPccn3";
+/*$route["mostrarVecedAjax/(:any)"] = "Informes/Veced_controller/mostrarVecedAjax/$1";
+$route["BajaAltaVeced"] = "Informes/Veced_controller/BajaAltaVeced";
+$route["editarVeced/(:any)"] = "Informes/Veced_controller/editarVeced/$1";
+$route["actualizarVeced"] = "Informes/Veced_controller/actualizarVeced";*/
 /*************************************************************************************/
