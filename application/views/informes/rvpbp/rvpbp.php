@@ -1,25 +1,18 @@
 <?php
 
-/**
- * @Author: cesar mejia
- * @Date:   2019-08-13 08:36:22
- * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-13 09:17:54
- */
+
 ?>
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
-			Reporte de acciones correctivas y medidas preventivas (RACYMP)
+			REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA (RVPBP)
 
-			<button class="pull-right btn btn-primary" data-toggle="modal" id="btnModal">
+			<a href="http://localhost/sgc/index.php/nuevorvpbp" class="pull-right btn btn-primary">
 				Agregar <i class="fa fa-plus"></i>
-			</button>
+			</a>
 			<!--<small>Blank example to the fixed layout</small>-->
 		</h1>
-		<!--<ol class="breadcrumb">
-			<li class="active"></li>
-		</ol>-->
+		
 		<br>
 	</section>
 
@@ -43,12 +36,14 @@
 				<table class="table table-bordered table-condensed table-striped" id="tblracymp">
 					<thead>
 					<tr>
-						<th>Hora</th>
-						<th>N° conformidad y<br>hora de la identificacion</th>
-						<th>Notificado</th>
-						<th>Acciones correctivas y<br>hora de correcion</th>
-						<th>Medidas preventivas</th>
-						<th>Responsable</th>
+						<th>Cod Reporte</th>
+						<th>Monitoreo</th>
+						<th>Fecha</th>
+						<th>Área</th>
+						<th>Instrumento Verificado</th>
+						<th>Realizado por</th>
+						<th>Verificado por</th>
+						<th>Acciones</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -57,7 +52,7 @@
 							if(!$rvpbp)
 							{}else{
 								foreach ($rvpbp as $key) {
-									switch ($key["ESTADODET"]) {
+									switch ($key["ESTADO"]) {
 										case 'A':
 												$estado = "<span class='text-success text-bold'>Activo</span>";
 											break; 
@@ -70,23 +65,37 @@
 										<tr>
 											<td>".$key["IDREPORTE"]."</td>
 											<td>".$key["SIGLA"]."</td>
-											<td>".$key["DIA"]."</td>
-											<td>".$key["HORA"]."</td>
+											<td>".$key["FECHACREA"]."</td>
 											<td>".$key["AREA"]."</td>
-											<td>".$key["OBSERVACIONES"]."</td>
+											<td>".$key["AREA"]."</td>
+											<td>".$key["MONITOREADO_POR"]."</td>
 											<td>".$key["MONITOREADO_POR"]."</td>
 											<td>".$estado."</td>";
-											if($key["ESTADODET"] == "A"){
+											if($key["ESTADO"] == "A"){
 												echo "
 													<td class='text-center'>
-													    <a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
+													    <a class='detalles btn btn-success btn-xs' href='".base_url("index.php/verRVPBP/".$key["IDREPORTE"]."")."'>
 														  <i class='fa fa-eye'></i>
 														</a>
-														<a class='btn btn-primary btn-xs' href='".base_url("index.php/editarCNS/".$key["IDREPORTE"]."")."'>
+														<a class='btn btn-primary btn-xs' href='".base_url("index.php/editarRVPBP/".$key["IDREPORTE"]."")."'>
 														  <i class='fa fa-pencil'></i>
 														</a>
-														<a onclick='baja(".'"'.$key["IDREPORTE"].'","'.$key["ESTADODET"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+														<a onclick='baja(".'"'.$key["IDREPORTE"].'","'.$key["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
 														  <i class='fa fa-trash'></i> 	
+														</a>						
+													</td>
+												";
+											}else{
+                                               echo "
+													<td class='text-center'>
+													<a class='btn btn-success btn-xs disabled' href='javascript:void(0)'>
+														  <i class='fa fa-eye'></i>
+														</a>
+														<a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
+														  <i class='fa fa-pencil'></i>
+														</a>
+														<a onclick='baja(".'"'.$key["IDREPORTE"].'","'.$key["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+														  <i class='fa fa-undo' aria-hidden='true'></i> 	
 														</a>						
 													</td>
 												";
@@ -98,12 +107,7 @@
 						?>
 					</tbody>
 				</table>
-			</div>
-			<!-- /.box-body
-			<div class="box-footer">
-				Footer
-			</div>-->
-			<!-- /.box-footer-->
+			</div>			
 		</div>
 
 	</section>

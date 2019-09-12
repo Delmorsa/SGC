@@ -34,7 +34,9 @@
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/datatables.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/treeview.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap-datepicker.min.css">
-
+	
+	<!--clockpicher-->
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap-clockpicker.min.css">
 
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
