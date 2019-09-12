@@ -4,7 +4,7 @@
  * @Author: cesar mejia
  * @Date:   2019-08-19 14:11:22
  * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-20 08:50:43
+ * @Last Modified time: 2019-08-20 15:53:52
  */
 ?>
 <div class="content-wrapper">
@@ -33,11 +33,11 @@
 				}else{
 					foreach ($monit as $key) {
 						$siglas = $key["SIGLA"];
-						$id = $key["IDMONITOREO"];
+						$id = $key["IDREPORTE"];
 					}
 					echo "ISO-HACCP-".$siglas."";
 					echo '<div class="form-group has-feedback">
-								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$id.'">
+								<input type="hidden" id="idreporte" class="form-control" value="'.$id.'">
 							</div>';
 				}
 			?>
@@ -56,7 +56,7 @@
 				<a class="btn-flat" href="javascript:history.back()">
 					<i class="fa fa-arrow-circle-left fa-2x"></i>
 				</a>
-				   <button class="pull-right btn btn-primary" id="btnGuardar">
+				   <button class="pull-right btn btn-primary" id="btnActualizar">
 						Actualizar <i class="fa fa-save"></i>
 					</button>
 				<div class="box-tools pull-right">
