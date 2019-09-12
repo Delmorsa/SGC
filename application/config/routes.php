@@ -67,5 +67,17 @@ $route["BajaAltaCNS"] = "Informes/CNS_controller/BajaAltaCNS";
 /********************ALDER*****************************/
 $route["monitoreos"] = "Monitoreo_controller/index";
 $route["crearmonitoreo"] = "Monitoreo_controller/crearmonitoreo";
-/*************************************************************************************/
+$route["reporte_7"] = "Informes/Rvpbp_controller";
+$route["nuevorvpbp"] = "Informes/Rvpbp_controller/nuevorvpbp";
+$route["guardarRVPBP"] = "Informes/Rvpbp_controller/guardarRVPBP";
+$route["BajaAltaRVPBP"] = "Informes/Rvpbp_controller/BajaAltaRVPBP";
+$route["verRVPBP/(:any)"] = "Informes/Rvpbp_controller/verRVPBP/$1";
+$route["editarRVPBP/(:any)"] = "Informes/Rvpbp_controller/editarRVPBP/$1";
+$route["guardareditarRVPBP/(:any)"] = "Informes/Rvpbp_controller/guardareditarRVPBP";
+$route["imprimirRVPBP/(:any)"] = "Informes/Rvpbp_controller/imprimirRVPBP/$1";
 
+$route["reporte_10"] = "Informes/CPP_controller";
+$route["nuevocpp"] = "Informes/CPP_controller/nuevocpp";
+
+
+/*************************************************************************************/

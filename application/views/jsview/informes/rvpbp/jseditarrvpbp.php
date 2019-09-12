@@ -1,18 +1,17 @@
 <?php
 
-/**
- * @Author: pinky mejia
- * @Date:   2019-08-14 08:30:56
- * @Last Modified by:   cesar mejia
- * @Last Modified time: 2019-08-19 17:06:55
- */
 ?>
 <script type="text/javascript">
 	$(document).ready(function(){
+
+	$('.clockpicker').clockpicker();
+	$("#ppatron,#pbascula,#iderror").numeric();
+
+
 		$("#nitrito,#kg").numeric();
 		$('#fecha').datepicker({"autoclose":true});
 		$('.select2').select2({
-			placeholder: "Seleccione un area",
+			placeholder: "Seleccione",
 			allowClear: true,
 			language: "es"
 		});
@@ -20,17 +19,17 @@
 		$("#tblCNS").DataTable();
 	});
 
-	$('#tblcrear tbody').on( 'click', 'tr', function () {
+	$('#tblDatos tbody').on( 'click', 'tr', function () {
           $(this).toggleClass('danger');
       });
 
 	$("#btnDelete").click(function (){
-      let table = $("#tblcrear").DataTable();
+      let table = $("#tblDatos").DataTable();
       let rows = table.rows( '.danger' ).remove().draw();
   });
 
    $("#btnAdd").click(function(){
-   		let t = $('#tblcrear').DataTable({
+   		let t = $('#tblDatos').DataTable({
 			"info": false,
 			"sort": false,
 			"destroy": true,
@@ -61,28 +60,43 @@
 				}
 			}
 		});
-   		let fecha = $("#fecha").val(),
-   		cantidad = $("#nitrito").val(),
-   		kg = $("#kg").val(),
+   		let area = $("#ddlAreas option:selected").val(),
+		instrumento = $("#instrumento").val(),
+   		fecha = $("#fecha").val(),   		
+   		hora = $("#hora").val(),
+   		codigo = $("#codigo").val(),
+   		peso = $("#ddpeso option:selected").text(),
+   		ppatron = $("#ppatron").val(),
+   		pbascula = $("#pbascula").val(),   		
+   		observacion = $("#observaciones").val(), 
    		monituser = $("#monituser").val();
 
-   		if(fecha == "" || cantidad == "" || kg == "" || monituser == ""){
+
+   		if(fecha == ""  || instrumento == "" || hora == "" || codigo == "" || ppatron == "" || pbascula == "" || monituser == "" || area == "" || peso == ""){
    			Swal.fire({
-   				text: "Todos los campos son requeridos",
+   				text: "Todos los campos son requeridos,Excepto Observación",
    				type: "warning",
    				allowOutsideClick: false
    			});
    		}else{
+
+   			let diferencia = parseFloat(ppatron) - parseFloat(pbascula);
    			t.row.add([
 				fecha,
-				cantidad,
-				kg,
-				monituser	   			
+				hora,
+				codigo,
+				ppatron,
+				pbascula,
+				peso,
+				diferencia,
+				observacion
    			]).draw(false);
 
-   		$("#fecha").val("");
-   		$("#nitrito").val("");
-   		$("#kg").val(""); 
+   		$("#hora").val("");
+   		$("#ppatron").val("");
+   		$("#pbascula").val(""); 
+   		$("#observaciones").val(""); 
+
    		//$("#ddlAreas").val("").trigger("change");
    		}
    });
@@ -90,7 +104,7 @@
 
 $("#btnGuardar").click(function(){
 	Swal.fire({
-		text: "¿Estas seguro que todos los datos están correctos?",
+		text: "¿Estas Seguro que Desea Guardar?",
 		type: 'question',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
@@ -99,15 +113,9 @@ $("#btnGuardar").click(function(){
 		cancelButtonText: "Cancelar",
 		allowOutsideClick: false
 	}).then((result)=>{
-		let validtable = $('#tblcrear').DataTable();
+		let validtable = $('#tblDatos').DataTable();
 		if(result.value){
-			if($("#ddlAreas option:selected").val() == "" || $("#version").val() == "" || $("#observaciones").val() == ""){
-				Swal.fire({
-					text: "Debe ingresar un Area, Version u Observacion",
-					type: "error",
-					allowOutsideClick: false
-				});
-			}else if (!validtable.data().count() ) {
+			if (!validtable.data().count() ) {
 		    	Swal.fire({
 		    		text: "No se ha agregado ningún registro a la tabla",
 		    		type: "error",
@@ -117,23 +125,23 @@ $("#btnGuardar").click(function(){
 				$("#loading").modal("show");
 			    let nombre = $("#nombreRpt").html(),
 			    mensaje = '', tipo = '',	
-				table = $("#tblcrear").DataTable();
+				table = $("#tblDatos").DataTable();
 				let datos = new Array(), i = 0;
 				
 				table.rows().eq(0).each(function(i, index){
 					let row = table.row(index);
 					let data = row.data();
-					datos[i] = data[0]+","+data[1]+","+data[2];
+					datos[i] = data[0]+"|"+data[1]+"|"+data[2]+"|"+data[3]+"|"+data[4]+"|"+data[5]+"|"+data[6]+"|"+data[7];
 					i++;
 				});
 
 				let form_data = {
-				    enc: [$("#idmonitoreo").val(),$("#ddlAreas option:selected").val(),$("#version").val(),nombre,$("#observaciones").val()],
-				    datos: datos	
+				    enc: [$("#idmonitoreo").val(),$("#ddlAreas option:selected").val(),nombre,$("#observaciones").val(),$("#iderror").val(),$("#instrumento").val(),$("#observacionGeneral").val()],
+				    datos: datos
 				};
 
 				$.ajax({
-					url: 'guardarCNS',
+					url: 'editarRVPBP/'+$('#id_reporte').val(),
 					type: 'POST',
 					data: form_data,
 					success: function(data)
@@ -149,8 +157,15 @@ $("#btnGuardar").click(function(){
 							text: mensaje,
 							allowOutsideClick: false
 						}).then((result)=>{
-							window.location.href = "reporte_6";  
+							//window.location.href = "reporte_7";  
 						});				
+					},error:function(){
+						Swal.fire({
+							type: "error",
+							text: "Error inesperado, Intentelo de Nuevo",
+							allowOutsideClick: false
+						});
+						$("#loading").modal("hide");
 					}
 				});
 			}
@@ -250,7 +265,7 @@ function baja(id,estado){
 						estado: estado
 					};
 					$.ajax({
-						url: "BajaAltaCNS",
+						url: "BajaAltaRVPBP",
 						type: "POST",
 						data: form_data,
 						success: function(data){

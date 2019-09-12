@@ -19,7 +19,7 @@
 				[10,20,50,100, "Todo"]
 			],
 			"order": [
-				[0, "asc"]
+				[1, "desc"]
 			],
 			"language": {
 				"info": "Registro _START_ a _END_ de _TOTAL_ entradas",
@@ -67,14 +67,14 @@
 				success: function (data) {
 					let obj = jQuery.parseJSON(data);
 					$.each(obj, function(index, val) {
-
 						if (val["retorno"]) {
-						Swal.fire({
-							text: "Monitoreo Creado Correctamente!",
-							type: "info",
-							allowOutsideClick: false							
-						});
-						$("#modalRoles").modal("hide");
+							Swal.fire({
+								text: "Monitoreo Creado Correctamente!",
+								type: "info",
+								allowOutsideClick: false
+							});
+							$("#modalRoles").modal("hide");
+							location.reload();
 						}else{
 							Swal.fire({
 								text: val["mensaje"],

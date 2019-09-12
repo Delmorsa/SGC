@@ -32,6 +32,9 @@
 <script src="<?php echo base_url()?>assets/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo base_url()?>assets/js/jquery.numeric.js"></script>
 
+<!--ClockPicker-->
+<script src="<?php echo base_url()?>assets/js/bootstrap-clockpicker.min.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url()?>assets/js/demo.js"></script>
 </body>
