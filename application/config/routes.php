@@ -90,12 +90,11 @@ $route["actualizarVeced"] = "Informes/Veced_controller/actualizarVeced";
 
 $route["reporte_9"] = "Informes/Pccn3_controller";
 $route["nuevoPCCN3"] = "Informes/Pccn3_controller/nuevoPCCN3";
-/*$route["getProductosSAP"] = "Informes/Veced_controller/getProductosSAP";*/
 $route["guardarPccn3"] = "Informes/Pccn3_controller/guardarPccn3";
-/*$route["mostrarVecedAjax/(:any)"] = "Informes/Veced_controller/mostrarVecedAjax/$1";
-$route["BajaAltaVeced"] = "Informes/Veced_controller/BajaAltaVeced";
-$route["editarVeced/(:any)"] = "Informes/Veced_controller/editarVeced/$1";
-$route["actualizarVeced"] = "Informes/Veced_controller/actualizarVeced";*/
+$route["mostrarPccn3Ajax/(:any)"] = "Informes/Pccn3_controller/mostrarPccn3Ajax/$1";
+$route["BajaAltaPccn3"] = "Informes/Pccn3_controller/BajaAltaPccn3";
+$route["editarPccn3/(:any)"] = "Informes/Pccn3_controller/editarPccn3/$1";
+$route["actualizarPccn3"] = "Informes/Pccn3_controller/actualizarPccn3";
 /*************************************************************************************/
 $route["reporte_10"] = "Informes/CPP_controller";
 $route["nuevocpp"] = "Informes/CPP_controller/nuevocpp";

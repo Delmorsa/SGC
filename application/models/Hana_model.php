@@ -41,7 +41,8 @@ class Hana_model extends CI_Model
                     $query = 'SELECT DISTINCT "ItemCode","ItemName"
                         FROM '.$this->BD.'."VIEW_BODEGAS_EXISTENCIAS"
                         '.$qfilter.'
-                        LIMIT 20';
+                        GROUP BY "ItemCode","ItemName" 
+                        LIMIT 10';
 
             $resultado = @odbc_exec($conn,$query);
             $json = array();
