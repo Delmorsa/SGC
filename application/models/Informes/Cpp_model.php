@@ -16,16 +16,62 @@ class Cpp_model extends CI_Model
 		return 0;
 	}
 
+	public function mostrarNivelInspeccion()
+	{
+		$query = $this->db->get("CatNivelInspeccion");
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}
+		return 0;
+	}
+
+	public function getMuestra($tamano,$nivel,/*$tamano2,*/$nivel2,$bandera){
+		$arreglo = explode("-",$tamano);
+		//print_r($arreglo);
+		
+		try{
+			$query = "SELECT MUESTRA FROM CatMuestras 
+					WHERE LETRA = 
+					(SELECT ".strval($nivel)." FROM CatNivelInspeccion WHERE Desde= ".$arreglo[0]." and Hasta <= ".$arreglo[1].")";
+
+			//echo $query."<br>";
+
+			$query = $this->db->query("SELECT MUESTRA FROM CatMuestras 
+			WHERE LETRA = (SELECT ".strval($nivel)." FROM CatNivelInspeccion WHERE Desde= ".$arreglo[0]." and Hasta <= ".$arreglo[1].")");			
+			
+			if ($query->num_rows()>0){
+				if ($bandera == "true"){
+					$muestra  = $query->result_array()[0]["MUESTRA"];
+
+
+					//echo "SELECT MUESTRA FROM CatMuestras WHERE LETRA = 
+					//(SELECT ".strval($nivel2)." FROM CatNivelInspeccion WHERE (".$muestra." >= DESDE) and (".$muestra." <= HASTA)) <br>";
+					$query = $this->db->query("SELECT MUESTRA FROM CatMuestras WHERE LETRA = 
+					(SELECT ".strval($nivel2)." FROM CatNivelInspeccion WHERE (".$muestra." >= DESDE) and (".$muestra." <= HASTA))");
+
+					if ($query->num_rows()>0) {
+						echo  $query->result_array()[0]["MUESTRA"]; return;
+					}
+				}else{
+					echo $query->result_array()[0]["MUESTRA"]; return;
+				}
+			}
+			echo 0;return;
+		}catch(Excepcion $ex){
+			echo 0; return;
+		}
+	}
+
 	public function getInformes()
 	{
-		$query = $this->db->query("SELECT T3.AREA, T1.NOMBRES+' '+T1.APELLIDOS MONITOREADO_POR, T2.IDMONITOREO,T2.SIGLA, T0.*                    FROM
+		$query = $this->db->query("SELECT T3.AREA, T1.NOMBRES+' '+T1.APELLIDOS MONITOREADO_POR, T2.IDMONITOREO,T2.SIGLA, T0.* FROM
 								Reportes T0
 								INNER JOIN Usuarios T1 ON T1.IDUSUARIO = T0.IDUSUARIOCREA
 								INNER JOIN Monitoreos T2 ON T2.IDMONITOREO = T0.IDMONITOREO
 								INNER JOIN Areas T3 ON T3.IDAREA = T0.IDAREA
 								WHERE T0.IDTIPOREPORTE = 10");
 		if($query->num_rows() > 0)
-		{	
+		{
 			return $query->result_array();
 		}
 		return 0;
