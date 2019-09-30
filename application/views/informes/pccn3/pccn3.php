@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <table class="table table-bordered table-condensed table-striped" id="tblCNS">
+                <table class="table table-bordered table-condensed table-striped" id="tblPccn3">
                     <thead>
                     <tr>
                         <!--<th>Fecha de ingreso <br>a premezcla</th>
@@ -50,16 +50,71 @@
                         <th>CodReporte</th>
                         <th>Monitoreo</th>
                         <th>Dia</th>
-                        <th>Hora</th>
-                        <th>Area</th>
-                        <th>Observaciones</th>
+                        <th>Hora <br> Identific.</th>
+                        <th>Fecha</th>
                         <th>Monitoreado por</th>
                         <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
-
+                        <?php
+                        $estado = '';
+                            if(!$datos){
+                            }else{
+                                foreach ($datos as $dato) {
+                                    switch ($dato["ESTADO"])
+                                    {
+                                        case "A":
+                                                $estado = "<span class='text-success text-bold'>Activo</span>";
+                                            break;
+                                        default:
+                                                $estado = "<span class='text-danger text-bold'>Inactivo</span>";
+                                            break;
+                                    }
+                                    echo "
+                                        <tr>
+                                            <td>".$dato["IDREPORTE"]."</td>
+                                            <td>".$dato["SIGLA"]."</td>
+                                            <td>".$dato["DIA"]."</td>
+                                            <td>".date_format(new DateTime($dato["HORAIDENTIFICACION"]),"H:i:s")."</td>
+                                            <td>".date_format(new DateTime($dato["FECHAINICIO"]),"Y-m-d")."</td>
+                                            <td>".$dato["USUARIO"]."</td>
+                                            <td>".$estado."</td>";
+										if($dato["ESTADO"] == "A"){
+											echo "
+															<td class='text-center'>
+																<a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
+																  <i class='fa fa-eye'></i>
+																</a>
+																<a class='btn btn-primary btn-xs' href='".base_url("index.php/editarPccn3/".$dato["IDREPORTE"]."")."'>
+																  <i class='fa fa-pencil'></i>
+																</a>
+																<a onclick='darDeBaja(".'"'.$dato["IDREPORTE"].'","'.$dato["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+																  <i class='fa fa-trash'></i>
+																</a>
+															</td>
+														";
+										}else{
+											echo "
+															<td class='text-center'>
+															<a class='btn btn-success btn-xs disabled' href='javascript:void(0)'>
+																  <i class='fa fa-eye'></i>
+																</a>
+																<a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
+																  <i class='fa fa-pencil'></i>
+																</a>
+																<a onclick='darDeBaja(".'"'.$dato["IDREPORTE"].'","'.$dato["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+																  <i class='fa fa-undo' aria-hidden='true'></i>
+																</a>
+															</td>
+														";
+										}
+										echo "</tr>						
+									";
+                                }
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

@@ -9,7 +9,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#fecha').datepicker({"autoclose":true});
-
+        $("#temperatura,#produccion,#tiempo,#version").numeric();
         $(".js-data-example-ajax").select2({
                 placeholder: '--- Seleccione un Producto ---',
                 allowClear: true,
@@ -224,7 +224,7 @@
                                 text: mensaje,
                                 allowOutsideClick: false
                             }).then((result)=>{
-                                window.location.href = "reporte_8";
+                                window.location.href = "reporte_9";
                             });
                         }
                     });
@@ -232,4 +232,127 @@
             }
         });
     });
+
+    function mostrarDetalles(callback,id,div)
+    {
+        $.ajax({
+            url: "mostrarPccn3Ajax/"+id,
+            async: true,
+            success: function(response){
+
+                let thead = '',tbody='';
+                if(response != "false"){
+                    let obj = $.parseJSON(response);
+                    thead += "<th class='text-center bg-primary'>Productos</th>";
+                    thead += "<th class='text-center bg-primary'>Codigo</th>";
+                    thead += "<th class='text-center bg-primary'>Hora Entrada</th>";
+                    thead += "<th class='text-center bg-primary'>Hora Salida</th>";
+                    thead += "<th class='text-center bg-primary'>T°C</th>";
+                    thead += "<th class='text-center bg-primary'>Tiempo</th>";
+                    thead += "<th class='text-center bg-primary'>Observaciones</th>";
+                    thead += "<th class='text-center bg-primary'>Acciones Correctivas</th></tr>";
+                    $.each(obj, function(i, item){
+                        tbody += "<tr>"+
+                            "<td class='text-center bg-info'>"+item["PRODUCTO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["CODIGO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["HORAENTRADA"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["HORASALIDA"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["TC"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["TIEMPO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["OBSERVACIONES"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["ACCIONESCORRECTIVAS"]+"</td>"+
+                            "</tr>";
+                    });
+                    callback($("<table id='detPccn3' class='table table-bordered table-condensed table-striped'>"+ thead + tbody + "</table>")).show();
+                }else {
+                    thead += "<th class='text-center bg-primary'>Productos</th>";
+                    thead += "<th class='text-center bg-primary'>Codigo</th>";
+                    thead += "<th class='text-center bg-primary'>Hora Entrada</th>";
+                    thead += "<th class='text-center bg-primary'>Hora Salida</th>";
+                    thead += "<th class='text-center bg-primary'>T°C</th>";
+                    thead += "<th class='text-center bg-primary'>Tiempo</th>";
+                    thead += "<th class='text-center bg-primary'>Observaciones</th>";
+                    thead += "<th class='text-center bg-primary'>Acciones Correctivas</th></tr>";
+                    tbody += '<tr >' +
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td>No hay datos disponibles</td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        '</tr>';
+                    callback($('<table id="detPccn3" class="table table-bordered table-condensed table-striped">' + thead + tbody + '</table>')).show();
+                }
+            }
+        });
+    }
+
+    $("#tblPccn3").on("click","tbody .detalles", function () {
+        let table = $("#tblPccn3").DataTable();
+        let tr = $(this).closest("tr");
+        //$(this).addClass("detalleNumOrdOrange");
+        let row = table.row(tr);
+        let data = table.row($(this).parents("tr")).data();
+
+        if(row.child.isShown())
+        {
+            row.child.hide();
+            tr.removeClass("shown");
+        }else{
+            mostrarDetalles(row.child,data[0],data[0]);
+            tr.addClass("shown");
+        }
+    });
+
+    function darDeBaja(idreporte,estado)
+    {
+        let message = '', text = '';
+        if(estado == "A"){
+            message = 'Se dará de baja el informe, éste ya no podra ser utilizada en el sistema.'+
+                '¿Desea continuar?';
+            text = 'Dar baja';
+        }else{
+            message= '¿Desea restaurar el informe ?';
+            text = "Restaurar";
+        }
+        Swal.fire({
+            text: message,
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: text,
+            cancelButtonText: 'Cancelar',
+            allowOutsideClick: false
+        }).then((result)=>{
+            if(result.value){
+                let mensaje = '', tipo = '';
+                let form_data = {
+                    idreporte:  idreporte,
+                    estado: estado
+                };
+               $.ajax({
+                    url: "BajaAltaPccn3",
+                    type: "POST",
+                    data: form_data,
+                    success: function(data){
+                        let obj = jQuery.parseJSON(data);
+                        $.each(obj, function(i, index){
+                            mensaje = index["mensaje"];
+                            tipo = index["tipo"];
+                        });
+                        Swal.fire({
+                            text: mensaje,
+                            type: tipo,
+                            allowOutsideClick: false
+                        }).then((result)=>{
+                            location.reload();
+                        });
+                    }
+                });
+            }
+        });
+    }
 </script>

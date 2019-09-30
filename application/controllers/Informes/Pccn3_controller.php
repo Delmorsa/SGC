@@ -20,11 +20,12 @@ class Pccn3_Controller extends CI_Controller
 
     public function index()
     {
+        $data["datos"] = $this->Pccn3_model->mostrarPccn3();
         $this->load->view('header/header');
         $this->load->view('header/menu');
-        $this->load->view('informes/pccn3/pccn3');
+        $this->load->view('informes/pccn3/pccn3',$data);
         $this->load->view('footer/footer');
-        //$this->load->view('jsview/informes/veced/jsVeced');
+        $this->load->view('jsview/informes/pccn3/jsPCCN3');
     }
 
     public function	nuevoPCCN3()
@@ -37,11 +38,47 @@ class Pccn3_Controller extends CI_Controller
         $this->load->view('jsview/informes/pccn3/jsPCCN3');
     }
 
+    public function	editarPccn3($idreporte)
+    {
+        $data["editar"] = $this->Pccn3_model->editarPccn3($idreporte);
+        $this->load->view('header/header');
+        $this->load->view('header/menu');
+        $this->load->view('informes/pccn3/editarPCCN3',$data);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/informes/pccn3/jseditarPCCN3');
+    }
+
     public function guardarPccn3()
     {
-        $this->Pccn33_model->guardarPccn3(
+        $this->Pccn3_model->guardarPccn3(
             $this->input->post("enc"),
             $this->input->post("datos")
         );
+    }
+
+    public function actualizarPccn3()
+    {
+        $this->Pccn3_model->actualizarPccn3(
+            $this->input->post("enc"),
+            $this->input->post("datos")
+        );
+    }
+
+
+    public function mostrarPccn3Ajax($idreporte)
+    {
+        $this->Pccn3_model->mostrarPccn3Ajax($idreporte);
+    }
+
+    public function BajaAltaPccn3()
+    {
+        $idreporte = $this->input->get_post("idreporte");
+        $estado = $this->input->get_post("estado");
+        if($estado == "A"){
+            $estado = "I";
+        }else{
+            $estado = "A";
+        }
+        $this->Pccn3_model->BajaAlta($idreporte,$estado);
     }
 }
