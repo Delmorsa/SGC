@@ -58,6 +58,15 @@ $route["Baja_AltaCatRep"] = "CategoriaReporte_controller/Baja_AltaCatRep";
 $route["Informes"] = "Informes_controller";
 $route["reporte_2"] = "Informes/racymp_controller";
 
+$route["reporte_4"] = "Informes/Mcpe_controller";
+$route["nuevoMCPE"] = "Informes/Mcpe_controller/nuevoMCPE";
+/*$route["guardarCNS"] = "Informes/Mcpe_controller/guardarCNS";
+$route["mostrarCNSDetalle/(:any)"] = "Informes/Mcpe_controller/mostrarCNSDetalle/$1";
+$route["editarCNS/(:any)"] = "Informes/Mcpe_controller/editarCNS/$1";
+$route["actualizarCNS"] = "Informes/Mcpe_controller/actualizarCNS";
+$route["BajaAltaCNS"] = "Informes/Mcpe_controller/BajaAltaCNS";*/
+
+
 $route["reporte_6"] = "Informes/CNS_controller";
 $route["nuevoCNS"] = "Informes/CNS_controller/nuevoCNS";
 $route["guardarCNS"] = "Informes/CNS_controller/guardarCNS";
@@ -90,12 +99,11 @@ $route["actualizarVeced"] = "Informes/Veced_controller/actualizarVeced";
 
 $route["reporte_9"] = "Informes/Pccn3_controller";
 $route["nuevoPCCN3"] = "Informes/Pccn3_controller/nuevoPCCN3";
-/*$route["getProductosSAP"] = "Informes/Veced_controller/getProductosSAP";*/
 $route["guardarPccn3"] = "Informes/Pccn3_controller/guardarPccn3";
-/*$route["mostrarVecedAjax/(:any)"] = "Informes/Veced_controller/mostrarVecedAjax/$1";
-$route["BajaAltaVeced"] = "Informes/Veced_controller/BajaAltaVeced";
-$route["editarVeced/(:any)"] = "Informes/Veced_controller/editarVeced/$1";
-$route["actualizarVeced"] = "Informes/Veced_controller/actualizarVeced";*/
+$route["mostrarPccn3Ajax/(:any)"] = "Informes/Pccn3_controller/mostrarPccn3Ajax/$1";
+$route["BajaAltaPccn3"] = "Informes/Pccn3_controller/BajaAltaPccn3";
+$route["editarPccn3/(:any)"] = "Informes/Pccn3_controller/editarPccn3/$1";
+$route["actualizarPccn3"] = "Informes/Pccn3_controller/actualizarPccn3";
 /*************************************************************************************/
 $route["reporte_10"] = "Informes/CPP_controller";
 $route["nuevocpp"] = "Informes/CPP_controller/nuevocpp";

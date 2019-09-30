@@ -22,6 +22,15 @@ class CategoriaReporte_model extends CI_Model{
 	 	return 0;
 	 }
 
+    public function mostrarCatReporActivos()
+    {
+        $query = $this->db->where("ESTADO","A")->get("CatReportes");
+        if($query->num_rows() > 0){
+            return $query->result_array();
+        }
+        return 0;
+    }
+
 	 public function guardarCatRep($sigla,$nombre)
 	 {
 	 	$this->db->trans_begin();
