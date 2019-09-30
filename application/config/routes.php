@@ -107,3 +107,5 @@ $route["actualizarPccn3"] = "Informes/Pccn3_controller/actualizarPccn3";
 /*************************************************************************************/
 $route["reporte_10"] = "Informes/CPP_controller";
 $route["nuevocpp"] = "Informes/CPP_controller/nuevocpp";
+$route["getGramos/(:any)"] = "Informes/CPP_controller/getGramos/$1";
+$route["getMuestra/(:any)/(:any)/(:any)/(:any)"] = "Informes/CPP_controller/getMuestra/$1/$2/$3/$4";

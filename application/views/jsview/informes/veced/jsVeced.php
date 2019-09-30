@@ -123,8 +123,7 @@
 				},
 				cache: true
 			}
-		}
-	).trigger('change');
+		}).trigger('change');
 });
 
     $('#tblcrear tbody').on( 'click', 'tr', function () {

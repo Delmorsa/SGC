@@ -30,8 +30,8 @@ class Hana_model extends CI_Model
 
 	public function getProductosSAP($search)
 	{
-    	$qfilter = '';
-       if($search){
+        $qfilter = '';
+        if($search){
         	$qfilter = 'WHERE ("ItemName" LIKE '."'%".$search."%'".'
                         OR "ItemCode" LIKE '."'%".$search."%'".') ';
 		}else{
@@ -55,5 +55,22 @@ class Hana_model extends CI_Model
             }
             echo json_encode($json);
             echo @odbc_error($conn);
+    }
+    public function getGramos($itemcode){
+        $conn = $this->OPen_database_odbcSAp();
+
+        $KG = 'KG';
+        $LB = 'LB';
+        $query = 'SELECT IFNULL(CASE WHEN T0."SalUnitMsr" = '."'".$KG."'".' THEN 1000 WHEN  T0."SalUnitMsr" = '."'".$LB."'".'     THEN 454 ELSE T0."SWeight1" end,0) "GRAMOS"             FROM '.$this->BD.'."OITM" T0 WHERE T0."ItemCode" = '."'".$itemcode."'";
+        //echo $query;        
+        $resultado = @odbc_exec($conn,$query);
+        $json = array();
+        $i = 0;
+        while ($fila = @odbc_fetch_array($resultado)){
+            $json[$i]["GRAMOS"] = $fila["GRAMOS"];
+            $i++;
+        }
+        echo json_encode($json);
+        //echo json_encode(@odbc_error($conn));
     }
 }

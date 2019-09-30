@@ -37,5 +37,6 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url()?>assets/js/demo.js"></script>
+
 </body>
 </html>

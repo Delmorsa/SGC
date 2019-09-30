@@ -35,11 +35,18 @@ class CPP_controller extends CI_Controller
 		}
 		$data["areas"] = $this->CNS_model->mostrarAreas();
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
+		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
+		//echo json_encode($data["niveles"]);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
-		$this->load->view('informes/rvpbp/crearrvpbp',$data);
-		$this->load->view('footer/footer');	
-		$this->load->view('jsview/informes/rvpbp/jsrvpbp');
+		$this->load->view('informes/cpp/crearcpp',$data);
+		$this->load->view('footer/footer');
+		$this->load->view('jsview/informes/cpp/jscpp');
+	}
+
+	public function getGramos($value)
+	{
+		$this->Hana_model->getGramos($value);
 	}
 
 	public function guardarRVPBP()
@@ -79,6 +86,13 @@ class CPP_controller extends CI_Controller
 		$this->load->view('footer/footer');	
 		$this->load->view('jsview/informes/rvpbp/jseditarrvpbp');
 
+	}
+
+	public function getMuestra($tamano,$nivel,/*$tamano2=null,*/$nivel2=null,$bandera)
+	{
+
+		//echo "tamano: ".$tamano." nivel: ".strval($nivel);
+		$this->Cpp_model->getMuestra($tamano,$nivel,/*$tamano2,*/$nivel2,$bandera);
 	}
 
 	public function imprimirRVPBP($id)
