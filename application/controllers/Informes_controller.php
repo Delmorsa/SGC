@@ -20,7 +20,7 @@ class Informes_controller extends CI_Controller
 
 	public function index()
 	{
-		$data["rpts"] = $this->CategoriaReporte_model->mostrarCatRepor();
+		$data["rpts"] = $this->CategoriaReporte_model->mostrarCatReporActivos();
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/informes',$data);

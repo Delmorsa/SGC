@@ -38,10 +38,10 @@ class Hana_model extends CI_Model
             $qfilter = '';
         }
         $conn = $this->OPen_database_odbcSAp();
-                    $query = 'SELECT DISTINCT "ItemCode","ItemName"
+                    $query = 'SELECT DISTINCT "ItemCode","ItemName","SWeight1"
                         FROM '.$this->BD.'."VIEW_BODEGAS_EXISTENCIAS"
                         '.$qfilter.'
-                        GROUP BY "ItemCode","ItemName" 
+                        GROUP BY "ItemCode","ItemName","SWeight1"
                         LIMIT 10';
 
             $resultado = @odbc_exec($conn,$query);
@@ -50,6 +50,7 @@ class Hana_model extends CI_Model
             while ($fila = @odbc_fetch_array($resultado)) {
                 $json[$i]["ItemCode"] = utf8_encode($fila["ItemCode"]);
                 $json[$i]["ItemName"] = utf8_encode($fila["ItemName"]);
+                $json[$i]["SWeight1"] = utf8_encode($fila["SWeight1"]);
                 $i++;
             }
             echo json_encode($json);

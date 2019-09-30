@@ -58,6 +58,15 @@ $route["Baja_AltaCatRep"] = "CategoriaReporte_controller/Baja_AltaCatRep";
 $route["Informes"] = "Informes_controller";
 $route["reporte_2"] = "Informes/racymp_controller";
 
+$route["reporte_4"] = "Informes/Mcpe_controller";
+$route["nuevoMCPE"] = "Informes/Mcpe_controller/nuevoMCPE";
+/*$route["guardarCNS"] = "Informes/Mcpe_controller/guardarCNS";
+$route["mostrarCNSDetalle/(:any)"] = "Informes/Mcpe_controller/mostrarCNSDetalle/$1";
+$route["editarCNS/(:any)"] = "Informes/Mcpe_controller/editarCNS/$1";
+$route["actualizarCNS"] = "Informes/Mcpe_controller/actualizarCNS";
+$route["BajaAltaCNS"] = "Informes/Mcpe_controller/BajaAltaCNS";*/
+
+
 $route["reporte_6"] = "Informes/CNS_controller";
 $route["nuevoCNS"] = "Informes/CNS_controller/nuevoCNS";
 $route["guardarCNS"] = "Informes/CNS_controller/guardarCNS";
