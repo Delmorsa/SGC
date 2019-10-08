@@ -237,6 +237,17 @@
 						<li><a href="<?php echo base_url("index.php/Areas")?>"><i class="fa fa-circle-o text-warning"></i> Crear y administrar áreas</a></li>
 					</ul>
 				</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-sitemap"></i> <span>Maquinas</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="<?php echo base_url("index.php/Maquinas")?>"><i class="fa fa-circle-o text-warning"></i> Crear y administrar máquinas</a></li>
+                    </ul>
+                </li>
 				<li class="treeview">
 					<a href="#">
 						<i class="fa fa-bookmark"></i>
@@ -263,21 +274,9 @@
 			            </span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="<?php echo base_url("index.php/monitoreos")?>"><i class="fa fa-circle-o"></i> Monitoreos</a></li>						
+						<li><a href="<?php echo base_url("index.php/monitoreos")?>"><i class="fa fa-circle-o text-warning"></i> Monitoreos</a></li>
 						<li><a href="<?php echo base_url("index.php/CatReportes")?>"><i class="fa fa-circle-o text-warning">
 						</i> Categorias Reportes</a></li>
-					</ul>
-				</li>
-				<li class="treeview">
-					<a href="#">
-						<i class="fa fa-table"></i> <span>Tables</span>
-						<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-						<li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
 					</ul>
 				</li>
 				<li>
