@@ -59,7 +59,7 @@
 				  confirmButtonColor: '#3085d6',
 				  confirmButtonText: 'Aceptar!'
 				}).then((result) => {
-				  	if (result.value) {
+				  	if (result.value){
 				  		$('#lote').val('');
 				  		$('#batch').val('');
 					}
@@ -192,20 +192,33 @@
 
    $("#btnAdd").click(function(){
    		let table = $("#tblDatos").DataTable();
-   		let noRegistro = parseFloat(tabla.data().count());
+   		let noRegistro = parseFloat(table.rows().count());
+   		console.log(noRegistro);
 
    		let muestra = parseFloat($('#muestra').val());
 
-   		if (noRegistro < mustra) {
-	   		Swal.fire({
+   		if (muestra == '' || muestra == 0) {
+   			Swal.fire({
 				title: 'Aviso',
-				text: "No ha llenado el número de muestras total",
+				text: "Favor Seleccione Tamaño de Muestra",
 				type: 'warning',
 				showCancelButton: false,
 				confirmButtonColor: '#3085d6',
 				confirmButtonText: 'Aceptar!'
-			}).then((result) => {
-			});
+			}).then((result) => {});
+			return false;
+   		}
+
+   		if (noRegistro == muestra) {
+	   		Swal.fire({
+				title: 'Aviso',
+				text: "Ha llenado el número de muestras total",
+				type: 'warning',
+				showCancelButton: false,
+				confirmButtonColor: '#3085d6',
+				confirmButtonText: 'Aceptar!'
+			}).then((result) => {});
+			return;
 		}
 
 
@@ -274,8 +287,10 @@
    			});
    			return;
    		}else{
+
    			let diferencia = parseFloat(peso) - parseFloat(gramos);
    			t.row.add([
+   				t.rows().count()+1,
 				codproducto,
 				descripcion,
 				gramos,
@@ -291,7 +306,7 @@
 
 $("#btnGuardar").click(function(){
 	Swal.fire({
-		text: "¿Estas Seguro que Desea Guardar?",
+		text: "¿Esta Seguro que Desea Guardar?",
 		type: 'question',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
@@ -302,14 +317,53 @@ $("#btnGuardar").click(function(){
 	}).then((result)=>{
 		let validtable = $('#tblDatos').DataTable();
 		if(result.value){
-			if($("#ddlAreas option:selected").val() == "" || $("#instrumento").val() == "" 
-				|| $("#iderror").val() == ""){
-				Swal.fire({
-					text: "Debe ingresar un Area, Version u Observacion",
+
+		let noRegistro = parseFloat(validtable.rows().count());
+   		let muestra = parseFloat($('#muestra').val());
+
+   			if (noRegistro<muestra) {
+   				Swal.fire({
+					text: "Debe ingresar el numero de muestras indicadas",
 					type: "error",
 					allowOutsideClick: false
 				});
-			}else if (!validtable.data().count() ) {
+   			}else if( $("#ddlAreas option:selected").val() == "" ) {
+				Swal.fire({
+					text: "Debe ingresar un Area",
+					type: "error",
+					allowOutsideClick: false
+				});
+			}else if ( $('#fecha').val() == '' ) {
+		    	Swal.fire({
+		    		text: "Ingrese una Fecha",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
+			}else if ( $("#ddlprod option:selected").val() == "") {
+		    	Swal.fire({
+		    		text: "Seleccione un Producto",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
+			}else if ( $('#lote').val() == '' ) {
+		    	Swal.fire({
+		    		text: "Ingrese un lote",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
+			}else if ( $('#batch').val()  == '') {
+		    	Swal.fire({
+		    		text: "Ingrese un Batch",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
+			}else if ( $('#muestra').val() == '' ) {
+		    	Swal.fire({
+		    		text: "Ingrese un nivel de Inspreccion para la muestra",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
+			}else if (validtable.data().count() == 0 ) {
 		    	Swal.fire({
 		    		text: "No se ha agregado ningún registro a la tabla",
 		    		type: "error",
@@ -317,25 +371,34 @@ $("#btnGuardar").click(function(){
 		    	});
 			}else{
 				$("#loading").modal("show");
-			    let nombre = $("#nombreRpt").html(),
+			    let nombre = $("#nombreRpt").html();
+			    let datos = new Array(), i = 0;
 			    mensaje = '', tipo = '',	
-				table = $("#tblDatos").DataTable();
-				let datos = new Array(), i = 0;
+				table = $("#tblDatos").DataTable();				
 				
 				table.rows().eq(0).each(function(i, index){
 					let row = table.row(index);
 					let data = row.data();
-					datos[i] = data[0]+"|"+data[1]+"|"+data[2]+"|"+data[3]+"|"+data[4]+"|"+data[5]+"|"+data[6]+"|"+data[7];
+					datos[i] = [];
+					datos[i][0] = data[0];
+					datos[i][1] = data[1];
+					datos[i][2] = data[2];
+					datos[i][3] = data[3];
+					datos[i][4] = data[4];
+					datos[i][5] = data[5];
 					i++;
 				});
 
 				let form_data = {
-				    enc: [$("#idmonitoreo").val(),$("#ddlAreas option:selected").val(),nombre,$("#observaciones").val(),$("#iderror").val(),$("#instrumento").val(),$("#observacionGeneral").val()],
-				    datos: datos
+				    enc: [$("#ddlAreas option:selected").val(),$('#observacionGeneral').val(),$('#fecha').val(),$("#ddlprod option:selected").val(),$("#ddlprod option:selected").text(),$('#pesoGr').val(),nombre,$("#lote").val(),$("#batch").val(),
+				    	$("#cmbTamaño option:selected").val(),$("#cmdNivel option:selected").val(),$('#chkEspecial').prop('checked'),
+				    	$("#cmdNivel2 option:selected").val(),$('#muestra').val()
+				    ],
+				    datos: JSON.stringify(datos)//datos
 				};
 
 				$.ajax({
-					url: 'guardarRVPBP',
+					url: 'guardarCPP',
 					type: 'POST',
 					data: form_data,
 					success: function(data)
@@ -351,8 +414,10 @@ $("#btnGuardar").click(function(){
 							text: mensaje,
 							allowOutsideClick: false
 						}).then((result)=>{
-							//window.location.href = "reporte_7";  
-						});				
+							if (tipo == 'success') {
+								window.location.href = "reporte_10";
+							}
+						});
 					},error:function(){
 						Swal.fire({
 							type: "error",

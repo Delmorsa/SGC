@@ -53,6 +53,7 @@ class Rvpbp_controller extends CI_Controller
 	{
 		//$data['enc'] = $this->Rvpbp_model->getencRvpbp($id);
 		$data['det'] = $this->Rvpbp_model->getdetRvpbp($id);
+		$data['det2'] = $this->Rvpbp_model->getencRvpbp2($id);
 		//echo json_encode($data['det']);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
@@ -82,6 +83,7 @@ class Rvpbp_controller extends CI_Controller
 	public function imprimirRVPBP($id)
 	{
 		$data['det'] = $this->Rvpbp_model->getdetRvpbp($id);
+		$data['det2'] = $this->Rvpbp_model->getencRvpbp2($id);
 		$this->load->view('informes/rvpbp/imprimirrvpbp',$data);
 	}
 

@@ -34,7 +34,8 @@ class Rvpbp_model extends CI_Model
 
 	public function guardarRVPBP($enc,$datos)
 	{
-		//print_r($enc);
+		
+
 		$this->db->trans_begin();
 
 		date_default_timezone_set("America/Managua");
@@ -46,7 +47,6 @@ class Rvpbp_model extends CI_Model
 									 CAST(FECHAFIN AS DATE) = cast(getdate() AS DATE) AND ESTADO = 'A' ");
 		if($query->num_rows() > 0)
 		{
-			
 
 			$id = $this->db->query("SELECT ISNULL(MAX(IDREPORTE),0)+1 AS ID FROM Reportes");
 			$encabezado = array(
@@ -61,13 +61,14 @@ class Rvpbp_model extends CI_Model
 		      "FECHAINICIO" => gmdate(date("Y-m-d H:i:s")),
 		      "FECHAFIN" => gmdate(date("Y-m-d H:i:s")),
 		      "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
+		      "ESTADO" => 'A',
 		      "IDUSUARIOCREA" => $this->session->userdata("id")
 			);
 
 			$inserto = $this->db->insert("Reportes",$encabezado);
 			if ($inserto) {
-				$num = 1; $bandera = false;			
-				for ($i=0; $i < count($datos); $i++) { 
+				$num = 1; $bandera = false;
+				for ($i=0; $i < count($datos); $i++) {
 					$array = explode("|",$datos[$i]);
 					$idpeso = $this->db->query("SELECT ISNULL(MAX(IDPESO),0)+1 AS IDPESO FROM ReportesPeso");
 					$rpt = array(
@@ -82,12 +83,12 @@ class Rvpbp_model extends CI_Model
 		                "OBSERVACION" => $array[7],
 		                "PESOBASCULA" => $array[4],
 		                "UNIDADPESO" => $array[5],
-		                "DIFERENCIA" => $array[6],		                
+		                "DIFERENCIA" => $array[6],
 		                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
 		                "IDUSUARIOCREA" => $this->session->userdata("id")
 				    );
 
-				    $num++;	
+				    $num++;
 				    $guardarRpt = $this->db->insert("ReportesPeso",$rpt);
 				    if($guardarRpt){
 					    $bandera = true;
@@ -130,6 +131,17 @@ class Rvpbp_model extends CI_Model
 		}
 		return 0;
 
+	}
+
+	public function getencRvpbp2($idreporte)
+	{
+		$this->db->where('IDREPORTE',$idreporte);
+		$query = $this->db->get('ReportesPeso');
+
+		if ($query->num_rows()>0) {
+			return $query->result_array();
+		}
+		return 0;
 	}
 	public function getdetRvpbp($idreporte)
 	{

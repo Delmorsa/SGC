@@ -107,45 +107,38 @@
 				<td class="encabezado" colspan="13">Gerencia de Calidad</td>
 			</tr>
 			<tr>
-				<td class="encabezado" colspan="13">REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA<br>
+				<td class="encabezado" colspan="13">CONTROL DE PESO EN PROCESO<br>
 				<?php
 				if(!$det){
 					}else{
-						echo "ISO-HACCP-".$det[0]["SIGLA"]."<br>";
-						echo "NO REPORTE: ".$det[0]["NUMERO"]."";
+						echo "ISO-HACCP-".$enc[0]["SIGLA"]."<br>";
+						echo "NO REPORTE: ".$enc[0]["IDREPORTE"]."";
 					}
 				?>
 			</tr>
 			<tr>
 				<td colspan="1" class="negrita ">Area:</td>
 				<td colspan="7">
-					<?php echo $det[0]["AREA"] ?>
+					<?php echo $enc[0]["AREA"] ?>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="1" class="" style="width:200px;">Instrumento:</td>
-				<td colspan="7"><?php echo $det[0]["NOMBREPRODUCTO"] ?>
+				<td colspan="1" class="" style="width:200px;">NOMBRE DEL PRODUCTO:</td>
+				<td colspan="7"><?php echo $enc[0]["NOMBREPRODUCTO"] .' ('.$enc[0]["CODIGOPRODUCTO"].')' ?>
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td colspan="1" class="">Fecha:</td>
-				<td class=""><?php echo $det[0]["FECHACREA"] ?></td>
+				<td class=""><?php echo $enc[0]["FECHACREA"] ?></td>
 			</tr>
 			<tr>
 				<td colspan="1" class="negrita ">Observacion:</td>
 				<td colspan="7">
-					<?php echo $det[0]["OBSERVACIONES"] ?>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="1" class="negrita ">Error Permitido:</td>
-				<td colspan="7">
-					0.001
+					<?php echo $enc[0]["OBSERVACIONES"] ?>
 				</td>
 			</tr>
 			</thead>
 			<tbody>
-
 			</tbody>
 		</table>
 
@@ -159,32 +152,28 @@
 				<table class="table table-bordered table-condensed table-striped" id="tblDatos">
 					<thead>
 						<tr>
-							<th class="text-center">Fecha</th>
-							<th class="text-center">Hora</th>
-							<th class="text-center">Código</th>
-							<th class="text-center">Peso de Masa<br>Patrón Utilizada</th>						
-							<th class="text-center">Peso registrado en báscula</th>
-							<th class="text-center">UnidadMedida</th>
+							<th class="text-center">No</th>
+							<th class="text-center">Codigo</th>
+							<th class="text-center">Descripción</th>
+							<th class="text-center">Peso Original</th>
+							<th class="text-center">Peso Gr</th>
 							<th class="text-center">Diferencia</th>
-							<th class="text-center">Observaciones</th>
 						</tr>
 					</thead>
 					<tbody class="text-center">
 						<?php
 						$estado = '';
-							if(!$det2)
+							if(!$det)
 							{}else{
-								foreach ($det2 as $key) {									
+								foreach ($det as $key) {									
 									echo "
 										<tr>
-											<td>".$key["FECHACREA"]."</td>
-											<td>".$key["HORA"]."</td>
+											<td>".$key["NUMERO"]."</td>
 											<td>".$key["CODIGO"]."</td>
+											<td>".$key["DESCRIPCION"]."</td>
 											<td>".$key["PESOMASA"]."</td>
 											<td>".$key["PESOBASCULA"]."</td>
-											<td>".$key["UNIDADPESO"]."</td>
-											<td>".$key["DIFERENCIA"]."</td>
-											<td>".$key["OBSERVACION"]."</td>";
+											<td>".$key["DIFERENCIA"]."</td>";
 										echo"</tr>
 									";
 								}

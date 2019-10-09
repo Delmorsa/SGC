@@ -94,18 +94,18 @@
 					<tbody class="text-center">
 						<?php
 						$estado = '';
-							if(!$det)
+							if(!$det2)
 							{}else{
-								foreach ($det as $key) {									
+								foreach ($det2 as $key) {									
 									echo "
 										<tr>
-											<td>".$key["IDREPORTE"]."</td>
-											<td>".$key["SIGLA"]."</td>
 											<td>".$key["FECHACREA"]."</td>
-											<td>".$key["AREA"]."</td>
-											<td>".$key["AREA"]."</td>
-											<td>".$key["nombre"]."</td>
-											<td>".$key["nombre"]."</td>
+											<td>".$key["HORA"]."</td>
+											<td>".$key["CODIGO"]."</td>
+											<td>".$key["PESOMASA"]."</td>
+											<td>".$key["PESOBASCULA"]."</td>
+											<td>".$key["UNIDADPESO"]."</td>
+											<td>".$key["DIFERENCIA"]."</td>
 											<td>".$key["OBSERVACION"]."</td>";
 										echo"</tr>
 									";

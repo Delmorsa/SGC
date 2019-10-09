@@ -69,7 +69,7 @@ class Cpp_model extends CI_Model
 								INNER JOIN Usuarios T1 ON T1.IDUSUARIO = T0.IDUSUARIOCREA
 								INNER JOIN Monitoreos T2 ON T2.IDMONITOREO = T0.IDMONITOREO
 								INNER JOIN Areas T3 ON T3.IDAREA = T0.IDAREA
-								WHERE T0.IDTIPOREPORTE = 10");
+								WHERE T0.IDTIPOREPORTE = 10 order by t0.FECHACREA DESC");
 		if($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -78,9 +78,11 @@ class Cpp_model extends CI_Model
 	}
 
 
-	public function guardarRVPBP($enc,$datos)
+	public function guardarCPP($enc,$datos)
 	{
 		//print_r($enc);
+		
+
 		$this->db->trans_begin();
 
 		date_default_timezone_set("America/Managua");
@@ -91,46 +93,57 @@ class Cpp_model extends CI_Model
 		$query = $this->db->query("SELECT IDMONITOREO FROM Monitoreos WHERE cast(FECHAINICIO AS DATE) = CAST(getdate() AS DATE) AND
 									 CAST(FECHAFIN AS DATE) = cast(getdate() AS DATE) AND ESTADO = 'A' ");
 		if($query->num_rows() > 0)
-		{
-			
+		{			
 
 			$id = $this->db->query("SELECT ISNULL(MAX(IDREPORTE),0)+1 AS ID FROM Reportes");
 			$encabezado = array(
 			  "IDREPORTE" => $id->result_array()[0]["ID"],
 		      "IDMONITOREO" => $query->result_array()[0]["IDMONITOREO"],
-		      "IDAREA" => $enc[1],	
+		      "IDAREA" => $enc[0],	
 		      "VERSION" => '1',
-		      "IDTIPOREPORTE" => '7',
-		      "NOMBRE" => "REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA",
-		      "NOMBREPRODUCTO" => $enc[5],
-		      "OBSERVACIONES" => $enc[6],
+		      "IDTIPOREPORTE" => '10',
+		      "NOMBRE" => "REGISTRO CONTROL DE PESO EN PROCESO (CPP)",
+		      "CODIGOPRODUCTO" => $enc[3],
+		      "NOMBREPRODUCTO" => $enc[4],
+		      "OBSERVACIONES" => $enc[1],
+		      "LOTE" => $enc[7],
+		      "PESOGRAMOS" => $enc[5],
+		      "NOBATCH" => $enc[8],
+
+		      "TAMANOMUESTRA" => $enc[9],
+		      "NIVELINSPECCION" => $enc[10],
+		      "ESPECIAL" => $enc[11],
+		      "NIVELINSPECCION2" => $enc[12],
+		      "MUESTRA" => $enc[13],
+		      "ESTADO" => 'A',
 		      "FECHAINICIO" => gmdate(date("Y-m-d H:i:s")),
 		      "FECHAFIN" => gmdate(date("Y-m-d H:i:s")),
 		      "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
 		      "IDUSUARIOCREA" => $this->session->userdata("id")
 			);
 
-			$inserto = $this->db->insert("Reportes",$encabezado);
+			$inserto = $this->db->insert("Reportes",$encabezado);	
 			if ($inserto) {
-				$num = 1; $bandera = false;			
-				for ($i=0; $i < count($datos); $i++) { 
-					$array = explode("|",$datos[$i]);
+				$num = 1; $bandera = false;
+				$det = json_decode($datos, true);
+				foreach ($det as $obj) {					
 					$idpeso = $this->db->query("SELECT ISNULL(MAX(IDPESO),0)+1 AS IDPESO FROM ReportesPeso");
+
 					$rpt = array(
 						"IDPESO" => $idpeso->result_array()[0]["IDPESO"],
 		                "IDREPORTE" => $id->result_array()[0]["ID"],
 		                "ESTADO" => "A",
 		                "NUMERO" => $num,
-		                "HORA" => $array[1],
-		                "FECHAINGRESO" => $array[0],
-		                "CODIGO" => $array[2],
-		                "PESOMASA" => $array[3],
-		                "OBSERVACION" => $array[7],
-		                "PESOBASCULA" => $array[4],
-		                "UNIDADPESO" => $array[5],
-		                "DIFERENCIA" => $array[6],		                
+		                "HORA" => $obj[1],
+		                "FECHAINGRESO" => $enc[2],
+		                "CODIGO" => $obj[1],
+		                "DESCRIPCION" => $obj[2],
+		                "PESOMASA" => $obj[3],
+		                "PESOBASCULA" => $obj[4],
+		                "UNIDADPESO" => 'Gramos',
+		                "DIFERENCIA" => $obj[5],
 		                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
-		                "IDUSUARIOCREA" => $this->session->userdata("id")
+		                "IDUSUARIOCREA" => $this->session->userdata("id")		                
 				    );
 
 				    $num++;	
@@ -155,6 +168,7 @@ class Cpp_model extends CI_Model
 										monitoreo para la fecha ".date("d-m-Y")."";
 			$mensaje[0]["tipo"] = "error";
 			echo json_encode($mensaje);
+			return;
 		}
 		if ($this->db->trans_status() === FALSE)
 		{
@@ -177,16 +191,27 @@ class Cpp_model extends CI_Model
 		return 0;
 
 	}
-	public function getdetRvpbp($idreporte)
+
+	public function getEncCPP($idreporte)
+	{
+		$query	= $this->db->query("SELECT t0.*,t1.*,t2.SIGLA,t3.AREA FROM Reportes t0
+						inner join Usuarios t1 on t1.IDUSUARIO = t0.IDUSUARIOCREA
+						INNER JOIN Monitoreos t2 ON T2.IDMONITOREO = T0.IDMONITOREO
+						INNER JOIN Areas t3 on t3.IDAREA = t0.IDAREA
+						where t0.IDREPORTE = '".$idreporte."'");
+		if ($query->num_rows()>0) {
+			return $query->result_array();
+		}
+		return 0;		
+	}
+
+	public function getdetCPP($idreporte)
 	{
 				 
-		$query = $this->db->query("SELECT T1.NOMBREUSUARIO,t1.NOMBRES+' '+t1.APELLIDOS nombre ,T3.*, T0.*,T4.SIGLA,T2.*
-									FROM ReportesPeso t0
-									INNER JOIN Usuarios t1 on t0.IDUSUARIOCREA = t1.IDUSUARIO		
-									INNER JOIN Reportes T2 ON  T2.IDREPORTE = T0.IDREPORTE
-									INNER JOIN Areas T3 ON T2.IDAREA = T2.IDAREA
-									INNER JOIN Monitoreos T4 ON T4.IDMONITOREO = T2.IDMONITOREO
-									WHERE T2.IDREPORTE = '".$idreporte."'");
+		$query = $this->db->query("SELECT T0.*
+					FROM ReportesPeso t0
+					WHERE T0.IDREPORTE = '".$idreporte."'"
+				);
 
 		if ($query->num_rows()>0) {
 			return $query->result_array();

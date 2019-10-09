@@ -109,3 +109,7 @@ $route["reporte_10"] = "Informes/CPP_controller";
 $route["nuevocpp"] = "Informes/CPP_controller/nuevocpp";
 $route["getGramos/(:any)"] = "Informes/CPP_controller/getGramos/$1";
 $route["getMuestra/(:any)/(:any)/(:any)/(:any)"] = "Informes/CPP_controller/getMuestra/$1/$2/$3/$4";
+$route["guardarCPP"] = "Informes/CPP_controller/guardarCPP";
+$route["editarCPP/(:any)"] = "Informes/CPP_controller/editarCPP/$1";
+$route["verCPP/(:any)"] = "Informes/CPP_controller/verCPP/$1";
+$route["imprimirCPP/(:any)"] = "Informes/CPP_controller/imprimirCPP/$1";
