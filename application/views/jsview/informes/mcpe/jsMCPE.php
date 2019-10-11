@@ -292,7 +292,7 @@
         $("#Diferencia").val(diferencia);
     });
 
-    $("#unidadpesoRegistrado").children("li").click(function () {
+    $("#unidadpesoCaract").children("li").click(function () {
         let unidad = '';
         switch ($(this).text()) {
             case "Gramos":
@@ -504,4 +504,242 @@
         }
     });
 
+    function mostrarDetalles(callback,id,div)
+    {
+        $.ajax({
+            url: "getMcpePesoBasculaAjax/"+id,
+            async: true,
+            success: function(response){
+
+                let thead = '',tbody='';
+                if(response != "false"){
+                    let obj = $.parseJSON(response);
+                    thead += "<th class='text-center bg-primary'>Numero</th>";
+                    thead += "<th class='text-center bg-primary'>Codigo bascula</th>";
+                    thead += "<th class='text-center bg-primary'>Hora</th>";
+                    thead += "<th class='text-center bg-primary'>Peso de masa patron util.</th>";
+                    thead += "<th class='text-center bg-primary'>Peso registrado en bascula</th>";
+                    thead += "<th class='text-center bg-primary'>Diferencia +/-</th></tr>";
+                    $.each(obj, function(i, item){
+                        tbody += "<tr>"+
+                            "<td class='text-center bg-info'>"+item["NUMERO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["CODBASCULA"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["HORA"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["PESOMASA"]+" "+item["UNIDADPESO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["PESOBASCULA"]+" "+item["UNIDADPESO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["DIFERENCIA"]+"</td>"+
+                            "</tr>";
+                    });
+                    callback($("<table id='detMCPE' class='table table-bordered table-condensed table-striped'>"+ thead + tbody + "</table>")).show();
+                }else {
+                    thead += "<th class='text-center bg-primary'>Numero</th>";
+                    thead += "<th class='text-center bg-primary'>Codigo bascula</th>";
+                    thead += "<th class='text-center bg-primary'>Hora</th>";
+                    thead += "<th class='text-center bg-primary'>Peso de masa</th>";
+                    thead += "<th class='text-center bg-primary'>Peso reg. en bascula</th>";
+                    thead += "<th class='text-center bg-primary'>Diferencia</th></tr>";
+                    tbody += '<tr >' +
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td>No hay datos disponibles</td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        '</tr>';
+                    callback($('<table id="detMCPE" class="table table-bordered table-condensed table-striped">' + thead + tbody + '</table>')).show();
+                }
+            }
+        });
+    }
+
+    $("#tblPesoBasculas").on("click","tbody .detalles", function () {
+        let table = $("#tblPesoBasculas").DataTable();
+        let tr = $(this).closest("tr");
+        //$(this).addClass("detalleNumOrdOrange");
+        let row = table.row(tr);
+        let data = table.row($(this).parents("tr")).data();
+
+        if(row.child.isShown())
+        {
+            row.child.hide();
+            tr.removeClass("shown");
+        }else{
+            mostrarDetalles(row.child,data[0],data[0]);
+            tr.addClass("shown");
+        }
+    });
+
+    function mostrarDetallesCaract(callback,id,div)
+    {
+        $.ajax({
+            url: "getMcpeCaractCalidadAjax/"+id,
+            async: true,
+            success: function(response){
+
+                let thead = '',tbody='';
+                if(response != "false"){
+                    let obj = $.parseJSON(response);
+                    thead += "<th class='text-center bg-primary'>Numero</th>";
+                    thead += "<th class='text-center bg-primary'>Cod. Producto</th>";
+                    thead += "<th class='text-center bg-primary'>Producto</th>";
+                    thead += "<th class='text-center bg-primary'>Tipo Empaque</th>";
+                    thead += "<th class='text-center bg-primary'>Codigo/Lote</th>";
+                    thead += "<th class='text-center bg-primary'>Fecha vencimiento</th>";
+                    thead += "<th class='text-center bg-primary'>Presentacion</th>";
+                    thead += "<th class='text-center bg-primary'>P.V</th>";
+                    thead += "<th class='text-center bg-primary'>M.S</th>";
+                    thead += "<th class='text-center bg-primary'>M.C</th>";
+                    thead += "<th class='text-center bg-primary'>T°C</th>";
+                    thead += "<th class='text-center bg-primary'>Operario</th>";
+                    thead += "<th class='text-center bg-primary'>% Defecto</th></tr>";
+                    $.each(obj, function(i, item){
+                        tbody += "<tr>"+
+                            "<td class='text-center bg-info'>"+item["NUMERO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["CODIGO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["NOMBRE"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["TIPOEMPAQUE"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["LOTE"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["FECHAVENCIMIENTO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["PRESENTACION"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["PV"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["MS"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["MC"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["TC"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["OPERARIO"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["DEFECTO"]+"</td>"+
+                            "</tr>";
+                    });
+                    callback($("<table id='detMCPECaract' class='table table-bordered table-condensed table-striped'>"+ thead + tbody + "</table>")).show();
+                }else {
+                    thead += "<th class='text-center bg-primary'>Numero</th>";
+                    thead += "<th class='text-center bg-primary'>Cod. Producto</th>";
+                    thead += "<th class='text-center bg-primary'>Producto</th>";
+                    thead += "<th class='text-center bg-primary'>Tipo Empaque</th>";
+                    thead += "<th class='text-center bg-primary'>Codigo/Lote</th>";
+                    thead += "<th class='text-center bg-primary'>Fecha vencimiento</th>";
+                    thead += "<th class='text-center bg-primary'>Presentacion</th>";
+                    thead += "<th class='text-center bg-primary'>P.V</th>";
+                    thead += "<th class='text-center bg-primary'>M.S</th>";
+                    thead += "<th class='text-center bg-primary'>M.C</th>";
+                    thead += "<th class='text-center bg-primary'>T°C</th>";
+                    thead += "<th class='text-center bg-primary'>Operario</th>";
+                    thead += "<th class='text-center bg-primary'>% Defecto</th></tr>";
+                    tbody += "<tr>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td>No hay datos disponibles</td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "<td></td>"+
+                        "</tr>";
+                    callback($('<table id="detMCPECaract" class="table table-bordered table-condensed table-striped">' + thead + tbody + '</table>')).show();
+                }
+            }
+        });
+    }
+
+    $("#tblCaracteristicas").on("click","tbody .detalles", function () {
+        let table = $("#tblCaracteristicas").DataTable();
+        let tr = $(this).closest("tr");
+        //$(this).addClass("detalleNumOrdOrange");
+        let row = table.row(tr);
+        let data = table.row($(this).parents("tr")).data();
+
+        if(row.child.isShown())
+        {
+            row.child.hide();
+            tr.removeClass("shown");
+        }else{
+            mostrarDetallesCaract(row.child,data[0],data[0]);
+            tr.addClass("shown");
+            $("#detMCPECaract").DataTable({
+                "info": false,
+                "scrollX": true,
+                "sort": false,
+                "destroy": true,
+                "searching": false,
+                "paginate": false,
+                "lengthMenu": [
+                    [10,20,50,100, -1],
+                    [10,20,50,100, "Todo"]
+                ],
+                "order": [
+                    [0, "desc"]
+                ],
+                "language": {
+                    "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+                    "infoEmpty": "Registro 0 a 0 de 0 entradas",
+                    "zeroRecords": "No se encontro coincidencia",
+                    "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                    "emptyTable": "NO HAY DATOS DISPONIBLES",
+                    "lengthMenu": '_MENU_ ',
+                    "search": 'Buscar:  ',
+                    "loadingRecords": "",
+                    "processing": "Procesando datos  <i class='fa fa-spin fa-refresh'></i>",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Última ",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        }
+    });
+
+    function DardeBaja(idreporte,estado) {
+        let message = '', text = '';
+        if(estado == "A"){
+            message = 'Se dará de baja el informe, éste ya no podra ser utilizada en el sistema.'+
+                '¿Desea continuar?';
+            text = 'Dar baja';
+        }else{
+            message= '¿Desea restaurar el informe ?';
+            text = "Restaurar";
+        }
+        Swal.fire({
+            text: message,
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: text,
+            cancelButtonText: 'Cancelar',
+            allowOutsideClick: false
+        }).then((result) => {
+            if(result.value){
+                let mensaje = '', tipo = '';
+                let form_data = {
+                    idreporte:  idreporte,
+                    estado: estado
+                };
+                $.ajax({
+                    url: "darDeBajaMcpe",
+                    type: "POST",
+                    data: form_data,
+                    success: function(data){
+                        let obj = jQuery.parseJSON(data);
+                        $.each(obj, function(i, index){
+                            mensaje = index["mensaje"];
+                            tipo = index["tipo"];
+                        });
+                        Swal.fire({
+                            text: mensaje,
+                            type: tipo,
+                            allowOutsideClick: false
+                        }).then((result)=>{
+                            location.reload();
+                        });
+                    }
+                });
+            }
+        });
+    }
 </script>

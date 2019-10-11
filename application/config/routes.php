@@ -71,9 +71,11 @@ $route["reporte_4"] = "Informes/Mcpe_controller";
 $route["nuevoMCPE"] = "Informes/Mcpe_controller/nuevoMCPE";
 $route["guardarMcpeVerificPeso"] = "Informes/Mcpe_controller/guardarMcpeVerificPeso";
 $route["guardarMcpeVerificCaract"] = "Informes/Mcpe_controller/guardarMcpeVerificCaract";
-/*$route["mostrarCNSDetalle/(:any)"] = "Informes/Mcpe_controller/mostrarCNSDetalle/$1";
-$route["editarCNS/(:any)"] = "Informes/Mcpe_controller/editarCNS/$1";
-$route["actualizarCNS"] = "Informes/Mcpe_controller/actualizarCNS";
+$route["getMcpePesoBasculaAjax/(:any)"] = "Informes/Mcpe_controller/getMcpePesoBasculaAjax/$1";
+$route["getMcpeCaractCalidadAjax/(:any)"] = "Informes/Mcpe_controller/getMcpeCaractCalidadAjax/$1";
+$route["darDeBajaMcpe"] = "Informes/Mcpe_controller/darDeBaja";
+$route["editarMcpePeso/(:any)"] = "Informes/Mcpe_controller/editarMcpePeso/$1";
+/*$route["actualizarCNS"] = "Informes/Mcpe_controller/actualizarCNS";
 $route["BajaAltaCNS"] = "Informes/Mcpe_controller/BajaAltaCNS";*/
 
 

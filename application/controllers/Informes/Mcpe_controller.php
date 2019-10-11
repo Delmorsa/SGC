@@ -20,11 +20,13 @@ class Mcpe_controller extends CI_Controller
 
     public function index()
     {
+        $data["peso"] = $this->Mcpe_model->getMcpePesoBascula();
+        $data["caract"] = $this->Mcpe_model->getMcpeCaractCalidad();
         $this->load->view('header/header');
         $this->load->view('header/menu');
-        $this->load->view('informes/mcpe/mcpe');
+        $this->load->view('informes/mcpe/mcpe',$data);
         $this->load->view('footer/footer');
-        //$this->load->view('jsview/informes/pccn3/jsPCCN3');
+        $this->load->view('jsview/informes/mcpe/jsMCPE');
     }
 
     public function nuevoMCPE()
@@ -37,6 +39,17 @@ class Mcpe_controller extends CI_Controller
         $this->load->view('footer/footer');
         $this->load->view('jsview/informes/mcpe/jsMCPE');
     }
+
+    public function editarMcpePeso($idreporte)
+    {
+        $data["monit"] = $this->Mcpe_model->getMcpePesoBasculaById($idreporte);
+        $this->load->view('header/header');
+        $this->load->view('header/menu');
+        $this->load->view('informes/mcpe/editarMcpePeso',$data);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/informes/mcpe/jseditarMcpePeso');
+    }
+
 
     public function guardarMcpeVerificPeso()
     {
@@ -52,6 +65,28 @@ class Mcpe_controller extends CI_Controller
             $this->input->post("enc"),
             $this->input->post("detalle")
         );
+    }
+
+    public function getMcpePesoBasculaAjax($idreporte)
+    {
+        $this->Mcpe_model->getMcpePesoBasculaAjax($idreporte);
+    }
+
+    public function getMcpeCaractCalidadAjax($idreporte)
+    {
+        $this->Mcpe_model->getMcpeCaractCalidadAjax($idreporte);
+    }
+
+    public function darDeBaja()
+    {
+        $idreporte = $this->input->get_post("idreporte");
+        $estado = $this->input->get_post("estado");
+        if($estado == "A"){
+              $estado = "I";
+        }else{
+            $estado = "A";
+        }
+        $this->Mcpe_model->darDeBaja($idreporte,$estado);
     }
 
 }

@@ -187,7 +187,7 @@
                                                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                                         <span id="textoBtnPresentacion">gr</span>
                                                                         <span class="fa fa-caret-down"></span></button>
-                                                                    <ul class="dropdown-menu" id="unidadpesoRegistrado">
+                                                                    <ul class="dropdown-menu" id="unidadpesoCaract">
                                                                         <li><a href="javascript:void(0)">Gramos</a></li>
                                                                         <li><a href="javascript:void(0)">Libras</a></li>
                                                                         <li><a href="javascript:void(0)">Kilogramos</a></li>

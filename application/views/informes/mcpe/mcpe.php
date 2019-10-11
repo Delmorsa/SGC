@@ -41,31 +41,167 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <table class="table table-bordered table-condensed table-striped table-responsive" id="tblVeced">
-                                <thead>
-                                <tr>
-                                    <!--<th>Fecha de ingreso <br>a premezcla</th>
-                                    <th>Canitdad de nitrito <br>solicitado</th>
-                                    <th>Cantidad Kg. <br>sal de cura obtenida</th>
-                                    <th>Monitoreado por</th>
-                                    <th>Acciones</th>-->
-                                    <th>Cod <br> Reporte</th>
-                                    <th>Monitoreo</th>
-                                    <th>Dia</th>
-                                    <th>Hora <br> Identific.</th>
-                                    <th>Area</th>
-                                    <th>Fecha</th>
-                                    <th>Producto</th>
-                                    <th>Cod <br> Produccion</th>
-                                    <th>N° Estibas</th>
-                                    <th>Monitoreado por</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+                            <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs nav-tabs-justified">
+                                    <li class="active"><a class="" href="#settings" data-toggle="tab">Información personal</a></li>
+                                    <li><a href="#ChangePass" data-toggle="tab">Verificacion de peso de baculas</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="settings">
+                                        <div class="row">
+                                            <div>
+                                                <table id="tblCaracteristicas" class="table table-bordered table-condensed table-striped display nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>CodReporte</th>
+                                                            <th>Cod Monitoreo</th>
+                                                            <th>Version Informe</th>
+                                                            <th>Fecha</th>
+                                                            <th>Observaciones</th>
+                                                            <th>Area</th>
+                                                            <th>Estado</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <?php
+                                                      $estado = '';
+                                                            if(!$caract){
+                                                            }else{
+                                                                foreach ($caract as $item) {
+                                                                    if($item["ESTADO"] == "A"){
+                                                                        $estado = "<span class='text-success text-bold'>Activo</span>";
+                                                                    }else {
+                                                                        $estado = "<span class='text-danger text-bold'>Inactivo</span>";
+                                                                    }
+                                                                    echo "
+                                                                        <tr>
+                                                                            <td>".$item["IDREPORTE"]."</td>
+                                                                            <td>".$item["SIGLA"]."</td>
+                                                                            <td>".$item["VERSION"]."</td>
+                                                                            <td>".$item["DIA"]."</td>
+                                                                            <td>".$item["OBSERVACIONES"]."</td>
+                                                                            <td>".$item["AREA"]."</td>
+                                                                            <td>".$estado."</td>";
+                                                                    if($item["ESTADO"] =="A"){
+                                                                        echo "
+                                                                                <td class='text-center'>
+                                                                                    <a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-eye'></i>
+                                                                                    </a>
+                                                                                    <a class='btn btn-primary btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-pencil'></i>
+                                                                                    </a>
+                                                                                    <a onclick='DardeBaja(".'"'.$item["IDREPORTE"].'","'.$item["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-trash'></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            ";
+                                                                    }else{
+                                                                        echo "
+                                                                                <td class='text-center'>
+                                                                                    <a class='btn btn-success btn-xs disabled' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-eye'></i>
+                                                                                    </a>
+                                                                                    <a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-pencil'></i>
+                                                                                    </a>
+                                                                                    <a onclick='DardeBaja(".'"'.$item["IDREPORTE"].'","'.$item["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-trash'></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            ";
+                                                                    }
+                                                                    echo"</tr>
+                                                                     ";
+                                                                }
+                                                            }
+                                                      ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="ChangePass">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <table id="tblPesoBasculas" class="table table-bordered table-condensed table-striped display nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>CodReporte</th>
+                                                            <th>Cod Monitoreo</th>
+                                                            <th>Version informe</th>
+                                                            <th>Hora</th>
+                                                            <th>Fecha</th>
+                                                            <th>Area</th>
+                                                            <th>Estado</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $estado = '';
+                                                            if(!$peso){
+                                                            }else{
+                                                                foreach ($peso as $item) {
+                                                                    if($item["ESTADO"]=="A"){
+                                                                        $estado = "<span class='text-success text-bold'>Activo</span>";
+                                                                    }else{
+                                                                        $estado = "<span class='text-danger text-bold'>Inactivo</span>";
+                                                                    }
+                                                                     echo "
+                                                                        <tr>
+                                                                            <td>".$item["IDREPORTE"]."</td>
+                                                                            <td>".$item["SIGLA"]."</td>
+                                                                            <td>".$item["VERSION"]."</td>
+                                                                            <td>".date_format(new DateTime($item["HORA"]), "H:i:s a")."</td>
+                                                                            <td>".$item["DIA"]."</td>
+                                                                            <td>".$item["AREA"]."</td>
+                                                                            <td>".$estado."</td>";
+                                                                         if($item["ESTADO"] =="A"){
+                                                                             echo "
+                                                                                <td class='text-center'>
+                                                                                    <a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-eye'></i>
+                                                                                    </a>
+                                                                                    <a class='btn btn-primary btn-xs' href='".base_url("index.php/editarMcpePeso/".$item["IDREPORTE"]."")."'>
+                                                                                      <i class='fa fa-pencil'></i>
+                                                                                    </a>
+                                                                                    <a onclick='DardeBaja(".'"'.$item["IDREPORTE"].'","'.$item["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-trash'></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            ";
+                                                                         }else{
+                                                                             echo "
+                                                                                <td class='text-center'>
+                                                                                    <a class='btn btn-success btn-xs disabled' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-eye'></i>
+                                                                                    </a>
+                                                                                    <a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-pencil'></i>
+                                                                                    </a>
+                                                                                    <a onclick='DardeBaja(".'"'.$item["IDREPORTE"].'","'.$item["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-trash'></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            ";
+                                                                         }
+                                                                        echo"</tr>
+                                                                     ";
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div>
+                            <!-- /.nav-tabs-custom -->
                         </div>
                     </div>
                 </div>
