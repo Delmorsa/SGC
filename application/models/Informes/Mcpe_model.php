@@ -155,7 +155,7 @@ class Mcpe_model extends CI_Model
                         "VACIO" => $obj[2],
                         "GRANEL" => $obj[3],
                         "LOTE" => $obj[4],
-                        "FECHAVENCIMIENTO" => gmdate($obj[5]),
+                        "FECHAVENCIMIENTO" => $obj[5],
                         "PRESENTACION" => $obj[6],
                         "UNIDADPRESENTACION" => $obj[7],
                         "PV" => $obj[8],
@@ -334,9 +334,15 @@ class Mcpe_model extends CI_Model
         return 0;
     }
 
-    public function getMcpeCaractCalidadById()
+    public function getMcpeCaractCalidadById($idreporte)
     {
-
+        $query = $this->db->query("select t1.*,t2.MAQUINA,t2.SIGLAS from view_InformesArticulos t1
+                                    inner join CatMaquinas t2 on t1.IDMAQUINA = t2.IDMAQUINA
+                                    where t1.IDREPORTE = ".$idreporte." ");
+        if($query->num_rows()>0){
+            return $query->result_array();
+        }
+        return 0;
     }
 
     public function actualizarMcpeVerificPeso($enc,$detalle)
@@ -376,7 +382,7 @@ class Mcpe_model extends CI_Model
                             "NUMERO" => $num,
                             "CODBASCULA" => $obj[0],
                             "HORA" => $obj[1],
-                            "FECHAINGRESO" => $enc[3],
+                            "FECHAINGRESO" => $enc[2],
                             "UNIDADPESO" => $obj[2],
                             "PESOMASA" => $obj[3],
                             "PESOBASCULA" => $obj[4],
@@ -401,6 +407,97 @@ class Mcpe_model extends CI_Model
                     }
                 }
                 else{
+                    $mensaje[0]["mensaje"] = "Se produjo un error al actualizar los datos. COD-2(DET)";
+                    $mensaje[0]["tipo"] = "error";
+                    echo json_encode($mensaje);
+                }
+            }
+        }else{
+            $mensaje[0]["mensaje"] = "No se pudo actualizar el informe porque no exsite un codigo de monitoreo para la fecha ".date("d-m-Y")."";
+            $mensaje[0]["tipo"] = "error";
+            echo json_encode($mensaje);
+        }
+
+        if ($this->db->trans_status() === FALSE)
+        {
+            $this->db->trans_rollback();
+        }
+        else
+        {
+            $this->db->trans_commit();
+        }
+    }
+
+    public function actualizarMcpeVerificCaract($enc,$detalle)
+    {
+        $this->db->trans_begin();
+        date_default_timezone_set("America/Managua");
+        $mensaje = array(); $bandera = false;
+        $query = $this->db->query("SELECT * FROM Reportes WHERE IDREPORTE = ".$enc[0]." ");
+        if($query->num_rows() > 0){
+            $this->db->where("IDREPORTE",$enc[0]);
+            $encabezado = array(
+                "VERSION" => $enc[1],
+                "OBSERVACIONES" => $enc[2],
+                "FECHAINICIO" => gmdate($enc[3]),
+                "FECHAFIN" => gmdate($enc[3]),
+                "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+                "IDUSUARIOEDITA" => $this->session->userdata("id"),
+            );
+            $guardarEnc = $this->db->update("Reportes",$encabezado);
+            if($guardarEnc){
+                $bandera = true;
+            }else{
+                $mensaje[0]["mensaje"] = "Se produjo un error al actualizar los datos. COD-1(ENC)";
+                $mensaje[0]["tipo"] = "error";
+                echo json_encode($mensaje);
+            }
+            if($bandera == true){
+                $eliminar = $this->db->where("IDREPORTE",$enc[0])->delete("ReportesArticulos");
+                if($eliminar){
+                    $num = 1; $bandera1 = false;
+                    $det = json_decode($detalle,true);
+                    foreach($det as $obj){
+                        $idpeso = $this->db->query("SELECT ISNULL(MAX(IDARTICULO),0)+1 AS IDARTICULO FROM ReportesArticulos");
+                        $insertdet = array(
+                            "IDARTICULO" => $idpeso->result_array()[0]["IDARTICULO"],
+                            "IDREPORTE" => $enc[0],
+                            "NUMERO" => $num,
+                            "ESTADO" => "A",
+                            "CODIGO" => $obj[0],
+                            "NOMBRE" => $obj[1],
+                            "VACIO" => $obj[2],
+                            "GRANEL" => $obj[3],
+                            "LOTE" => $obj[4],
+                            "FECHAVENCIMIENTO" => $obj[5],
+                            "PRESENTACION" => $obj[6],
+                            "UNIDADPRESENTACION" => $obj[7],
+                            "PV" => $obj[8],
+                            "MS" => $obj[9],
+                            "MC" => $obj[10],
+                            "TC" => $obj[11],
+                            "IDMAQUINA" => $obj[12],
+                            "OPERARIO" => $obj[13],
+                            "DEFECTO" => $obj[14],
+                            "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
+                            "IDUSUARIOCREA" => $this->session->userdata('id')
+                        );
+                        $num++;
+                        $guardaDet = $this->db->insert("ReportesArticulos",$insertdet);
+                        if($guardaDet){
+                            $bandera1 = true;
+                        }
+                    }
+                    if($bandera1){
+                        $mensaje[0]["mensaje"] = "Datos actualizados con éxito";
+                        $mensaje[0]["tipo"] = "success";
+                        echo json_encode($mensaje);
+                    }else{
+                        $mensaje[0]["mensaje"] = "Se produjo un error al actualizar los datos. COD-3(DET)";
+                        $mensaje[0]["tipo"] = "error";
+                        echo json_encode($mensaje);
+                    }
+                }else{
                     $mensaje[0]["mensaje"] = "Se produjo un error al actualizar los datos. COD-2(DET)";
                     $mensaje[0]["tipo"] = "error";
                     echo json_encode($mensaje);

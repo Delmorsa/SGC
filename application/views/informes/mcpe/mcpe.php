@@ -89,7 +89,7 @@
                                                                                     <a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
                                                                                       <i class='fa fa-eye'></i>
                                                                                     </a>
-                                                                                    <a class='btn btn-primary btn-xs' href='javascript:void(0)'>
+                                                                                    <a class='btn btn-primary btn-xs' href='".base_url("index.php/editarMcpeCaract/".$item["IDREPORTE"]."")."'>
                                                                                       <i class='fa fa-pencil'></i>
                                                                                     </a>
                                                                                     <a onclick='DardeBaja(".'"'.$item["IDREPORTE"].'","'.$item["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>

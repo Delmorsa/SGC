@@ -154,4 +154,83 @@
         }
         $("#textoButton2").text(unidad);
     });
+
+    $('#tblcrear tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('danger');
+    });
+    $("#btnDelete").click(function (){
+        let table = $("#tblcrear").DataTable();
+        let rows = table.rows( '.danger' ).remove().draw();
+    });
+
+    $("#pesoRegistrado").on("keyup",function () {
+        let pesoMasaUtil = $("#pesoMasaUtil").val(),
+            pesoRegistrado = $("#pesoRegistrado").val(),
+            diferencia = 0;
+        diferencia = pesoMasaUtil-pesoRegistrado;
+        $("#Diferencia").val(diferencia);
+    });
+
+    $("#btnActualizarpeso").click(function () {
+        $("#loading").modal("show");
+       let codigoreporte = $("#idreporte").val(),
+            version = $("#version").val(),
+            btn1 = $("#textoButton1").text(),
+            btn2 = $("#textoButton2").text(),
+            fecha = $("#fecha").val();
+        let table = $("#tblcrear").DataTable();
+        if(btn1 != btn2){
+            Swal.fire({
+                text: "La unidad de peso en Peso de masa utilizada y peso registrado en basc no coinciden",
+                type: "error",
+                allowOutsideClick: false
+            });
+        }else if(!table.data().count()){
+            Swal.fire({
+                text: "No se ha agregado ningún dato a la tabla",
+                type: "error",
+                allowOutsideClick: false
+            });
+        }else{
+
+            let detalle = new Array(), it = 0;
+            table.rows().eq(0).each(function (i, index) {
+                let row = table.row(index);
+                let data = row.data();
+                detalle[it] = [];
+                detalle[it][0] = data[2];
+                detalle[it][1] = data[1];
+                detalle[it][2] = data[5];
+                detalle[it][3] = data[3];
+                detalle[it][4] = data[4];
+                detalle[it][5] = data[6];
+                it++;
+            });
+            let mensaje='',tipo='';
+            let form_data = {
+                enc: [codigoreporte,version,fecha],
+                detalle: JSON.stringify(detalle)
+            };
+            $.ajax({
+                url: "<?php echo base_url("index.php/actualizarMcpeVerificPeso")?>",
+                type: "POST",
+                data: form_data,
+                success: function (data) {
+                    let obj = jQuery.parseJSON(data);
+                    $.each(obj, function (i, index) {
+                        mensaje = index["mensaje"];
+                        tipo = index["tipo"];
+                    });
+                    $("#loading").modal("hide");
+                    Swal.fire({
+                        text: mensaje,
+                        type: tipo,
+                        allowOutsideClick: false
+                    }).then((result)=>{
+                        location.reload();
+                    });
+                }
+            });
+        }
+    });
 </script>

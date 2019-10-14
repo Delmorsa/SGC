@@ -50,6 +50,17 @@ class Mcpe_controller extends CI_Controller
         $this->load->view('jsview/informes/mcpe/jseditarMcpePeso');
     }
 
+    public function editarMcpeCaract($idreporte)
+    {
+        $data["monit"] = $this->Mcpe_model->getMcpeCaractCalidadById($idreporte);
+        $data["maq"] = $this->Mcpe_model->getMaquinas();
+        $this->load->view('header/header');
+        $this->load->view('header/menu');
+        $this->load->view('informes/mcpe/editarMcpeCaract',$data);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/informes/mcpe/jseditarMcpeCaract');
+    }
+
 
     public function guardarMcpeVerificPeso()
     {
@@ -88,5 +99,24 @@ class Mcpe_controller extends CI_Controller
         }
         $this->Mcpe_model->darDeBaja($idreporte,$estado);
     }
+
+
+    public function actualizarMcpeVerificPeso()
+    {
+        $this->Mcpe_model->actualizarMcpeVerificPeso(
+            $this->input->post("enc"),
+            $this->input->post("detalle")
+        );
+    }
+
+    public function actualizarMcpeVerificCaract()
+    {
+        $this->Mcpe_model->actualizarMcpeVerificCaract(
+            $this->input->post("enc"),
+            $this->input->post("detalle")
+        );
+    }
+
+
 
 }

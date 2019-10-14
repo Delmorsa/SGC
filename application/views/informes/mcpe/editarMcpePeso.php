@@ -60,7 +60,7 @@
                 <div>
                     <div class="row">
                         <div class="col-md-12">
-                                <button class="pull-right btn btn-primary" id="btnGuardarpeso">
+                                <button class="pull-right btn btn-primary" id="btnActualizarpeso">
                                     Actualizar <i class="fa fa-save"></i>
                                 </button>
                                 <br>
@@ -223,8 +223,8 @@
                                                         <td>".$key["NUMERO"]."</td>
                                                         <td>".date_format(new DateTime($key["HORA"]),"H:i")."</td>
                                                         <td>".$key["CODBASCULA"]."</td>
-                                                        <td>".$key["PESOMASA"]."</td>
-                                                        <td>".$key["PESOBASCULA"]."</td>
+                                                        <td>".number_format($key["PESOMASA"],0)."</td>
+                                                        <td>".number_format($key["PESOBASCULA"],0)."</td>
                                                         <td>".$key["UNIDADPESO"]."</td>
                                                         <td>".number_format($key["DIFERENCIA"],0)."</td>
                                                     </tr>

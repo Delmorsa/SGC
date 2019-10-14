@@ -275,7 +275,7 @@
         });
     });
 
-    $("#MC").on("keyup",function () {
+    $("#MC,#PV,#MS").on("keyup",function () {
         let  PV = Number($("#PV").val()),
             MS = Number($("#MS").val()),
             MC = Number($("#MC").val()),
