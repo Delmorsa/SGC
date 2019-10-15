@@ -107,7 +107,7 @@
 				<td class="encabezado" colspan="13">Gerencia de Calidad</td>
 			</tr>
 			<tr>
-				<td class="encabezado" colspan="13">REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA<br>
+				<td class="encabezado" colspan="13">CONTROL DE PESO EN PROCESO<br>
 				<?php
 				if(!$det){
 					}else{
@@ -123,10 +123,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="1" class="" style="width:200px;">Instrumento:</td>
-				<td colspan="7"><?php echo $enc[0]["NOMBREPRODUCTO"] ?>
+				<td colspan="1" class="" style="width:200px;">NOMBRE DEL PRODUCTO:</td>
+				<td colspan="7"><?php echo $enc[0]["NOMBREPRODUCTO"] .' ('.$enc[0]["CODIGOPRODUCTO"].')' ?>
 				</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td colspan="1" class="">Fecha:</td>
 				<td class=""><?php echo $enc[0]["FECHACREA"] ?></td>
@@ -137,15 +137,8 @@
 					<?php echo $enc[0]["OBSERVACIONES"] ?>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="1" class="negrita ">Error Permitido:</td>
-				<td colspan="7">
-					0.001
-				</td>
-			</tr>
 			</thead>
 			<tbody>
-
 			</tbody>
 		</table>
 
@@ -159,14 +152,12 @@
 				<table class="table table-bordered table-condensed table-striped" id="tblDatos">
 					<thead>
 						<tr>
-							<th class="text-center">Fecha</th>
-							<th class="text-center">Hora</th>
-							<th class="text-center">Código</th>
-							<th class="text-center">Peso de Masa<br>Patrón Utilizada</th>						
-							<th class="text-center">Peso registrado en báscula</th>
-							<th class="text-center">UnidadMedida</th>
+							<th class="text-center">No</th>
+							<th class="text-center">Codigo</th>
+							<th class="text-center">Descripción</th>
+							<th class="text-center">Peso Original</th>
+							<th class="text-center">Peso Gr</th>
 							<th class="text-center">Diferencia</th>
-							<th class="text-center">Observaciones</th>
 						</tr>
 					</thead>
 					<tbody class="text-center">
@@ -177,14 +168,12 @@
 								foreach ($det as $key) {									
 									echo "
 										<tr>
-											<td>".$key["FECHACREA"]."</td>
-											<td>".date_format(new DateTime($key["HORA"]), "H:i")."</td>
+											<td>".$key["NUMERO"]."</td>
 											<td>".$key["CODIGO"]."</td>
+											<td>".$key["DESCRIPCION"]."</td>
 											<td>".$key["PESOMASA"]."</td>
 											<td>".$key["PESOBASCULA"]."</td>
-											<td>".$key["UNIDADPESO"]."</td>
-											<td>".$key["DIFERENCIA"]."</td>
-											<td>".$key["OBSERVACION"]."</td>";
+											<td>".$key["DIFERENCIA"]."</td>";
 										echo"</tr>
 									";
 								}

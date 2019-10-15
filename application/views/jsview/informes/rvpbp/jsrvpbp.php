@@ -148,7 +148,7 @@ $("#btnGuardar").click(function(){
 				};
 
 				$.ajax({
-					url: 'guardarRVPBP',
+					url: '<?php echo base_url("index.php/guardarRVPBP")?>',
 					type: 'POST',
 					data: form_data,
 					success: function(data)
@@ -164,7 +164,7 @@ $("#btnGuardar").click(function(){
 							text: mensaje,
 							allowOutsideClick: false
 						}).then((result)=>{
-							//window.location.href = "reporte_7";  
+							window.location.href = "reporte_7";  
 						});				
 					},error:function(){
 						Swal.fire({

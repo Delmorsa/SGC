@@ -3,6 +3,40 @@
 ?>
 <script type="text/javascript">
 	$(document).ready(function(){
+		let t = $('#tblDatos').DataTable({
+			"info": false,
+			"sort": false,
+			"destroy": true,
+			"searching": false,
+			"paginate": false,
+			"lengthMenu": [
+				[10,20,50,100, -1],
+				[10,20,50,100, "Todo"]
+			],
+			"order": [
+				[0, "desc"]
+			],
+			"language": {
+				"info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+				"infoEmpty": "Registro 0 a 0 de 0 entradas",
+				"zeroRecords": "No se encontro coincidencia",
+				"infoFiltered": "(filtrado de _MAX_ registros en total)",
+				"emptyTable": "NO HAY DATOS DISPONIBLES",
+				"lengthMenu": '_MENU_ ',
+				"search": 'Buscar:  ',
+				"loadingRecords": "",
+				"processing": "Procesando datos  <i class='fa fa-spin fa-refresh'></i>",
+				"paginate": {
+					"first": "Primera",
+					"last": "Última ",
+					"next": "Siguiente",
+					"previous": "Anterior"
+				}
+			}
+		});
+
+
+
         $('.select2').select2({
 			placeholder: "Seleccione",
 			allowClear: true,
@@ -122,7 +156,8 @@
 		let tabla = $('#tblDatos').DataTable();
 		let noRegistro = tabla.data().count();
 
-		if (noRegistro>0) {			
+		if (noRegistro>0) {
+			
 			Swal.fire({
 				title: 'Aviso',
 				text: "Se eliminaran los registros ingresados",
@@ -230,38 +265,7 @@
    				allowOutsideClick: false
    			});
    		}
-
-   		let t = $('#tblDatos').DataTable({
-			"info": false,
-			"sort": false,
-			"destroy": true,
-			"searching": false,
-			"paginate": false,
-			"lengthMenu": [
-				[10,20,50,100, -1],
-				[10,20,50,100, "Todo"]
-			],
-			"order": [
-				[0, "desc"]
-			],
-			"language": {
-				"info": "Registro _START_ a _END_ de _TOTAL_ entradas",
-				"infoEmpty": "Registro 0 a 0 de 0 entradas",
-				"zeroRecords": "No se encontro coincidencia",
-				"infoFiltered": "(filtrado de _MAX_ registros en total)",
-				"emptyTable": "NO HAY DATOS DISPONIBLES",
-				"lengthMenu": '_MENU_ ',
-				"search": 'Buscar:  ',
-				"loadingRecords": "",
-				"processing": "Procesando datos  <i class='fa fa-spin fa-refresh'></i>",
-				"paginate": {
-					"first": "Primera",
-					"last": "Última ",
-					"next": "Siguiente",
-					"previous": "Anterior"
-				}
-			}
-		});
+   		
    		let area = $("#ddlAreas option:selected").val(),
    		fecha = $("#fecha").val(),
    		hora = $("#hora").val(),
@@ -290,8 +294,8 @@
    		}else{
 
    			let diferencia = parseFloat(peso) - parseFloat(gramos);
-   			t.row.add([
-   				t.rows().count()+1,
+   			table.row.add([
+   				table.rows().count()+1,
 				codproducto,
 				descripcion,
 				gramos,
@@ -375,7 +379,7 @@ $("#btnGuardar").click(function(){
 			    let nombre = $("#nombreRpt").html();
 			    let datos = new Array(), i = 0;
 			    mensaje = '', tipo = '',	
-				table = $("#tblDatos").DataTable();				
+				table = $("#tblDatos").DataTable();
 				
 				table.rows().eq(0).each(function(i, index){
 					let row = table.row(index);
@@ -395,11 +399,12 @@ $("#btnGuardar").click(function(){
 				    	$("#cmbTamaño option:selected").val(),$("#cmdNivel option:selected").val(),$('#chkEspecial').prop('checked'),
 				    	$("#cmdNivel2 option:selected").val(),$('#muestra').val()
 				    ],
-				    datos: JSON.stringify(datos)//datos
+				    datos: JSON.stringify(datos),//datos
+				    id: $('#txtidreporte').val()
 				};
 
 				$.ajax({
-					url: '<?php echo base_url("index.php/guardarCPP")?>',
+					url: '<?php echo base_url("index.php/guardarEditarCPP")?>',
 					type: 'POST',
 					data: form_data,
 					success: function(data)

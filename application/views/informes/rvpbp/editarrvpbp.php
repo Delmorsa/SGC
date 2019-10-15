@@ -5,19 +5,19 @@
 			INDUSTRIAS DELMOR, S.A.
 		</h3>
 		<h4 class="text-center">
-			<span id="nombreRpt">REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA</span>
+			<span id="nombreRpt"><strong>EDICION</strong> VERIFICACION DE PESO DE BASCULA DE PREMEZCLA</span>
 		</h4>
 		<h4 class="text-center">
 			<?php
-				if(!$det){
+				if(!$enc){
 				}else{
-						echo "ISO-HACCP-".$det[0]["SIGLA"]."<br>";
-						echo "NO REPORTE: ".$det[0]["NUMERO"]."";
+						echo "ISO-HACCP-".$enc[0]["SIGLA"]."<br>";
+						echo "NO REPORTE: ".$enc[0]["IDREPORTE"]."";
 				}
 			?>
 		</h4>		
 	</section>
-	<input type="hidden" value="<?php echo $det[0]["IDREPORTE"]; ?>" id="id_reporte">
+	<input type="hidden" value="<?php echo $enc[0]["IDREPORTE"]; ?>" id="id_reporte">
 	<!-- Main content -->
 	<section class="content">
 		<div class="box box-danger">
@@ -28,7 +28,7 @@
 				</a>
 				   <button class="pull-right btn btn-primary" id="btnGuardar">
 						Guardar <i class="fa fa-save"></i>
-					</button>				
+					</button>
 			</div>
 			<div class="box-body">
 				<div>
@@ -37,21 +37,37 @@
 							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Area</label>
-									<input autocomplete="off" type="text" disabled id="instrumento" class="form-control" value=<?php echo $det[0]["AREA"] ?>>
+									<label>Area</label>
+									<select id="ddlAreas" class="form-control select2" style="width: 100%;">
+										<option></option>
+										<?php 
+											if(!$areas){
+											}else{
+												foreach ($areas as $key) {
+													if ($key["IDAREA"] == $enc[0]["IDAREA"]) {
+														echo "
+														<option selected value='".$key["IDAREA"]."'>".$key["AREA"]."</option>";
+													}else{
+														echo "<option value='".$key["IDAREA"]."'>".$key["AREA"]."</option>";
+													}
+												}
+											}
+										?>
+									</select>									
 									<span class="fa fa-code-fork form-control-feedback"></span>
 								</div>
 							</div>	
 							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Instrumento</label>
-									<input autocomplete="off" type="text" disabled id="instrumento" class="form-control" value=<?php echo $det[0]["NOMBREPRODUCTO"] ?>>
+									<input autocomplete="off" type="text"  id="instrumento" class="form-control" value="<?php echo $enc[0]["NOMBREPRODUCTO"] ?>">
 									<span class="fa fa-code-fork form-control-feedback"></span>
 								</div>
 							</div>
 							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-4">
 								<div class="form-group has-feedback">
-									<label for="vigencia">Observacion general</label>
-									<input autocomplete="off" type="text" id="observacionGeneral" disabled class=" form-control" value=<?php echo $det[0]["OBSERVACIONES"] ?>>
+									<label for="vigencia">Observacion general </label>
+									<input autocomplete="off" type="text" id="observacionGeneral" class=" form-control" value="<?php echo $enc[0]["OBSERVACIONES"] ?>">
 									<span class="fa fa-pencil form-control-feedback"></span>
 								</div>
 							</div>
@@ -134,10 +150,10 @@
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">monitoreado por</label>
-									<input readonly="" value="<?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apellidos")?>" autocomplete="off" type="text" id="monituser" class="form-control" placeholder="monitoreado por">
+									<input readonly="" value="<?php echo $enc[0]["NOMBRES"].' '.$enc[0]["APELLIDOS"] ?>" autocomplete="off" type="text" id="monituser" class="form-control" placeholder="monitoreado por">
 									<span class="fa fa-user form-control-feedback"></span>
 								</div>
-							</div>							
+							</div>
 							<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for=""> </label>
@@ -146,7 +162,6 @@
 									<button id="btnDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -172,13 +187,13 @@
 								foreach ($det as $key) {									
 									echo "
 										<tr>
-											<td>".$key["IDREPORTE"]."</td>
-											<td>".$key["SIGLA"]."</td>
-											<td>".$key["FECHACREA"]."</td>
-											<td>".$key["AREA"]."</td>
-											<td>".$key["AREA"]."</td>
-											<td>".$key["nombre"]."</td>
-											<td>".$key["nombre"]."</td>
+											<td>".date_format(new DateTime($key["FECHACREA"]), "Y-m-d")."</td>
+											<td>".date_format(new DateTime($key["HORA"]), "H:i")."</td>
+											<td>".$key["CODIGO"]."</td>
+											<td>".$key["PESOMASA"]."</td>
+											<td>".$key["PESOBASCULA"]."</td>
+											<td>".$key["UNIDADPESO"]."</td>
+											<td>".$key["DIFERENCIA"]."</td>
 											<td>".$key["OBSERVACION"]."</td>";
 										echo"</tr>
 									";

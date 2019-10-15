@@ -49,9 +49,9 @@
 					<tbody>
 						<?php
 						$estado = '';
-							if(!$rvpbp)
+							if(!$cpp)
 							{}else{
-								foreach ($rvpbp as $key) {
+								foreach ($cpp as $key) {
 									switch ($key["ESTADO"]) {
 										case 'A':
 												$estado = "<span class='text-success text-bold'>Activo</span>";
@@ -74,10 +74,10 @@
 											if($key["ESTADO"] == "A"){
 												echo "
 													<td class='text-center'>
-													    <a class='detalles btn btn-success btn-xs' href='".base_url("index.php/verRVPBP/".$key["IDREPORTE"]."")."'>
+													    <a class='detalles btn btn-success btn-xs' href='".base_url("index.php/verCPP/".$key["IDREPORTE"]."")."'>
 														  <i class='fa fa-eye'></i>
 														</a>
-														<a class='btn btn-primary btn-xs' href='".base_url("index.php/editarRVPBP/".$key["IDREPORTE"]."")."'>
+														<a class='btn btn-primary btn-xs' href='".base_url("index.php/editarCPP/".$key["IDREPORTE"]."")."'>
 														  <i class='fa fa-pencil'></i>
 														</a>
 														<a onclick='baja(".'"'.$key["IDREPORTE"].'","'.$key["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
