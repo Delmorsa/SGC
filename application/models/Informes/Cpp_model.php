@@ -220,33 +220,64 @@ class Cpp_model extends CI_Model
 
 	}
 
-	public function guardareditarRVPBP	($id,$datos)
+	public function guardarEditarCPP($id,$enc,$detalle)
 	{
+		//echo json_encode($enc);
 		date_default_timezone_set("America/Managua");
 		$mensaje = array();
 	
 		$this->db->trans_begin();
+
 		$existe = $this->db->query("SELECT IDREPORTE FROM Reportes WHERE IDREPORTE = ".$id);
 		if ($existe->num_rows()>0) {
+
+			if ($enc[3] != '' && $enc[4] != '' && $enc[5] != '') {
+				$datos = array(
+			      "IDAREA" => $enc[0],
+			      "VERSION" => '1'.'.1',
+			      "CODIGOPRODUCTO" => $enc[3],
+			      "NOMBREPRODUCTO" => $enc[4],
+			      "PESOGRAMOS" => $enc[5],
+			      "OBSERVACIONES" => $enc[6],		      
+			      "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+			      "OBSERVACIONES" => $enc[1],
+			      "IDUSUARIOEDITA" => $this->session->userdata("id")
+				);
+			}else{
+				$datos = array(
+			      "IDAREA" => $enc[0],
+			      "VERSION" => '1'.'.1',			      
+			      "OBSERVACIONES" => $enc[6],		      
+			      "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+			      "OBSERVACIONES" => $enc[1],
+			      "IDUSUARIOEDITA" => $this->session->userdata("id")
+				);
+			}
+			$this->db->where('IDREPORTE',$id);
+			$update = $this->db->update('Reportes',$datos);
 			$this->db->query("DELETE FROM ReportesPeso WHERE IDREPORTE = ".$id);
-			for ($i=0; $i < count($datos); $i++) { 
-					$array = explode("|",$datos[$i]);
+			  $det = json_decode($detalle, true);
+			  //echo json_encode($datos, true);
+			  $num = 1;
+				foreach ($det as $obj) {
 					$idpeso = $this->db->query("SELECT ISNULL(MAX(IDPESO),0)+1 AS IDPESO FROM ReportesPeso");
+
+
 					$rpt = array(
 						"IDPESO" => $idpeso->result_array()[0]["IDPESO"],
-		                "IDREPORTE" => $id->result_array()[0]["ID"],
+		                "IDREPORTE" => $id,
 		                "ESTADO" => "A",
 		                "NUMERO" => $num,
-		                "HORA" => $array[1],
-		                "FECHAINGRESO" => $array[0],
-		                "CODIGO" => $array[2],
-		                "PESOMASA" => $array[3],
-		                "OBSERVACION" => $array[7],
-		                "PESOBASCULA" => $array[4],
-		                "UNIDADPESO" => $array[5],
-		                "DIFERENCIA" => $array[6],		                
-		                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
-		                "IDUSUARIOCREA" => $this->session->userdata("id")
+		                "HORA" => $obj[1],
+		                "FECHAINGRESO" => $enc[2],
+		                "CODIGO" => $obj[1],
+		                "DESCRIPCION" => $obj[2],
+		                "PESOMASA" => $obj[3],
+		                "PESOBASCULA" => $obj[4],
+		                "UNIDADPESO" => 'Gramos',
+		                "DIFERENCIA" => $obj[5],
+		                "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+		                "IDUSUARIOEDITA" => $this->session->userdata("id")		                
 				    );
 
 				    $num++;	
@@ -255,9 +286,21 @@ class Cpp_model extends CI_Model
 					    $bandera = true;
 				    }
 				}
+				if($bandera == true){
+					$mensaje[0]["mensaje"] = "Datos guardados correctamente";
+					$mensaje[0]["tipo"] = "success";
+					echo json_encode($mensaje);
+				}else{
+					$mensaje[0]["mensaje"] = "Error al guardar los datos del informe COD(2_DET)";
+					$mensaje[0]["tipo"] = "error";
+					echo json_encode($mensaje);
+				}
 		}
 		if ($this->db->trans_status() === FALSE)
 		{
+			$mensaje[0]["mensaje"] = "No se pudo guardar el informe intentelo nuevamente";
+			$mensaje[0]["tipo"] = "error";
+			echo json_encode($mensaje);
 		    $this->db->trans_rollback();
 		}
 		else

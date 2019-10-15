@@ -57,7 +57,14 @@
 									<input disabled="true" type="text" id="fecha" class="form-control" value="<?php echo $enc[0]["FECHACREA"] ?>">
 									<span class="fa fa-calendar form-control-feedback"></span>
 								</div>
-							</div>	
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
+									<label for="">Lote</label>
+									<input disabled="true" autocomplete="off" type="text" id="lote" value = "<?php echo $enc[0]["LOTE"] ?>" class="form-control col-xs-4" >
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
 						</div>
 					</div>
 					<hr>
@@ -84,7 +91,7 @@
 									} ?>
 								  <input <?php 	echo $chekde; ?> class="form-check-input" type="checkbox" value="" id="chkEspecial">
 								  <label class="form-check-label" for="chkEspecial">
-								    Nivel Especial
+								  	Nivel Especial
 								  </label>
 								</div>
 							</div>							

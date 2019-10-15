@@ -70,6 +70,20 @@
 									<span class="fa fa-calendar form-control-feedback"></span>
 								</div>
 							</div>	
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
+									<label for="">Lote</label>
+									<input autofocus="" autocomplete="off" type="text" id="lote" value="" class="form-control col-xs-4" placeholder="Lote">
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group ">
+									<label for="">No Batch</label>
+									<input autofocus="" autocomplete="off" type="text" id="batch" class="form-control" placeholder="Batch">
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
 						</div>
 					</div>
 					<hr>
@@ -86,21 +100,7 @@
 									<label>Peso Gr</label>
 									<input disabled="true" autocomplete="off" type="text" id="pesoGr" class="form-control" placeholder="Peso Gramos">
 								</div>
-							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-3">
-								<div class="form-group has-feedback">
-									<label for="">Lote</label>
-									<input autofocus="" autocomplete="off" type="text" id="lote" value="" class="form-control col-xs-4" placeholder="Lote">
-									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-								<div class="form-group ">
-									<label for="">No Batch</label>
-									<input autofocus="" autocomplete="off" type="text" id="batch" class="form-control" placeholder="Batch">
-									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
-								</div>
-							</div>
+							</div>							
 						</div>
 					</div>
 

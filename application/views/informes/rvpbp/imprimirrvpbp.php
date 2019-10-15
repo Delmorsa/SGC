@@ -111,30 +111,30 @@
 				<?php
 				if(!$det){
 					}else{
-						echo "ISO-HACCP-".$det[0]["SIGLA"]."<br>";
-						echo "NO REPORTE: ".$det[0]["NUMERO"]."";
+						echo "ISO-HACCP-".$enc[0]["SIGLA"]."<br>";
+						echo "NO REPORTE: ".$enc[0]["IDREPORTE"]."";
 					}
 				?>
 			</tr>
 			<tr>
 				<td colspan="1" class="negrita ">Area:</td>
 				<td colspan="7">
-					<?php echo $det[0]["AREA"] ?>
+					<?php echo $enc[0]["AREA"] ?>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="1" class="" style="width:200px;">Instrumento:</td>
-				<td colspan="7"><?php echo $det[0]["NOMBREPRODUCTO"] ?>
+				<td colspan="7"><?php echo $enc[0]["NOMBREPRODUCTO"] ?>
 				</td>
 			</tr>			
 			<tr>
 				<td colspan="1" class="">Fecha:</td>
-				<td class=""><?php echo $det[0]["FECHACREA"] ?></td>
+				<td class=""><?php echo $enc[0]["FECHACREA"] ?></td>
 			</tr>
 			<tr>
 				<td colspan="1" class="negrita ">Observacion:</td>
 				<td colspan="7">
-					<?php echo $det[0]["OBSERVACIONES"] ?>
+					<?php echo $enc[0]["OBSERVACIONES"] ?>
 				</td>
 			</tr>
 			<tr>
@@ -172,13 +172,13 @@
 					<tbody class="text-center">
 						<?php
 						$estado = '';
-							if(!$det2)
+							if(!$det)
 							{}else{
-								foreach ($det2 as $key) {									
+								foreach ($det as $key) {									
 									echo "
 										<tr>
 											<td>".$key["FECHACREA"]."</td>
-											<td>".$key["HORA"]."</td>
+											<td>".date_format(new DateTime($key["HORA"]), "H:i")."</td>
 											<td>".$key["CODIGO"]."</td>
 											<td>".$key["PESOMASA"]."</td>
 											<td>".$key["PESOBASCULA"]."</td>

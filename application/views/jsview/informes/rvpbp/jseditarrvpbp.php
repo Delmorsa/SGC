@@ -136,12 +136,13 @@ $("#btnGuardar").click(function(){
 				});
 
 				let form_data = {
+					id: $('#id_reporte').val(),
 				    enc: [$("#idmonitoreo").val(),$("#ddlAreas option:selected").val(),nombre,$("#observaciones").val(),$("#iderror").val(),$("#instrumento").val(),$("#observacionGeneral").val()],
 				    datos: datos
 				};
 
 				$.ajax({
-					url: 'editarRVPBP/'+$('#id_reporte').val(),
+					url: '<?php echo base_url("index.php/guardareditarRVPBP")?>',
 					type: 'POST',
 					data: form_data,
 					success: function(data)
@@ -157,7 +158,7 @@ $("#btnGuardar").click(function(){
 							text: mensaje,
 							allowOutsideClick: false
 						}).then((result)=>{
-							//window.location.href = "reporte_7";  
+							window.location.href = "<?php echo base_url("index.php/reporte_7")?>";  
 						});				
 					},error:function(){
 						Swal.fire({

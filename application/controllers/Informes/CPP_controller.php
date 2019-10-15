@@ -73,20 +73,22 @@ class CPP_controller extends CI_Controller
 	public function editarCPP($id)
 	{
 		$data['det'] = $this->Cpp_model->getdetCPP($id);
-		//echo json_encode($data['det']);
-
-
-		$dias = $this->db->query("SELECT DATEDIFF(day, GETDATE(), FECHACREA) AS dias 
+		$data['enc'] = $this->Cpp_model->getEncCPP($id);
+		$data["areas"] = $this->CNS_model->mostrarAreas();
+		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
+		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
+		//echo json_encode($data['enc']);
+		/*$dias = $this->db->query("SELECT DATEDIFF(day, GETDATE(), FECHACREA) AS dias 
 						FROM Reportes WHERE IDREPORTE = ".$id);
 
 		if ($dias->result_array()[0]["dias"]<-1) {
 			redirect('reporte_10', 'refresh');
-		}
+		}*/
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cpp/editarcpp',$data);
 		$this->load->view('footer/footer');
-		$this->load->view('jsview/informes/rvpbp/jseditarrvpbp');
+		$this->load->view('jsview/informes/cpp/jseditarcpp');
 
 	}
 
@@ -100,16 +102,18 @@ class CPP_controller extends CI_Controller
 	public function imprimirCPP($id)
 	{
 		$data['enc'] = $this->Cpp_model->getEncCPP($id);
-		$data['det'] = $this->Rvpbp_model->getdetRvpbp($id);
+		$data['det'] = $this->Cpp_model->getdetCPP($id);
 		$this->load->view('informes/cpp/imprimirCPP',$data);
 	}
 
-	public function guardareditarRVPBP()
+	public function guardarEditarCPP()
 	{
-		$id = $this->input->get_post("id");
-		$datos = $this->input->get_post("id");
+		$id = $this->input->post("id");
+		$enc = $this->input->post("enc");
+		$datos = $this->input->post("datos");
 
-		$thi->Rvpbp_model->guardareditarRVPBP();
+		//echo json_encode($enc);
+		$this->Cpp_model->guardarEditarCPP($id,$enc,$datos);
 	}
 	public function BajaAltaRVPBP()
  	{

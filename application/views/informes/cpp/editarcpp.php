@@ -9,10 +9,11 @@
 		</h4>
 		<h4 class="text-center">
 			<?php
-				if(!$monit){
+				if(!$enc){
 				}else{
-					foreach ($monit as $key) {
-						echo "ISO-HACCP-".$key["SIGLA"]."";
+					foreach ($enc as $key) {
+						echo "ISO-HACCP-".$key["SIGLA"]."<br>";
+						echo "NO REPORTE".$key["IDREPORTE"]."";
 						echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">
 							</div>';
@@ -21,7 +22,7 @@
 			?>
 		</h4>		
 	</section>
-
+	<input type="hidden" id="txtidreporte" value="<?php echo $enc[0]["IDREPORTE"] ?>">
 	<!-- Main content -->
 	<section class="content">
 		<div class="box box-danger">
@@ -47,9 +48,12 @@
 											if(!$areas){
 											}else{
 												foreach ($areas as $key) {
-													echo "
-														<option value='".$key["IDAREA"]."'>".$key["AREA"]."</option>
-													";
+													if ($key["IDAREA"] == $enc[0]["IDAREA"]) {
+														echo "
+														<option selected value='".$key["IDAREA"]."'>".$key["AREA"]."</option>";
+													}else{
+														echo "<option value='".$key["IDAREA"]."'>".$key["AREA"]."</option>";
+													}
 												}
 											}
 										?>
@@ -59,17 +63,33 @@
 							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-4">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Observacion general</label>
-									<input autocomplete="off" type="text" id="observacionGeneral" value="" class="form-control" placeholder="Observaciones">
+									<input autocomplete="off" type="text" id="observacionGeneral" value="<?php echo $enc[0]["OBSERVACIONES"] ?>" class="form-control" >
 									<span class="fa fa-pencil form-control-feedback"></span>
 								</div>
 							</div>
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-3">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Fecha</label>
-									<input autocomplete="off" type="text" id="fecha" class="form-control" placeholder="Fecha ingreso">
+									<input autocomplete="off" type="text" id="fecha" class="form-control" value="<?php echo date_format(new DateTime($enc[0]["FECHAINICIO"]), "Y/m/d") ?>" placeholder="Fecha ingreso">
 									<span class="fa fa-calendar form-control-feedback"></span>
 								</div>
-							</div>	
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
+									<label for="">Lote</label>
+									<input autofocus="" autocomplete="off" type="text" id="lote" value="<?php echo $enc[0]["LOTE"]?>" class="form-control col-xs-4" placeholder="Lote">
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+									<div class="form-group has-feedback">
+										<label for="">No Batch</label>
+										<input autocomplete="off" type="text" id="batch" value="<?php echo $enc[0]["NOBATCH"]?>" class="form-control" placeholder="Batch">
+										<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<hr>
@@ -86,21 +106,7 @@
 									<label>Peso Gr</label>
 									<input disabled="true" autocomplete="off" type="text" id="pesoGr" class="form-control" placeholder="Peso Gramos">
 								</div>
-							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-3">
-								<div class="form-group has-feedback">
-									<label for="">Lote</label>
-									<input autofocus="" autocomplete="off" type="text" id="lote" value="" class="form-control col-xs-4" placeholder="Lote">
-									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-								<div class="form-group ">
-									<label for="">No Batch</label>
-									<input autofocus="" autocomplete="off" type="text" id="batch" class="form-control" placeholder="Batch">
-									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
-								</div>
-							</div>
+							</div>							
 						</div>
 					</div>
 
@@ -115,9 +121,15 @@
 											if(!$niveles){
 											}else{
 												foreach ($niveles as $key) {
-													echo "
-													<option value='".intval($key["Desde"]).'-'.intval($key["Hasta"])."'>".intval($key["Desde"]).'-'.intval($key["Hasta"])."</option>
-													";
+													if ($enc[0]["TAMANOMUESTRA"] == intval($key["Desde"]).'-'.intval($key["Hasta"])) {
+														echo "
+														<option selected value='".intval($key["Desde"]).'-'.intval($key["Hasta"])."'>".intval($key["Desde"]).'-'.intval($key["Hasta"])."</option>
+														";
+													}else{
+														echo "
+														<option value='".intval($key["Desde"]).'-'.intval($key["Hasta"])."'>".intval($key["Desde"]).'-'.intval($key["Hasta"])."</option>
+														";
+													}
 												}
 											}
 										?>
@@ -129,21 +141,40 @@
 									<label for="vigencia">Nivel Inspeccion</label>
 									<select id="cmdNivel" class="form-control select2" style="width: 100%;">
 										<option></option>
-										<option value="I">I</option>
+										<?php  
+											$nivel = array('I','II','III');
+											foreach ($nivel as $key) {
+												if ($enc[0]['NIVELINSPECCION'] == $key) {
+													echo '<option selected value="'.$key.'">'.$key.'</option>';
+												}else{
+													echo '<option value="'.$key.'">'.$key.'</option>';
+												}
+											}
+
+										?>
+										<!--<option value="I">I</option>
 										<option value="II">II</option>
-										<option value="III">III</option>
+										<option value="III">III</option>-->
 									</select>
 								</div>
 							</div>
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-check">
-								  <input class="form-check-input" type="checkbox" value="" id="chkEspecial">
+									<?php 	$chekde = ''; 
+									if ($enc[0]["ESPECIAL"]) {
+										$chekde = 'checked';
+									} ?>
+								  <input <?php 	echo $chekde; ?> class="form-check-input" type="checkbox" value="" id="chkEspecial">
 								  <label class="form-check-label" for="chkEspecial">
-								    Nivel Especial
+								  	Nivel Especial
 								  </label>
 								</div>
-							</div>							
-							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-3 especial invisible">
+							</div>		
+							<?php 	$chekde = 'invisible'; 
+									if ($enc[0]["ESPECIAL"]) {
+										$chekde = '';
+									} ?>					
+							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-3 especial <?php 	echo $chekde; ?>">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Nivel Inspeccion Especial</label>
 									<select id="cmdNivel2" class="form-control select2" style="width: 100%;">
@@ -158,7 +189,7 @@
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Muestra</label>
-									<input readonly="true" autocomplete="off" type="text" id="muestra" class="form-control">
+									<input readonly="true" autocomplete="off" type="text" id="muestra" value="<?php echo intval($enc[0]["MUESTRA"]) ?>" class="form-control">
 									<span class="fa fa-truck form-control-feedback"></span>
 								</div>
 							</div>
@@ -199,7 +230,25 @@
 							<th class="text-center">Diferencia</th>
 						</tr>
 					</thead>
-					<tbody class="text-center">						
+					<tbody class="text-center">
+						<?php
+						$estado = '';
+							if(!$det)
+							{}else{
+								foreach ($det as $key) {									
+									echo "
+										<tr>										
+											<td>".$key["NUMERO"]."</td>
+											<td>".$key["CODIGO"]."</td>
+											<td>".$key["DESCRIPCION"]."</td>
+											<td>".$key["PESOMASA"]."</td>
+											<td>".$key["PESOBASCULA"]."</td>
+											<td>".$key["DIFERENCIA"]."</td>";
+									echo"</tr>
+									";
+								}
+							}
+						?>
 					</tbody>
 				</table>
 			</div>			

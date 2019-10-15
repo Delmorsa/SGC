@@ -85,7 +85,7 @@ $route["guardarRVPBP"] = "Informes/Rvpbp_controller/guardarRVPBP";
 $route["BajaAltaRVPBP"] = "Informes/Rvpbp_controller/BajaAltaRVPBP";
 $route["verRVPBP/(:any)"] = "Informes/Rvpbp_controller/verRVPBP/$1";
 $route["editarRVPBP/(:any)"] = "Informes/Rvpbp_controller/editarRVPBP/$1";
-$route["guardareditarRVPBP/(:any)"] = "Informes/Rvpbp_controller/guardareditarRVPBP";
+$route["guardareditarRVPBP"] = "Informes/Rvpbp_controller/guardareditarRVPBP";
 $route["imprimirRVPBP/(:any)"] = "Informes/Rvpbp_controller/imprimirRVPBP/$1";
 /*************************************************************************************/
 $route["reporte_8"] = "Informes/Veced_controller";
@@ -113,3 +113,4 @@ $route["guardarCPP"] = "Informes/CPP_controller/guardarCPP";
 $route["editarCPP/(:any)"] = "Informes/CPP_controller/editarCPP/$1";
 $route["verCPP/(:any)"] = "Informes/CPP_controller/verCPP/$1";
 $route["imprimirCPP/(:any)"] = "Informes/CPP_controller/imprimirCPP/$1";
+$route["guardarEditarCPP"] = "Informes/CPP_controller/guardarEditarCPP";

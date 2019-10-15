@@ -51,9 +51,8 @@ class Rvpbp_controller extends CI_Controller
 
 	public function verRVPBP($id)
 	{
-		//$data['enc'] = $this->Rvpbp_model->getencRvpbp($id);
+		$data['enc'] = $this->Rvpbp_model->getencRvpbp($id);
 		$data['det'] = $this->Rvpbp_model->getdetRvpbp($id);
-		$data['det2'] = $this->Rvpbp_model->getencRvpbp2($id);
 		//echo json_encode($data['det']);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
@@ -64,8 +63,11 @@ class Rvpbp_controller extends CI_Controller
 
 	public function editarRVPBP($id)
 	{
+		$data['enc'] = $this->Rvpbp_model->getencRvpbp($id);
 		$data['det'] = $this->Rvpbp_model->getdetRvpbp($id);
-		//echo json_encode($data['det']);
+		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
+		$data["areas"] = $this->CNS_model->mostrarAreas();
+		//echo json_encode($data['enc']);
 		$dias = $this->db->query("SELECT DATEDIFF(day, GETDATE(), FECHACREA) AS dias 
 									FROM Reportes WHERE IDREPORTE = ".$id);
 
@@ -82,17 +84,18 @@ class Rvpbp_controller extends CI_Controller
 
 	public function imprimirRVPBP($id)
 	{
+		$data['enc'] = $this->Rvpbp_model->getencRvpbp($id);
 		$data['det'] = $this->Rvpbp_model->getdetRvpbp($id);
-		$data['det2'] = $this->Rvpbp_model->getencRvpbp2($id);
 		$this->load->view('informes/rvpbp/imprimirrvpbp',$data);
 	}
 
 	public function guardareditarRVPBP()
 	{
 		$id = $this->input->get_post("id");
-		$datos = $this->input->get_post("id");
+		$detalle = $this->input->get_post("datos");
+		$encabezado = $this->input->get_post("enc");
 
-		$thi->Rvpbp_model->guardareditarRVPBP();
+		$this->Rvpbp_model->guardareditarRVPBP($id,$detalle,$encabezado);
 	}
 	public function BajaAltaRVPBP()
  	{
