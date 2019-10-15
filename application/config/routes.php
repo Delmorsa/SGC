@@ -123,4 +123,6 @@ $route["nuevocpp"] = "Informes/CPP_controller/nuevocpp";
 $route["getGramos/(:any)"] = "Informes/CPP_controller/getGramos/$1";
 $route["getMuestra/(:any)/(:any)/(:any)/(:any)"] = "Informes/CPP_controller/getMuestra/$1/$2/$3/$4";
 /*******************************************************************************************/
-
+$route["reporte_11"] = "Informes/Eepdc_controller";
+$route["crearEepdc"] = "Informes/Eepdc_controller/crearEepdc";
+$route["guardarEepdc"] = "Informes/Eepdc_controller/guardarEepdc";
