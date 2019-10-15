@@ -134,7 +134,7 @@ class Cpp_model extends CI_Model
 		                "IDREPORTE" => $id->result_array()[0]["ID"],
 		                "ESTADO" => "A",
 		                "NUMERO" => $num,
-		                "HORA" => $obj[1],
+		                "HORA" => gmdate(date('H:i:s')),
 		                "FECHAINGRESO" => $enc[2],
 		                "CODIGO" => $obj[1],
 		                "DESCRIPCION" => $obj[2],
