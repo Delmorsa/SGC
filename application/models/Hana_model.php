@@ -54,7 +54,8 @@ class Hana_model extends CI_Model
                 $i++;
             }
             echo json_encode($json);
-            echo @odbc_error($conn);
+            //echo @odbc_error($conn);
+            @odbc_close($conn);
     }
     public function getGramos($itemcode){
         $conn = $this->OPen_database_odbcSAp();

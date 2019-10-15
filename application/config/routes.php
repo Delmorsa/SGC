@@ -55,16 +55,29 @@ $route["guardarCatRep"] = "CategoriaReporte_controller/guardarCatRep";
 $route["actualizarCatRep"] = "CategoriaReporte_controller/actualizarCatRep";
 $route["Baja_AltaCatRep"] = "CategoriaReporte_controller/Baja_AltaCatRep";
 /*************************************************************************************/
+/*************************************************************************************/
+
+$route["Maquinas"] = "Maquinas_controller";
+$route["guardarMaquina"] = "Maquinas_controller/guardarMaquina";
+$route["actualizarMaquina"] = "Maquinas_controller/actualizarMaquina";
+$route["BajaAlta"] = "Maquinas_controller/BajaAlta";
+
+/*************************************************************************************/
+
 $route["Informes"] = "Informes_controller";
 $route["reporte_2"] = "Informes/racymp_controller";
 
 $route["reporte_4"] = "Informes/Mcpe_controller";
 $route["nuevoMCPE"] = "Informes/Mcpe_controller/nuevoMCPE";
-/*$route["guardarCNS"] = "Informes/Mcpe_controller/guardarCNS";
-$route["mostrarCNSDetalle/(:any)"] = "Informes/Mcpe_controller/mostrarCNSDetalle/$1";
-$route["editarCNS/(:any)"] = "Informes/Mcpe_controller/editarCNS/$1";
-$route["actualizarCNS"] = "Informes/Mcpe_controller/actualizarCNS";
-$route["BajaAltaCNS"] = "Informes/Mcpe_controller/BajaAltaCNS";*/
+$route["guardarMcpeVerificPeso"] = "Informes/Mcpe_controller/guardarMcpeVerificPeso";
+$route["guardarMcpeVerificCaract"] = "Informes/Mcpe_controller/guardarMcpeVerificCaract";
+$route["getMcpePesoBasculaAjax/(:any)"] = "Informes/Mcpe_controller/getMcpePesoBasculaAjax/$1";
+$route["getMcpeCaractCalidadAjax/(:any)"] = "Informes/Mcpe_controller/getMcpeCaractCalidadAjax/$1";
+$route["darDeBajaMcpe"] = "Informes/Mcpe_controller/darDeBaja";
+$route["editarMcpePeso/(:any)"] = "Informes/Mcpe_controller/editarMcpePeso/$1";
+$route["actualizarMcpeVerificPeso"] = "Informes/Mcpe_controller/actualizarMcpeVerificPeso";
+$route["editarMcpeCaract/(:any)"] = "Informes/Mcpe_controller/editarMcpeCaract/$1";
+$route["actualizarMcpeVerificCaract"] = "Informes/Mcpe_controller/actualizarMcpeVerificCaract";
 
 
 $route["reporte_6"] = "Informes/CNS_controller";
@@ -96,7 +109,7 @@ $route["mostrarVecedAjax/(:any)"] = "Informes/Veced_controller/mostrarVecedAjax/
 $route["BajaAltaVeced"] = "Informes/Veced_controller/BajaAltaVeced";
 $route["editarVeced/(:any)"] = "Informes/Veced_controller/editarVeced/$1";
 $route["actualizarVeced"] = "Informes/Veced_controller/actualizarVeced";
-
+/***********************************************************************************/
 $route["reporte_9"] = "Informes/Pccn3_controller";
 $route["nuevoPCCN3"] = "Informes/Pccn3_controller/nuevoPCCN3";
 $route["guardarPccn3"] = "Informes/Pccn3_controller/guardarPccn3";
@@ -114,3 +127,8 @@ $route["editarCPP/(:any)"] = "Informes/CPP_controller/editarCPP/$1";
 $route["verCPP/(:any)"] = "Informes/CPP_controller/verCPP/$1";
 $route["imprimirCPP/(:any)"] = "Informes/CPP_controller/imprimirCPP/$1";
 $route["guardarEditarCPP"] = "Informes/CPP_controller/guardarEditarCPP";
+/*******************************************************************************************/
+$route["reporte_11"] = "Informes/Eepdc_controller";
+$route["crearEepdc"] = "Informes/Eepdc_controller/crearEepdc";
+$route["guardarEepdc"] = "Informes/Eepdc_controller/guardarEepdc";
+
