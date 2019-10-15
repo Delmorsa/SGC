@@ -7,7 +7,7 @@
 		<h1>
 			REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA (RVPBP)
 
-			<a href="http://localhost/sgc/index.php/nuevorvpbp" class="pull-right btn btn-primary">
+			<a href="<?php echo base_url("index.php/nuevorvpbp")?>" class="pull-right btn btn-primary">
 				Agregar <i class="fa fa-plus"></i>
 			</a>
 			<!--<small>Blank example to the fixed layout</small>-->
