@@ -421,7 +421,7 @@ $("#btnGuardar").click(function(){
 							allowOutsideClick: false
 						}).then((result)=>{
 							if (tipo == 'success') {
-								window.location.href = "reporte_10";
+								window.location.href = "<?php echo base_url("index.php/reporte_10")?>";
 							}
 						});
 					},error:function(){
