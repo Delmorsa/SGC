@@ -22,6 +22,21 @@ class Eepdc_model extends CI_Model
         return 0;
     }
 
+    public function getEepdc()
+    {
+        $query = $this->db->query("
+            SELECT t.IDREPORTE, t.SIGLA,t.DIA,t1.AREA,t.VERSION,t.IDUSUARIOCREA,t2.NOMBRES,t.ESTADORPT AS ESTADO, t.IDEMPRESA
+            FROM view_InformesEnvases t
+            inner join Areas t1 on t.IDAREA = t1.IDAREA 
+            inner join Usuarios t2 on t.IDUSUARIOCREA = t2.IDUSUARIO
+            group by t.IDREPORTE, t.IDEMPRESA,t.SIGLA,t.DIA,t1.AREA,t.VERSION,t.IDUSUARIOCREA,t2.NOMBRES,t.ESTADORPT
+           ");
+        if($query->num_rows() > 0){
+            return $query->result_array();
+        }
+        return 0;
+    }
+
     public function guardarEepdc($enc,$detalle)
     {
         $this->db->trans_begin();
@@ -109,5 +124,47 @@ class Eepdc_model extends CI_Model
         }
     }
 
+    public function darDeBaja($idreporte,$estado)
+    {
+        $mensaje = array();
+        $this->db->where("IDREPORTE",$idreporte);
+        $data = array(
+            "ESTADO" => $estado
+        );
+        $baja = $this->db->update("Reportes",$data);
+        if($baja)
+        {
+            $mensaje[0]["mensaje"] = "La operación se llevo a cabo con éxito.";
+            $mensaje[0]["tipo"] = "success";
+            echo json_encode($mensaje);
+        }else{
+            $mensaje[0]["mensaje"] = "Fallo en la operación.
+			 Ocurrió un error inesperado en el servidor, si el error persiste contáctece con el administrador.";
+            $mensaje[0]["tipo"] = "error";
+            echo json_encode($mensaje);
+        }
+    }
+
+    public function detalleEepdcAjax($idreporte)
+    {
+        $json = array(); $i = 0;
+        $query = $this->db->where("IDREPORTE",$idreporte)->get("ReportesEnvases");
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $key) {
+                $json[$i]["NUMERO"] = $key["NUMERO"];
+                $json[$i]["CODIGO"] = $key["CODIGO"];
+                $json[$i]["NOMBRE"] = $key["NOMBRE"];
+                $json[$i]["LOTE"] = $key["LOTE"];
+                $json[$i]["CABEZALMAQUINA"] = $key["CABEZALMAQUINA"];
+                $json[$i]["L"] = number_format($key["L"],2);
+                $json[$i]["GC"] = number_format($key["GC"],2);
+                $json[$i]["GT"] = number_format($key["GT"],2);
+                $json[$i]["T"] = number_format($key["T"],2);
+                $json[$i]["FECHACREA"] = date_format(new DateTime($key["FECHACREA"]), "Y-m-d H:i:s");
+                $i++;
+            }
+            echo json_encode($json);
+        }
+    }
 
 }

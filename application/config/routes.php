@@ -131,4 +131,6 @@ $route["guardarEditarCPP"] = "Informes/CPP_controller/guardarEditarCPP";
 $route["reporte_11"] = "Informes/Eepdc_controller";
 $route["crearEepdc"] = "Informes/Eepdc_controller/crearEepdc";
 $route["guardarEepdc"] = "Informes/Eepdc_controller/guardarEepdc";
+$route["BajaEepdc"] = "Informes/Eepdc_controller/darDeBaja";
+$route["detalleEepdcAjax/(:any)"] = "Informes/Eepdc_controller/detalleEepdcAjax/$1";
 
