@@ -216,6 +216,7 @@ $(document).ready(function () {
     $("#btnDelete").click(function (){
         let table = $("#tblcrear").DataTable();
         let rows = table.rows( '.danger' ).remove().draw();
+        calculos();
     });
 });
 
@@ -224,7 +225,7 @@ $("#btnGuardar").click(function () {
         area = $("#ddlarea option:selected").val(),
         fecha = $("#fecha").val(),
         T = $("#spanT").html(),
-        empresa = '',
+        empresa = 0,
         observaciones = $("#observaciones").val();
     let table = $("#tblcrear").DataTable();
     if(!table.data().count()){
@@ -239,9 +240,9 @@ $("#btnGuardar").click(function () {
             let row = table.row(index);
             let data = row.data();
             detalle[it] = [];
-            if(data[0] == "DELMOR"){
+            if(data[1] == "DELMOR"){
                 empresa = 1;
-            }else if(data[0] == "D´lago"){
+            }else if(data[1] == "D´lago"){
                 empresa = 2;
             }
             detalle[it][0] = empresa;
@@ -352,8 +353,7 @@ function mostrarDetalles(callback,id,div)
                 thead += "<th class='text-center bg-primary'>L</th>";
                 thead += "<th class='text-center bg-primary'>GC</th>";
                 thead += "<th class='text-center bg-primary'>GT</th>";
-                thead += "<th class='text-center bg-primary'>T</th>";
-                thead += "<th class='text-center bg-primary'>Fecha creacion</th></tr>";
+                thead += "<th class='text-center bg-primary'>T</th></tr>";
                 $.each(JSON.parse(response), function(i, item){
                     tbody += "<tr>"+
                         "<td class='text-center bg-info'>"+item["NUMERO"]+"</td>"+
@@ -364,8 +364,7 @@ function mostrarDetalles(callback,id,div)
                         "<td class='text-center bg-info'>"+item["L"]+"</td>"+
                         "<td class='text-center bg-info'>"+item["GC"]+"</td>"+
                         "<td class='text-center bg-info'>"+item["GT"]+"</td>"+
-                        "<td class='text-center bg-info'>"+item["T"]+"</td>"+
-                        "<td class='text-center bg-info'>"+item["FECHACREA"]+"</td>";
+                        "<td class='text-center bg-info'>"+item["T"]+"</td>";
                 });
                 callback($("<table id='detEepdc' class='table table-bordered table-condensed table-striped'>"+ thead + tbody + "</table>")).show();
             }else {

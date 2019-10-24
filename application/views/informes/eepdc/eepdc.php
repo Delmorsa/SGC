@@ -87,7 +87,7 @@
                                                                                     <a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
                                                                                       <i class='fa fa-eye'></i>
                                                                                     </a>
-                                                                                    <a class='btn btn-primary btn-xs' href=''>
+                                                                                    <a class='btn btn-primary btn-xs' href='".base_url("index.php/getEepdcByID/".$key["IDREPORTE"]."")."'>
                                                                                       <i class='fa fa-pencil'></i>
                                                                                     </a>
                                                                                     <a onclick='BajaEepdc(".'"'.$key["IDREPORTE"].'","'.$key["ESTADO"].'"'.")' 
