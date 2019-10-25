@@ -135,4 +135,7 @@ $route["actualizarEepdc"] = "Informes/Eepdc_controller/actualizarEepdc";
 $route["BajaEepdc"] = "Informes/Eepdc_controller/darDeBaja";
 $route["detalleEepdcAjax/(:any)"] = "Informes/Eepdc_controller/detalleEepdcAjax/$1";
 $route["getEepdcByID/(:any)"] = "Informes/Eepdc_controller/getEepdcByID/$1";
+/*******************************************************************************************/
+$route["reporte_13"] = "Informes/Mdtde_controller";
+$route["crearMdtde"] = "Informes/Mdtde_controller/crearMdtde";
 
