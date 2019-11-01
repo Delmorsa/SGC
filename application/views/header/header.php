@@ -37,6 +37,8 @@
 	
 	<!--clockpicher-->
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap-clockpicker.min.css">
+    <!--daterangepicker-->
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/daterangepicker.css">
 
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">

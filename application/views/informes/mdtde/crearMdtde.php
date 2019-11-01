@@ -78,46 +78,162 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Version</label>
                                     <input autocomplete="off" type="text" id="version" class="form-control" placeholder="Version del informe">
                                     <span class="fa fa-code-fork form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-8 col-sm-8 col-md-6 col-lg-6">
+                            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
-                                    <label for="vigencia">Observaciones</label>
-                                    <input autocomplete="off" type="text" id="observaciones" class="form-control" placeholder="Observaciones">
-                                    <span class="fa fa-pencil form-control-feedback"></span>
+                                    <label for="vigencia">Lote</label>
+                                    <input autocomplete="off" type="text" id="Lote" class="form-control" placeholder="">
+                                    <span class="fa fa-barcode form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                                <div class="form-group has-feedback">
+                                    <label for="vigencia">Fecha</label>
+                                    <?php
+                                    date_default_timezone_set("America/Managua");
+                                    setlocale(LC_TIME, 'es_NI','es_NI.UTF-8');
+                                    echo '
+                                            <input value="'.date("Y-m-d").'" readonly autocomplete="off" type="text" id="Fecha" class="form-control" placeholder="">
+                                       ';
+                                    ?>
+                                    <span class="fa fa-calendar form-control-feedback"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+                            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
                                 <div class="form-group has-feedback">
-                                    <label for="vigencia">Fecha ingreso</label>
-                                    <input autocomplete="off" type="text" id="fecha" class="form-control" placeholder="Fecha ingreso">
+                                    <label for="vigencia">Mes</label>
+                                    <?php
+                                    date_default_timezone_set("America/Managua");
+                                    setlocale(LC_TIME, "spanish");
+                                    echo '
+                                            <input value="'.strftime("%B %Y").'" readonly autocomplete="off" type="text" id="Mes" class="form-control" placeholder="">
+                                       ';
+                                    ?>
                                     <span class="fa fa-calendar form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
-                                    <label for="">Cantidad nitrito s.</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="nitrito" class="form-control" placeholder="cantidad nitrito">
-                                    <span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+                                    <label for="vigencia">Hora</label>
+                                    <?php
+                                    date_default_timezone_set("America/Managua");
+                                       echo '
+                                            <input readonly value="'.date("H:i").'" autocomplete="off" type="text" id="Hora" class="form-control">
+                                       ';
+                                    ?>
+                                    <span class="fa fa-clock-o form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
-                                    <label for="">Cantidad kg.</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="kg" class="form-control col-xs-4" placeholder="cantidad Kg">
-                                    <span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+                                    <label for="">Semana del</label>
+                                    <input autofocus="" autocomplete="off" type="text" id="semana" class="form-control">
+                                    <span class="fa fa-calendar-plus-o form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+                            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                <div class="form-group has-feedback">
+                                    <label for="">Dia</label>
+                                    <?php
+                                    $dia = '';
+                                    date_default_timezone_set("America/Managua");
+                                   /* switch (strftime("%A")){
+                                        case "Monday":
+                                            $dia = 'Lunes';
+                                            break;
+                                        case "Tuesday":
+                                            $dia = "Martes";
+                                            break;
+                                        case "Wednesday":
+                                            $dia = 'Miercoles';
+                                            break;
+                                        case 'Thursday':
+                                            $dia = 'Jueves';
+                                            break;
+                                        case 'Friday':
+                                            $dia = 'Viernes';
+                                            break;
+                                        case 'Saturday':
+                                            $dia = 'Sabado';
+                                            break;
+                                        default:
+                                            $dia = 'Domingo';
+                                            break;
+                                    }*/
+                                    echo '
+                                            <input value="'.strftime("%A").'" readonly autocomplete="off"
+                                            type="text" id="Dia" class="form-control" placeholder="">
+                                       ';
+                                    ?>
+                                    <span class="fa fa-calendar-check-o form-control-feedback"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                <div class="form-group has-feedback">
+                                    <label for="">1ra toma</label>
+                                    <input autofocus="" autocomplete="off" type="text" id="toma1" class="form-control">
+                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                <div class="form-group has-feedback">
+                                    <label for="">2da toma</label>
+                                    <input autofocus="" autocomplete="off" type="text" id="toma2" class="form-control">
+                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                <div class="form-group has-feedback">
+                                    <label for="">3ra toma</label>
+                                    <input autofocus="" autocomplete="off" type="text" id="toma3" class="form-control">
+                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                <div class="form-group has-feedback">
+                                    <label for="">4ta toma</label>
+                                    <input autofocus="" autocomplete="off" type="text" id="toma4" class="form-control">
+                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                <div class="form-group">
+                                    <label for="">Toma</label>
+                                    <select name="" id="Toma" class="form-control select2" style="width: 100%;">
+                                        <option></option>
+                                        <option value="1">1ra</option>
+                                        <option value="2">2da</option>
+                                        <option value="3">3ra</option>
+                                        <option value="4">4ta</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="form-group has-feedback">
+                                    <label for="">Temperatura</label>
+                                    <input type="text" id="Temperatura" class="form-control" placeholder="Temperatura">
+                                    <span class="fa fa-thermometer-4 form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group has-feedback">
                                     <label for="">monitoreado por</label>
                                     <input readonly="" value="<?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apellidos")?>" autocomplete="off" type="text" id="monituser" class="form-control" placeholder="monitoreado por">
@@ -134,17 +250,31 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                                <div class="form-group has-feedback">
+                                    <label for="">Observaciones</label>
+                                    <input type="text" id="observaciones" class="form-control" placeholder="Observaciones">
+                                    <span class="fa fa-pencil form-control-feedback"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <table class="table table-bordered table-condensed table-striped" id="tblcrear">
                     <thead>
                     <tr>
+                        <th class="text-center">N°</th>
                         <th class="text-center">Semana</th>
                         <th class="text-center">Dia</th>
-                        <th class="text-center">1era Toma <br> 8:00 A.M</th>
+                        <th class="text-center">Toma</th>
+                        <th class="text-center">Temperatura</th>
+                       <!-- <th class="text-center">1era Toma <br> 8:00 A.M</th>
                         <th class="text-center">2da Toma <br> 10:00 A.M</th>
                         <th class="text-center">3era Toma <br> 2:00 P.M</th>
-                        <th class="text-center">4ta Toma <br> 4:00 P.M</th>
+                        <th class="text-center">4ta Toma <br> 4:00 P.M</th> -->
                         <th class="text-center">Observaciones</th>
                     </tr>
                     </thead>
