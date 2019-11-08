@@ -139,6 +139,10 @@ $route["getEepdcByID/(:any)"] = "Informes/Eepdc_controller/getEepdcByID/$1";
 $route["reporte_13"] = "Informes/Mdtde_controller";
 $route["crearMdtde"] = "Informes/Mdtde_controller/crearMdtde";
 $route["guardarMdtde"] = "Informes/Mdtde_controller/guardarMdtde";
+$route["guardarMdtde1"] = "Informes/Mdtde_controller/guardarMdtde1";
 $route["getMdtdeAjax/(:any)"] = "Informes/Mdtde_controller/getMdtdeAjax/$1";
 $route["bajaMdtde"] = "Informes/Mdtde_controller/bajaMdtde";
+$route["editarDetalle/(:any)"] = "Informes/Mdtde_controller/editarDetalle/$1";
+$route["updateDetalle"] = "Informes/Mdtde_controller/updateDetalle";
+$route["editarmdtde/(:any)"] = "Informes/Mdtde_controller/editarmdtde/$1";
 

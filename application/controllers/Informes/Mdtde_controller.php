@@ -39,6 +39,30 @@ class Mdtde_controller extends CI_Controller
         $this->load->view('jsview/informes/mdtde/jsmdtde');
     }
 
+    public function editarDetalle($id)
+    {
+        //$data["monit"] = $this->CNS_model->getMonitoreo();
+        $data["areas"] = $this->Mdtde_model->getAreas();
+        $data["detalle"] = $this->Mdtde_model->editarDetalle($id);
+        $this->load->view('header/header');
+        $this->load->view('header/menu');
+        $this->load->view('informes/mdtde/mdtdeDetalle',$data);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/informes/mdtde/jsmdtdeDetalle');
+    }
+
+    public function editarmdtde($id)
+    {
+        //$data["monit"] = $this->CNS_model->getMonitoreo();
+        $data["areas"] = $this->Mdtde_model->getAreas();
+        $data["detalle"] = $this->Mdtde_model->editarmdtde($id);
+        $this->load->view('header/header');
+        $this->load->view('header/menu');
+        $this->load->view('informes/mdtde/editarMdtde',$data);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/informes/mdtde/jseditarMdtde');
+    }
+
    public function guardarMdtde()
    {
        $this->Mdtde_model->guardarMdtde(
@@ -46,6 +70,21 @@ class Mdtde_controller extends CI_Controller
            $this->input->post("detalle")
        );
    }
+
+    public function guardarMdtde1()
+    {
+        $this->Mdtde_model->guardarMdtde1(
+            $this->input->post("enc"),
+            $this->input->post("detalle")
+        );
+    }
+
+    public function updateDetalle()
+    {
+        $this->Mdtde_model->updateDetalle(
+            $this->input->post("detalle")
+        );
+    }
 
    public function getMdtdeAjax($idreporte)
    {

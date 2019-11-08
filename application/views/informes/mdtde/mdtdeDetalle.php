@@ -1,9 +1,11 @@
 <?php
+date_default_timezone_set("America/Managua");
+setlocale(LC_ALL,'Spanish_Nicaragua');
 /**
  * Created by Cesar Mejía.
  * User: Sistemas
- * Date: 24/10/2019 11:40 2019
- * FileName: crearMdtde.php
+ * Date: 5/11/2019 10:57 2019
+ * FileName: mdtdeDetalle.php
  */
 ?>
 <div class="content-wrapper">
@@ -13,18 +15,22 @@
             <!--<small>Blank example to the fixed layout</small>-->
         </h3>
         <h4 class="text-center">
-            <span id="nombreRpt">MONITOREO DE TEMPERATURA DEL ESTERILIZADOR</span>
+            <?php
+            if(!$detalle){
+                echo "";
+            }else{
+                foreach ($detalle as $key) {
+                }
+                echo '<span id="nombreRpt">'.$key["NOMBRE"].'</span>';
+            }
+            ?>
         </h4>
         <h4 class="text-center">
             <?php
-            if(!$monit){
-                echo "
-                <h5 class='text-center text-danger text-bold'>
-                    No existe código de monitoreo para el dia actual. para agregar un nuevo codigo </br>
-                    haga click en <a href='".base_url("index.php/monitoreos")."'>Crear</a>
-                </h5>";
+            if(!$detalle){
+                echo "";
             }else{
-                foreach ($monit as $key) {
+                foreach ($detalle as $key) {
                     echo "ISO-HACCP-".$key["SIGLA"]."";
                     echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">
@@ -62,9 +68,26 @@
                         <div class="col-xs-12">
                             <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
                                 <div class="form-group">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '<input readonly value="'.$key["IDTEMPESTERILIZADOR"].'" autocomplete="off" type="hidden" id="idtempest" class="form-control">';
+                                    }
+                                    ?>
                                     <label>Area</label>
-                                    <select id="ddlAreas" class="form-control select2" style="width: 100%;">
-                                        <option></option>
+                                    <select disabled id="ddlAreas" class="form-control select2" style="width: 100%;">
+                                        <?php
+                                        if(!$detalle){
+                                        }else{
+                                            foreach ($detalle as $key) {
+                                            }
+                                            echo "
+														<option selected value='".$key["IDAREA"]."'>".$key["AREA"]."</option>
+													";
+                                        }
+                                        ?>
                                         <?php
                                         if(!$areas){
                                         }else{
@@ -81,14 +104,32 @@
                             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Version</label>
-                                    <input autocomplete="off" type="text" id="version" class="form-control" placeholder="Version del informe">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                          <input readonly value="'.$key["VERSION"].'" autocomplete="off" type="text" id="version" class="form-control" placeholder="Version del informe">
+                                          ';
+                                    }
+                                    ?>
                                     <span class="fa fa-code-fork form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Lote</label>
-                                    <input autocomplete="off" type="text" id="Lote" class="form-control" placeholder="">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                          <input readonly autocomplete="off" value="'.$key["LOTE"].'" type="text" id="Lote" class="form-control" placeholder="">
+                                          ';
+                                    }
+                                    ?>
                                     <span class="fa fa-barcode form-control-feedback"></span>
                                 </div>
                             </div>
@@ -96,11 +137,14 @@
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Fecha</label>
                                     <?php
-                                    date_default_timezone_set("America/Managua");
-                                    setlocale(LC_TIME, 'es_NI','es_NI.UTF-8');
-                                    echo '
-                                            <input value="'.date("Y-m-d").'" readonly autocomplete="off" type="text" id="Fecha" class="form-control" placeholder="">
-                                       ';
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                          <input readonly value="'.date_format(new DateTime($key["FECHAINICIO"]),"Y-m-d").'" type="text" id="Fecha" class="form-control" placeholder="">
+                                          ';
+                                    }
                                     ?>
                                     <span class="fa fa-calendar form-control-feedback"></span>
                                 </div>
@@ -122,22 +166,35 @@
                                     <span class="fa fa-calendar form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                            <!--<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Hora</label>
                                     <?php
-                                    date_default_timezone_set("America/Managua");
-                                       echo '
-                                            <input readonly value="'.date("H:i").'" autocomplete="off" type="text" id="Hora" class="form-control">
-                                       ';
+                                   /* if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                        <input readonly value="'.date("H:i").'" autocomplete="off" type="text" id="Hora" class="form-control">
+                                          ';
+                                    }*/
                                     ?>
                                     <span class="fa fa-clock-o form-control-feedback"></span>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">Semana del</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="semana" class="form-control">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                          <input READONLY="" value="'.$key["SEMANA"].'" autocomplete="off" type="text" id="semana" class="form-control">
+                                          ';
+                                    }
+                                    ?>
                                     <span class="fa fa-calendar-plus-o form-control-feedback"></span>
                                 </div>
                             </div>
@@ -145,36 +202,15 @@
                                 <div class="form-group has-feedback">
                                     <label for="">Dia</label>
                                     <?php
-                                    $dia = '';
-                                    date_default_timezone_set("America/Managua");
-                                    setlocale(LC_ALL,'Spanish_Nicaragua');
-                                   /* switch (strftime("%A")){
-                                        case "Monday":
-                                            $dia = 'Lunes';
-                                            break;
-                                        case "Tuesday":
-                                            $dia = "Martes";
-                                            break;
-                                        case "Wednesday":
-                                            $dia = 'Miercoles';
-                                            break;
-                                        case 'Thursday':
-                                            $dia = 'Jueves';
-                                            break;
-                                        case 'Friday':
-                                            $dia = 'Viernes';
-                                            break;
-                                        case 'Saturday':
-                                            $dia = 'Sabado';
-                                            break;
-                                        default:
-                                            $dia = 'Domingo';
-                                            break;
-                                    }*/
-                                    echo '
-                                            <input value="'.utf8_encode(strftime("%A")).'" readonly autocomplete="off"
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                         <input value="'.utf8_encode($key["DIA"]).'" readonly autocomplete="off"
                                             type="text" id="Dia" class="form-control" placeholder="">
-                                       ';
+                                          ';
+                                    }
                                     ?>
                                     <span class="fa fa-calendar-check-o form-control-feedback"></span>
                                 </div>
@@ -186,28 +222,60 @@
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">1ra toma</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="toma1" class="form-control">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                         <input value="'.$key["TOMA1"].'" autocomplete="off" type="text" id="toma1" class="form-control">';
+                                    }
+                                    ?>
                                     <span class="fa fa-file-text-o form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">2da toma</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="toma2" class="form-control">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                         <input value="'.$key["TOMA2"].'" autocomplete="off" type="text" id="toma2" class="form-control">';
+                                    }
+                                    ?>
                                     <span class="fa fa-file-text-o form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">3ra toma</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="toma3" class="form-control">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                         <input value="'.$key["TOMA3"].'" autocomplete="off" type="text" id="toma3" class="form-control">';
+                                    }
+                                    ?>
                                     <span class="fa fa-file-text-o form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">4ta toma</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="toma4" class="form-control">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                         <input value="'.$key["TOMA4"].'" autocomplete="off" type="text" id="toma4" class="form-control">';
+                                    }
+                                    ?>
                                     <span class="fa fa-file-text-o form-control-feedback"></span>
                                 </div>
                             </div>
@@ -215,25 +283,25 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                           <!-- <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-                                <div class="form-group">
-                                    <label for="">Toma</label>
-                                    <select name="" id="Toma" class="form-control select2" style="width: 100%;">
-                                        <option></option>
-                                        <option value="1">1ra</option>
-                                        <option value="2">2da</option>
-                                        <option value="3">3ra</option>
-                                        <option value="4">4ta</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                <div class="form-group has-feedback">
-                                    <label for="">Temperatura</label>
-                                    <input type="text" id="Temperatura" class="form-control" placeholder="Temperatura">
-                                    <span class="fa fa-thermometer-4 form-control-feedback"></span>
-                                </div>
-                            </div>-->
+                            <!-- <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                 <div class="form-group">
+                                     <label for="">Toma</label>
+                                     <select name="" id="Toma" class="form-control select2" style="width: 100%;">
+                                         <option></option>
+                                         <option value="1">1ra</option>
+                                         <option value="2">2da</option>
+                                         <option value="3">3ra</option>
+                                         <option value="4">4ta</option>
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                 <div class="form-group has-feedback">
+                                     <label for="">Temperatura</label>
+                                     <input type="text" id="Temperatura" class="form-control" placeholder="Temperatura">
+                                     <span class="fa fa-thermometer-4 form-control-feedback"></span>
+                                 </div>
+                             </div>-->
                         </div>
                     </div>
                     <div class="row">
@@ -248,7 +316,16 @@
                             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
                                 <div class="form-group has-feedback">
                                     <label for="">Observaciones</label>
-                                    <input type="text" id="observaciones" class="form-control" placeholder="Observaciones">
+                                    <?php
+                                    if(!$detalle){
+                                    }else{
+                                        foreach ($detalle as $key) {
+                                        }
+                                        echo '
+                                         <input type="text" value="'.$key["OBSERVACIONES"].'" id="observaciones" class="form-control" placeholder="Observaciones">
+                                          ';
+                                    }
+                                    ?>
                                     <span class="fa fa-pencil form-control-feedback"></span>
                                 </div>
                             </div>
@@ -278,6 +355,27 @@
                     </tr>
                     </thead>
                     <tbody class="text-center">
+                    <?php
+                    if(!$detalle){
+                    }else{
+                        $i = 1;
+                        foreach ($detalle as $key) {
+                            echo "
+                                <tr>
+                                    <td>".$i."</td>
+                                    <td>".$key["SEMANA"]."</td>
+                                    <td>".$key["DIA"]."</td>
+                                    <td>".$key["TOMA1"]."</td>
+                                    <td>".$key["TOMA2"]."</td>
+                                    <td>".$key["TOMA3"]."</td>
+                                    <td>".$key["TOMA4"]."</td>
+                                    <td>".$key["OBSERVACIONES"]."</td>
+                                </tr>
+                            ";
+                            $i++;
+                        }
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
@@ -295,3 +393,4 @@
         </div>
     </div>
 </div>
+

@@ -14,11 +14,11 @@
             allowClear: true,
             language: "es"
         });
-        $("#Toma").select2({
+        /*$("#Toma").select2({
             placeholder: "Seleccione un opcion",
             allowClear: true,
             language: "es"
-        });
+        });*/
         $("#semana").daterangepicker({
             locale: {
                 format: 'DD',
@@ -62,28 +62,27 @@
             let semana = $("#semana").val(),
                 dia = $("#Dia").val(),
                 tomaselect = $("#Toma option:selected").val(),
-                toma = '',
-                temperatura = $("#Temperatura").val(),
+                toma1 = 0,
+                toma2 = 0,
+                toma3 = 0,
+                toma4 = 0,
                 obs = $("#observaciones").val();
 
-            switch (tomaselect) {
-                case '1':
-                    toma = "1ra Toma";
-                    break;
-                case '2':
-                    toma = "2da Toma";
-                    break;
-                case '3':
-                    toma = "3ra Toma";
-                    break;
-                case '4':
-                    toma = "4ta Toma";
-                    break;
-
+            if($("#toma1").val() != ""){
+                toma1 = $("#toma1").val();
+            }
+            if($("#toma2").val() != ""){
+               toma2 = $("#toma2").val();
+            }
+            if($("#toma3").val() != ""){
+                toma3 = $("#toma3").val();
+            }
+            if($("#toma4").val() != ""){
+                toma4 = $("#toma4").val();
             }
 
             if($("#ddlAreas option:selected").val() == "" || $("#version").val() == ""
-                || $("#lote").val() == "" || tomaselect == "" || temperatura == ""){
+                || $("#lote").val() == ""){
                 Swal.fire({
                     text: "Todos los campos son requeridos",
                     type: "warning",
@@ -94,8 +93,10 @@
                     counter,
                     semana,
                     dia,
-                    toma,
-                    temperatura,
+                    toma1,
+                    toma2,
+                    toma3,
+                    toma4,
                     obs
                 ]).draw(false);
 
@@ -158,8 +159,10 @@
                             detalle[i][1] = data[2];
                             detalle[i][2] = data[3];
                             detalle[i][3] = data[4];
-                            detalle[i][4] = $("#Hora").val();
-                            detalle[i][5] = data[5];
+                            detalle[i][4] = data[5];
+                            detalle[i][5] = data[6];
+                            detalle[i][6] = $("#Hora").val();
+                            detalle[i][7] = data[7];
                             i++;
                         });
 
@@ -167,7 +170,8 @@
                             enc: [$("#ddlAreas option:selected").val(),$("#version").val(),$("#nombreRpt").html(),$("#Lote").val(),$("#Fecha").val()],
                             detalle: JSON.stringify(detalle)
                         };
-                        $.ajax({
+
+                       $.ajax({
                             url: "guardarMdtde",
                             type: "POST",
                             data: form_data,
@@ -204,17 +208,31 @@
                 if(response != "false"){
                     let obj = $.parseJSON(response);
                     thead += "<th class='text-center bg-primary'>Dia</th>";
-                    thead += "<th class='text-center bg-primary'>Toma</th>";
-                    thead += "<th class='text-center bg-primary'>Temp</th>";
-                    thead += "<th class='text-center bg-primary'>Hora</th>";
-                    thead += "<th class='text-center bg-primary'>observacion</th></tr>";
+                    thead += "<th class='text-center bg-primary'>1ra Toma</th>";
+                    thead += "<th class='text-center bg-primary'>2da Toma</th>";
+                    thead += "<th class='text-center bg-primary'>3ra Toma</th>";
+                    thead += "<th class='text-center bg-primary'>4ta Toma</th>";
+                    thead += "<th class='text-center bg-primary'>Hora <br> 1ra Toma</th>";
+                    thead += "<th class='text-center bg-primary'>Hora <br> 2da Toma</th>";
+                    thead += "<th class='text-center bg-primary'>Hora <br> 3ra Toma</th>";
+                    thead += "<th class='text-center bg-primary'>Hora <br> 4ta Toma</th>";
+                    thead += "<th class='text-center bg-primary'>observacion</th>";
+                    thead += "<th class='text-center bg-primary'>Acciones</th></tr>";
                     $.each(obj, function(i, item){
                         tbody += "<tr>"+
                             "<td class='text-center bg-info'>"+item["Dia"]+"</td>"+
                             "<td class='text-center bg-info'>"+item["Toma"]+"</td>"+
-                            "<td class='text-center bg-info'>"+item["Temp"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["Toma2"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["Toma3"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["Toma4"]+"</td>"+
                             "<td class='text-center bg-info'>"+item["Hora"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["Hora2"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["Hora3"]+"</td>"+
+                            "<td class='text-center bg-info'>"+item["Hora4"]+"</td>"+
                             "<td class='text-center bg-info'>"+item["Observaciones"]+"</td>"+
+                            "<td class='text-center bg-info'><a class='btn btn-primary btn-xs' href='<?php echo base_url("index.php/editarDetalle/")?>"+item["IdDetalle"]+"'>" +
+                            "                                                       <i class='fa fa-pencil'></i>" +
+                            "                                                   </a></td>"+
                             "</tr>";
                     });
                     callback($("<table id='detMdtde' class='table table-bordered table-condensed table-striped'>"+ thead + tbody + "</table>")).show();
