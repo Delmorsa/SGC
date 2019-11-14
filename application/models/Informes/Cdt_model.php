@@ -60,10 +60,10 @@ class Cdt_model extends CI_Model
             foreach ($query->result_array() as $key) {
                 $json[$i]["ID"] = $key["IDTEMPESTERILIZADOR"];
                 $json[$i]["AREA"] = $key["AREA"];
-                $json[$i]["TOMA1"] = number_format($key["TOMA1"],0);
-                $json[$i]["TOMA2"] = number_format($key["TOMA2"],0);
-                $json[$i]["TOMA3"] = number_format($key["TOMA3"],0);
-                $json[$i]["TOMA4"] = number_format($key["TOMA4"],0);
+                $json[$i]["TOMA1"] = number_format($key["TOMA1"],0)."° c";
+                $json[$i]["TOMA2"] = number_format($key["TOMA2"],0)."° c";
+                $json[$i]["TOMA3"] = number_format($key["TOMA3"],0)."° c";
+                $json[$i]["TOMA4"] = number_format($key["TOMA4"],0)."° c";
                 $json[$i]["HORATOMA1"] = $key["HORATOMA1"];
                 $json[$i]["HORATOMA2"] = $key["HORATOMA2"];
                 $json[$i]["HORATOMA3"] = $key["HORATOMA3"];

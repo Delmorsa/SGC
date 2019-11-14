@@ -38,7 +38,7 @@
 				          	}else{
 				          		foreach ($rpts as $key) {
 				          			echo '
-									<div class="col-xs-3 col-sm-3 col-md-4 col-lg-4">
+									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 										<div class="small-box bg-'.$colores[$e].'">
 								            <div class="inner">
 								              <p class="text-bold">'.$key["SIGLA"].'</p>
