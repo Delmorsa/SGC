@@ -14,7 +14,7 @@
 					echo "ISO-HACCP-".$enc[0]["SIGLA"]."";
 					echo '<div class="form-group has-feedback">
 						<input type="hidden" id="idmonitoreo" class="form-control" value="'.$enc[0]["IDMONITOREO"].'">
-					</div>';					
+					</div>';
 				}
 			?>
 		</h4>		
@@ -134,7 +134,7 @@
 						$estado = '';
 							if(!$det)
 							{}else{
-								foreach ($det as $key) {									
+								foreach ($det as $key) {
 									echo "
 										<tr>
 											<td>".$key["NUMERO"]."</td>

@@ -23,8 +23,8 @@ class CPP_controller extends CI_Controller
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/CPP/cpp',$data);
-		$this->load->view('footer/footer');
-		$this->load->view('jsview/informes/rvpbp/jsrvpbp');
+		$this->load->view('footer/footer');		
+		$this->load->view('jsview/informes/cpp/jscpp');
 	}
 
 	public function nuevocpp()
@@ -115,7 +115,7 @@ class CPP_controller extends CI_Controller
 		//echo json_encode($enc);
 		$this->Cpp_model->guardarEditarCPP($id,$enc,$datos);
 	}
-	public function BajaAltaRVPBP()
+	public function BajaAltaCPP()
  	{
  		$id = $this->input->get_post("id");
  		$estado = $this->input->get_post("estado");
@@ -124,6 +124,6 @@ class CPP_controller extends CI_Controller
 		}else{
 			$estado = "I";
 		}
- 		$this->Rvpbp_model->BajaAltaRVPBP($id,$estado);
+ 		$this->Cpp_model->BajaAltaCPP($id,$estado);
  	}
 }

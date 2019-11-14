@@ -127,8 +127,29 @@ $route["editarCPP/(:any)"] = "Informes/CPP_controller/editarCPP/$1";
 $route["verCPP/(:any)"] = "Informes/CPP_controller/verCPP/$1";
 $route["imprimirCPP/(:any)"] = "Informes/CPP_controller/imprimirCPP/$1";
 $route["guardarEditarCPP"] = "Informes/CPP_controller/guardarEditarCPP";
+$route["BajaAltaCPP"] = "Informes/CPP_controller/BajaAltaCPP";
+
 /*******************************************************************************************/
 $route["reporte_11"] = "Informes/Eepdc_controller";
 $route["crearEepdc"] = "Informes/Eepdc_controller/crearEepdc";
 $route["guardarEepdc"] = "Informes/Eepdc_controller/guardarEepdc";
+/*******************************************************************************************/
+$route["reporte_12"] = "Informes/vec_controller";
+$route["nuevovec"] = "Informes/vec_controller/nuevovec";
+$route["guardarVEC"] = "Informes/vec_controller/guardarVEC";
+$route["verVEC/(:any)"] = "Informes/vec_controller/verVEC/$1";
+$route["imprimirVEC/(:any)"] = "Informes/vec_controller/imprimirVEC/$1";
+$route["editarVEC/(:any)"] = "Informes/vec_controller/editarVEC/$1";
+$route["BajaAltaVEC"] = "Informes/vec_controller/BajaAltaVEC";
+$route["guardarEditarVEC"] = "Informes/vec_controller/guardarEditarVEC";
 
+
+/*******************************************************************************************/
+$route["reporte_15"] = "Informes/ctce_controller";
+$route["nuevoctce"] = "Informes/ctce_controller/nuevoctce";
+$route["guardarCTCE"] = "Informes/ctce_controller/guardarCTCE";
+$route["BajaAltaCTCE"] = "Informes/ctce_controller/BajaAltaCTCE";
+$route["verCTCE/(:any)"] = "Informes/ctce_controller/verCTCE/$1";
+$route["imprimirCTCE/(:any)"] = "Informes/ctce_controller/imprimirCTCE/$1";
+$route["editarCTCE/(:any)"] = "Informes/ctce_controller/editarCTCE/$1";
+$route["guardarEditarCTCE"] = "Informes/ctce_controller/guardarEditarCTCE";
