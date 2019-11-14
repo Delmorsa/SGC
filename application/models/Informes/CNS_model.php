@@ -35,6 +35,15 @@ class CNS_model extends CI_Model
 		return 0;
 	} 
 
+	public function mostrarMaquinas()
+	{
+		$query = $this->db->query("SELECT * FROM CatMaquinas where ESTADO = 'A'");
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}
+		return 0;
+	}
+
 	public function mostrarCNS()
 	{
 		$query = $this->db->query("SELECT t1.SIGLA,t1.DIA,CAST(t1.HORA AS time(0)) HORA,t1.AREA,t1.ESTADODET,

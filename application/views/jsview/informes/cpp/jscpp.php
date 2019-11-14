@@ -306,7 +306,16 @@
 	
 
 $("#btnGuardar").click(function(){
-	Swal.fire({
+
+	var selected = '';
+		$('div#checkboxes input[type=checkbox]').each(function() {
+			if ($(this).is(":checked")) {
+				selected  = 'ekisde';				   		
+			}
+		});
+		alert(selected);
+
+	/*Swal.fire({
 		text: "¿Esta Seguro que Desea Guardar?",
 		type: 'question',
 		showCancelButton: true,
@@ -390,10 +399,11 @@ $("#btnGuardar").click(function(){
 					i++;
 				});
 
+				
 				let form_data = {
 				    enc: [$("#ddlAreas option:selected").val(),$('#observacionGeneral').val(),$('#fecha').val(),$("#ddlprod option:selected").val(),$("#ddlprod option:selected").text(),$('#pesoGr').val(),nombre,$("#lote").val(),$("#batch").val(),
 				    	$("#cmbTamaño option:selected").val(),$("#cmdNivel option:selected").val(),$('#chkEspecial').prop('checked'),
-				    	$("#cmdNivel2 option:selected").val(),$('#muestra').val()
+				    	$("#cmdNivel2 option:selected").val(),$('#muestra').val(),selected
 				    ],
 				    datos: JSON.stringify(datos)//datos
 				};
@@ -430,6 +440,55 @@ $("#btnGuardar").click(function(){
 				});
 			}
 		}
-	});
+	});*/
 });
+
+function baja(id,estado){
+		let message = '', text = '';
+		if(estado == "A"){
+			message = 'Se dará de baja el informe, éste ya no podra ser utilizada en el sistema.'+
+			'¿Desea continuar?';
+			text = 'Dar baja';
+		}else{
+			message= '¿Desea restaurar el informe ?';
+			text = "Restaurar";
+		}
+		Swal.fire({
+			  text: message,
+			  type: 'question',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: text,
+			  cancelButtonText: 'Cancelar',
+			  allowOutsideClick: false
+			}).then((result)=>{
+				if(result.value){
+					let mensaje = '', tipo = '';
+					let form_data = {
+						id:  id,
+						estado: estado
+					};
+					$.ajax({
+						url: "BajaAltaCPP",
+						type: "POST",
+						data: form_data,
+						success: function(data){
+							let obj = jQuery.parseJSON(data);
+							$.each(obj, function(i, index){
+								mensaje = index["mensaje"];
+								tipo = index["tipo"];
+							});
+							Swal.fire({
+								text: mensaje,
+								type: tipo,
+								allowOutsideClick: false
+							}).then((result)=>{
+								location.reload();
+							});
+						}
+					});
+				}
+			});
+	}
 </script>

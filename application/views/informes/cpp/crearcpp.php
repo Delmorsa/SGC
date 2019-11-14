@@ -35,9 +35,8 @@
 				</button>				
 			</div>
 			<div class="box-body">
-				<div>
 					<div class="row">
-						<div class="col-xs-12">
+						<!--<div class="col-xs-12">-->
 							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
 								<div class="form-group">
 									<label>Area</label>
@@ -84,7 +83,19 @@
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-						</div>
+							<div id="checkboxes" class="col-lg-12 form-check form-check-inline">
+							  <input class="form-check-input" checked="true" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+							  <label class="form-check-label" for="inlineRadio1">Aceptar</label>
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+							  <label class="form-check-label" for="inlineRadio2">Rechazar</label>
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option3">
+							  <label class="form-check-label" for="inlineRadio2">Reclasificar</label>
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option4">
+							  <label class="form-check-label" for="inlineRadio2">Desechar</label>
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option5">
+							  <label class="form-check-label" for="inlineRadio2">Otras</label>
+							</div>							
+						<!--</div>-->
 					</div>
 					<hr>
 					<div class="row">
@@ -187,7 +198,7 @@
 
 						</div>
 					</div>
-				</div>
+				
 				<table class="table table-bordered table-condensed table-striped" id="tblDatos">
 					<thead>
 						<tr>
