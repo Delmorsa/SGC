@@ -2,10 +2,10 @@
 /**
  * Created by Cesar Mejía.
  * User: Sistemas
- * Date: 25/10/2019 11:29 2019
- * FileName: Mdtde_model.php
+ * Date: 11/11/2019 10:51 2019
+ * FileName: Cdt_model.php
  */
-class Mdtde_model extends CI_Model
+class Cdt_model extends CI_Model
 {
     public function __construct()
     {
@@ -22,43 +22,61 @@ class Mdtde_model extends CI_Model
         return 0;
     }
 
-    public function getMdtde()
+    public function getSalas()
     {
-        $query = $this->db->query("SELECT t1.IDREPORTE,t2.SIGLAS,t1.VERSION,t2.AREA,t1.ANIO,t1.MES,t1.SEMANA,t1.USUARIO,t1.ESTADO
-                                   FROM dbo.view_InformesTemperatura AS t1 
-                                   INNER JOIN dbo.Areas AS t2 on t1.IDAREA = t2.IDAREA
-                                   WHERE t1.IDTIPOREPORTE = 13
-                                   GROUP BY t1.IDREPORTE,t2.SIGLAS,t1.VERSION,t2.AREA,t1.ANIO,t1.MES,t1.SEMANA,t1.USUARIO,t1.ESTADO");
+        $query = $this->db->get("CatSalas");
         if($query->num_rows() > 0){
             return $query->result_array();
         }
         return 0;
     }
 
-    public function getMdtdeAjax($idreporte){
-        $json = array(); $i = 0;
-        $query = $this->db->where("IDREPORTE",$idreporte)->get("view_InformesTemperatura ");
-        if($query->num_rows() > 0){
+    public function getCdt()
+    {
+        $query = $this->db->query("SELECT t1.IDREPORTE,t1.SIGLA,t1.VERSION,t1.FECHAINICIO,t1.USUARIO,t1.ESTADO
+                                    FROM dbo.view_InformesTemperatura t1
+                                    WHERE t1.IDTIPOREPORTE = 14
+                                    GROUP BY t1.IDREPORTE,t1.SIGLA,t1.VERSION,t1.FECHAINICIO,t1.USUARIO,t1.ESTADO");
+        if($query->num_rows()>0){
+            return $query->result_array();
+        }
+        return 0;
+    }
+
+    public function getCdtAjax($idreporte)
+    {
+        $json = array();
+        $i = 0;
+        $query = $this->db->query("SELECT dbo.view_InformesTemperatura.*, dbo.Areas.AREA
+                                    FROM dbo.view_InformesTemperatura
+                                    INNER JOIN dbo.Areas ON dbo.view_InformesTemperatura.IDAREA = dbo.Areas.IDAREA
+                                    WHERE dbo.view_InformesTemperatura.IDREPORTE = ".$idreporte."
+                                        UNION
+                                    SELECT dbo.view_InformesTemperatura.*, dbo.CatSalas.NOMBRE AS NOMBRESALA
+                                    FROM dbo.view_InformesTemperatura
+                                    INNER JOIN dbo.CatSalas ON dbo.view_InformesTemperatura.IDSALA = dbo.CatSalas.IDCATSALA
+                                    WHERE dbo.view_InformesTemperatura.IDREPORTE = ".$idreporte." ");
+        if($query->num_rows()>0){
             foreach ($query->result_array() as $key) {
-                $json[$i]["IdDetalle"] = $key["IDTEMPESTERILIZADOR"];
-                $json[$i]["Dia"] = $key["DIA"];
-                $json[$i]["Estado"] = $key["ESTADO"];
-                $json[$i]["Toma"] = number_format($key["TOMA1"],0)." "."°f";
-                $json[$i]["Toma2"] = number_format($key["TOMA2"],0)." "."°f";
-                $json[$i]["Toma3"] = number_format($key["TOMA3"],0)." "."°f";
-                $json[$i]["Toma4"] = number_format($key["TOMA4"],0)." "."°f";
-                $json[$i]["Hora"] = date_format(new DateTime($key["HORATOMA1"]), "h:i");
-                $json[$i]["Hora2"] = date_format(new DateTime($key["HORATOMA2"]), "h:i");
-                $json[$i]["Hora3"] = date_format(new DateTime($key["HORATOMA3"]), "h:i");
-                $json[$i]["Hora4"] = date_format(new DateTime($key["HORATOMA4"]), "h:i");
-                $json[$i]["Observaciones"] = $key["OBSERVACIONES"];
+                $json[$i]["ID"] = $key["IDTEMPESTERILIZADOR"];
+                $json[$i]["AREA"] = $key["AREA"];
+                $json[$i]["TOMA1"] = number_format($key["TOMA1"],0);
+                $json[$i]["TOMA2"] = number_format($key["TOMA2"],0);
+                $json[$i]["TOMA3"] = number_format($key["TOMA3"],0);
+                $json[$i]["TOMA4"] = number_format($key["TOMA4"],0);
+                $json[$i]["HORATOMA1"] = $key["HORATOMA1"];
+                $json[$i]["HORATOMA2"] = $key["HORATOMA2"];
+                $json[$i]["HORATOMA3"] = $key["HORATOMA3"];
+                $json[$i]["HORATOMA4"] = $key["HORATOMA4"];
+                $json[$i]["OBSERVACIONES"] = $key["OBSERVACIONES"];
+                $json[$i]["VERIFICACION"] = $key["VERIFICACION_AC"];
                 $i++;
             }
             echo json_encode($json);
         }
     }
 
-    public function guardarMdtde($enc,$detalle)
+    public function guardarCdt($enc,$detalle)
     {
         $this->db->trans_begin();
         date_default_timezone_set("America/Managua");
@@ -70,14 +88,13 @@ class Mdtde_model extends CI_Model
             $encabezado = array(
                 "IDREPORTE" => $id->result_array()[0]["ID"],
                 "IDMONITOREO" => $query->result_array()[0]["IDMONITOREO"],
-                "IDAREA" => $enc[0],
-                "VERSION" => $enc[1],
-                "IDTIPOREPORTE" => 13,
-                "NOMBRE" => $enc[2],
-                "LOTE" => $enc[3],
+                "VERSION" => $enc[0],
+                "IDTIPOREPORTE" => 14,
+                "NOMBRE" => $enc[1],
+                "LOTE" => $enc[2],
                 "ESTADO" => "A",
-                "FECHAINICIO" => gmdate($enc[4]),
-                "FECHAFIN" => gmdate($enc[4]),
+                "FECHAINICIO" => gmdate($enc[3]),
+                "FECHAFIN" => gmdate($enc[3]),
                 "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
                 "IDUSUARIOCREA" => $this->session->userdata("id"),
             );
@@ -91,11 +108,26 @@ class Mdtde_model extends CI_Model
             }
             if($bandera == true){
                 $num = 1; $bandera1 = false;
-                $hra2 = '00:00'; $hra3 = '00:00'; $hra4 = '00:00';
+                $hra1 = '00:00'; $hra2 = '00:00'; $hra3 = '00:00'; $hra4 = '00:00';
+                $area = null; $cuarto = null;
                 $idreporte = $this->db->query("SELECT MAX(IDREPORTE) AS IDREPORTE FROM Reportes");
                 $det = json_decode($detalle,true);
                 foreach($det as $obj){
                     $idtemp = $this->db->query("SELECT ISNULL(MAX(IDTEMPESTERILIZADOR),0)+1 AS IDTEMP FROM ReportesTemperaturas");
+                    if($obj[0] == "A"){
+                        $area = $obj[1];
+                    }else{
+                        $area = null;
+                    }
+                    if($obj[0] == "C"){
+                        $cuarto = $obj[1];
+                    }else{
+                        $cuarto = null;
+                    }
+
+                    if($obj[2] != 0){
+                        $hra1 = $obj[6];
+                    }
                     if($obj[3] != 0){
                         $hra2 = $obj[6];
                     }
@@ -108,20 +140,19 @@ class Mdtde_model extends CI_Model
                     $insertdet = array(
                         "IDTEMPESTERILIZADOR" => $idtemp->result_array()[0]["IDTEMP"],
                         "IDREPORTE" => $idreporte->result_array()[0]["IDREPORTE"],
-                        "IDAREA" => $enc[0],
+                        "IDAREA" => $area,
+                        "IDSALA" => $cuarto,
                         "ANIO" => gmdate(date("Y")),
-                        "MES" => gmdate(date("m")),
-                        "SEMANA" => $obj[0],
-                        "DIA" => $obj[1],
                         "TOMA1" => $obj[2],
                         "TOMA2" => $obj[3],
                         "TOMA3" => $obj[4],
                         "TOMA4" => $obj[5],
-                        "HORATOMA1" => $obj[6],
+                        "HORATOMA1" => $hra1,
                         "HORATOMA2" => $hra2,
                         "HORATOMA3" => $hra3,
                         "HORATOMA4" => $hra4,
                         "OBSERVACIONES" => $obj[7],
+                        "VERIFICACION_AC" => $obj[8],
                         "FECHACREA" => gmdate("Y-m-d H:i:s"),
                         "USUARIOCREA" => $this->session->userdata('id')
 
@@ -158,7 +189,7 @@ class Mdtde_model extends CI_Model
         }
     }
 
-    public function bajaMdtde($idreporte,$estado){
+    public function bajaCdt($idreporte,$estado){
         $mensaje = array();
         $this->db->where("IDREPORTE", $idreporte);
         $datos = array(
@@ -179,11 +210,19 @@ class Mdtde_model extends CI_Model
 
     public function editarDetalle($id)
     {
-       $query = $this->db->where("IDTEMPESTERILIZADOR",$id)->get("view_InformesTemperatura");
-       if($query->num_rows() > 0){
-           return $query->result_array();
-       }
-       return 0;
+        $query = $this->db->query("SELECT dbo.view_InformesTemperatura.*, dbo.Areas.AREA
+                                    FROM dbo.view_InformesTemperatura
+                                    INNER JOIN dbo.Areas ON dbo.view_InformesTemperatura.IDAREA = dbo.Areas.IDAREA
+                                    WHERE dbo.view_InformesTemperatura.IDTEMPESTERILIZADOR = ".$id."
+                                        UNION
+                                    SELECT dbo.view_InformesTemperatura.*, dbo.CatSalas.NOMBRE AS NOMBRESALA
+                                    FROM dbo.view_InformesTemperatura
+                                    INNER JOIN dbo.CatSalas ON dbo.view_InformesTemperatura.IDSALA = dbo.CatSalas.IDCATSALA
+                                    WHERE dbo.view_InformesTemperatura.IDTEMPESTERILIZADOR = ".$id." ");
+        if($query->num_rows() > 0){
+            return $query->result_array();
+        }
+        return 0;
     }
 
     public function updateDetalle($detalle)
@@ -191,14 +230,61 @@ class Mdtde_model extends CI_Model
         date_default_timezone_set("America/Managua");
         $mensaje = array(); $bandera = false;
         $det = json_decode($detalle,true);
+        $area = null; $cuarto = null;
         foreach($det as $obj){
-            $query = $this->db->query("SELECT TOMA1,TOMA2,TOMA3,TOMA4,OBSERVACIONES FROM ReportesTemperaturas
+            $query = $this->db->query("SELECT TOMA1,TOMA2,TOMA3,TOMA4,OBSERVACIONES,VERIFICACION_AC FROM ReportesTemperaturas
             WHERE IDTEMPESTERILIZADOR = '".$obj[0]."' ");
             foreach ($query->result_array() as $item) {
-                if($obj[1] != number_format($item["TOMA1"],0)){
+                if($obj[1] == "A"){
+                    $area = $obj[2];
                     $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
                     $data = array(
-                        "TOMA1" => $obj[1],
+                        "IDAREA" => $area,
+                        "IDSALA" => null,
+                        "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+                        "USUARIOEDITA" => $this->session->userdata('id'),
+                    );
+                    $upd = $this->db->update("ReportesTemperaturas",$data);
+                    if($upd){
+                        $bandera = true;
+                    }
+                    if($bandera){
+                        $mensaje[0]["mensaje"] = "Datos actualizados";
+                        $mensaje[0]["tipo"] = "success";
+                        echo json_encode($mensaje);
+                    }else{
+                        $mensaje[0]["mensaje"] = "Error al actualizar los datos. Error Cod(7)";
+                        $mensaje[0]["tipo"] = "error";
+                        echo json_encode($mensaje);
+                    }
+                }
+                if($obj[1] == "C"){
+                    $cuarto = $obj[2];
+                    $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
+                    $data = array(
+                        "IDAREA" => null,
+                        "IDSALA" => $cuarto,
+                        "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+                        "USUARIOEDITA" => $this->session->userdata('id'),
+                    );
+                    $upd = $this->db->update("ReportesTemperaturas",$data);
+                    if($upd){
+                        $bandera = true;
+                    }
+                    if($bandera){
+                        $mensaje[0]["mensaje"] = "Datos actualizados";
+                        $mensaje[0]["tipo"] = "success";
+                        echo json_encode($mensaje);
+                    }else{
+                        $mensaje[0]["mensaje"] = "Error al actualizar los datos. Error Cod(7)";
+                        $mensaje[0]["tipo"] = "error";
+                        echo json_encode($mensaje);
+                    }
+                }
+                if($obj[3] != number_format($item["TOMA1"],0)){
+                    $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
+                    $data = array(
+                        "TOMA1" => $obj[3],
                         "HORATOMA1" => gmdate(date("H:i:s")),
                         "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
                         "USUARIOEDITA" => $this->session->userdata('id'),
@@ -217,10 +303,10 @@ class Mdtde_model extends CI_Model
                         echo json_encode($mensaje);
                     }
                 }
-                if($obj[2] != number_format($item["TOMA2"],0)){
+                if($obj[4] != number_format($item["TOMA2"],0)){
                     $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
                     $data = array(
-                        "TOMA2" => $obj[2],
+                        "TOMA2" => $obj[4],
                         "HORATOMA2" => gmdate(date("H:i:s")),
                         "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
                         "USUARIOEDITA" => $this->session->userdata('id'),
@@ -239,10 +325,10 @@ class Mdtde_model extends CI_Model
                         echo json_encode($mensaje);
                     }
                 }
-                if($obj[3] != number_format($item["TOMA3"],0)){
+                if($obj[5] != number_format($item["TOMA3"],0)){
                     $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
                     $data = array(
-                        "TOMA3" => $obj[3],
+                        "TOMA3" => $obj[5],
                         "HORATOMA3" => gmdate(date("H:i:s")),
                         "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
                         "USUARIOEDITA" => $this->session->userdata('id'),
@@ -261,10 +347,10 @@ class Mdtde_model extends CI_Model
                         echo json_encode($mensaje);
                     }
                 }
-                if($obj[4] != number_format($item["TOMA4"],0)){
+                if($obj[6] != number_format($item["TOMA4"],0)){
                     $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
                     $data = array(
-                        "TOMA4" => $obj[4],
+                        "TOMA4" => $obj[6],
                         "HORATOMA4" => gmdate(date("H:i:s")),
                         "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
                         "USUARIOEDITA" => $this->session->userdata('id'),
@@ -284,10 +370,10 @@ class Mdtde_model extends CI_Model
                     }
                 }
                 //
-                if($obj[5] != $item["OBSERVACIONES"]){
+                if($obj[7] != $item["OBSERVACIONES"]){
                     $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
                     $data = array(
-                        "OBSERVACIONES" => $obj[5],
+                        "OBSERVACIONES" => $obj[7],
                         "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
                         "USUARIOEDITA" => $this->session->userdata('id'),
                     );
@@ -305,31 +391,60 @@ class Mdtde_model extends CI_Model
                         echo json_encode($mensaje);
                     }
                 }
+
+                if($obj[8] != $item["VERIFICACION_AC"]){
+                    $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
+                    $data = array(
+                        "VERIFICACION_AC" => $obj[8],
+                        "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+                        "USUARIOEDITA" => $this->session->userdata('id'),
+                    );
+                    $upd = $this->db->update("ReportesTemperaturas",$data);
+                    if($upd){
+                        $bandera = true;
+                    }
+                    if($bandera){
+                        $mensaje[0]["mensaje"] = "Datos actualizados";
+                        $mensaje[0]["tipo"] = "success";
+                        echo json_encode($mensaje);
+                    }else{
+                        $mensaje[0]["mensaje"] = "Error al actualizar los datos. Error Cod(6-verif_ac)";
+                        $mensaje[0]["tipo"] = "error";
+                        echo json_encode($mensaje);
+                    }
+                }
             }
         }
     }
 
-    public function editarmdtde($id)
+    public function editarCdt($id)
     {
-        $query = $this->db->where("IDREPORTE",$id)->get("view_InformesTemperatura");
+        $query = $this->db->query("SELECT dbo.view_InformesTemperatura.*, dbo.Areas.AREA
+                                    FROM dbo.view_InformesTemperatura
+                                    INNER JOIN dbo.Areas ON dbo.view_InformesTemperatura.IDAREA = dbo.Areas.IDAREA
+                                    WHERE dbo.view_InformesTemperatura.IDREPORTE = ".$id."
+                                        UNION
+                                    SELECT dbo.view_InformesTemperatura.*, dbo.CatSalas.NOMBRE AS NOMBRESALA
+                                    FROM dbo.view_InformesTemperatura
+                                    INNER JOIN dbo.CatSalas ON dbo.view_InformesTemperatura.IDSALA = dbo.CatSalas.IDCATSALA
+                                    WHERE dbo.view_InformesTemperatura.IDREPORTE = ".$id." ");
         if($query->num_rows() > 0){
             return $query->result_array();
         }
         return 0;
     }
 
-    public function guardarMdtde1($enc,$detalle)
+    public function guardarCdt1($enc,$detalle)
     {
         $this->db->trans_begin();
         date_default_timezone_set("America/Managua");
         $mensaje = array(); $bandera = false;
-            $this->db->where("IDREPORTE",$enc[0]);
+           $this->db->where("IDREPORTE",$enc[0]);
             $encabezado = array(
-                "IDAREA" => $enc[1],
-                "VERSION" => $enc[2],
-                "LOTE" => $enc[3],
-                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
-                "IDUSUARIOCREA" => $this->session->userdata("id"),
+                "VERSION" => $enc[1],
+                "LOTE" => $enc[2],
+                "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+                "IDUSUARIOEDITA" => $this->session->userdata("id"),
             );
             $guardarEnc = $this->db->update("Reportes",$encabezado);
             if($guardarEnc){
@@ -342,9 +457,21 @@ class Mdtde_model extends CI_Model
             if($bandera == true){
                 $num = 1; $bandera1 = false;
                 $hra1 = '00:00'; $hra2 = '00:00'; $hra3 = '00:00'; $hra4 = '00:00';
+                $area = null; $cuarto = null;
                 $det = json_decode($detalle,true);
                 foreach($det as $obj){
                     $idtemp = $this->db->query("SELECT ISNULL(MAX(IDTEMPESTERILIZADOR),0)+1 AS IDTEMP FROM ReportesTemperaturas");
+                    if($obj[0] == "A"){
+                        $area = $obj[1];
+                    }else{
+                        $area = null;
+                    }
+                    if($obj[0] == "C"){
+                        $cuarto = $obj[1];
+                    }else{
+                        $cuarto = null;
+                    }
+
                     if($obj[2] != 0){
                         $hra1 = $obj[6];
                     }
@@ -360,11 +487,9 @@ class Mdtde_model extends CI_Model
                     $insertdet = array(
                         "IDTEMPESTERILIZADOR" => $idtemp->result_array()[0]["IDTEMP"],
                         "IDREPORTE" => $enc[0],
-                        "IDAREA" => $enc[1],
+                        "IDAREA" => $area,
+                        "IDSALA" => $cuarto,
                         "ANIO" => gmdate(date("Y")),
-                        "MES" => gmdate(date("m")),
-                        "SEMANA" => $obj[0],
-                        "DIA" => $obj[1],
                         "TOMA1" => $obj[2],
                         "TOMA2" => $obj[3],
                         "TOMA3" => $obj[4],
@@ -374,6 +499,7 @@ class Mdtde_model extends CI_Model
                         "HORATOMA3" => $hra3,
                         "HORATOMA4" => $hra4,
                         "OBSERVACIONES" => $obj[7],
+                        "VERIFICACION_AC" => $obj[8],
                         "FECHACREA" => gmdate("Y-m-d H:i:s"),
                         "USUARIOCREA" => $this->session->userdata('id')
 

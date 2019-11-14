@@ -145,4 +145,13 @@ $route["bajaMdtde"] = "Informes/Mdtde_controller/bajaMdtde";
 $route["editarDetalle/(:any)"] = "Informes/Mdtde_controller/editarDetalle/$1";
 $route["updateDetalle"] = "Informes/Mdtde_controller/updateDetalle";
 $route["editarmdtde/(:any)"] = "Informes/Mdtde_controller/editarmdtde/$1";
-
+/*******************************************************************************************/
+$route["reporte_14"] = "Informes/Cdt_controller";
+$route["crearCdt"] = "Informes/Cdt_controller/crearCdt";
+$route["guardarCdt"] = "Informes/Cdt_controller/guardarCdt";
+$route["getCdtAjax/(:any)"] = "Informes/Cdt_controller/getCdtAjax/$1";
+$route["bajaCdt"] = "Informes/Cdt_controller/bajaCdt";
+$route["editarDetalle/(:any)"] = "Informes/Cdt_controller/editarDetalle/$1";
+$route["updateDetalle"] = "Informes/Cdt_controller/updateDetalle";
+$route["editarCdt/(:any)"] = "Informes/Cdt_controller/editarCdt/$1";
+$route["guardarCdt1"] = "Informes/Cdt_controller/guardarCdt1";
