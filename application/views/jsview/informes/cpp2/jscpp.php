@@ -2,8 +2,7 @@
 
 ?>
 <script type="text/javascript">
-
-	var selected = '<?php echo $enc[0]["DECISION"] ?>';
+	var selected = 'Aceptar';
 	$(document).ready(function(){
 
 		$("#chkAceptar").change(function() {
@@ -31,41 +30,6 @@
 		        selected = $(this).val();
 		    }
 		});
-
-
-		let t = $('#tblDatos').DataTable({
-			"info": false,
-			"sort": false,
-			"destroy": true,
-			"searching": false,
-			"paginate": false,
-			"lengthMenu": [
-				[10,20,50,100, -1],
-				[10,20,50,100, "Todo"]
-			],
-			"order": [
-				[0, "desc"]
-			],
-			"language": {
-				"info": "Registro _START_ a _END_ de _TOTAL_ entradas",
-				"infoEmpty": "Registro 0 a 0 de 0 entradas",
-				"zeroRecords": "No se encontro coincidencia",
-				"infoFiltered": "(filtrado de _MAX_ registros en total)",
-				"emptyTable": "NO HAY DATOS DISPONIBLES",
-				"lengthMenu": '_MENU_ ',
-				"search": 'Buscar:  ',
-				"loadingRecords": "",
-				"processing": "Procesando datos  <i class='fa fa-spin fa-refresh'></i>",
-				"paginate": {
-					"first": "Primera",
-					"last": "Última ",
-					"next": "Siguiente",
-					"previous": "Anterior"
-				}
-			}
-		});
-
-
 
         $('.select2').select2({
 			placeholder: "Seleccione",
@@ -107,53 +71,7 @@
 		$("#largo,#diametro").numeric();
 
 		$('#fecha').datepicker({"autoclose":true});
-		$("#tblCNS").DataTable();
-
-		$("#ddlprod").change(function (){
-			let bandera = true;
-			let tabla = $('#tblDatos').DataTable();
-			let noRegistro = tabla.data().count();
-
-			if (noRegistro>0) {
-				
-				Swal.fire({
-				  title: 'Aviso',
-				  text: "Se eliminaran los registros ingresados",
-				  type: 'warning',
-				  showCancelButton: true,
-				  confirmButtonColor: '#3085d6',
-				  confirmButtonText: 'Aceptar!'
-				}).then((result) => {
-				  	if (result.value){
-				  		$('#lote').val('');
-				  		$('#batch').val('');
-				  		tabla.clear().draw();
-					}
-				});
-			}
-
-			$("#loaderButtons").show();
-			$("#cantidad").focus();
-			if($(this).val() != ''){
-			$.ajax({
-				url: "<?php echo base_url("index.php/getGramos")?>"+"/"+$(this).val(),
-				type: "POST",
-				async: true,
-					success: function (data) {
-						if($("#ddlRutas option:selected").val() != ""){
-							$.each(JSON.parse(data), function (i, item){
-								$("#pesoGr").val(Number(item["GRAMOS"]).toFixed(2));
-							});
-							$("#loaderButtons").hide();
-							$("#buttonsRem").show();
-						}
-					},
-					error: function (data) {
-						$("#pesoGr").val(Number(0).toFixed(2));						
-					}
-				});			
-			}
-		});
+		$("#tblCNS").DataTable();	
 
 	});
 
@@ -187,13 +105,13 @@
 		let tabla = $('#tblDatos').DataTable();
 		let noRegistro = tabla.data().count();
 
-		if (noRegistro>0) {
-			
+		if (noRegistro>0) {			
 			Swal.fire({
 				title: 'Aviso',
 				text: "Se eliminaran los registros ingresados",
 				type: 'warning',
-				showCancelButton: true,
+				showCancelButton: false,
+				allowOutsideClick: false,
 				confirmButtonColor: '#3085d6',
 				confirmButtonText: 'Aceptar!'
 			}).then((result) => {
@@ -217,15 +135,12 @@
 
 		tamano = ($("#cmbTamaño option:selected").val() != '') ? $("#cmbTamaño option:selected").val():null;
 		nivel = ($("#cmdNivel option:selected").val() != '') ? $("#cmdNivel option:selected").val():null;
-		//tamano2 = ($("#cmbTamaño2 option:selected").val() != '') ? $("#cmbTamaño2 option:selected").val():null;
 		nivel2 = ($("#cmdNivel2 option:selected").val() != '') ? $("#cmdNivel2 option:selected").val():null;
 
 
-		if (tamano == '' || nivel == '') {
-			alert("primer if");
+		if (tamano == '' || nivel == '') {			
 			ok = false;
-		}if (bandera == false && nivel2 =='' /*&& tamano2 == ''*/) {
-			alert("segundo if");
+		}if (bandera == false && nivel2 =='' /*&& tamano2 == ''*/) {			
 			ok = false;
 		}
 		if(ok){
@@ -296,7 +211,38 @@
    				allowOutsideClick: false
    			});
    		}
-   		
+
+   		let t = $('#tblDatos').DataTable({
+			"info": false,
+			"sort": false,
+			"destroy": true,
+			"searching": false,
+			"paginate": false,
+			"lengthMenu": [
+				[10,20,50,100, -1],
+				[10,20,50,100, "Todo"]
+			],
+			"order": [
+				[0, "desc"]
+			],
+			"language": {
+				"info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+				"infoEmpty": "Registro 0 a 0 de 0 entradas",
+				"zeroRecords": "No se encontro coincidencia",
+				"infoFiltered": "(filtrado de _MAX_ registros en total)",
+				"emptyTable": "NO HAY DATOS DISPONIBLES",
+				"lengthMenu": '_MENU_ ',
+				"search": 'Buscar:  ',
+				"loadingRecords": "",
+				"processing": "Procesando datos  <i class='fa fa-spin fa-refresh'></i>",
+				"paginate": {
+					"first": "Primera",
+					"last": "Última ",
+					"next": "Siguiente",
+					"previous": "Anterior"
+				}
+			}
+		});
    		let area = $("#ddlAreas option:selected").val(),
    		fecha = $("#fecha").val(),
    		hora = $("#hora").val(),
@@ -304,7 +250,7 @@
    		observacion = $("#observacionGeneral").val(),
    		codproducto = $("#ddlprod option:selected").val(),
    		descripcion = $("#ddlprod option:selected").text(),
-   		gramos = $("#pesoGr").val(),
+   		gramos = $("#diametroEsperado").val(),
    		monituser = $("#monituser").val(),
 		peso = $('#txtPeso').val();
 
@@ -325,8 +271,8 @@
    		}else{
 
    			let diferencia = parseFloat(peso) - parseFloat(gramos);
-   			table.row.add([
-   				table.rows().count()+1,
+   			t.row.add([
+   				t.rows().count()+1,
 				codproducto,
 				descripcion,
 				gramos,
@@ -341,7 +287,7 @@
 	
 
 $("#btnGuardar").click(function(){
-	
+
 	Swal.fire({
 		text: "¿Esta Seguro que Desea Guardar?",
 		type: 'question',
@@ -417,7 +363,7 @@ $("#btnGuardar").click(function(){
 			    let nombre = $("#nombreRpt").html();
 			    let datos = new Array(), i = 0;
 			    mensaje = '', tipo = '',	
-				table = $("#tblDatos").DataTable();
+				table = $("#tblDatos").DataTable();				
 				
 				table.rows().eq(0).each(function(i, index){
 					let row = table.row(index);
@@ -432,18 +378,18 @@ $("#btnGuardar").click(function(){
 					i++;
 				});
 
+				
 				let form_data = {
-				    enc: [$("#ddlAreas option:selected").val(),$('#observacionGeneral').val(),$('#fecha').val(),$("#ddlprod option:selected").val(),$("#ddlprod option:selected").text(),$('#pesoGr').val(),nombre,$("#lote").val(),$("#batch").val(),
+				    enc: [$("#ddlAreas option:selected").val(),$('#observacionGeneral').val(),$('#fecha').val(),$("#ddlprod option:selected").val(),$("#ddlprod option:selected").text(),$('#diametroEsperado').val(),nombre,$("#lote").val(),$("#batch").val(),
 				    	$("#cmbTamaño option:selected").val(),$("#cmdNivel option:selected").val(),$('#chkEspecial').prop('checked'),
 				    	$("#cmdNivel2 option:selected").val(),$('#muestra').val(),selected,$('#largo').val(),$('#diametro').val(),
 				    	$("#ddlMaquina option:selected").val()
 				    ],
-				    datos: JSON.stringify(datos),//datos
-				    id: $('#txtidreporte').val()
+				    datos: JSON.stringify(datos)//datos
 				};
 
 				$.ajax({
-					url: '<?php echo base_url("index.php/guardarEditarCPP")?>',
+					url: '<?php echo base_url("index.php/guardarCPP2")?>',
 					type: 'POST',
 					data: form_data,
 					success: function(data)
@@ -460,7 +406,7 @@ $("#btnGuardar").click(function(){
 							allowOutsideClick: false
 						}).then((result)=>{
 							if (tipo == 'success') {
-								window.location.href = "<?php echo base_url("index.php/reporte_10")?>";
+								window.location.href = "reporte_16";
 							}
 						});
 					},error:function(){
@@ -476,4 +422,53 @@ $("#btnGuardar").click(function(){
 		}
 	});
 });
+
+function baja(id,estado){
+		let message = '', text = '';
+		if(estado == "A"){
+			message = 'Se dará de baja el informe, éste ya no podra ser utilizada en el sistema.'+
+			'¿Desea continuar?';
+			text = 'Dar baja';
+		}else{
+			message= '¿Desea restaurar el informe ?';
+			text = "Restaurar";
+		}
+		Swal.fire({
+			  text: message,
+			  type: 'question',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: text,
+			  cancelButtonText: 'Cancelar',
+			  allowOutsideClick: false
+			}).then((result)=>{
+				if(result.value){
+					let mensaje = '', tipo = '';
+					let form_data = {
+						id:  id,
+						estado: estado
+					};
+					$.ajax({
+						url: "BajaAltaCPP",
+						type: "POST",
+						data: form_data,
+						success: function(data){
+							let obj = jQuery.parseJSON(data);
+							$.each(obj, function(i, index){
+								mensaje = index["mensaje"];
+								tipo = index["tipo"];
+							});
+							Swal.fire({
+								text: mensaje,
+								type: tipo,
+								allowOutsideClick: false
+							}).then((result)=>{
+								location.reload();
+							});
+						}
+					});
+				}
+			});
+	}
 </script>

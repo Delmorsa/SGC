@@ -2,7 +2,35 @@
 
 ?>
 <script type="text/javascript">
+	var selected = 'Aceptar';
 	$(document).ready(function(){
+
+		$("#chkAceptar").change(function() {
+		    if(this.checked) {
+		        selected = $(this).val();
+		    }
+		});
+		$("#chkRechazar").change(function() {
+		    if(this.checked) {
+		        selected = $(this).val();
+		    }
+		});
+		$("#chkReclasificar").change(function() {
+		    if(this.checked) {
+		        selected = $(this).val();
+		    }
+		});
+		$("#chkDesechar").change(function() {
+		    if(this.checked) {
+		        selected = $(this).val();
+		    }
+		});
+		$("#chkOtras").change(function() {
+		    if(this.checked) {
+		        selected = $(this).val();
+		    }
+		});
+
         $('.select2').select2({
 			placeholder: "Seleccione",
 			allowClear: true,
@@ -39,8 +67,9 @@
 				
 
 		$("#txtPeso").numeric();
-
 		$("#nitrito,#kg").numeric();
+		$("#largo,#diametro").numeric();
+
 		$('#fecha').datepicker({"autoclose":true});
 		$("#tblCNS").DataTable();
 
@@ -307,15 +336,7 @@
 
 $("#btnGuardar").click(function(){
 
-	var selected = '';
-		$('div#checkboxes input[type=checkbox]').each(function() {
-			if ($(this).is(":checked")) {
-				selected  = 'ekisde';				   		
-			}
-		});
-		alert(selected);
-
-	/*Swal.fire({
+	Swal.fire({
 		text: "¿Esta Seguro que Desea Guardar?",
 		type: 'question',
 		showCancelButton: true,
@@ -379,6 +400,12 @@ $("#btnGuardar").click(function(){
 		    		type: "error",
 		    		allowOutsideClick: false
 		    	});
+			}else if ( $("#ddlMaquina option:selected").val() == "") {
+		    	Swal.fire({
+		    		text: "Seleccione una maquina",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
 			}else{
 				$("#loading").modal("show");
 			    let nombre = $("#nombreRpt").html();
@@ -403,7 +430,8 @@ $("#btnGuardar").click(function(){
 				let form_data = {
 				    enc: [$("#ddlAreas option:selected").val(),$('#observacionGeneral').val(),$('#fecha').val(),$("#ddlprod option:selected").val(),$("#ddlprod option:selected").text(),$('#pesoGr').val(),nombre,$("#lote").val(),$("#batch").val(),
 				    	$("#cmbTamaño option:selected").val(),$("#cmdNivel option:selected").val(),$('#chkEspecial').prop('checked'),
-				    	$("#cmdNivel2 option:selected").val(),$('#muestra').val(),selected
+				    	$("#cmdNivel2 option:selected").val(),$('#muestra').val(),selected,$('#largo').val(),$('#diametro').val(),
+				    	$("#ddlMaquina option:selected").val()
 				    ],
 				    datos: JSON.stringify(datos)//datos
 				};
@@ -440,7 +468,7 @@ $("#btnGuardar").click(function(){
 				});
 			}
 		}
-	});*/
+	});
 });
 
 function baja(id,estado){

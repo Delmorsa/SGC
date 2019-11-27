@@ -81,6 +81,42 @@
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
+							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
+								<div class="form-group">
+									<label>Máquina</label>
+									<select id="ddlMaquina"  class="form-control select2" style="width: 100%;">
+										<option></option>
+										<?php 
+											if(!$maq){
+											}else{
+												foreach ($maq as $key) {
+													if ($key["IDMAQUINA"] == $enc[0]["IDMAQUINA"]) {
+														echo "
+														<option selected value='".$key["IDMAQUINA"]."'>".$key["MAQUINA"]."</option>";
+													}else{
+														echo "<option value='".$key["IDMAQUINA"]."'>".$key["MAQUINA"]."</option>";
+													}
+												}
+											}
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
+									<label for="">Funda</label>
+									<input autofocus="" autocomplete="off" type="text" id="largo" class="form-control col-xs-2" 
+									value="<?php echo number_format($enc[0]["FUNDALARGO"],2) ?>">
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>									
+								</div>
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
+									<label for="">Funda</label>
+									<input autofocus="" autocomplete="off" type="text" id="diametro" class="form-control col-xs-2" value="<?php echo number_format($enc[0]["FUNDADIAMETRO"],2) ?>">
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 									<div class="form-group has-feedback">
@@ -90,11 +126,24 @@
 									</div>
 								</div>
 							</div>
+							<div id="checkboxes" class="col-lg-12 form-check form-check-inline">
+								<?php 
+									$chek = '';
+									foreach ($decisiones as $key) {
+										if ($key == $enc[0]["DECISION"]) {
+											$chek = 'checked';
+										}
+										echo '<label class="form-check-label" for="chk'.$key.'">'.$key.'</label>';
+							  			echo '<input class="form-check-input" '.$chek.' type="radio" name="inlineRadioOptions" id="chk'.$key.'" value="'.$key.'">';
+							  			$chek = '';
+									}
+								?>							  
+							</div>
 						</div>
 					</div>
 					<hr>
 					<div class="row">
-						<div class="col-xs-12">													
+						<div class="col-xs-12">
 							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-5">
 									<div class="form-group has-feedback">
 										<label>Nombre del producto</label><br>
