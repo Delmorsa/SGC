@@ -216,6 +216,7 @@ $(document).ready(function () {
     $("#btnDelete").click(function (){
         let table = $("#tblcrear").DataTable();
         let rows = table.rows( '.danger' ).remove().draw();
+        calculos();
     });
 });
 
@@ -224,7 +225,7 @@ $("#btnGuardar").click(function () {
         area = $("#ddlarea option:selected").val(),
         fecha = $("#fecha").val(),
         T = $("#spanT").html(),
-        empresa = '',
+        empresa = 0,
         observaciones = $("#observaciones").val();
     let table = $("#tblcrear").DataTable();
     if(!table.data().count()){
@@ -239,9 +240,9 @@ $("#btnGuardar").click(function () {
             let row = table.row(index);
             let data = row.data();
             detalle[it] = [];
-            if(data[0] == "DELMOR"){
+            if(data[1] == "DELMOR"){
                 empresa = 1;
-            }else if(data[0] == "D´lago"){
+            }else if(data[1] == "D´lago"){
                 empresa = 2;
             }
             detalle[it][0] = empresa;
@@ -282,5 +283,135 @@ $("#btnGuardar").click(function () {
         });
     }
 });
+
+function BajaEepdc(idreporte,estado)
+{
+    let message = '', text = '';
+    if(estado == "A"){
+        message = 'Se dará de baja el informe, éste ya no podra ser utilizada en el sistema.'+
+            '¿Desea continuar?';
+        text = 'Dar baja';
+    }else{
+        message= '¿Desea restaurar el informe ?';
+        text = "Restaurar";
+    }
+    Swal.fire({
+        text: message,
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: text,
+        cancelButtonText: 'Cancelar',
+        allowOutsideClick: false
+    }).then((result) =>{
+        if(result.value){
+            let mensaje = '', tipo = '';
+            let form_data = {
+                idreporte: idreporte,
+                estado: estado
+            };
+            $.ajax({
+                url: "BajaEepdc",
+                type: "POST",
+                data: form_data,
+                success: function (data) {
+                    let obj = jQuery.parseJSON(data);
+                    $.each(obj, function (i, index) {
+                        mensaje = index["mensaje"];
+                        tipo = index["tipo"];
+                    });
+                    Swal.fire({
+                        text: mensaje,
+                        type: tipo,
+                        allowOutsideClick: false
+                    }).then((result) => {
+                        location.reload();
+                    });
+                }
+            });
+        }
+    });
+}
+
+function mostrarDetalles(callback,id,div)
+{
+    $.ajax({
+        url: "detalleEepdcAjax/"+id,
+        async: true,
+        success: function(response){
+            let thead = '',tbody='', cont = 0;
+            if(response != "false"){
+                let obj = $.parseJSON(response);
+                let temp = obj.length;
+                let cantRows = 0;
+                thead += "<tr class=''><th class='text-center bg-primary'>NumLinea</th>";
+                thead += "<th class='text-center bg-primary'>codigo</th>";
+                thead += "<th class='text-center bg-primary'>Producto</th>";
+                thead += "<th class='text-center bg-primary'>Lote</th>";
+                thead += "<th class='text-center bg-primary'>Maquina</th>";
+                thead += "<th class='text-center bg-primary'>L</th>";
+                thead += "<th class='text-center bg-primary'>GC</th>";
+                thead += "<th class='text-center bg-primary'>GT</th>";
+                thead += "<th class='text-center bg-primary'>T</th></tr>";
+                $.each(JSON.parse(response), function(i, item){
+                    tbody += "<tr>"+
+                        "<td class='text-center bg-info'>"+item["NUMERO"]+"</td>"+
+                        "<td class='text-center bg-info'>"+item["CODIGO"]+"</td>"+
+                        "<td class='text-center bg-info'>"+item["NOMBRE"]+"</td>"+
+                        "<td class='text-center bg-info'>"+item["LOTE"]+"</td>"+
+                        "<td class='text-center bg-info'>"+item["CABEZALMAQUINA"]+"</td>"+
+                        "<td class='text-center bg-info'>"+item["L"]+"</td>"+
+                        "<td class='text-center bg-info'>"+item["GC"]+"</td>"+
+                        "<td class='text-center bg-info'>"+item["GT"]+"</td>"+
+                        "<td class='text-center bg-info'>"+item["T"]+"</td>";
+                });
+                callback($("<table id='detEepdc' class='table table-bordered table-condensed table-striped'>"+ thead + tbody + "</table>")).show();
+            }else {
+                thead += "<tr class=''><th class='text-center bg-primary'>NumLinea</th>";
+                thead += "<th class='text-center bg-primary'>codigo</th>";
+                thead += "<th class='text-center bg-primary'>Producto</th>";
+                thead += "<th class='text-center bg-primary'>Lote</th>";
+                thead += "<th class='text-center bg-primary'>Maquina</th>";
+                thead += "<th class='text-center bg-primary'>L</th>";
+                thead += "<th class='text-center bg-primary'>GC</th>";
+                thead += "<th class='text-center bg-primary'>GT</th>";
+                thead += "<th class='text-center bg-primary'>T</th>";
+                thead += "<th class='text-center bg-primary'>Fecha creacion</th></tr>";
+                tbody += '<tr >' +
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td>No hay datos disponibles</td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    '</tr>';
+                callback($('<table id="detEepdc" class="table table-bordered table-condensed table-striped">' + thead + tbody + '</table>')).show();
+            }
+        }
+    });
+}
+
+$("#tblEepdc").on("click","tbody .detalles", function () {
+    let table = $("#tblEepdc").DataTable();
+    let tr = $(this).closest("tr");
+    //$(this).addClass("detalleNumOrdOrange");
+    let row = table.row(tr);
+    let data = table.row($(this).parents("tr")).data();
+
+    if(row.child.isShown())
+    {
+        row.child.hide();
+        tr.removeClass("shown");
+    }else{
+        mostrarDetalles(row.child,data[0],data[0]);
+        tr.addClass("shown");
+    }
+});
+
 
 </script>

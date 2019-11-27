@@ -133,6 +133,7 @@ $route["BajaAltaCPP"] = "Informes/CPP_controller/BajaAltaCPP";
 $route["reporte_11"] = "Informes/Eepdc_controller";
 $route["crearEepdc"] = "Informes/Eepdc_controller/crearEepdc";
 $route["guardarEepdc"] = "Informes/Eepdc_controller/guardarEepdc";
+
 /*******************************************************************************************/
 $route["reporte_12"] = "Informes/vec_controller";
 $route["nuevovec"] = "Informes/vec_controller/nuevovec";
@@ -153,6 +154,7 @@ $route["verCTCE/(:any)"] = "Informes/ctce_controller/verCTCE/$1";
 $route["imprimirCTCE/(:any)"] = "Informes/ctce_controller/imprimirCTCE/$1";
 $route["editarCTCE/(:any)"] = "Informes/ctce_controller/editarCTCE/$1";
 $route["guardarEditarCTCE"] = "Informes/ctce_controller/guardarEditarCTCE";
+<<<<<<< HEAD
 
 
 /*******************************************************************************************/
@@ -166,3 +168,29 @@ $route["verCPP2/(:any)"] = "Informes/CPP2_controller/verCPP/$1";
 $route["imprimirCPP2/(:any)"] = "Informes/CPP2_controller/imprimirCPP/$1";
 $route["guardarEditarCPP2"] = "Informes/CPP2_controller/guardarEditarCPP";
 $route["BajaAltaCPP2"] = "Informes/CPP2_controller/BajaAltaCPP";
+
+$route["actualizarEepdc"] = "Informes/Eepdc_controller/actualizarEepdc";
+$route["BajaEepdc"] = "Informes/Eepdc_controller/darDeBaja";
+$route["detalleEepdcAjax/(:any)"] = "Informes/Eepdc_controller/detalleEepdcAjax/$1";
+$route["getEepdcByID/(:any)"] = "Informes/Eepdc_controller/getEepdcByID/$1";
+/*******************************************************************************************/
+$route["reporte_13"] = "Informes/Mdtde_controller";
+$route["crearMdtde"] = "Informes/Mdtde_controller/crearMdtde";
+$route["guardarMdtde"] = "Informes/Mdtde_controller/guardarMdtde";
+$route["guardarMdtde1"] = "Informes/Mdtde_controller/guardarMdtde1";
+$route["getMdtdeAjax/(:any)"] = "Informes/Mdtde_controller/getMdtdeAjax/$1";
+$route["bajaMdtde"] = "Informes/Mdtde_controller/bajaMdtde";
+$route["editarDetalle/(:any)"] = "Informes/Mdtde_controller/editarDetalle/$1";
+$route["updateDetalle"] = "Informes/Mdtde_controller/updateDetalle";
+$route["editarmdtde/(:any)"] = "Informes/Mdtde_controller/editarmdtde/$1";
+/*******************************************************************************************/
+$route["reporte_14"] = "Informes/Cdt_controller";
+$route["crearCdt"] = "Informes/Cdt_controller/crearCdt";
+$route["guardarCdt"] = "Informes/Cdt_controller/guardarCdt";
+$route["getCdtAjax/(:any)"] = "Informes/Cdt_controller/getCdtAjax/$1";
+$route["bajaCdt"] = "Informes/Cdt_controller/bajaCdt";
+$route["editarDetalle/(:any)"] = "Informes/Cdt_controller/editarDetalle/$1";
+$route["updateDetalle"] = "Informes/Cdt_controller/updateDetalle";
+$route["editarCdt/(:any)"] = "Informes/Cdt_controller/editarCdt/$1";
+$route["guardarCdt1"] = "Informes/Cdt_controller/guardarCdt1";
+

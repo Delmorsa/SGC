@@ -41,7 +41,83 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
+                        <table id="tblEepdc" class="table table-bordered table-condensed table-striped display nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Cod Reporte</th>
+                                    <th>Monitoreo</th>
+                                    <th>Dia</th>
+                                    <th>Area</th>
+                                    <th>Version</th>
+                                    <th>Empresa</th>
+                                    <th>Monitoreado por</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $estado = ''; $empresa = '';
+                                    if(!$data){
+                                    }else{
+                                        foreach ($data as $key) {
+                                            if($key["ESTADO"] == "A"){
+                                                $estado = "<span class='text-success text-bold'>Activo</span>";
+                                            }else {
+                                                $estado = "<span class='text-danger text-bold'>Inactivo</span>";
+                                            }
+                                            if($key["IDEMPRESA"] == 1){
+                                                $empresa = "DELMOR";
+                                            }else{
+                                                $empresa = "D´lago";
+                                            }
+                                            echo "
+                                                  <tr>
+                                                        <td>".$key["IDREPORTE"]."</td>
+                                                        <td>".$key["SIGLA"]."</td>
+                                                        <td>".$key["DIA"]."</td>
+                                                        <td>".$key["AREA"]."</td>
+                                                        <td>".$key["VERSION"]."</td>
+                                                        <td>".$empresa."</td>
+                                                        <td>".$key["NOMBRES"]."</td>
+                                                        <td>".$estado."</td>";
+                                                                    if($key["ESTADO"] =="A"){
+                                                                        echo "
+                                                                                <td class='text-center'>
+                                                                                    <a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-eye'></i>
+                                                                                    </a>
+                                                                                    <a class='btn btn-primary btn-xs' href='".base_url("index.php/getEepdcByID/".$key["IDREPORTE"]."")."'>
+                                                                                      <i class='fa fa-pencil'></i>
+                                                                                    </a>
+                                                                                    <a onclick='BajaEepdc(".'"'.$key["IDREPORTE"].'","'.$key["ESTADO"].'"'.")' 
+                                                                                       class='btn btn-danger btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-trash'></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            ";
+                                                                    }else{
+                                                                        echo "
+                                                                                <td class='text-center'>
+                                                                                    <a class='btn btn-success btn-xs disabled' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-eye'></i>
+                                                                                    </a>
+                                                                                    <a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-pencil'></i>
+                                                                                    </a>
+                                                                                    <a onclick='BajaEepdc(".'"'.$key["IDREPORTE"].'","'.$key["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+                                                                                      <i class='fa fa-trash'></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            ";
+                                                                    }
+                                                        echo"</tr>
+                                                    ";
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -20,9 +20,10 @@ class Eepdc_controller extends CI_Controller
 
     public function index()
     {
+        $data["data"] = $this->Eepdc_model->getEepdc();
         $this->load->view('header/header');
         $this->load->view('header/menu');
-        $this->load->view('informes/eepdc/eepdc');
+        $this->load->view('informes/eepdc/eepdc',$data);
         $this->load->view('footer/footer');
         $this->load->view('jsview/informes/eepdc/jsEEPDC');
     }
@@ -38,11 +39,49 @@ class Eepdc_controller extends CI_Controller
         $this->load->view('jsview/informes/eepdc/jsEEPDC');
     }
 
+    public function getEepdcByID($idreporte)
+    {
+        $data["monit"] = $this->Eepdc_model->getEepdcByID($idreporte);
+        $data["areas"] = $this->Eepdc_model->getAreas();
+        $this->load->view('header/header');
+        $this->load->view('header/menu');
+        $this->load->view('informes/eepdc/editarEepdc',$data);
+        $this->load->view('footer/footer');
+        $this->load->view('jsview/informes/eepdc/jseditarEepdc');
+    }
+
+
     public function guardarEepdc()
     {
         $this->Eepdc_model->guardarEepdc(
             $this->input->post("enc"),
             $this->input->post("detalle")
         );
+    }
+
+    public function actualizarEepdc()
+    {
+        $this->Eepdc_model->actualizarEepdc(
+            $this->input->post("enc"),
+            $this->input->post("detalle")
+        );
+    }
+
+    public function darDeBaja()
+    {
+        $idreporte = $this->input->get_post("idreporte");
+        $estado = $this->input->get_post("estado");
+        if($estado == "A")
+        {
+            $estado = "I";
+        }else{
+            $estado = "A";
+        }
+        $this->Eepdc_model->darDeBaja($idreporte,$estado);
+    }
+
+    public function detalleEepdcAjax($idreporte)
+    {
+        $this->Eepdc_model->detalleEepdcAjax($idreporte);
     }
 }

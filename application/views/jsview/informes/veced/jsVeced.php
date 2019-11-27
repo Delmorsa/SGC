@@ -166,7 +166,7 @@
 		    	});
 			}else{
 				$("#loading").modal("show");
-			    mensaje = '', tipo = '',	
+			   let mensaje = '', tipo = '',
 				table = $("#tblcrear").DataTable();
 				let datos = new Array(), i = 0;
 				
