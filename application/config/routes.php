@@ -154,7 +154,6 @@ $route["verCTCE/(:any)"] = "Informes/ctce_controller/verCTCE/$1";
 $route["imprimirCTCE/(:any)"] = "Informes/ctce_controller/imprimirCTCE/$1";
 $route["editarCTCE/(:any)"] = "Informes/ctce_controller/editarCTCE/$1";
 $route["guardarEditarCTCE"] = "Informes/ctce_controller/guardarEditarCTCE";
-=======
 $route["actualizarEepdc"] = "Informes/Eepdc_controller/actualizarEepdc";
 $route["BajaEepdc"] = "Informes/Eepdc_controller/darDeBaja";
 $route["detalleEepdcAjax/(:any)"] = "Informes/Eepdc_controller/detalleEepdcAjax/$1";
@@ -175,8 +174,8 @@ $route["crearCdt"] = "Informes/Cdt_controller/crearCdt";
 $route["guardarCdt"] = "Informes/Cdt_controller/guardarCdt";
 $route["getCdtAjax/(:any)"] = "Informes/Cdt_controller/getCdtAjax/$1";
 $route["bajaCdt"] = "Informes/Cdt_controller/bajaCdt";
-$route["editarDetalle/(:any)"] = "Informes/Cdt_controller/editarDetalle/$1";
-$route["updateDetalle"] = "Informes/Cdt_controller/updateDetalle";
+$route["editarDetalleCdt/(:any)"] = "Informes/Cdt_controller/editarDetalle/$1";
+$route["updateDetalleCdt"] = "Informes/Cdt_controller/updateDetalle";
 $route["editarCdt/(:any)"] = "Informes/Cdt_controller/editarCdt/$1";
 $route["guardarCdt1"] = "Informes/Cdt_controller/guardarCdt1";
 

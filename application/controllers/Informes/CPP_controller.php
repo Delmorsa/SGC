@@ -36,6 +36,7 @@ class CPP_controller extends CI_Controller
 		$data["areas"] = $this->CNS_model->mostrarAreas();
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
+        $data["lote"] = $this->CategoriaReporte_model->MostrarLote();
 		//echo json_encode($data["niveles"]);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');

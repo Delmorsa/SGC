@@ -33,6 +33,7 @@ class Cdt_controller extends CI_Controller
         $data["monit"] = $this->CNS_model->getMonitoreo();
         $data["areas"] = $this->Cdt_model->getAreas();
         $data["salas"] = $this->Cdt_model->getSalas();
+        $data["lote"] = $this->CategoriaReporte_model->MostrarLote();
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/cdt/crearCdt',$data);

@@ -60,7 +60,7 @@
                 <div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                            <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
                                     <label>Area</label>
                                     <select id="ddlAreas" class="form-control select2" style="width: 100%;">
@@ -78,21 +78,27 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Version</label>
                                     <input autocomplete="off" type="text" id="version" class="form-control" placeholder="Version del informe">
                                     <span class="fa fa-code-fork form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Lote</label>
-                                    <input autocomplete="off" type="text" id="Lote" class="form-control" placeholder="">
+                                    <?php
+                                        if(!$lote){
+                                            echo '<input autocomplete="off" type="text" id="Lote" class="form-control" placeholder="">';
+                                        }else{
+                                            echo '<input autocomplete="off" type="text" id="Lote" class="form-control" value="'.$lote.'">';
+                                        }
+                                    ?>
                                     <span class="fa fa-barcode form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                            <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Fecha</label>
                                     <?php
@@ -238,14 +244,14 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-3">
                                 <div class="form-group has-feedback">
                                     <label for="">monitoreado por</label>
                                     <input readonly="" value="<?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apellidos")?>" autocomplete="off" type="text" id="monituser" class="form-control" placeholder="monitoreado por">
                                     <span class="fa fa-user form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                            <div class="col-xs-7 col-sm-8 col-md-7 col-lg-7">
                                 <div class="form-group has-feedback">
                                     <label for="">Observaciones</label>
                                     <input type="text" id="observaciones" class="form-control" placeholder="Observaciones">

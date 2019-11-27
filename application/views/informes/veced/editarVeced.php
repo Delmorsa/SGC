@@ -94,7 +94,7 @@
                                     <span class="fa fa-code-fork form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
+                            <div class="col-xs-4 col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group has-feedback">
                                     <label>Nombre del producto</label><br>
                                     <select class="js-data-example-ajax form-control" id="ddlprod">
@@ -169,7 +169,7 @@
                                     <span class="fa fa-sort-alpha-desc form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">Peso en lbs</label>
                                     <input readonly="" value="<?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apellidos")?>" autocomplete="off" type="hidden" id="monituser" class="form-control" >
@@ -178,7 +178,7 @@
                                     <span class="fa fa-user form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">T° del prod</label>
                                     <input type="text" id="temperatura" class="form-control">
@@ -197,14 +197,14 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+                            <div class="col-xs-8 col-sm-10 col-md-5 col-lg-5">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Observaciones</label>
                                     <input autocomplete="off" type="text" id="observaciones" class="form-control" placeholder="Observaciones">
                                     <span class="fa fa-pencil form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+                            <div class="col-xs-8 col-sm-10 col-md-5 col-lg-5">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Acciones correctivas</label>
                                     <input autocomplete="off" type="text" id="acciones" class="form-control" placeholder="Acciones correctivas">
@@ -250,8 +250,8 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="callout">
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-xs-3 col-sm-2 col-md-3 col-lg-3">
                                     <p class="text-bold">CLAVES:</p>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -260,7 +260,7 @@
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <p class="text-bold">I: Inaceptable</p>
                                 </div>
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="col-xs-3 col-sm-4 col-md-3 col-lg-3">
                                     <p class="text-bold">NA: No aplica</p>
                                 </div>
                             </div>

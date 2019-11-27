@@ -279,7 +279,7 @@
 						</i> Categorias Reportes</a></li>
 					</ul>
 				</li>
-				<li>
+				<!--<li>
 					<a href="../calendar.html">
 						<i class="fa fa-calendar"></i> <span>Calendar</span>
 						<span class="pull-right-container">
@@ -354,7 +354,7 @@
 				<li class="header">LABELS</li>
 				<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
 				<li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-				<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+				<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
 			</ul>
 		</section>
 		<!-- /.sidebar -->

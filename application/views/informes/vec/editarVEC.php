@@ -54,14 +54,14 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-4">
+							<div class="col-xs-8 col-sm-8 col-md-6 col-lg-4">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Observacion general</label>
 									<input autocomplete="off" type="text" id="observacionGeneral" class="form-control" value="<?php echo $enc[0]["OBSERVACIONES"] ?>">
 									<span class="fa fa-pencil form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-2">
+							<div class="col-xs-8 col-sm-4 col-md-6 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Código Producción</label>
 									<input autocomplete="off" type="text" id="lote" class="form-control" value="<?php echo $enc[0]["LOTE"]?>">
@@ -73,13 +73,13 @@
 					<hr>
 					<div class="row">
 						<div class="col-xs-12">
-							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-5">
+							<div class="col-xs-4 col-sm-10 col-md-6 col-lg-5">
 								<div class="form-group has-feedback">
 									<label>Nombre del producto</label><br>
 									<select class="select js-data-example-ajax form-control" id="ddlprod"></select>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-3 col-sm-4 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Maquinas</label>
 									<select id="cmbMaquina" class="form-control select2" style="width: 100%;">
@@ -97,7 +97,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-4">
+							<div class="col-xs-3 col-sm-6 col-md-2 col-lg-4">
 								<div class="form-group has-feedback">
 									<label for="">Operario</label>
 									<input autofocus="" autocomplete="off" type="text" id="txtOperario" class="form-control col-xs-4" value="<?php echo $det[0]["OPERARIO"]?>">
@@ -115,7 +115,7 @@
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-3 col-sm-4 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Textura</label>
 									<select id="txtTextura" class="form-control select2" style="width: 100%;">
@@ -126,7 +126,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-3 col-sm-4 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">									
 									<label for="vigencia">Color</label>
 									<select id="txtColor" class="form-control select2" style="width: 100%;">
@@ -144,7 +144,7 @@
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-3 col-sm-4 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">									
 									<label for="vigencia">pH Pasta</label>
 									<select id="txtPh" class="form-control select2" style="width: 100%;">
@@ -156,7 +156,7 @@
 
 								</div>
 							</div>
-							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-4">
+							<div class="col-xs-8 col-sm-8 col-md-6 col-lg-4">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Observacion</label>
 									<input autocomplete="off" type="text" id="observaciones" class="form-control" placeholder="Observaciones">

@@ -60,7 +60,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-4">
+							<div class="col-xs-8 col-sm-8 col-md-6 col-lg-4">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Observacion general</label>
 									<input autocomplete="off" type="text" id="observacionGeneral" value="<?php echo $enc[0]["OBSERVACIONES"] ?>" class="form-control" >
@@ -95,7 +95,7 @@
 					<hr>
 					<div class="row">
 						<div class="col-xs-12">													
-							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-5">
+							<div class="col-xs-4 col-sm-8 col-md-6 col-lg-5">
 									<div class="form-group has-feedback">
 										<label>Nombre del producto</label><br>
 										<select class="select js-data-example-ajax form-control" id="ddlprod"></select>

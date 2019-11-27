@@ -32,6 +32,7 @@ class Mdtde_controller extends CI_Controller
     {
         $data["monit"] = $this->CNS_model->getMonitoreo();
         $data["areas"] = $this->Mdtde_model->getAreas();
+        $data["lote"] = $this->CategoriaReporte_model->MostrarLote();
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/mdtde/crearMdtde',$data);

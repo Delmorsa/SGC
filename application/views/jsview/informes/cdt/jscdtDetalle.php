@@ -197,7 +197,7 @@
                         console.log(form_data);
 
                         $.ajax({
-                            url: "<?php echo base_url("index.php/updateDetalle")?>",
+                            url: "<?php echo base_url("index.php/updateDetalleCdt")?>",
                             type: "POST",
                             data: form_data,
                             success: function (data) {

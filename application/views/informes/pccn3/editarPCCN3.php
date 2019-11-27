@@ -94,7 +94,7 @@
                                     <span class="fa fa-calendar form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
+                            <div class="col-xs-4 col-sm-6 col-md-6 col-lg-6">
                                 <div class="form-group has-feedback">
                                     <label>Nombre del producto</label><br>
                                     <select class="js-data-example-ajax form-control" id="ddlprod">
@@ -134,7 +134,7 @@
                                     <span class="fa fa-clock-o form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">Hora Salida</label>
                                     <input readonly="" value="<?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apellidos")?>" autocomplete="off" type="hidden" id="monituser" class="form-control" >
@@ -143,14 +143,14 @@
                                     <span class="fa fa-clock-o form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">T° C</label>
                                     <input type="text" id="temperatura" class="form-control">
                                     <span class="fa fa-thermometer-half form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">Tiempo</label>
                                     <input readonly type="text" id="tiempo" class="form-control">
@@ -169,14 +169,14 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+                            <div class="col-xs-8 col-sm-10 col-md-5 col-lg-5">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Observaciones</label>
                                     <input autocomplete="off" type="text" id="observaciones" class="form-control" placeholder="Observaciones">
                                     <span class="fa fa-pencil form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+                            <div class="col-xs-8 col-sm-10 col-md-5 col-lg-5">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Acciones correctivas</label>
                                     <input autocomplete="off" type="text" id="acciones" class="form-control" placeholder="Acciones correctivas">

@@ -235,7 +235,7 @@
                             "<td class='text-center bg-info'>"+item["TOMA4"]+"</td>"+
                             "<td class='text-center bg-info'>"+item["OBSERVACIONES"]+"</td>"+
                             "<td class='text-center bg-info'>"+item["VERIFICACION"]+"</td>"+
-                            "<td class='text-center bg-info'><a class='btn btn-primary btn-xs' href='<?php echo base_url("index.php/editarDetalle/")?>"+item["ID"]+"'>" +
+                            "<td class='text-center bg-info'><a class='btn btn-primary btn-xs' href='<?php echo base_url("index.php/editarDetalleCdt/")?>"+item["ID"]+"'>" +
                             "                                                       <i class='fa fa-pencil'></i>" +
                             "                                                   </a></td>"+
                             "</tr>";

@@ -68,7 +68,7 @@
                 <div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="version">Version informe</label>
                                     <?php
@@ -169,7 +169,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-5 col-lg-5">
+                            <div class="col-xs-4 col-sm-8 col-md-5 col-lg-5">
                                 <div class="form-group has-feedback">
                                     <label>Nombre del producto</label><br>
                                     <select class="js-data-example-ajax form-control" id="ddlprod"></select>
@@ -207,7 +207,7 @@
                                     <span class="fa fa-clock-o form-control-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-xs-8 col-sm-8 col-md-6 col-lg-6">
+                            <div class="col-xs-8 col-sm-10 col-md-6 col-lg-6">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Observaciones</label>
                                     <?php
@@ -348,14 +348,14 @@
         <div class="box-footer">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-xs-3 col-sm-4 col-md-3 col-lg-3">
                         <p class="text-bold text-success">Formula: T = GC+GT+K-L</p>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                         <p class="text-bold">T: Traslape</p>
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
