@@ -41,7 +41,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <table id="tblMdtdedet" class="table table-bordered table-condensed table-striped display nowrap">
+                        <table id="tblMdtdedet" class="table table-bordered table-condensed table-striped table-responsive display nowrap">
                             <thead>
                             <tr>
                                 <th>Cod Reporte</th>
@@ -110,7 +110,7 @@
                                             echo "
                                                 <tr>
                                                     <td>".$item["IDREPORTE"]."</td>
-                                                    <td>".$item["SIGLA"]."</td>
+                                                    <td>".$item["SIGLAS"]."</td>
                                                     <td>".$item["VERSION"]."</td>
                                                     <td>".$item["AREA"]."</td>
                                                     <td>".$mes." ".$item["ANIO"]."</td>

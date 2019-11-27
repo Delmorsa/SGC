@@ -29,6 +29,7 @@ class vec_Controller extends CI_Controller
         $data["monit"] = $this->CNS_model->getMonitoreo();
         $data["areas"] = $this->CNS_model->mostrarAreas();
         $data["maquinas"] = $this->CNS_model->mostrarMaquinas();
+        $data["lote"] = $this->CategoriaReporte_model->MostrarLote();
         
         $this->load->view('header/header');
         $this->load->view('header/menu');

@@ -87,7 +87,13 @@
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="vigencia">Lote</label>
-                                    <input autocomplete="off" type="text" id="Lote" class="form-control" placeholder="">
+                                    <?php
+                                        if(!$lote){
+                                            echo '<input value="" autocomplete="off" type="text" id="Lote" class="form-control" placeholder="">';
+                                        }else{
+                                            echo '<input value="'.$lote.'" autocomplete="off" type="text" id="Lote" class="form-control" placeholder="">';
+                                        }
+                                    ?>
                                     <span class="fa fa-barcode form-control-feedback"></span>
                                 </div>
                             </div>

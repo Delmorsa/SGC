@@ -131,4 +131,12 @@ class CategoriaReporte_model extends CI_Model{
 		        $this->db->trans_commit();
 		}
 	}
+
+	public function MostrarLote()
+    {
+        date_default_timezone_set("America/Managua");
+        $lote = 0;
+        $lote = date("W")."".date("m")."-".date("w");
+        return $lote;
+    }
 }

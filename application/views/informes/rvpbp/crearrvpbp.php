@@ -56,14 +56,14 @@
 									</select>
 								</div>
 							</div>	
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xs-4 col-sm-4 col-md-2 col-lg-3">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Instrumento</label>
 									<input autocomplete="off" type="text" id="instrumento" class="form-control" placeholder="Instrumento a Verificar">
 									<span class="fa fa-code-fork form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-4">
+							<div class="col-xs-8 col-sm-7 col-md-6 col-lg-4">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Observacion general</label>
 									<input autocomplete="off" type="text" id="observacionGeneral" class="form-control" placeholder="Observaciones">
