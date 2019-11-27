@@ -154,6 +154,19 @@ $route["verCTCE/(:any)"] = "Informes/ctce_controller/verCTCE/$1";
 $route["imprimirCTCE/(:any)"] = "Informes/ctce_controller/imprimirCTCE/$1";
 $route["editarCTCE/(:any)"] = "Informes/ctce_controller/editarCTCE/$1";
 $route["guardarEditarCTCE"] = "Informes/ctce_controller/guardarEditarCTCE";
+
+/*******************************************************************************************/
+$route["reporte_16"] = "Informes/CPP2_controller";
+$route["nuevocpp2"] = "Informes/CPP2_controller/nuevocpp";
+$route["getGramos/(:any)"] = "Informes/CPP2_controller/getGramos/$1";
+$route["getMuestra/(:any)/(:any)/(:any)/(:any)"] = "Informes/CPP2_controller/getMuestra/$1/$2/$3/$4";
+$route["guardarCPP2"] = "Informes/CPP2_controller/guardarCPP";
+$route["editarCPP2/(:any)"] = "Informes/CPP2_controller/editarCPP/$1";
+$route["verCPP2/(:any)"] = "Informes/CPP2_controller/verCPP/$1";
+$route["imprimirCPP2/(:any)"] = "Informes/CPP2_controller/imprimirCPP/$1";
+$route["guardarEditarCPP2"] = "Informes/CPP2_controller/guardarEditarCPP";
+$route["BajaAltaCPP2"] = "Informes/CPP2_controller/BajaAltaCPP";
+
 $route["actualizarEepdc"] = "Informes/Eepdc_controller/actualizarEepdc";
 $route["BajaEepdc"] = "Informes/Eepdc_controller/darDeBaja";
 $route["detalleEepdcAjax/(:any)"] = "Informes/Eepdc_controller/detalleEepdcAjax/$1";

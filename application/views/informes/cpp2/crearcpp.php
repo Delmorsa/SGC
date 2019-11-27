@@ -5,7 +5,7 @@
 			INDUSTRIAS DELMOR, S.A.
 		</h3>
 		<h4 class="text-center">
-			<span id="nombreRpt">REGISTRO CONTROL DE PESO EN PROCESO (CPP)</span>
+			<span id="nombreRpt">REGISTRO CONTROL DE DIAMETRO EN PROCESO (CPP)</span>
 		</h4>
 		<h4 class="text-center">
 			<?php
@@ -55,7 +55,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-8 col-sm-8 col-md-6 col-lg-4">
+							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-4">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Observacion general</label>
 									<input autocomplete="off" type="text" id="observacionGeneral" value="" class="form-control" placeholder="Observaciones">
@@ -72,13 +72,7 @@
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Lote</label>
-                                    <?php
-                                        if(!$lote){
-                                            echo '<input autofocus="" autocomplete="off" type="text" id="lote" value="" class="form-control col-xs-4" placeholder="Lote">';
-                                        }else{
-                                            echo '<input value="'.$lote.'" autocomplete="off" type="text" id="lote" value="" class="form-control col-xs-4" placeholder="Lote">';
-                                        }
-                                    ?>
+									<input autofocus="" autocomplete="off" type="text" id="lote" value="" class="form-control col-xs-4" placeholder="Lote">
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
@@ -111,7 +105,7 @@
 									<input autofocus="" autocomplete="off" type="text" id="diametro" value="" class="form-control col-xs-2" placeholder="diametro">
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
-							</div>
+							</div>							
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group ">
 									<label for="">No Batch</label>
@@ -130,12 +124,12 @@
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkDesechar" value="Desechar">
 							  <label class="form-check-label" for="chkOtras">Otras</label>
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkOtras" value="Otras">
-							</div>							
+							</div>
 						<!--</div>-->
 					</div>
 					<hr>
 					<div class="row">
-						<div class="col-xs-12">			
+						<div class="col-xs-12">													
 							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-5">
 								<div class="form-group has-feedback">
 									<label>Nombre del producto</label><br>
@@ -144,10 +138,10 @@
 							</div>
 							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group">
-									<label>Peso Gr</label>
-									<input disabled="true" autocomplete="off" type="text" id="pesoGr" class="form-control" placeholder="Peso Gramos">
+									<label>Diametro esperado</label>
+									<input autocomplete="off" type="text" id="diametroEsperado" class="form-control" placeholder="Diametro Esperado">
 								</div>
-							</div>							
+							</div>
 						</div>
 					</div>
 
@@ -211,7 +205,7 @@
 							</div>
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
-									<label for="">Peso</label>
+									<label for="">Diametro</label>
 									<input autocomplete="off" type="text" id="txtPeso" class="form-control">
 									<span class="fa fa-truck form-control-feedback"></span>
 								</div>
@@ -224,8 +218,7 @@
 								</div>
 							</div>
 							<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-								<div class="form-group has-feedback">
-									
+								<div class="form-group has-feedback">									
 									<button id="btnAdd" class="btn btn-primary"><i class="fa fa-plus"></i></button>
 									
 									<button id="btnDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button>
@@ -241,8 +234,8 @@
 							<th class="text-center">No</th>
 							<th class="text-center">Codigo</th>
 							<th class="text-center">Descripción</th>
-							<th class="text-center">Peso Original</th>
-							<th class="text-center">Peso Gr</th>
+							<th class="text-center">Diametro Original</th>
+							<th class="text-center">Diametro </th>
 							<th class="text-center">Diferencia</th>
 						</tr>
 					</thead>

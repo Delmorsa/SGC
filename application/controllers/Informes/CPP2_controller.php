@@ -1,7 +1,7 @@
 <?php
 
 
-class CPP_controller extends CI_Controller
+class CPP2_controller extends CI_Controller
 {
 	public function __construct()
 	{
@@ -10,6 +10,7 @@ class CPP_controller extends CI_Controller
 		if ($this->session->userdata("logged") != 1) {
 			redirect(base_url() . 'index.php', 'refresh');
 		}
+		$this->load->model("Informes/Cpp2_model");
 		$this->load->model("Informes/Cpp_model");
 		$this->load->model("Informes/CNS_model");
 		$this->load->model("Informes/Rvpbp_model");
@@ -19,13 +20,13 @@ class CPP_controller extends CI_Controller
 
 	public function index()
 	{
-		$data["cpp"] = $this->Cpp_model->getInformes();
+		$data["cpp"] = $this->Cpp2_model->getInformes();
 		//print_r($data["rvpbp"]);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
-		$this->load->view('informes/CPP/cpp',$data);
+		$this->load->view('informes/CPP2/cpp',$data);
 		$this->load->view('footer/footer');		
-		$this->load->view('jsview/informes/cpp/jscpp');
+		$this->load->view('jsview/informes/cpp2/jscpp');
 	}
 
 	public function nuevocpp()
@@ -37,14 +38,14 @@ class CPP_controller extends CI_Controller
 		$data["areas"] = $this->CNS_model->mostrarAreas();
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
+		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
 		$data["maq"] = $this->Maquinas_model->getMaquinas();
-    $data["lote"] = $this->CategoriaReporte_model->MostrarLote();
-		//echo json_encode($data["niveles"]);
+		
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
-		$this->load->view('informes/cpp/crearcpp',$data);
+		$this->load->view('informes/cpp2/crearcpp',$data);
 		$this->load->view('footer/footer');
-		$this->load->view('jsview/informes/cpp/jscpp');
+		$this->load->view('jsview/informes/cpp2/jscpp');
 	}
 
 	public function getGramos($value)
@@ -54,7 +55,7 @@ class CPP_controller extends CI_Controller
 
 	public function guardarCPP()
 	{
-		$this->Cpp_model->guardarCPP(
+		$this->Cpp2_model->guardarCPP(
 			$this->input->post("enc"),
 			$this->input->post("datos")
 		);
@@ -64,19 +65,19 @@ class CPP_controller extends CI_Controller
 	{
 		$data['enc'] = $this->Cpp_model->getEncCPP($id);
 		$data['det'] = $this->Cpp_model->getdetCPP($id);
-
-		//echo json_encode($data['det']);
+		$data["maq"] = $this->Maquinas_model->getMaquinas();
+		//echo json_encode($data['enc']);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
-		$this->load->view('informes/cpp/verCPP',$data);
+		$this->load->view('informes/cpp2/verCPP',$data);
 		$this->load->view('footer/footer');
 		//$this->load->view('jsview/informes/rvpbp/jsrvpbp');
 	}
 
 	public function editarCPP($id)
 	{
-		$data['det'] = $this->Cpp_model->getdetCPP($id);
-		$data['enc'] = $this->Cpp_model->getEncCPP($id);
+		$data['det'] = $this->Cpp2_model->getdetCPP($id);
+		$data['enc'] = $this->Cpp2_model->getEncCPP($id);
 		$data["areas"] = $this->CNS_model->mostrarAreas();
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
@@ -87,15 +88,15 @@ class CPP_controller extends CI_Controller
 		$decision[1] = 'Rechazar';
 		$decision[2] = 'Reclasificar';
 		$decision[3] = 'Desechar';
-		$decision[4] = 'Otras';		
+		$decision[4] = 'Otras';
 		$data["decisiones"] = $decision;
 
 		//echo json_encode($data["enc"]);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
-		$this->load->view('informes/cpp/editarcpp',$data);
+		$this->load->view('informes/cpp2/editarcpp',$data);
 		$this->load->view('footer/footer');
-		$this->load->view('jsview/informes/cpp/jseditarcpp');
+		$this->load->view('jsview/informes/cpp2/jseditarcpp');
 
 	}
 
@@ -108,9 +109,9 @@ class CPP_controller extends CI_Controller
 
 	public function imprimirCPP($id)
 	{
-		$data['enc'] = $this->Cpp_model->getEncCPP($id);
-		$data['det'] = $this->Cpp_model->getdetCPP($id);
-		$this->load->view('informes/cpp/imprimirCPP',$data);
+		$data['enc'] = $this->Cpp2_model->getEncCPP($id);
+		$data['det'] = $this->Cpp2_model->getdetCPP($id);
+		$this->load->view('informes/cpp2/imprimirCPP',$data);
 	}
 
 	public function guardarEditarCPP()
@@ -120,7 +121,7 @@ class CPP_controller extends CI_Controller
 		$datos = $this->input->post("datos");
 
 		//echo json_encode($enc);
-		$this->Cpp_model->guardarEditarCPP($id,$enc,$datos);
+		$this->Cpp2_model->guardarEditarCPP($id,$enc,$datos);
 	}
 	public function BajaAltaCPP()
  	{

@@ -91,7 +91,8 @@
 					let res = [];
 					for(let i  = 0 ; i < data.length; i++) {
 						res.push({id:data[i].ItemCode, text:data[i].ItemName});
-						$("#campo").append('<input type="hidden" name="" id="'+data[i].ItemCode+'txtpeso" class="form-control" value="'+data[i].SWeight1+'">');
+						$("#campo").append('<input type="hidden" name="" id="'+data[i].ItemCode+'txtpeso" class="form-control" value="'+data[i].SWeight1+'">');						
+						calcularMuestra();	
 					}
 					return {
 						results: res
@@ -108,53 +109,6 @@
 
 		$('#fecha').datepicker({"autoclose":true});
 		$("#tblCNS").DataTable();
-
-		$("#ddlprod").change(function (){
-			let bandera = true;
-			let tabla = $('#tblDatos').DataTable();
-			let noRegistro = tabla.data().count();
-
-			if (noRegistro>0) {
-				
-				Swal.fire({
-				  title: 'Aviso',
-				  text: "Se eliminaran los registros ingresados",
-				  type: 'warning',
-				  showCancelButton: true,
-				  confirmButtonColor: '#3085d6',
-				  confirmButtonText: 'Aceptar!'
-				}).then((result) => {
-				  	if (result.value){
-				  		$('#lote').val('');
-				  		$('#batch').val('');
-				  		tabla.clear().draw();
-					}
-				});
-			}
-
-			$("#loaderButtons").show();
-			$("#cantidad").focus();
-			if($(this).val() != ''){
-			$.ajax({
-				url: "<?php echo base_url("index.php/getGramos")?>"+"/"+$(this).val(),
-				type: "POST",
-				async: true,
-					success: function (data) {
-						if($("#ddlRutas option:selected").val() != ""){
-							$.each(JSON.parse(data), function (i, item){
-								$("#pesoGr").val(Number(item["GRAMOS"]).toFixed(2));
-							});
-							$("#loaderButtons").hide();
-							$("#buttonsRem").show();
-						}
-					},
-					error: function (data) {
-						$("#pesoGr").val(Number(0).toFixed(2));						
-					}
-				});			
-			}
-		});
-
 	});
 
 	$('#cmbTamaño').change(function() {
@@ -183,6 +137,8 @@
 	    }
 	});
 
+	
+
 	function calcularMuestra() {
 		let tabla = $('#tblDatos').DataTable();
 		let noRegistro = tabla.data().count();
@@ -193,13 +149,14 @@
 				title: 'Aviso',
 				text: "Se eliminaran los registros ingresados",
 				type: 'warning',
-				showCancelButton: true,
+				showCancelButton: false,
 				confirmButtonColor: '#3085d6',
+				allowOutsideClick: false,
 				confirmButtonText: 'Aceptar!'
 			}).then((result) => {
 			  	if (result.value) {
-			  		$('#lote').val('');
-			  		$('#batch').val('');
+			  		//$('#lote').val('');
+			  		//$('#batch').val('');
 			  		tabla.clear().draw();
 				}
 			});
@@ -222,10 +179,10 @@
 
 
 		if (tamano == '' || nivel == '') {
-			alert("primer if");
+			
 			ok = false;
 		}if (bandera == false && nivel2 =='' /*&& tamano2 == ''*/) {
-			alert("segundo if");
+			
 			ok = false;
 		}
 		if(ok){
@@ -304,7 +261,7 @@
    		observacion = $("#observacionGeneral").val(),
    		codproducto = $("#ddlprod option:selected").val(),
    		descripcion = $("#ddlprod option:selected").text(),
-   		gramos = $("#pesoGr").val(),
+   		gramos = $("#diametroEsperado").val(),
    		monituser = $("#monituser").val(),
 		peso = $('#txtPeso').val();
 
@@ -433,7 +390,7 @@ $("#btnGuardar").click(function(){
 				});
 
 				let form_data = {
-				    enc: [$("#ddlAreas option:selected").val(),$('#observacionGeneral').val(),$('#fecha').val(),$("#ddlprod option:selected").val(),$("#ddlprod option:selected").text(),$('#pesoGr').val(),nombre,$("#lote").val(),$("#batch").val(),
+				    enc: [$("#ddlAreas option:selected").val(),$('#observacionGeneral').val(),$('#fecha').val(),$("#ddlprod option:selected").val(),$("#ddlprod option:selected").text(),$('#diametroEsperado').val(),nombre,$("#lote").val(),$("#batch").val(),
 				    	$("#cmbTamaño option:selected").val(),$("#cmdNivel option:selected").val(),$('#chkEspecial').prop('checked'),
 				    	$("#cmdNivel2 option:selected").val(),$('#muestra').val(),selected,$('#largo').val(),$('#diametro').val(),
 				    	$("#ddlMaquina option:selected").val()
@@ -443,7 +400,7 @@ $("#btnGuardar").click(function(){
 				};
 
 				$.ajax({
-					url: '<?php echo base_url("index.php/guardarEditarCPP")?>',
+					url: '<?php echo base_url("index.php/guardarEditarCPP2")?>',
 					type: 'POST',
 					data: form_data,
 					success: function(data)
@@ -460,7 +417,7 @@ $("#btnGuardar").click(function(){
 							allowOutsideClick: false
 						}).then((result)=>{
 							if (tipo == 'success') {
-								window.location.href = "<?php echo base_url("index.php/reporte_10")?>";
+								window.location.href = "<?php echo base_url("index.php/reporte_16")?>";
 							}
 						});
 					},error:function(){

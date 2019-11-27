@@ -1,6 +1,6 @@
 <?php
 
-class Cpp_model extends CI_Model
+class Cpp2_model extends CI_Model
 {
 	public function __construct()
 	{
@@ -69,7 +69,7 @@ class Cpp_model extends CI_Model
 								INNER JOIN Usuarios T1 ON T1.IDUSUARIO = T0.IDUSUARIOCREA
 								INNER JOIN Monitoreos T2 ON T2.IDMONITOREO = T0.IDMONITOREO
 								INNER JOIN Areas T3 ON T3.IDAREA = T0.IDAREA
-								WHERE T0.IDTIPOREPORTE = 10 order by t0.FECHACREA DESC");
+								WHERE T0.IDTIPOREPORTE = 16 order by t0.FECHACREA DESC");
 		if($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -97,13 +97,13 @@ class Cpp_model extends CI_Model
 		      "IDMONITOREO" => $query->result_array()[0]["IDMONITOREO"],
 		      "IDAREA" => $enc[0],	
 		      "VERSION" => '1',
-		      "IDTIPOREPORTE" => '10',
-		      "NOMBRE" => "REGISTRO CONTROL DE PESO EN PROCESO (CPP)",
+		      "IDTIPOREPORTE" => '16',
+		      "NOMBRE" => "REGISTRO CONTROL DE DIAMETRO EN PROCESO (CPP)",
 		      "CODIGOPRODUCTO" => $enc[3],
 		      "NOMBREPRODUCTO" => $enc[4],
 		      "OBSERVACIONES" => $enc[1],
 		      "LOTE" => $enc[7],
-		      "PESOGRAMOS" => $enc[5],
+		      "DIAMETRO" => $enc[5],
 		      "NOBATCH" => $enc[8],
 		      "IDMAQUINA" => $enc[17],
 		      "DECISION" => $enc[14],
@@ -122,11 +122,11 @@ class Cpp_model extends CI_Model
 		      "IDUSUARIOCREA" => $this->session->userdata("id")
 			);
 
-			$inserto = $this->db->insert("Reportes",$encabezado);	
+			$inserto = $this->db->insert("Reportes",$encabezado);
 			if ($inserto) {
 				$num = 1; $bandera = false;
 				$det = json_decode($datos, true);
-				foreach ($det as $obj) {					
+				foreach ($det as $obj) {
 					$idpeso = $this->db->query("SELECT ISNULL(MAX(IDPESO),0)+1 AS IDPESO FROM ReportesPeso");
 
 					$rpt = array(
@@ -138,12 +138,12 @@ class Cpp_model extends CI_Model
 		                "FECHAINGRESO" => $enc[2],
 		                "CODIGO" => $obj[1],
 		                "DESCRIPCION" => $obj[2],
-		                "PESOMASA" => $obj[3],
+		                "PESOMASA" => $enc[5],
 		                "PESOBASCULA" => $obj[4],
 		                "UNIDADPESO" => 'Gramos',
 		                "DIFERENCIA" => $obj[5],
 		                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
-		                "IDUSUARIOCREA" => $this->session->userdata("id")		                
+		                "IDUSUARIOCREA" => $this->session->userdata("id")
 				    );
 
 				    $num++;	
@@ -162,9 +162,8 @@ class Cpp_model extends CI_Model
 					echo json_encode($mensaje);
 				}
 			}
-
 		}else{
-			$mensaje[0]["mensaje"] = "No se pudo guardar el informe porque no exsite un codigo de 
+			$mensaje[0]["mensaje"] = "No se pudo guardar el informe porque no exsite un codigo de
 										monitoreo para la fecha ".date("d-m-Y")."";
 			$mensaje[0]["tipo"] = "error";
 			echo json_encode($mensaje);
