@@ -39,6 +39,9 @@
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap-clockpicker.min.css">
     <!--daterangepicker-->
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/daterangepicker.css">
+    <script src="<?php echo base_url()?>assets/js/chart/Chart.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/chart/Chart.bundle.js"></script>
+    <script src="<?php echo base_url()?>assets/js/chart/utils.js"></script>
 
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">

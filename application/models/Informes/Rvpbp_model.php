@@ -164,10 +164,12 @@ class Rvpbp_model extends CI_Model
 	{
 		
 		$query = $this->db->query("SELECT T0.*,T1.AREA,T2.NOMBRES,T2.APELLIDOS,T3.SIGLA
+								,CAST(T4.DESCRIPCION AS CHAR)+'-'+CAST(T4.CONSECUTIVO AS CHAR)+'-'+CAST(T4.VERSION AS CHAR) VERSION
 								FROM Reportes T0
 								INNER JOIN Areas T1 ON T1.IDAREA = T0.IDAREA
 								INNER JOIN Usuarios T2 ON T2.IDUSUARIO = T0.IDUSUARIOCREA
 								INNER JOIN Monitoreos T3 ON T3.IDMONITOREO = T0.IDMONITOREO
+								left join CatVersiones t4 on t4.IDTIPOREPORTE = T0.IDTIPOREPORTE
 								WHERE IDREPORTE = '".$idreporte."'");
 
 		if ($query->num_rows()>0) {

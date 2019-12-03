@@ -5,7 +5,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
-			CONTROL DE DIAMETRO EN PROCESO (CPP)
+			CONTROL DE DIAMETRO EN PROCESO (CDP)
 
 			<a href="<?php echo base_url("index.php/nuevocpp2")?>" class="pull-right btn btn-primary">
 				Agregar <i class="fa fa-plus"></i>

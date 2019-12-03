@@ -5,14 +5,14 @@
 			INDUSTRIAS DELMOR, S.A.
 		</h3>
 		<h4 class="text-center">
-			<span id="nombreRpt">REGISTRO CONTROL DE DIAMETRO EN PROCESO (CPP)</span>
+			<span id="nombreRpt">REGISTRO CONTROL DE DIAMETRO EN PROCESO (CDP)</span>
 		</h4>
 		<h4 class="text-center">
 			<?php
 				if(!$monit){
 				}else{
 					foreach ($monit as $key) {
-						echo "ISO-HACCP-".$key["SIGLA"]."";
+						echo $version."";
 						echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">
 							</div>';

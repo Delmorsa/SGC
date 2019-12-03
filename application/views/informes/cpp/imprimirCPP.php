@@ -111,7 +111,7 @@
 				<?php
 				if(!$det){
 					}else{
-						echo "ISO-HACCP-".$enc[0]["SIGLA"]."<br>";
+						echo $enc[0]["VERSION"]."<br>";
 						echo "NO REPORTE: ".$enc[0]["IDREPORTE"]."";
 					}
 				?>
@@ -130,6 +130,14 @@
 			<tr>
 				<td colspan="1" class="">Fecha:</td>
 				<td class=""><?php echo $enc[0]["FECHACREA"] ?></td>
+			</tr>
+			<tr>
+				<td colspan="1" class="">Peso Gr:</td>
+				<td class=""><?php echo $enc[0]["PESOGRAMOS"] ?></td>
+			</tr>
+			<tr>
+				<td colspan="1" class="">Funda :</td>
+				<td class=""><?php echo number_format($enc[0]["FUNDALARGO"],2) ?> LARGO X <?php echo number_format($enc[0]["FUNDADIAMETRO"],2) ?> DIAMETRO</td>
 			</tr>
 			<tr>
 				<td colspan="1" class="negrita ">Observacion:</td>
@@ -171,9 +179,9 @@
 											<td>".$key["NUMERO"]."</td>
 											<td>".$key["CODIGO"]."</td>
 											<td>".$key["DESCRIPCION"]."</td>
-											<td>".$key["PESOMASA"]."</td>
-											<td>".$key["PESOBASCULA"]."</td>
-											<td>".$key["DIFERENCIA"]."</td>";
+											<td>".number_format($key["PESOMASA"],2)."</td>
+											<td>".number_format($key["PESOBASCULA"],2)."</td>
+											<td>".number_format($key["DIFERENCIA"],2)."</td>";
 										echo"</tr>
 									";
 								}

@@ -279,9 +279,24 @@
 						</i> Categorias Reportes</a></li>
 					</ul>
 				</li>
+				<li class="treeview">
+					<a href="#">
+						<i class="fa fa-files-o"></i>
+						<span>Reportes</span>
+						<span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+					</a>
+					<ul class="treeview-menu">
+						<li>
+							<a href="<?php echo base_url("index.php/reportePesoDiametro")?>">
+								<i class="fa fa-circle-o text-warning"></i> Estudio de peso y Diametro</a>
+						</li>						
+					</ul>
+				</li>
 				<!--<li>
-					<a href="../calendar.html">
-						<i class="fa fa-calendar"></i> <span>Calendar</span>
+				<a href="../calendar.html">
+						<i class="fa fa-folder"></i> <span>Calendar</span>
 						<span class="pull-right-container">
               <small class="label pull-right bg-red">3</small>
               <small class="label pull-right bg-blue">17</small>

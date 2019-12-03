@@ -34,12 +34,15 @@ class CPP_controller extends CI_Controller
 		if ($data["monit"]==null || count($data["monit"])<1){
 			redirect('monitoreos', 'refresh');
 		}
+
+		$data["version"] = $this->CNS_model->getVersion(10);
 		$data["areas"] = $this->CNS_model->mostrarAreas();
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
 		$data["maq"] = $this->Maquinas_model->getMaquinas();
-    $data["lote"] = $this->CategoriaReporte_model->MostrarLote();
-		//echo json_encode($data["niveles"]);
+    	$data["lote"] = $this->CategoriaReporte_model->MostrarLote();
+		
+		echo json_encode($data["version"]);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cpp/crearcpp',$data);
@@ -64,8 +67,8 @@ class CPP_controller extends CI_Controller
 	{
 		$data['enc'] = $this->Cpp_model->getEncCPP($id);
 		$data['det'] = $this->Cpp_model->getdetCPP($id);
-
-		//echo json_encode($data['det']);
+		$data["version"] = $this->CNS_model->getVersion(10);
+		//echo json_encode($data['enc']);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cpp/verCPP',$data);
@@ -81,7 +84,13 @@ class CPP_controller extends CI_Controller
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
 		$data["maq"] = $this->Maquinas_model->getMaquinas();
+		
+		$dias = $this->db->query("SELECT DATEDIFF(day, GETDATE(), FECHACREA) AS dias 
+									FROM Reportes WHERE IDREPORTE = ".$id);
 
+		if ($dias->result_array()[0]["dias"]<-1) {
+			redirect('reporte_10', 'refresh');
+		}
 		$decision = array();
 		$decision[0] = 'Aceptar';
 		$decision[1] = 'Rechazar';

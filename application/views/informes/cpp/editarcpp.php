@@ -12,7 +12,7 @@
 				if(!$enc){
 				}else{
 					foreach ($enc as $key) {
-						echo "ISO-HACCP-".$key["SIGLA"]."<br>";
+						echo $key["VERSION"]."<br>";
 						echo "NO REPORTE".$key["IDREPORTE"]."";
 						echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">

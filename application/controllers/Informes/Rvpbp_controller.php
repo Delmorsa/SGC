@@ -31,6 +31,7 @@ class Rvpbp_controller extends CI_Controller
 		if ($data["monit"]==null || count($data["monit"])<1){
 			redirect('monitoreos', 'refresh');
 		}
+		$data["version"] = $this->CNS_model->getVersion(7);
 		$data["areas"] = $this->CNS_model->mostrarAreas();
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
 		$this->load->view('header/header');

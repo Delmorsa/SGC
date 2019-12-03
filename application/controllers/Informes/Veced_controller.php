@@ -51,7 +51,7 @@ class Veced_controller extends CI_Controller
 
 	public function getProductosSAP(){
 		$var = $this->input->get_post("q"); 
-		$this->Hana_model->getProductosSAP($var);
+		$this->Hana_model->getProductosSAP(strtoupper($var));
 	}
 
 	public function guardarVeced()
