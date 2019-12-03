@@ -252,6 +252,8 @@
                     empresa = 1;
                 }else if(data[1] == "D´lago"){
                     empresa = 2;
+                }else if(data[1] == "Panamá"){
+                    empresa = 3;
                 }
                 detalle[it][0] = empresa;
                 detalle[it][1] = data[2];

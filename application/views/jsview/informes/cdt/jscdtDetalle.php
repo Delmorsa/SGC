@@ -34,6 +34,19 @@
             let rows = table.rows( '.danger' ).remove().draw();
         });
 
+        $("#UMT1").children("li").click(function () {
+            $("#textoBtnUM1").text($(this).text());
+        });
+        $("#UMT2").children("li").click(function () {
+            $("#textoBtnUM2").text($(this).text());
+        });
+        $("#UMT3").children("li").click(function () {
+            $("#textoBtnUM3").text($(this).text());
+        });
+        $("#UMT4").children("li").click(function () {
+            $("#textoBtnUM4").text($(this).text());
+        });
+
         $("#btnAdd").click(function(){
             let t = $('#tblcrear').DataTable({
                 "info": false,
@@ -187,6 +200,10 @@
                             detalle[i][6] = data[7];
                             detalle[i][7] = data[8];
                             detalle[i][8] = data[9];
+                            detalle[i][9] = $("#textoBtnUM1").text();
+                            detalle[i][10] = $("#textoBtnUM2").text();
+                            detalle[i][11] = $("#textoBtnUM3").text();
+                            detalle[i][12] = $("#textoBtnUM4").text();
                             i++;
                         });
 

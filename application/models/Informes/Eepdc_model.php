@@ -41,7 +41,8 @@ class Eepdc_model extends CI_Model
     {
         $query = $this->db->query("SELECT t.*,t1.AREA,
                                     case t.IDEMPRESA when 1 then 'DELMOR'
-                                    when 2 then 'D´lago' end as 'EMPRESA',
+                                    when 2 then 'D´lago'
+                                    when 3 then 'Panamá' end as 'EMPRESA',
                                     case t.CABEZALMAQUINA when 1 then 'Cabezal #1'
                                     when 2 then 'Cabezal #2' end as 'MAQUINA'   
                                     FROM view_InformesEnvases t

@@ -97,6 +97,7 @@
                                     <select class="form-control" id="ddlempresa">
                                         <option value="1">DELMOR</option>
                                         <option value="2">D´lago</option>
+                                        <option value="3">Panamá</option>
                                     </select>
                                 </div>
                             </div>

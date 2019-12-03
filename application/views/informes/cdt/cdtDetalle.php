@@ -221,57 +221,133 @@
                             <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">6:00 a.m</label>
-                                    <?php
-                                    if(!$detalle){
-                                    }else{
-                                        foreach ($detalle as $key) {
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <?php
+                                                if(!$detalle){
+                                                }else{
+                                                    foreach ($detalle as $key) {
+                                                    }
+                                                    echo '<span id="textoBtnUM1">'.$key["UMTOMA1"].'</span>';
+                                                }
+                                                ?>
+                                                <span class="fa fa-caret-down"></span></button>
+                                            <ul class="dropdown-menu" id="UMT1">
+                                                <li><a href="javascript:void(0)">°c</a></li>
+                                                <li><a href="javascript:void(0)">°f</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                        <?php
+                                        if(!$detalle){
+                                        }else{
+                                            foreach ($detalle as $key) {
+                                            }
+                                            echo '<input value="'.number_format($key["TOMA1"],0).'" autofocus="" autocomplete="off" type="text" id="toma1" class="form-control">';
                                         }
-                                        echo '<input value="'.number_format($key["TOMA1"],0).'" autofocus="" autocomplete="off" type="text" id="toma1" class="form-control">';
-                                    }
-                                    ?>
-                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                        ?>
+                                        <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">8:00 a.m</label>
-                                    <?php
-                                    if(!$detalle){
-                                    }else{
-                                        foreach ($detalle as $key) {
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <?php
+                                                if(!$detalle){
+                                                }else{
+                                                    foreach ($detalle as $key) {
+                                                    }
+                                                    echo '<span id="textoBtnUM2">'.$key["UMTOMA2"].'</span>';
+                                                }
+                                                ?>
+                                                <span class="fa fa-caret-down"></span></button>
+                                            <ul class="dropdown-menu" id="UMT2">
+                                                <li><a href="javascript:void(0)">°c</a></li>
+                                                <li><a href="javascript:void(0)">°f</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                        <?php
+                                        if(!$detalle){
+                                        }else{
+                                            foreach ($detalle as $key) {
+                                            }
+                                            echo '<input value="'.number_format($key["TOMA2"],0).'" autocomplete="off" type="text" id="toma2" class="form-control">';
                                         }
-                                        echo '<input value="'.number_format($key["TOMA2"],0).'" autocomplete="off" type="text" id="toma2" class="form-control">';
-                                    }
-                                    ?>
-                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                        ?>
+                                        <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">11:00 a.m</label>
-                                    <?php
-                                    if(!$detalle){
-                                    }else{
-                                        foreach ($detalle as $key) {
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <?php
+                                                if(!$detalle){
+                                                }else{
+                                                    foreach ($detalle as $key) {
+                                                    }
+                                                    echo '<span id="textoBtnUM3">'.$key["UMTOMA3"].'</span>';
+                                                }
+                                                ?>
+                                                <span class="fa fa-caret-down"></span></button>
+                                            <ul class="dropdown-menu" id="UMT3">
+                                                <li><a href="javascript:void(0)">°c</a></li>
+                                                <li><a href="javascript:void(0)">°f</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                        <?php
+                                        if(!$detalle){
+                                        }else{
+                                            foreach ($detalle as $key) {
+                                            }
+                                            echo '<input value="'.number_format($key["TOMA3"],0).'" autocomplete="off" type="text" id="toma3" class="form-control">';
                                         }
-                                        echo '<input value="'.number_format($key["TOMA3"],0).'" autocomplete="off" type="text" id="toma3" class="form-control">';
-                                    }
-                                    ?>
-                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                        ?>
+                                        <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">3:00 p.m</label>
-                                    <?php
-                                    if(!$detalle){
-                                    }else{
-                                        foreach ($detalle as $key) {
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <?php
+                                                if(!$detalle){
+                                                }else{
+                                                    foreach ($detalle as $key) {
+                                                    }
+                                                    echo '<span id="textoBtnUM4">'.$key["UMTOMA4"].'</span>';
+                                                }
+                                                ?>
+                                                <span class="fa fa-caret-down"></span></button>
+                                            <ul class="dropdown-menu" id="UMT4">
+                                                <li><a href="javascript:void(0)">°c</a></li>
+                                                <li><a href="javascript:void(0)">°f</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                        <?php
+                                        if(!$detalle){
+                                        }else{
+                                            foreach ($detalle as $key) {
+                                            }
+                                            echo '<input value="'.number_format($key["TOMA4"],0).'" autocomplete="off" type="text" id="toma4" class="form-control">';
                                         }
-                                        echo '<input value="'.number_format($key["TOMA4"],0).'" autocomplete="off" type="text" id="toma4" class="form-control">';
-                                    }
-                                    ?>
-                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                        ?>
+                                        <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

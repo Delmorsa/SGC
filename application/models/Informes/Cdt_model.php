@@ -60,10 +60,10 @@ class Cdt_model extends CI_Model
             foreach ($query->result_array() as $key) {
                 $json[$i]["ID"] = $key["IDTEMPESTERILIZADOR"];
                 $json[$i]["AREA"] = $key["AREA"];
-                $json[$i]["TOMA1"] = number_format($key["TOMA1"],0)."° c";
-                $json[$i]["TOMA2"] = number_format($key["TOMA2"],0)."° c";
-                $json[$i]["TOMA3"] = number_format($key["TOMA3"],0)."° c";
-                $json[$i]["TOMA4"] = number_format($key["TOMA4"],0)."° c";
+                $json[$i]["TOMA1"] = number_format($key["TOMA1"],0)." ".$key["UMTOMA1"];
+                $json[$i]["TOMA2"] = number_format($key["TOMA2"],0)." ".$key["UMTOMA2"];
+                $json[$i]["TOMA3"] = number_format($key["TOMA3"],0)." ".$key["UMTOMA3"];
+                $json[$i]["TOMA4"] = number_format($key["TOMA4"],0)." ".$key["UMTOMA4"];
                 $json[$i]["HORATOMA1"] = $key["HORATOMA1"];
                 $json[$i]["HORATOMA2"] = $key["HORATOMA2"];
                 $json[$i]["HORATOMA3"] = $key["HORATOMA3"];
@@ -153,6 +153,10 @@ class Cdt_model extends CI_Model
                         "HORATOMA4" => $hra4,
                         "OBSERVACIONES" => $obj[7],
                         "VERIFICACION_AC" => $obj[8],
+                        "UMTOMA1" => $obj[9],
+                        "UMTOMA2" => $obj[10],
+                        "UMTOMA3" => $obj[11],
+                        "UMTOMA4" => $obj[12],
                         "FECHACREA" => gmdate("Y-m-d H:i:s"),
                         "USUARIOCREA" => $this->session->userdata('id')
 
@@ -382,9 +386,9 @@ class Cdt_model extends CI_Model
                         $bandera = true;
                     }
                     if($bandera){
-                        $mensaje[0]["mensaje"] = "Datos actualizados";
+                       /* $mensaje[0]["mensaje"] = "Datos actualizados";
                         $mensaje[0]["tipo"] = "success";
-                        echo json_encode($mensaje);
+                        echo json_encode($mensaje);*/
                     }else{
                         $mensaje[0]["mensaje"] = "Error al actualizar los datos. Error Cod(5-obs)";
                         $mensaje[0]["tipo"] = "error";
@@ -404,15 +408,26 @@ class Cdt_model extends CI_Model
                         $bandera = true;
                     }
                     if($bandera){
-                        $mensaje[0]["mensaje"] = "Datos actualizados";
+                        /*$mensaje[0]["mensaje"] = "Datos actualizados";
                         $mensaje[0]["tipo"] = "success";
-                        echo json_encode($mensaje);
+                        echo json_encode($mensaje);*/
                     }else{
                         $mensaje[0]["mensaje"] = "Error al actualizar los datos. Error Cod(6-verif_ac)";
                         $mensaje[0]["tipo"] = "error";
                         echo json_encode($mensaje);
                     }
                 }
+
+                $this->db->where("IDTEMPESTERILIZADOR",$obj[0]);
+                $data = array(
+                    "UMTOMA1" => $obj[9],
+                    "UMTOMA2" => $obj[10],
+                    "UMTOMA3" => $obj[11],
+                    "UMTOMA4" => $obj[12],
+                    "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
+                    "USUARIOEDITA" => $this->session->userdata('id'),
+                );
+                $upd = $this->db->update("ReportesTemperaturas",$data);
             }
         }
     }
@@ -498,6 +513,10 @@ class Cdt_model extends CI_Model
                         "HORATOMA2" => $hra2,
                         "HORATOMA3" => $hra3,
                         "HORATOMA4" => $hra4,
+                        "UMTOMA1" => $obj[9],
+                        "UMTOMA2" => $obj[10],
+                        "UMTOMA3" => $obj[11],
+                        "UMTOMA4" => $obj[12],
                         "OBSERVACIONES" => $obj[7],
                         "VERIFICACION_AC" => $obj[8],
                         "FECHACREA" => gmdate("Y-m-d H:i:s"),
