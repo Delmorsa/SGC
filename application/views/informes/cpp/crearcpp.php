@@ -12,7 +12,7 @@
 				if(!$monit){
 				}else{
 					foreach ($monit as $key) {
-						echo "ISO-HACCP-".$key["SIGLA"]."";
+						echo $version."";
 						echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">
 							</div>';

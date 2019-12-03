@@ -30,7 +30,8 @@ class vec_Controller extends CI_Controller
         $data["areas"] = $this->CNS_model->mostrarAreas();
         $data["maquinas"] = $this->CNS_model->mostrarMaquinas();
         $data["lote"] = $this->CategoriaReporte_model->MostrarLote();
-        
+        $data["version"] = $this->CNS_model->getVersion(12);
+
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/vec/crearVEC',$data);
@@ -47,6 +48,12 @@ class vec_Controller extends CI_Controller
         $data['det'] = $this->Vec_model->getdetVEC($idreporte);
         $data['enc'] = $this->Vec_model->getEncVEC($idreporte);
 
+        $dias = $this->db->query("SELECT DATEDIFF(day, GETDATE(), FECHACREA) AS dias 
+                                    FROM Reportes WHERE IDREPORTE = ".$idreporte);
+
+        if ($dias->result_array()[0]["dias"]<-1) {
+            redirect('reporte_12', 'refresh');
+        }
         //ECHO json_encode($data["det"]);
         $this->load->view('header/header');
         $this->load->view('header/menu');
@@ -60,7 +67,7 @@ class vec_Controller extends CI_Controller
         $data['enc'] = $this->Vec_model->getEncVEC($idreporte);
         $data['det'] = $this->Vec_model->getdetVEC($idreporte);
 
-        echo json_encode($data['enc']);
+        //echo json_encode($data['enc']);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/vec/verVEC',$data);

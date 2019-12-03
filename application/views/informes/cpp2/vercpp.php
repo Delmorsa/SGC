@@ -11,7 +11,7 @@
 			<?php
 				if(!$enc){
 				}else{					
-					echo "ISO-HACCP-".$enc[0]["SIGLA"]."";
+					echo $enc[0]["VERSION"]."";
 					echo '<div class="form-group has-feedback">
 						<input type="hidden" id="idmonitoreo" class="form-control" value="'.$enc[0]["IDMONITOREO"].'">
 					</div>';

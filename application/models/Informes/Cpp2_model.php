@@ -193,10 +193,13 @@ class Cpp2_model extends CI_Model
 
 	public function getEncCPP($idreporte)
 	{
-		$query	= $this->db->query("SELECT t0.*,t1.*,t2.SIGLA,t3.AREA FROM Reportes t0
+		$query	= $this->db->query("SELECT t0.*,t1.*,t2.SIGLA,t3.AREA 
+			,CAST(T4.DESCRIPCION AS CHAR)+'-'+CAST(T4.CONSECUTIVO AS CHAR)+'-'+CAST(T4.VERSION AS CHAR) VERSION
+						FROM Reportes t0
 						inner join Usuarios t1 on t1.IDUSUARIO = t0.IDUSUARIOCREA
 						INNER JOIN Monitoreos t2 ON T2.IDMONITOREO = T0.IDMONITOREO
 						INNER JOIN Areas t3 on t3.IDAREA = t0.IDAREA
+						left join CatVersiones t4 on t4.IDTIPOREPORTE = T0.IDTIPOREPORTE
 						where t0.IDREPORTE = '".$idreporte."'");
 		if ($query->num_rows()>0) {
 			return $query->result_array();

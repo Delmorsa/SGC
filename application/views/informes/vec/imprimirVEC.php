@@ -114,7 +114,7 @@
 				<?php
 				if(!$det){
 					}else{
-						echo "ISO-HACCP-".$enc[0]["SIGLA"]."<br>";
+						echo $enc[0]["VERSION"]."<br>";
 						echo "NO REPORTE: ".$enc[0]["IDREPORTE"]."";
 					}
 				?>

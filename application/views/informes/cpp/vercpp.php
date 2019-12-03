@@ -11,7 +11,7 @@
 			<?php
 				if(!$enc){
 				}else{					
-					echo "ISO-HACCP-".$enc[0]["SIGLA"]."";
+					echo $version."";
 					echo '<div class="form-group has-feedback">
 						<input type="hidden" id="idmonitoreo" class="form-control" value="'.$enc[0]["IDMONITOREO"].'">
 					</div>';
@@ -62,6 +62,27 @@
 								<div class="form-group has-feedback">
 									<label for="">Lote</label>
 									<input disabled="true" autocomplete="off" type="text" id="lote" value = "<?php echo $enc[0]["LOTE"] ?>" class="form-control col-xs-4" >
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
+									<label for="">Peso Gr</label>
+									<input disabled="true" autocomplete="off" type="text" id="lote" value = "<?php echo $enc[0]["PESOGRAMOS"] ?>" class="form-control col-xs-4" >
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
+									<label for="">Funda Largo</label>
+									<input disabled="true" autocomplete="off" type="text" id="lote" value = "<?php echo $enc[0]["FUNDALARGO"] ?>" class="form-control col-xs-4" >
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
+									<label for="">Funda Diametro</label>
+									<input disabled="true" autocomplete="off" type="text" id="lote" value = "<?php echo $enc[0]["FUNDADIAMETRO"] ?>" class="form-control col-xs-4" >
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>

@@ -192,3 +192,9 @@ $route["updateDetalleCdt"] = "Informes/Cdt_controller/updateDetalle";
 $route["editarCdt/(:any)"] = "Informes/Cdt_controller/editarCdt/$1";
 $route["guardarCdt1"] = "Informes/Cdt_controller/guardarCdt1";
 
+
+/*****************reportes****************/
+$route["reportePesoDiametro"] = "Reportes_controller/reportePesoDiametro";
+$route["generarReportePesoDiametro"] = "Reportes_controller/generarReportePesoDiametro";
+$route["GraficaPeso"] = "Reportes_controller/GraficaPeso";
+

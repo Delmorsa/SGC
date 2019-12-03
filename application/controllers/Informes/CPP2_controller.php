@@ -35,6 +35,7 @@ class CPP2_controller extends CI_Controller
 		if ($data["monit"]==null || count($data["monit"])<1){
 			redirect('monitoreos', 'refresh');
 		}
+		$data["version"] = $this->CNS_model->getVersion(16);
 		$data["areas"] = $this->CNS_model->mostrarAreas();
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
@@ -76,6 +77,13 @@ class CPP2_controller extends CI_Controller
 
 	public function editarCPP($id)
 	{
+
+		/*$dias = $this->db->query("SELECT DATEDIFF(day, GETDATE(), FECHACREA) AS dias 
+									FROM Reportes WHERE IDREPORTE = ".$id);
+
+		if ($dias->result_array()[0]["dias"]<-1) {
+			redirect('reporte_16', 'refresh');
+		}*/
 		$data['det'] = $this->Cpp2_model->getdetCPP($id);
 		$data['enc'] = $this->Cpp2_model->getEncCPP($id);
 		$data["areas"] = $this->CNS_model->mostrarAreas();
