@@ -5,7 +5,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
-			REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA (RVPBP)
+			REGISTRO VERIFICACION DE PESO DE BASCULA (RVPBP)
 
 			<a href="<?php echo base_url("index.php/nuevorvpbp")?>" class="pull-right btn btn-primary">
 				Agregar <i class="fa fa-plus"></i>

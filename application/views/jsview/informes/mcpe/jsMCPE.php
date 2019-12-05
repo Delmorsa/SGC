@@ -121,9 +121,10 @@
                 ddlTipo = $("#ddlTipo option:selected").text(),
                 produccion = $("#produccion").val(),
                 fechaVenc = $("#fechaVenc").val(),
-                maquina = $("#ddlMaquina option:selected").text(),
+                maquina = $("#ddlMaquina option:selected").val(),
                 presentacion =  $("#presentacion").val(),
                 unidadpresentacion = $("#textoBtnPresentacion").text(),
+                cant_muestr = $("#CantMues").val(),
                 PV = $("#PV").val(),
                 MS = $("#MS").val(),
                 MC = $("#MC").val(),
@@ -131,7 +132,7 @@
                 operario = $("#operario").val(),
                 Defecto = $("#Defecto").val();
 
-            if(fecha == "" || produccion == "" || ddlprod == "" || ddlTipo == "" || fechaVenc == "" || PV== "" || MS == ""
+            if(fecha == "" || produccion == "" || /*ddlprod == "" ||*/ ddlTipo == "" || fechaVenc == "" || PV== "" || MS == ""
                 || MC == "" || TC == "" || operario == ""){
                 Swal.fire({
                     text: "Todos los campos son requeridos",
@@ -149,6 +150,7 @@
                     maquina,
                     presentacion,
                     unidadpresentacion,
+                    cant_muestr,
                     PV,
                     MS,
                     MC,
@@ -277,11 +279,10 @@
 
     $("#MC,#PV,#MS").on("keyup",function () {
         let  PV = Number($("#PV").val()),
-            MS = Number($("#MS").val()),
-            MC = Number($("#MC").val()),
+            Cantidad_muestra = Number($("#CantMues").val()),
             suma = 0;
-        suma = PV+MS+MC;
-        $("#Defecto").val(suma);
+        suma = (PV/Cantidad_muestra)*100;
+        $("#Defecto").val(suma.toFixed(2));
     });
 
     $("#pesoRegistrado").on("keyup",function () {
@@ -472,9 +473,10 @@
                 detalle[it][9] = data[10];
                 detalle[it][10] = data[11];
                 detalle[it][11] = data[12];
-                detalle[it][12] = maquina;
+                detalle[it][12] = data[6];
                 detalle[it][13] = data[13];
                 detalle[it][14] = data[14];
+                detalle[it][15] = data[15];
                 it++;
             });
             let mensaje='',tipo='';
@@ -482,6 +484,7 @@
                 enc: [$("#idmonitoreo").val(),version,$("#nombreRpt").text(),$("#observaciones").val(),fecha],
                 detalle: JSON.stringify(detalle)
             };
+            console.log(form_data);
             $.ajax({
                 url: "guardarMcpeVerificCaract",
                 type: "POST",

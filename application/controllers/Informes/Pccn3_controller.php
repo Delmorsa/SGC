@@ -31,6 +31,7 @@ class Pccn3_Controller extends CI_Controller
     public function	nuevoPCCN3()
     {
         $data["monit"] = $this->CNS_model->getMonitoreo();
+        $data["version"] = $this->CNS_model->getVersion(9);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/pccn3/crearPCCN3',$data);
@@ -41,6 +42,7 @@ class Pccn3_Controller extends CI_Controller
     public function	editarPccn3($idreporte)
     {
         $data["editar"] = $this->Pccn3_model->editarPccn3($idreporte);
+        $data["version"] = $this->CNS_model->getVersion(9);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/pccn3/editarPCCN3',$data);

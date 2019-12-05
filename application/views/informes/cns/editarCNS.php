@@ -27,15 +27,19 @@
 			
 		</h4>
 		<h4 class="text-center">
+            <?php
+            if(!$version){
+            }else{
+                echo $version;
+            }
+            ?>
 			<?php
 			$siglas = ''; $id = '';
 				if(!$monit){
 				}else{
 					foreach ($monit as $key) {
-						$siglas = $key["SIGLA"];
 						$id = $key["IDREPORTE"];
 					}
-					echo "ISO-HACCP-".$siglas."";
 					echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idreporte" class="form-control" value="'.$id.'">
 							</div>';

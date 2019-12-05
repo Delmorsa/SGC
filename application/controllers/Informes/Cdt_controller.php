@@ -34,6 +34,7 @@ class Cdt_controller extends CI_Controller
         $data["areas"] = $this->Cdt_model->getAreas();
         $data["salas"] = $this->Cdt_model->getSalas();
         $data["lote"] = $this->CategoriaReporte_model->MostrarLote();
+        $data["version"] = $this->CNS_model->getVersion(14);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/cdt/crearCdt',$data);
@@ -47,6 +48,7 @@ class Cdt_controller extends CI_Controller
         $data["areas"] = $this->Cdt_model->getAreas();
         $data["salas"] = $this->Cdt_model->getSalas();
         $data["detalle"] = $this->Cdt_model->editarDetalle($id);
+        $data["version"] = $this->CNS_model->getVersion(14);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/cdt/cdtDetalle',$data);
@@ -60,6 +62,7 @@ class Cdt_controller extends CI_Controller
         $data["areas"] = $this->Cdt_model->getAreas();
         $data["salas"] = $this->Cdt_model->getSalas();
         $data["detalle"] = $this->Cdt_model->editarCdt($id);
+        $data["version"] = $this->CNS_model->getVersion(14);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/cdt/editarCdt',$data);

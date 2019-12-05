@@ -97,6 +97,7 @@
                 maquina = $("#ddlMaquina option:selected").text(),
                 presentacion =  $("#presentacion").val(),
                 unidadpresentacion = $("#textoBtnPresentacion").text(),
+                cant_muestr = $("#CantMues").val(),
                 PV = $("#PV").val(),
                 MS = $("#MS").val(),
                 MC = $("#MC").val(),
@@ -122,6 +123,7 @@
                     maquina,
                     presentacion,
                     unidadpresentacion,
+                    cant_muestr,
                     PV,
                     MS,
                     MC,
@@ -243,6 +245,7 @@
                 detalle[it][12] = maquina;
                 detalle[it][13] = data[13];
                 detalle[it][14] = data[14];
+                detalle[it][15] = data[15];
                 it++;
             });
             let mensaje='',tipo='';
@@ -250,6 +253,7 @@
                 enc: [$("#idreporte").val(),version,$("#observaciones").val(),fecha],
                 detalle: JSON.stringify(detalle)
             };
+            console.log(form_data);
             $.ajax({
                 url: "<?php echo base_url("index.php/actualizarMcpeVerificCaract")?>",
                 type: "POST",

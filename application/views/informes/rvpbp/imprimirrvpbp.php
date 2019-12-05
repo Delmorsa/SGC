@@ -107,7 +107,7 @@
 				<td class="encabezado" colspan="13">Gerencia de Calidad</td>
 			</tr>
 			<tr>
-				<td class="encabezado" colspan="13">REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA<br>
+				<td class="encabezado" colspan="13">REGISTRO VERIFICACION DE PESO DE BASCULA<br>
 				<?php
 				if(!$det){
 					}else{

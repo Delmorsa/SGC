@@ -32,6 +32,7 @@ class Veced_controller extends CI_Controller
 	public function	nuevoVECED()
 	{
 		$data["monit"] = $this->CNS_model->getMonitoreo();
+        $data["version"] = $this->CNS_model->getVersion(8);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/veced/crearVeced',$data);
@@ -42,6 +43,7 @@ class Veced_controller extends CI_Controller
     public function editarVeced($id)
     {
         $data["veced"] = $this->Veced_model->editarVeced($id);
+        $data["version"] = $this->CNS_model->getVersion(8);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/veced/editarVeced',$data);

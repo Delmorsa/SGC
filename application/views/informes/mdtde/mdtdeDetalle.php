@@ -27,11 +27,16 @@ setlocale(LC_ALL,'Spanish_Nicaragua');
         </h4>
         <h4 class="text-center">
             <?php
+            if(!$version){
+            }else{
+                echo $version;
+            }
+            ?>
+            <?php
             if(!$detalle){
                 echo "";
             }else{
                 foreach ($detalle as $key) {
-                    echo "ISO-HACCP-".$key["SIGLA"]."";
                     echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">
 							</div>';
