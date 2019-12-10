@@ -40,5 +40,26 @@ class Reportes_controller extends CI_Controller{
 		$this->Reportes_model->GraficaPeso($lote,$codigo);
 	}
 
+	public function GraficaPesoAceptables()
+	{
+		$lote = $this->input->get_post("lote"); 
+		$codigo = $this->input->get_post("codigo"); 
+		$this->Reportes_model->GraficaPesoAceptables($lote,$codigo);
+	}
+
+	public function GraficaPesoDebajo()
+	{
+		$lote = $this->input->get_post("lote"); 
+		$codigo = $this->input->get_post("codigo"); 
+		$this->Reportes_model->GraficaPesoDebajo($lote,$codigo);
+	}
+
+	public function GraficaPesoArriba()
+	{
+		$lote = $this->input->get_post("lote"); 
+		$codigo = $this->input->get_post("codigo"); 
+		$this->Reportes_model->GraficaPesoArriba($lote,$codigo);
+	}
+
 }
 ?>

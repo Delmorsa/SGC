@@ -197,4 +197,8 @@ $route["guardarCdt1"] = "Informes/Cdt_controller/guardarCdt1";
 $route["reportePesoDiametro"] = "Reportes_controller/reportePesoDiametro";
 $route["generarReportePesoDiametro"] = "Reportes_controller/generarReportePesoDiametro";
 $route["GraficaPeso"] = "Reportes_controller/GraficaPeso";
+$route["GraficaPesoAceptables"] = "Reportes_controller/GraficaPesoAceptables";
+$route["GraficaPesoDebajo"] = "Reportes_controller/GraficaPesoDebajo";
+$route["GraficaPesoArriba"] = "Reportes_controller/GraficaPesoArriba";
+
 

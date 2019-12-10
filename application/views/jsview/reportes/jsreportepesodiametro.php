@@ -133,15 +133,6 @@
 		      ctx.lineTo(xaxis.right, yPixel);
 		      ctx.stroke();
 		    }
-		     
-		    //alert(xaxis.right)
-		    //ctx.strokeStyle = '#FF0000';
-		    //ctx.strokeRect(xaxis.left, yPixel, xaxis.right-36 , (yPixel)*-1);
-		    //alert(xaxis.left+" | "+yPixel+" | "+xaxis.right-36+" | "+(yPixel)*-1)
-		    //ctx.lineTo(xaxis.right-100, yPixel);
-
-		    /*yRangeBegin : peso+(peso*0.03),
-		    yRangeEnd : peso+((peso*0.03)*-1),*/
 		      
 		    ctx.restore();
 
@@ -219,8 +210,172 @@
 					});
 		        }
 		    });	
-		});	
 
+
+		/*******graficas de pie*/////////////
+			var ctxAceptables = document.getElementById("canvasAceptables");
+			$.ajax({
+		        url: <?php echo "'".base_url('index.php/GraficaPesoAceptables')."'"?>,
+		        type: 'post',
+		        dataType: 'json',
+		        data: {
+		        	"lote" :  $('#idlote').val(),
+                	"codigo": $('#codigo').val()
+		        },
+		        success: function (msg) {
+		        nombre='peso';
+		        peso = 0;
+		        codigo = '';
+				paramNombres = [];
+				paramDatos = [];
+				let aceptables = 0;
+
+				$.each(msg, function(i,item){
+					peso = parseFloat(item["PESOGRAMOS"]);
+					codigo = 'Productos Aceptables';
+					paramDatos.push(parseFloat(item["PORCENTAJE"]));
+					aceptables = parseFloat(item["PORCENTAJE"]);
+				});
+				paramDatos.push(100-aceptables);
+				    var myChart = new Chart(ctxAceptables, {
+					    type: 'pie',
+					    label:'Pesos',
+					    data: {
+					        labels: ['Productos Aceptables '+(aceptables).toString()+'%',['Otros '+(100-aceptables).toString()+'%']],//['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
+					        datasets: [{
+					            label: codigo,
+					            data: paramDatos,
+					            backgroundColor: [
+						        'rgba(51, 204, 51, 1)',
+						        'rgba(54, 162, 235, 0.2)'
+						      ],
+						      borderColor: [
+						        'rgba(61,99,56,1)',
+						        'rgba(54, 162, 235, 1)'
+						        
+						      ],
+						      borderWidth: 1
+					        }]
+					    },
+					    options: {
+						   	cutoutPercentage: 40,
+						    responsive: false,
+
+						  }
+					});
+		        }
+		    });	
+
+		    /*******grafica pie por debajo de rango********/
+		    var ctcDebajo = document.getElementById("canvasDebajo");
+			$.ajax({
+		        url: <?php echo "'".base_url('index.php/GraficaPesoDebajo')."'"?>,
+		        type: 'post',
+		        dataType: 'json',
+		        data: {
+		        	"lote" :  $('#idlote').val(),
+                	"codigo": $('#codigo').val()
+		        },
+		        success: function (msg) {
+		        nombre='peso';
+		        peso = 0;
+		        codigo = '';
+				paramNombres = [];
+				paramDatos = [];
+				let aceptables = 0;
+
+				$.each(msg, function(i,item){
+					peso = parseFloat(item["PESOGRAMOS"]);
+					codigo = 'Productos Aceptables';
+					paramDatos.push(parseFloat(item["PORCENTAJE"]));
+					aceptables = parseFloat(item["PORCENTAJE"]);
+				});
+				paramDatos.push(100-aceptables);
+				    var myChart = new Chart(ctcDebajo, {
+					    type: 'pie',
+					    label:'Pesos',
+					    data: {
+					        labels: ['Por Debajo del Rango '+(aceptables).toString()+'%',['Otros'+(100-aceptables).toString()+'%']],//['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
+					        datasets: [{
+					            label: codigo,
+					            data: paramDatos,
+					            backgroundColor: [
+						        'rgba(255, 0, 0, 1)',
+						        'rgba(54, 162, 235, 0.2)'
+						      ],
+						      borderColor: [
+						        'rgba(61,99,56,1)',
+						        'rgba(54, 162, 235, 1)'
+						        
+						      ],
+						      borderWidth: 1
+					        }]
+					    },
+					    options: {
+						   	cutoutPercentage: 40,
+						    responsive: false,
+
+						  }
+					});
+		        }
+		    });	
+
+		    /*******grafica pie por debajo de rango********/
+		    var ctxArriba = document.getElementById("canvasEncima");
+			$.ajax({
+		        url: <?php echo "'".base_url('index.php/GraficaPesoArriba')."'"?>,
+		        type: 'post',
+		        dataType: 'json',
+		        data: {
+		        	"lote" :  $('#idlote').val(),
+                	"codigo": $('#codigo').val()
+		        },
+		        success: function (msg) {
+		        nombre='peso';
+		        peso = 0;
+		        codigo = '';
+				paramNombres = [];
+				paramDatos = [];
+				let aceptables = 0;
+
+				$.each(msg, function(i,item){
+					peso = parseFloat(item["PESOGRAMOS"]);
+					codigo = 'Productos Aceptables';
+					paramDatos.push(parseFloat(item["PORCENTAJE"]));
+					aceptables = parseFloat(item["PORCENTAJE"]);
+				});
+				paramDatos.push(100-aceptables);
+				    var myChart = new Chart(ctxArriba, {
+					    type: 'pie',
+					    label:'Pesos',
+					    data: {
+					        labels: ['Por Encima del Rango '+(aceptables).toString()+'%',['Otros'+(100-aceptables).toString()+'%']],//['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
+					        datasets: [{
+					            label: codigo,
+					            data: paramDatos,
+					            backgroundColor: [
+						        'rgba(255, 0, 0, 1)',
+						        'rgba(54, 162, 235, 0.2)'
+						      ],
+						      borderColor: [
+						        'rgba(61,99,56,1)',
+						        'rgba(54, 162, 235, 1)'
+						        
+						      ],
+						      borderWidth: 1
+					        }]
+					    },
+					    options: {
+						   	cutoutPercentage: 40,
+						    responsive: false,
+
+						  }
+					});
+		        }
+		    });	
+
+
+		});				
 	});
 
 	
