@@ -303,10 +303,22 @@
                                                 </thead>
                                                 <tbody class="text-center">
                                                 <?php
-                                                $tipo = '';
+                                                $tipo = ''; $unidadPeso= '';
                                                 if(!$monit){
                                                 }else{
                                                     foreach ($monit as $key) {
+                                                        switch ($key["UNIDADPRESENTACION"])
+                                                        {
+                                                            case "Gramos":
+                                                                $unidadPeso = "gr";
+                                                                break;
+                                                            case "Libras":
+                                                                $unidadPeso = "lbs";
+                                                                break;
+                                                            case "KG":
+                                                                $unidadPeso = "kg";
+                                                                break;
+                                                        }
                                                         if($key["VACIO"] == 1){
                                                             $tipo = "Vacio";
                                                         }else if($key["GRANEL"] == 1){
@@ -322,7 +334,7 @@
                                                                 <th>".date_format(new DateTime($key["FECHAVENCIMIENTO"]),"Y-m-d")."</th>
                                                                 <th>".$key["MAQUINA"]." (".$key["SIGLAS"].")</th>
                                                                 <th>".number_format($key["PRESENTACION"],0)."</th>
-                                                                <th>".$key["UNIDADPRESENTACION"]."</th>
+                                                                <th>".$unidadPeso."</th>
                                                                 <th>".number_format($key["CANTIDAD_MUESTRA"],0)."</th>
                                                                 <th>".number_format($key["PV"],0)."</th>
                                                                 <th>".number_format($key["MS"],0)."</th>
