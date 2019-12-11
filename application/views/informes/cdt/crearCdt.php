@@ -17,6 +17,12 @@
         </h4>
         <h4 class="text-center">
             <?php
+            if(!$version){
+            }else{
+                echo "".$version."";
+            }
+            ?>
+            <?php
             if(!$monit){
                 echo "
                 <h5 class='text-center text-danger text-bold'>
@@ -25,7 +31,6 @@
                 </h5>";
             }else{
                 foreach ($monit as $key) {
-                    echo "ISO-HACCP-".$key["SIGLA"]."";
                     echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">
 							</div>';
@@ -185,29 +190,76 @@
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">6:00 a.m</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="toma1" class="form-control">
-                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span id="textoBtnUM1">°c</span>
+                                                <span class="fa fa-caret-down"></span></button>
+                                            <ul class="dropdown-menu" id="UMT1">
+                                                <li><a href="javascript:void(0)">°c</a></li>
+                                                <li><a href="javascript:void(0)">°f</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                        <input autofocus="" autocomplete="off" type="text" id="toma1" class="form-control">
+                                        <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
-                                    <label for="">8:00 a.m</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="toma2" class="form-control">
-                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    <label for="">8:00 a.m</label><div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span id="textoBtnUM2">°c</span>
+                                                <span class="fa fa-caret-down"></span></button>
+                                            <ul class="dropdown-menu" id="UMT2">
+                                                <li><a href="javascript:void(0)">°c</a></li>
+                                                <li><a href="javascript:void(0)">°f</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                        <input autofocus="" autocomplete="off" type="text" id="toma2" class="form-control">
+                                        <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">11:00 a.m</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="toma3" class="form-control">
-                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span id="textoBtnUM3">°c</span>
+                                                <span class="fa fa-caret-down"></span></button>
+                                            <ul class="dropdown-menu" id="UMT3">
+                                                <li><a href="javascript:void(0)">°c</a></li>
+                                                <li><a href="javascript:void(0)">°f</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                        <input autofocus="" autocomplete="off" type="text" id="toma3" class="form-control">
+                                        <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">3:00 p.m</label>
-                                    <input autofocus="" autocomplete="off" type="text" id="toma4" class="form-control">
-                                    <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span id="textoBtnUM4">°c</span>
+                                                <span class="fa fa-caret-down"></span></button>
+                                            <ul class="dropdown-menu" id="UMT4">
+                                                <li><a href="javascript:void(0)">°c</a></li>
+                                                <li><a href="javascript:void(0)">°f</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                        <input autofocus="" autocomplete="off" type="text" id="toma4" class="form-control">
+                                        <span class="fa fa-file-text-o form-control-feedback"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

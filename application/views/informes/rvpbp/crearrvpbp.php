@@ -5,7 +5,7 @@
 			INDUSTRIAS DELMOR, S.A.
 		</h3>
 		<h4 class="text-center">
-			<span id="nombreRpt">REGISTRO VERIFICACION DE PESO DE BASCULA DE PREMEZCLA</span>
+			<span id="nombreRpt">REGISTRO VERIFICACION DE PESO DE BASCULA</span>
 		</h4>
 		<h4 class="text-center">
 			<?php

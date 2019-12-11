@@ -32,6 +32,7 @@ class CNS_controller extends CI_Controller
 	{
 		$data["monit"] = $this->CNS_model->getMonitoreo();
 		$data["areas"] = $this->CNS_model->mostrarAreas();
+        $data["version"] = $this->CNS_model->getVersion(6);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cns/crearCNS',$data);
@@ -43,6 +44,7 @@ class CNS_controller extends CI_Controller
 	{
 		$data["monit"] = $this->CNS_model->editarCNS($id);
 		$data["areas"] = $this->CNS_model->mostrarAreas();
+        $data["version"] = $this->CNS_model->getVersion(6);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cns/editarCNS',$data);

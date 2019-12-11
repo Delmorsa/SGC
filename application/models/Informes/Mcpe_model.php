@@ -158,13 +158,14 @@ class Mcpe_model extends CI_Model
                         "FECHAVENCIMIENTO" => $obj[5],
                         "PRESENTACION" => $obj[6],
                         "UNIDADPRESENTACION" => $obj[7],
-                        "PV" => $obj[8],
-                        "MS" => $obj[9],
-                        "MC" => $obj[10],
-                        "TC" => $obj[11],
+                        "CANTIDAD_MUESTRA" => $obj[8],
+                        "PV" => $obj[9],
+                        "MS" => $obj[10],
+                        "MC" => $obj[11],
+                        "TC" => $obj[13],
                         "IDMAQUINA" => $obj[12],
-                        "OPERARIO" => $obj[13],
-                        "DEFECTO" => $obj[14],
+                        "OPERARIO" => $obj[14],
+                        "DEFECTO" => $obj[15],
                         "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
                         "IDUSUARIOCREA" => $this->session->userdata('id')
                     );
@@ -296,7 +297,7 @@ class Mcpe_model extends CI_Model
                 $json[$i]["MC"] = number_format($key["MC"],0);
                 $json[$i]["TC"] = number_format($key["TC"],0);
                 $json[$i]["OPERARIO"] = $key["OPERARIO"];
-                $json[$i]["DEFECTO"] = number_format($key["DEFECTO"],0);
+                $json[$i]["DEFECTO"] = number_format($key["DEFECTO"],2);
                 $i++;
             }
             echo json_encode($json);
@@ -472,13 +473,14 @@ class Mcpe_model extends CI_Model
                             "FECHAVENCIMIENTO" => $obj[5],
                             "PRESENTACION" => $obj[6],
                             "UNIDADPRESENTACION" => $obj[7],
-                            "PV" => $obj[8],
-                            "MS" => $obj[9],
-                            "MC" => $obj[10],
-                            "TC" => $obj[11],
+                            "CANTIDAD_MUESTRA" => $obj[8],
+                            "PV" => $obj[9],
+                            "MS" => $obj[10],
+                            "MC" => $obj[11],
+                            "TC" => $obj[13],
                             "IDMAQUINA" => $obj[12],
-                            "OPERARIO" => $obj[13],
-                            "DEFECTO" => $obj[14],
+                            "OPERARIO" => $obj[14],
+                            "DEFECTO" => $obj[15],
                             "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
                             "IDUSUARIOCREA" => $this->session->userdata('id')
                         );

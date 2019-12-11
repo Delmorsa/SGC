@@ -124,6 +124,19 @@
         });
     });
 
+    $("#UMT1").children("li").click(function () {
+        $("#textoBtnUM1").text($(this).text());
+    });
+    $("#UMT2").children("li").click(function () {
+        $("#textoBtnUM2").text($(this).text());
+    });
+    $("#UMT3").children("li").click(function () {
+        $("#textoBtnUM3").text($(this).text());
+    });
+    $("#UMT4").children("li").click(function () {
+        $("#textoBtnUM4").text($(this).text());
+    });
+
     $("#btnGuardar").click(function () {
         Swal.fire({
             text: "¿Estas seguro que todos los datos están correctos?",
@@ -158,6 +171,10 @@
                     }else{
                         let mensaje = '', tipo = '', table = $("#tblcrear").DataTable();
                         let detalle = new Array(), i = 0;
+                        let umtoma1 = '',
+                            umtoma2 = '',
+                            umtoma3 = '',
+                            umtoma4 = '';
 
                         table.rows().eq(0).each(function(i, index){
                             let row = table.row(index);
@@ -172,6 +189,22 @@
                             detalle[i][6] = $("#Hora").val();
                             detalle[i][7] = data[8];
                             detalle[i][8] = data[9];
+                            if(data[4] != 0){
+                                umtoma1 =  $("#textoBtnUM1").text();
+                            }
+                            if(data[5] != 0){
+                                umtoma2 = $("#textoBtnUM2").text();
+                            }
+                            if(data[6] != 0){
+                                umtoma3 = $("#textoBtnUM3").text();
+                            }
+                            if(data[7] != 0){
+                                umtoma4 = $("#textoBtnUM4").text();
+                            }
+                            detalle[i][9] = umtoma1;
+                            detalle[i][10] = umtoma2;
+                            detalle[i][11] = umtoma3;
+                            detalle[i][12] = umtoma4;
                             i++;
                         });
 

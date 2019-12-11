@@ -33,6 +33,7 @@ class Mcpe_controller extends CI_Controller
     {
         $data["monit"] = $this->CNS_model->getMonitoreo();
         $data["maq"] = $this->Mcpe_model->getMaquinas();
+        $data["version"] = $this->CNS_model->getVersion(4);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/mcpe/crearMcpe',$data);
@@ -43,6 +44,7 @@ class Mcpe_controller extends CI_Controller
     public function editarMcpePeso($idreporte)
     {
         $data["monit"] = $this->Mcpe_model->getMcpePesoBasculaById($idreporte);
+        $data["version"] = $this->CNS_model->getVersion(4);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/mcpe/editarMcpePeso',$data);
@@ -54,6 +56,7 @@ class Mcpe_controller extends CI_Controller
     {
         $data["monit"] = $this->Mcpe_model->getMcpeCaractCalidadById($idreporte);
         $data["maq"] = $this->Mcpe_model->getMaquinas();
+        $data["version"] = $this->CNS_model->getVersion(4);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/mcpe/editarMcpeCaract',$data);

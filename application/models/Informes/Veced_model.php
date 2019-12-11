@@ -172,7 +172,7 @@ class Veced_model extends CI_Model
 
         date_default_timezone_set("America/Managua");
         $mensaje = array();
-        $this->db->where("IDREPORTE");
+        $this->db->where("IDREPORTE",$enc[0]);
             $encabezado = array(
                 "IDREPORTE" => $enc[0],
                 "IDMONITOREO" => $enc[1],

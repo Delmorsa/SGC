@@ -43,7 +43,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs nav-tabs-justified">
-                                    <li class="active"><a class="" href="#settings" data-toggle="tab">Información personal</a></li>
+                                    <li class="active"><a class="" href="#settings" data-toggle="tab">Caracteristicas de calidad</a></li>
                                     <li><a href="#ChangePass" data-toggle="tab">Verificacion de peso de baculas</a></li>
                                 </ul>
                                 <div class="tab-content">
