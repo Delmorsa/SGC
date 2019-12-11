@@ -27,7 +27,7 @@
                         <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                             <div class="form-group has-feedback">
                                 <label for="version">Lote</label>
-                                <input autocomplete="off" type="text" id="idlote" value="454-2" class="form-control" placeholder="Lote">
+                                <input autocomplete="off" type="text" id="idlote" value="" class="form-control" placeholder="Lote">
                                 <span class="fa fa-code-fork form-control-feedback"></span>
                             </div>
                         </div>                        
@@ -76,30 +76,27 @@
 		</div>
 		<div class="row">
 			<div style="width:100%;">
-				<canvas id="canvas"></canvas>
+				<canvas  id="canvas"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<div style="width:100%;">
+				<canvas style="width:100%;" id="canvasAceptables"></canvas>
+			</div>
+			</div>
+			<div class="col-lg-4">
+				<div style="width:100%;">
+				<canvas style="width:100%;" id="canvasDebajo"></canvas>
+			</div>
+			</div>
+			<div class="col-lg-4">
+				<div style="width:100%;">
+				<canvas style="width:100%;" id="canvasEncima"></canvas>
+			</div>
 			</div>
 		</div>
 	</section>
 
 	
-</div>
-
-
-<div class="modal fade" id="modalRoles" data-backdrop="static">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title"><i class="fa fa-users"></i> <span id="modalEncabezado"></span></h4>
-			</div>
-			<div class="modal-body text-center">
-				<h4>¿Desea Crear Consecutivo de Monitero?</h4>
-			</div>
-			<div class="modal-footer">
-				<button id="btnGuardar" type="button" class="btn btn-primary">Si</button>
-        		<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>				
-			</div>
-		</div>
-	</div>
 </div>
