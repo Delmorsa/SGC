@@ -159,14 +159,14 @@
                     Defecto
                 ]).draw(false);
                 //$("#ddlAreas").val("").trigger("change");
-                $("#produccion").val("");
+                /*$("#produccion").val("");
                 $("#fechaVenc").val("");
                 $("#PV").val("");
                 $("#MS").val("");
                 $("#MC").val("");
                 $("#TC").val("");
                 $("#operario").val("");
-                $("#Defecto").val("");
+                $("#Defecto").val("");*/
             }
             counter++;
         });
@@ -250,10 +250,10 @@
                     Diferencia
                 ]).draw(false);
                 //$("#ddlAreas").val("").trigger("change");
-                $("#Codigo1").val("");
+                /*$("#Codigo1").val("");
                 $("#pesoMasaUtil").val("");
                 $("#pesoRegistrado").val("");
-                $("#Diferencia").val("");
+                $("#Diferencia").val("");*/
             }
             counter1++;
         });

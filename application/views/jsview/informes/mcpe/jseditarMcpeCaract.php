@@ -132,14 +132,14 @@
                     Defecto
                 ]).draw(false);
                 //$("#ddlAreas").val("").trigger("change");
-                $("#produccion").val("");
+               /* $("#produccion").val("");
                 $("#fechaVenc").val("");
                 $("#PV").val("");
                 $("#MS").val("");
                 $("#MC").val("");
                 $("#TC").val("");
                 $("#operario").val("");
-                $("#Defecto").val("");
+                $("#Defecto").val("");*/
             }
             counter++;
         });

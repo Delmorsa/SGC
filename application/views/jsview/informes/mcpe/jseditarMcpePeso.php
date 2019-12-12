@@ -114,10 +114,10 @@
                     Diferencia
                 ]).draw(false);
                 //$("#ddlAreas").val("").trigger("change");
-                $("#Codigo1").val("");
+               /* $("#Codigo1").val("");
                 $("#pesoMasaUtil").val("");
                 $("#pesoRegistrado").val("");
-                $("#Diferencia").val("");
+                $("#Diferencia").val("");*/
             }
             counter++;
         });
