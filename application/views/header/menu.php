@@ -290,10 +290,10 @@
 					<ul class="treeview-menu">
 						<li>
 							<a href="<?php echo base_url("index.php/reportePesoDiametro")?>">
-								<i class="fa fa-circle-o text-warning"></i> Estudio de peso y Diametro</a>
+								<i class="fa fa-circle-o text-warning"></i> Reporte Estudio de peso y Diametro</a>
 						</li>						
 					</ul>
-				</li>
+				</li>				
 				<!--<li>
 				<a href="../calendar.html">
 						<i class="fa fa-folder"></i> <span>Calendar</span>

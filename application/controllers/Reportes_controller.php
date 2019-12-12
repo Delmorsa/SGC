@@ -37,28 +37,32 @@ class Reportes_controller extends CI_Controller{
 	{
 		$lote = $this->input->get_post("lote"); 
 		$codigo = $this->input->get_post("codigo"); 
-		$this->Reportes_model->GraficaPeso($lote,$codigo);
+		$tipo = $this->input->get_post("tipo");
+		$this->Reportes_model->GraficaPeso($lote,$codigo,$tipo);
 	}
 
 	public function GraficaPesoAceptables()
 	{
 		$lote = $this->input->get_post("lote"); 
 		$codigo = $this->input->get_post("codigo"); 
-		$this->Reportes_model->GraficaPesoAceptables($lote,$codigo);
+		$tipo = $this->input->get_post("tipo");
+		$this->Reportes_model->GraficaPesoAceptables($lote,$codigo,$tipo);
 	}
 
 	public function GraficaPesoDebajo()
 	{
 		$lote = $this->input->get_post("lote"); 
 		$codigo = $this->input->get_post("codigo"); 
-		$this->Reportes_model->GraficaPesoDebajo($lote,$codigo);
+		$tipo = $this->input->get_post("tipo");
+		$this->Reportes_model->GraficaPesoDebajo($lote,$codigo,$tipo);
 	}
 
 	public function GraficaPesoArriba()
 	{
 		$lote = $this->input->get_post("lote"); 
 		$codigo = $this->input->get_post("codigo"); 
-		$this->Reportes_model->GraficaPesoArriba($lote,$codigo);
+		$tipo = $this->input->get_post("tipo");
+		$this->Reportes_model->GraficaPesoArriba($lote,$codigo,$tipo);
 	}
 
 }

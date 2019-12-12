@@ -37,6 +37,15 @@
 	                            <select class="js-data-example-ajax form-control" id="codigo"></select>
 	                      	</div>                      	
                     	</div>
+                    	<div class="col-xs-4 col-sm-6 col-md-6 col-lg-4">
+                        	<div class="form-group has-feedback">
+	                            <label>Tipo</label><br>
+	                            <select id="tipoReporte" class="form-control">
+								  <option value="1">Peso</option>
+								  <option value="2">Diametro</option>								  
+								</select>
+	                      	</div>                      	
+                    	</div>
                     	<div class="col-xs-4 col-sm-6 col-md-6 col-lg-2">
                     		<div class="form-group has-feedback">
 		                      	<button class="pull-right btn btn-primary" id="btnFiltrar">

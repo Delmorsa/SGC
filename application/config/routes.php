@@ -201,4 +201,5 @@ $route["GraficaPesoAceptables"] = "Reportes_controller/GraficaPesoAceptables";
 $route["GraficaPesoDebajo"] = "Reportes_controller/GraficaPesoDebajo";
 $route["GraficaPesoArriba"] = "Reportes_controller/GraficaPesoArriba";
 
+$route["generarReportePesoDiametro2"] = "Reportes_controller/generarReportePesoDiametro2";
 

@@ -51,93 +51,99 @@
 
 
 		$('#btnFiltrar').click(function(){
-			let table = $("#tabla").DataTable({
-            "ajax": {
-                "url": "<?php echo base_url("index.php/generarReportePesoDiametro")?>",
-                "type": "POST",
-                "data": {
-                	"lote" :  $('#idlote').val(),
-                	"codigo": $('#codigo').val()
-                }
-            },		
-            "orderMulti": false,
-            "info": false,
-            "sort": true,
-            "destroy": true,
-            "responsive": true,
-            "searching": true,
-            "paging": false,
-            "order": [
-                [0, "desc"]
-            ],
-            "language": {
-                "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "Registro 0 a 0 de 0 entradas",
-                "zeroRecords": "No se encontro coincidencia",
-                "infoFiltered": "(filtrado de _MAX_ registros en total)",
-                "emptyTable": "NO HAY DATOS DISPONIBLES",
-                "lengthMenu": '_MENU_ ',
-                "search": 'Buscar:',
-                "loadingRecords": "",
-                "processing": "Procesando datos...",
-                "paginate": {
-                    "first": "Primera",
-                    "last": "Última ",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            },
-            "columns": [
-                {"data": "CODIGOPRODUCTO"},
-				{"data": "NOMBREPRODUCTO"},
-				{"data": "LOTE"},
-				{"data": "DIAMETRO_UTILIZADO"},
-				{"data": "DIAMETRO_ESPERADO"},
-				{"data": "FUNDADIAMETRO"},
-				{"data": "FUNDALARGO"},
-				{"data": "PESO_ESPERADO"},
-				{"data": "PESO_PROMEDIO"},
-				{"data": "VARIABILIDAD_3"},
-				{"data": "MAQUINA"},
-				{"data": "TAMANO_MUESTRA"},
-				{"data": "PESOEXACTO"},
-				{"data": "DEBAJO_LIMITE"},
-				{"data": "ENCIMA_LIMITE"},
-				{"data": "EN_RANGO"}
-            ]           
-        	}); 
+			let tipo = $("#tipoReporte option:selected").val();
+			let url2 ='';
+
+			
+			if (tipo == 1) {
+				let table = $("#tabla").DataTable({
+	            "ajax": {
+	                "url": "<?php echo base_url("index.php/generarReportePesoDiametro")?>",
+	                "type": "POST",
+	                "data": {
+	                	"lote" :  $('#idlote').val(),
+	                	"codigo": $('#codigo').val()                	
+	                }
+	            },		
+	            "orderMulti": false,
+	            "info": false,
+	            "sort": true,
+	            "destroy": true,
+	            "responsive": true,
+	            "searching": true,
+	            "paging": false,
+	            "order": [
+	                [0, "desc"]
+	            ],
+	            "language": {
+	                "info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+	                "infoEmpty": "Registro 0 a 0 de 0 entradas",
+	                "zeroRecords": "No se encontro coincidencia",
+	                "infoFiltered": "(filtrado de _MAX_ registros en total)",
+	                "emptyTable": "NO HAY DATOS DISPONIBLES",
+	                "lengthMenu": '_MENU_ ',
+	                "search": 'Buscar:',
+	                "loadingRecords": "",
+	                "processing": "Procesando datos...",
+	                "paginate": {
+	                    "first": "Primera",
+	                    "last": "Última ",
+	                    "next": "Siguiente",
+	                    "previous": "Anterior"
+	                }
+	            },
+	            "columns": [
+	                {"data": "CODIGOPRODUCTO"},
+					{"data": "NOMBREPRODUCTO"},
+					{"data": "LOTE"},
+					{"data": "DIAMETRO_UTILIZADO"},
+					{"data": "DIAMETRO_ESPERADO"},
+					{"data": "FUNDADIAMETRO"},
+					{"data": "FUNDALARGO"},
+					{"data": "PESO_ESPERADO"},
+					{"data": "PESO_PROMEDIO"},
+					{"data": "VARIABILIDAD_3"},
+					{"data": "MAQUINA"},
+					{"data": "TAMANO_MUESTRA"},
+					{"data": "PESOEXACTO"},
+					{"data": "DEBAJO_LIMITE"},
+					{"data": "ENCIMA_LIMITE"},
+					{"data": "EN_RANGO"}
+	            ]           
+	        	}); 
+			}
 
         	var ctx = document.getElementById("canvas");
 
 		var lineSuperDraw = Chart.controllers.line.prototype.draw;
 		Chart.helpers.extend(Chart.controllers.line.prototype, {
-		  draw : function() {
-		    var chart = this.chart;
-		    var ctx = chart.chart.ctx;
+			  draw : function() {
+			    var chart = this.chart;
+			    var ctx = chart.chart.ctx;
 
-		    var yRangeBegin = chart.config.data.yRangeBegin;
-		    var yRangeEnd = chart.config.data.yRangeEnd;
+			    var yRangeBegin = chart.config.data.yRangeBegin;
+			    var yRangeEnd = chart.config.data.yRangeEnd;
 
-		    var xaxis = chart.scales['x-axis-0'];
-		    var yaxis = chart.scales['y-axis-0'];
+			    var xaxis = chart.scales['x-axis-0'];
+			    var yaxis = chart.scales['y-axis-0'];
 
-		    var yRangeBeginPixel = yaxis.getPixelForValue(yRangeBegin);
-		    var yRangeEndPixel = yaxis.getPixelForValue(yRangeEnd);
+			    var yRangeBeginPixel = yaxis.getPixelForValue(yRangeBegin);
+			    var yRangeEndPixel = yaxis.getPixelForValue(yRangeEnd);
 
-		    ctx.save();
+			    ctx.save();
 
-		    for (var yPixel = Math.min(yRangeBeginPixel, yRangeEndPixel); yPixel <= Math.max(yRangeBeginPixel, yRangeEndPixel); ++yPixel) {
-		      ctx.beginPath();
-		      ctx.moveTo(xaxis.left, yPixel);
-		      ctx.strokeStyle = '#52b325';
-		      ctx.lineTo(xaxis.right, yPixel);
-		      ctx.stroke();
-		    }
-		      
-		    ctx.restore();
+			    for (var yPixel = Math.min(yRangeBeginPixel, yRangeEndPixel); yPixel <= Math.max(yRangeBeginPixel, yRangeEndPixel); ++yPixel) {
+			      ctx.beginPath();
+			      ctx.moveTo(xaxis.left, yPixel);
+			      ctx.strokeStyle = '#52b325';
+			      ctx.lineTo(xaxis.right, yPixel);
+			      ctx.stroke();
+			    }
+			      
+			    ctx.restore();
 
-		    lineSuperDraw.apply(this, arguments);
-		  }
+			    lineSuperDraw.apply(this, arguments);
+			  }
 		});
 
 		$.ajax({
@@ -146,7 +152,8 @@
 		        dataType: 'json',
 		        data: {
 		        	"lote" :  $('#idlote').val(),
-                	"codigo": $('#codigo').val()
+                	"codigo": $('#codigo').val(),
+                	"tipo": tipo
 		        },
 		        success: function (msg) {
 		        nombre='peso';
@@ -171,13 +178,21 @@
 						}
 				$.each(msg, function(i,item){						
 					//paramNombres.push(item["NOMBREVENDEDOR"]);
-					peso = parseFloat(item["PESOGRAMOS"])
+
+					peso = parseFloat(item["PESOGRAMOS"]);					
 					codigo = item["DESCRIPCION"]
 					paramDatos.push(parseFloat(item["PESOBASCULA"]));
 					bgColor.push('rgba('+r+','+g+','+b+', 0.8)');
 					bgBorder.push('rgba('+r+','+g+','+b+', 1)');
 				});
-				//var ctx2 = $("#myChart2");
+				let arriba = 0, abajo = 0;
+				if (tipo == 1) {
+					arriba =  peso+(peso*0.03);
+					abajo = peso+((peso*0.03)*-1);
+				}else{
+					arriba = peso+0.2;
+					abajo = peso+(-0.2)
+				}
 				    var myChart = new Chart(ctx, {
 					    type: 'line',
 					    label:'prueba',
@@ -188,8 +203,8 @@
 					            data: paramDatos,
 					            backgroundColor: 'rgba(255,0,0,0.0)'					            
 					        }],
-						    yRangeBegin : peso+(peso*0.03),
-						    yRangeEnd : peso+((peso*0.03)*-1),
+						    yRangeBegin : arriba,//peso+(peso*0.03),
+						    yRangeEnd : abajo,//peso+((peso*0.03)*-1),
 						    borderColor: 'rgba(0, 100, 200, 0.2)',
 					    },
 					    options: {
@@ -220,7 +235,8 @@
 		        dataType: 'json',
 		        data: {
 		        	"lote" :  $('#idlote').val(),
-                	"codigo": $('#codigo').val()
+                	"codigo": $('#codigo').val(),
+                	"tipo": tipo
 		        },
 		        success: function (msg) {
 		        nombre='peso';
@@ -274,7 +290,8 @@
 		        dataType: 'json',
 		        data: {
 		        	"lote" :  $('#idlote').val(),
-                	"codigo": $('#codigo').val()
+                	"codigo": $('#codigo').val(),
+                	"tipo": tipo
 		        },
 		        success: function (msg) {
 		        nombre='peso';
@@ -328,7 +345,8 @@
 		        dataType: 'json',
 		        data: {
 		        	"lote" :  $('#idlote').val(),
-                	"codigo": $('#codigo').val()
+                	"codigo": $('#codigo').val(),
+                	"tipo": tipo
 		        },
 		        success: function (msg) {
 		        nombre='peso';

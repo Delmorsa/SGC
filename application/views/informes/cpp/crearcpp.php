@@ -153,10 +153,10 @@
 
 					<div class="row">
 						<div class="col-xs-12">							
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" style="display: none;">
 								<div class="form-group has-feedback">
 									<label for="">Tamaño Muestra</label>
-									<select id="cmbTamaño" class="form-control select2" style="width: 100%;">
+									<select id="cmbTamaño" class="form-control select2" >
 										<option></option>
 										<?php 
 											if(!$niveles){
@@ -171,7 +171,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-3">
+							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-3" style="display: none;">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Nivel Inspeccion</label>
 									<select id="cmdNivel" class="form-control select2" style="width: 100%;">
@@ -182,7 +182,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" style="display: none;">
 								<div class="form-check">
 								  <input class="form-check-input" type="checkbox" value="" id="chkEspecial">
 								  <label class="form-check-label" for="chkEspecial">
@@ -190,7 +190,7 @@
 								  </label>
 								</div>
 							</div>							
-							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-3 especial invisible">
+							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-3 especial invisible" style="display: none;">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Nivel Inspeccion Especial</label>
 									<select id="cmdNivel2" class="form-control select2" style="width: 100%;">
@@ -205,7 +205,7 @@
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Muestra</label>
-									<input readonly="true" autocomplete="off" type="text" id="muestra" class="form-control">
+									<input autocomplete="off" type="text" id="muestra" class="form-control">
 									<span class="fa fa-truck form-control-feedback"></span>
 								</div>
 							</div>
