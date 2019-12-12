@@ -68,8 +68,10 @@
                                             }
                                             if($key["IDEMPRESA"] == 1){
                                                 $empresa = "DELMOR";
-                                            }else{
+                                            }else if($key["IDEMPRESA"] == 2){
                                                 $empresa = "D´lago";
+                                            }else{
+                                                $empresa = "Panamá";
                                             }
                                             echo "
                                                   <tr>

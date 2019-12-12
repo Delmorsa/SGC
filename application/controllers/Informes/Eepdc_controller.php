@@ -32,6 +32,7 @@ class Eepdc_controller extends CI_Controller
     {
         $data["monit"] = $this->CNS_model->getMonitoreo();
         $data["areas"] = $this->Eepdc_model->getAreas();
+        $data["version"] = $this->CNS_model->getVersion(11);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/eepdc/crearEepdc',$data);
@@ -43,6 +44,7 @@ class Eepdc_controller extends CI_Controller
     {
         $data["monit"] = $this->Eepdc_model->getEepdcByID($idreporte);
         $data["areas"] = $this->Eepdc_model->getAreas();
+        $data["version"] = $this->CNS_model->getVersion(11);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/eepdc/editarEepdc',$data);

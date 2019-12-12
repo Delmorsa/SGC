@@ -32,11 +32,16 @@
         </h4>
         <h4 class="text-center">
             <?php
+            if(!$version){
+            }else{
+                echo $version;
+            }
+            ?>
+            <?php
             if(!$monit){
             }else{
                 foreach ($monit as $key) {
                 }
-                echo "ISO-HACCP-".$key["SIGLA"]."";
                 echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">
 								<input type="hidden" id="idreporte" class="form-control" value="'.$key["IDREPORTE"].'">
@@ -172,6 +177,13 @@
                                                     <span class="fa fa-calendar form-control-feedback"></span>
                                                 </div>
                                             </div>
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+                                                <div class="form-group has-feedback">
+                                                    <label for="">Cantidad muestra.</label>
+                                                    <input autocomplete="off" type="text" id="CantMues" class="form-control col-xs-4" placeholder="">
+                                                    <span class="fa fa-sort-numeric-desc form-control-feedback"></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -280,6 +292,7 @@
                                                     <th class="text-center">Maquina</th>
                                                     <th class="text-center">Presentacion</th>
                                                     <th class="text-center">Unidad <br> Presentacion</th>
+                                                    <th class="text-center">Cantidad <br> Muestra</th>
                                                     <th class="text-center">P.V</th>
                                                     <th class="text-center">M.S</th>
                                                     <th class="text-center">M.C</th>
@@ -290,10 +303,22 @@
                                                 </thead>
                                                 <tbody class="text-center">
                                                 <?php
-                                                $tipo = '';
+                                                $tipo = ''; $unidadPeso= '';
                                                 if(!$monit){
                                                 }else{
                                                     foreach ($monit as $key) {
+                                                        switch ($key["UNIDADPRESENTACION"])
+                                                        {
+                                                            case "Gramos":
+                                                                $unidadPeso = "gr";
+                                                                break;
+                                                            case "Libras":
+                                                                $unidadPeso = "lbs";
+                                                                break;
+                                                            case "KG":
+                                                                $unidadPeso = "kg";
+                                                                break;
+                                                        }
                                                         if($key["VACIO"] == 1){
                                                             $tipo = "Vacio";
                                                         }else if($key["GRANEL"] == 1){
@@ -309,13 +334,14 @@
                                                                 <th>".date_format(new DateTime($key["FECHAVENCIMIENTO"]),"Y-m-d")."</th>
                                                                 <th>".$key["MAQUINA"]." (".$key["SIGLAS"].")</th>
                                                                 <th>".number_format($key["PRESENTACION"],0)."</th>
-                                                                <th>".$key["UNIDADPRESENTACION"]."</th>
+                                                                <th>".$unidadPeso."</th>
+                                                                <th>".number_format($key["CANTIDAD_MUESTRA"],0)."</th>
                                                                 <th>".number_format($key["PV"],0)."</th>
                                                                 <th>".number_format($key["MS"],0)."</th>
                                                                 <th>".number_format($key["MC"],0)."</th>
                                                                 <th>".number_format($key["TC"],0)."</th>
                                                                 <th>".$key["OPERARIO"]."</th>
-                                                                <th>".number_format($key["DEFECTO"],0)."</th>
+                                                                <th>".number_format($key["DEFECTO"],2)."</th>
                                                             </tr>
                                                         ";
                                                     }

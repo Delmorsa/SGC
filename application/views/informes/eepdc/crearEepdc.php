@@ -17,6 +17,12 @@
         </h4>
         <h4 class="text-center">
             <?php
+            if(!$version){
+            }else{
+               echo $version;
+            }
+            ?>
+            <?php
             if(!$monit){
                 echo "
                 <h5 class='text-center text-danger text-bold'>
@@ -25,7 +31,6 @@
                 </h5>";
             }else{
                 foreach ($monit as $key) {
-                    echo "ISO-HACCP-".$key["SIGLA"]."";
                     echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idmonitoreo" class="form-control" value="'.$key["IDMONITOREO"].'">
 							</div>';
@@ -97,6 +102,7 @@
                                     <select class="form-control" id="ddlempresa">
                                         <option value="1">DELMOR</option>
                                         <option value="2">D´lago</option>
+                                        <option value="3">Panamá</option>
                                     </select>
                                 </div>
                             </div>

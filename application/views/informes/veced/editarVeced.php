@@ -17,16 +17,22 @@
         </h4>
         <h4 class="text-center">
             <?php
-            $siglas = ''; $id = '';
+            if(!$version){
+            }else{
+                echo $version;
+            }
+            ?>
+            <?php
+            $siglas = ''; $id = ''; $monit = '';
             if(!$veced){
             }else{
                 foreach ($veced as $key) {
-                    $siglas = $key["SIGLA"];
                     $id = $key["IDREPORTE"];
+                    $monit = $key["IDMONITOREO"];
                 }
-                echo "ISO-HACCP-".$siglas."";
                 echo '<div class="form-group has-feedback">
 								<input type="hidden" id="idreporte" class="form-control" value="'.$id.'">
+                                <input type="hidden" id="idmonitoreo" class="form-control" value="'.$monit.'">
 							</div>';
             }
             ?>
