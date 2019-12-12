@@ -8,6 +8,10 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function () {
+       /* $(".clockpicker").clockpicker({
+            donetext: "Aceptar"
+        });*/
+
         $('#fecha').datepicker({"autoclose":true});
         $("#temperatura,#produccion,#tiempo,#version").numeric();
         $(".js-data-example-ajax").select2({

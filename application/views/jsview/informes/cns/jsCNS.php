@@ -9,7 +9,7 @@
 ?>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#nitrito,#kg").numeric();
+		$("#nitrito,#kg,#version").numeric();
 		$('#fecha').datepicker({"autoclose":true});
 		$('.select2').select2({
 			placeholder: "Seleccione un area",

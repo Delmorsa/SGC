@@ -129,7 +129,7 @@
                                                     foreach ($monit as $key) {
                                                     }
                                                     echo '
-                                                       <input autocomplete="off" value="'.date_format(new DateTime($key["HORA"]),"H:i").'" type="text" id="Hora" class="form-control" placeholder="Fecha">
+                                                       <input autocomplete="off" value="'.date_format(new DateTime($key["HORA"]),"H:i").'" type="text" id="Hora" class="clockpicker form-control" placeholder="Fecha">
                                                        <span class="fa fa-clock-o form-control-feedback"></span>
                                                     ';
                                                 }

@@ -8,6 +8,10 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $("#version,#version1,#Codigo1,#produccion,#pesoMasaUtil,#pesoRegistrado,#Diferencia").numeric();
+        $("#CantMues,#PV,#MS,#MC,#TC,#presentacion").numeric();
+
         let counter = $("#tblcrear").DataTable({"info": false,"scrollX": true,"sort": false,"destroy": true,"searching": false,
             "paginate": false}).rows().count()+1;
         $('#fecha,#fechaVenc').datepicker({"autoclose":true});

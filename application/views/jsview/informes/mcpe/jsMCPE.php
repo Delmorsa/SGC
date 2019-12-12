@@ -7,7 +7,11 @@
  */?>
 <script type="text/javascript">
     $(document).ready(function(){
-
+        $(".clockpicker").clockpicker({
+            donetext: "Aceptar"
+        });
+        $("#version,#version1,#Codigo1,#produccion,#pesoMasaUtil,#pesoRegistrado,#Diferencia").numeric();
+        $("#CantMues,#PV,#MS,#MC,#TC,#presentacion").numeric();
         let counter = 1;
         let counter1 = 1;
         $('#tblcrear,#tblcrear1').DataTable( {

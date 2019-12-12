@@ -307,7 +307,7 @@
                                                     <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                                                         <div class="has-feedback">
                                                             <label for="">Hora</label>
-                                                            <input type="text" id="Hora" class="form-control">
+                                                            <input type="text" id="Hora" class="clockpicker form-control">
                                                             <span class="fa fa-clock-o form-control-feedback"></span>
                                                         </div>
                                                     </div>

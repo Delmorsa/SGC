@@ -8,6 +8,10 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
+        $(".clockpicker").clockpicker({
+            donetext: "Aceptar"
+        });
+        $("#version,#version1,#Codigo,#produccion,#pesoMasaUtil,#pesoRegistrado,#Diferencia").numeric();
         let counter = $("#tblcrear").DataTable().rows().count() + 1;
         $('#tblcrear').DataTable( {
             "scrollX": false,

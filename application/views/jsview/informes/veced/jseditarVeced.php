@@ -9,6 +9,7 @@
 $(document).ready(function () {
     let counter = 1;
     $('#fecha').datepicker({"autoclose":true});
+    $("#version,#estibas,#pesolbs,#temperatura").numeric();
 
     $("#btnAdd").click(function(){
         let producto = $("#ddlprod option:selected").val();
