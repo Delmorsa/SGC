@@ -80,9 +80,9 @@
 				monituser	   			
    			]).draw(false);
 
-   		$("#fecha").val("");
+   		/*$("#fecha").val("");
    		$("#nitrito").val("");
-   		$("#kg").val(""); 
+   		$("#kg").val(""); */
    		//$("#ddlAreas").val("").trigger("change");
    		}
    });

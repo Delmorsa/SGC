@@ -92,10 +92,10 @@
 				observacion
    			]).draw(false);
 
-   		$("#hora").val("");
+   		/*$("#hora").val("");
    		$("#ppatron").val("");
    		$("#pbascula").val(""); 
-   		$("#observaciones").val(""); 
+   		$("#observaciones").val(""); */
 
    		//$("#ddlAreas").val("").trigger("change");
    		}

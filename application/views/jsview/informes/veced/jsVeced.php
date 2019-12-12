@@ -72,12 +72,12 @@
 					observaciones,
 					acciones	   			
 	   			]).draw(false);
-			$("#estibas").val("");
+			/*$("#estibas").val("");
 			$("#monituser").val("");
 			$("#pesolbs").val("");
 			$("#temperatura").val("");
 			$("#observaciones").val("");
-			$("#acciones").val("");
+			$("#acciones").val("");*/
    		}else{
    			t.row.add([
 				counter,

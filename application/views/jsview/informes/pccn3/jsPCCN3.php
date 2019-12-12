@@ -137,12 +137,12 @@
             acciones
         ]).draw(false);
 
-        $("#entrada").val("");
+        /*$("#entrada").val("");
         $("#salida").val("");
         $("#temperatura").val("");
         $("#tiempo").val("");
         $("#observaciones").val("");
-        $("#acciones").val("");
+        $("#acciones").val("");*/
         //$("#ddlAreas").val("").trigger("change");
     }
 });
