@@ -41,6 +41,7 @@ class CPP2_controller extends CI_Controller
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
 		$data["maq"] = $this->Maquinas_model->getMaquinas();
+		$data["lote"] = $this->CategoriaReporte_model->MostrarLote();
 		
 		$this->load->view('header/header');
 		$this->load->view('header/menu');

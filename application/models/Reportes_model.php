@@ -89,15 +89,23 @@ class Reportes_model extends CI_Model{
             return;
 	}
 
-	public function GraficaPeso($lote,$producto)
+	public function GraficaPeso($lote,$producto,$tipo)
 	{
 		//echo "lote: ".$lote." producto: ".$producto;
 		
 		$json = array();$i = 0;
-		$query = $this->db->query("SELECT t0.PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
+		if ($tipo == 1) {
+			$query = $this->db->query("SELECT t0.PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
 									inner join ReportesPeso t1 on t1.IDREPORTE = t0.IDREPORTE
 									where t0.ESTADO = 'A' and t0.IDTIPOREPORTE = 10 and T0.LOTE = '".$lote."' 
 									and T1.CODIGO = '".$producto."'");
+		}else if ($tipo==2){
+			$query = $this->db->query("SELECT t0.DIAMETRO PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
+									inner join ReportesPeso t1 on t1.IDREPORTE = t0.IDREPORTE
+									where t0.ESTADO = 'A' and t0.IDTIPOREPORTE = 16 and T0.LOTE = '".$lote."' 
+									and T1.CODIGO = '".$producto."'");
+		}
+		
 
 		if($query->num_rows() > 0){
 			echo json_encode($query->result_array());
@@ -105,19 +113,30 @@ class Reportes_model extends CI_Model{
 		 }
 
          echo 0; return;
-
 	}
 
-	public function GraficaPesoAceptables($lote,$producto)
+	public function GraficaPesoAceptables($lote,$producto,$tipo)
 	{
 		$json = array();$i = 0;
-		$query = $this->db->query("WITH TABLA AS (
+
+		if ($tipo == 1) {
+			$query = $this->db->query("WITH TABLA AS (
 								SELECT t0.PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
 																	inner join ReportesPeso t1 on t1.IDREPORTE = t0.IDREPORTE
 																	where t0.ESTADO = 'A' and t0.IDTIPOREPORTE = 10 and T0.LOTE = '".$lote."' 
 																	and T1.CODIGO = '".$producto."')
 								SELECT CAST(COUNT(CASE WHEN PESOBASCULA <=(PESOGRAMOS+ (PESOGRAMOS*0.03)) AND PESOBASCULA >=(PESOGRAMOS-(PESOGRAMOS*0.03)) THEN 1 ELSE NULL END)AS DECIMAL) /CAST(COUNT(PESOGRAMOS) AS DECIMAL)*100 PORCENTAJE
+								FROM TABLA");	
+		}else{
+			$query = $this->db->query("WITH TABLA AS (
+								SELECT t0.DIAMETRO PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
+									inner join ReportesPeso t1 on t1.IDREPORTE = t0.IDREPORTE
+									where t0.ESTADO = 'A' and t0.IDTIPOREPORTE = 16 and T0.LOTE = '".$lote."' 
+									and T1.CODIGO = '".$producto."')
+								SELECT CAST(COUNT(CASE WHEN PESOBASCULA <=(PESOGRAMOS+0.2) AND PESOBASCULA >=(PESOGRAMOS+(-0.2)) THEN 1 ELSE NULL END)AS DECIMAL) /CAST(COUNT(PESOGRAMOS) AS DECIMAL)*100 PORCENTAJE
 								FROM TABLA");
+		}
+		
 
 		if($query->num_rows() > 0){
 			echo json_encode($query->result_array());
@@ -127,9 +146,10 @@ class Reportes_model extends CI_Model{
          echo 0; return;
 	}
 
-	public function GraficaPesoDebajo($lote,$producto)
+	public function GraficaPesoDebajo($lote,$producto,$tipo)
 	{
 		$json = array();$i = 0;
+		if ($tipo == 1) {
 		$query = $this->db->query("WITH TABLA AS (
 									SELECT t0.PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
 																		inner join ReportesPeso t1 on t1.IDREPORTE = t0.IDREPORTE
@@ -139,6 +159,18 @@ class Reportes_model extends CI_Model{
 									SELECT 
 									CAST(COUNT(CASE WHEN PESOBASCULA <(PESOGRAMOS-(PESOGRAMOS*0.03)) THEN 1 ELSE NULL END)AS DECIMAL) /CAST(COUNT(PESOGRAMOS) AS DECIMAL)*100 PORCENTAJE
 									FROM TABLA");
+		}else{
+			$query = $this->db->query("WITH TABLA AS (
+									SELECT t0.DIAMETRO PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
+										inner join ReportesPeso t1 on t1.IDREPORTE = t0.IDREPORTE
+										where t0.ESTADO = 'A' and t0.IDTIPOREPORTE = 16 and T0.LOTE =  '".$lote."' 
+										and T1.CODIGO = '".$producto."'
+									)
+									SELECT 
+			CAST(COUNT(CASE WHEN PESOBASCULA <(PESOGRAMOS-(0.2)) THEN 1 ELSE NULL END)AS DECIMAL) /CAST(COUNT(PESOGRAMOS) AS DECIMAL)*100 PORCENTAJE
+									FROM TABLA");
+		}
+		
 
 		if($query->num_rows() > 0){
 			echo json_encode($query->result_array());
@@ -147,10 +179,11 @@ class Reportes_model extends CI_Model{
 
          echo 0; return;
 	}
-	public function GraficaPesoArriba($lote,$producto)
+	public function GraficaPesoArriba($lote,$producto,$tipo)
 	{
 		$json = array();$i = 0;
-		$query = $this->db->query("WITH TABLA AS (
+		if ($tipo==1) {
+			$query = $this->db->query("WITH TABLA AS (
 									SELECT t0.PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
 																		inner join ReportesPeso t1 on t1.IDREPORTE = t0.IDREPORTE
 																		where t0.ESTADO = 'A' and t0.IDTIPOREPORTE = 10 and T0.LOTE = '".$lote."' 
@@ -159,6 +192,18 @@ class Reportes_model extends CI_Model{
 									SELECT 
 									CAST(COUNT(CASE WHEN PESOBASCULA >(PESOGRAMOS+(PESOGRAMOS*0.03)) THEN 1 ELSE NULL END)AS DECIMAL) /CAST(COUNT(PESOGRAMOS) AS DECIMAL)*100 PORCENTAJE
 									FROM TABLA");
+		}else{
+			$query = $this->db->query("WITH TABLA AS (
+									SELECT t0.DIAMETRO PESOGRAMOS,t1.CODIGO,T1.DESCRIPCION,PESOBASCULA,DIFERENCIA from Reportes t0
+																		inner join ReportesPeso t1 on t1.IDREPORTE = t0.IDREPORTE
+																		where t0.ESTADO = 'A' and t0.IDTIPOREPORTE = 16 and T0.LOTE = '".$lote."' 
+																		and T1.CODIGO = '".$producto."'
+									)
+									SELECT 
+									CAST(COUNT(CASE WHEN PESOBASCULA >PESOGRAMOS+0.2 THEN 1 ELSE NULL END)AS DECIMAL) /CAST(COUNT(PESOGRAMOS) AS DECIMAL)*100 PORCENTAJE
+									FROM TABLA");
+		}
+		
 
 		if($query->num_rows() > 0){
 			echo json_encode($query->result_array());
