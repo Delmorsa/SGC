@@ -122,13 +122,13 @@
 	});
 
 	$('#cmbTamaño').change(function() {
-	    calcularMuestra();
+	    //calcularMuestra();
 	});
 	$('#cmdNivel').change(function() {
-	    calcularMuestra();
+	    //calcularMuestra();
 	});
 	$('#cmdNivel2').change(function() {
-	    calcularMuestra();
+	    //calcularMuestra();
 	});
 
 	$('#chkEspecial').change(function(){
@@ -352,13 +352,14 @@ $("#btnGuardar").click(function(){
 		let noRegistro = parseFloat(validtable.rows().count());
    		let muestra = parseFloat($('#muestra').val());
 
-   			if (noRegistro<muestra) {
+   			/*if (noRegistro<muestra) {
    				Swal.fire({
 					text: "Debe ingresar el numero de muestras indicadas",
 					type: "error",
 					allowOutsideClick: false
 				});
-   			}else if( $("#ddlAreas option:selected").val() == "" ) {
+   			}else*/
+   			 if( $("#ddlAreas option:selected").val() == "" ) {
 				Swal.fire({
 					text: "Debe ingresar un Area",
 					type: "error",

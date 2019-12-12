@@ -76,13 +76,13 @@
 	});
 
 	$('#cmbTamaño').change(function() {
-	    calcularMuestra();
+	    //calcularMuestra();
 	});
 	$('#cmdNivel').change(function() {
-	    calcularMuestra();
+	    //calcularMuestra();
 	});
 	$('#cmdNivel2').change(function() {
-	    calcularMuestra();
+	    //calcularMuestra();
 	});
 
 	$('#chkEspecial').change(function(){
