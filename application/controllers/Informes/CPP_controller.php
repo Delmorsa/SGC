@@ -41,6 +41,11 @@ class CPP_controller extends CI_Controller
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
 		$data["maq"] = $this->Maquinas_model->getMaquinas();
     	$data["lote"] = $this->CategoriaReporte_model->MostrarLote();
+<<<<<<< HEAD
+		
+		//echo json_encode($data["version"]);
+=======
+>>>>>>> 139171a86f7f0ae07e291ae45c6dad87608e5ce9
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cpp/crearcpp',$data);

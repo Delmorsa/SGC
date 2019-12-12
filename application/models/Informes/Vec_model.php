@@ -84,7 +84,7 @@ class Vec_model extends CI_Model
 			if ($inserto) {
 				$num = 1; $bandera = false;
 				$det = json_decode($datos, true);
-				print_r($det);
+				
 				foreach ($det as $obj) {					
 					$idpeso = $this->db->query("SELECT ISNULL(MAX(IDARTICULO),0)+1 AS IDARTICULO FROM ReportesArticulos");
 

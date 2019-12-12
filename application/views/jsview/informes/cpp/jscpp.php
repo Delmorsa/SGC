@@ -406,7 +406,20 @@ $("#btnGuardar").click(function(){
 		    		type: "error",
 		    		allowOutsideClick: false
 		    	});
-			}else{
+			}else if (!$.isNumeric($('#largo').val())) {
+		    	Swal.fire({
+		    		text: "Ingrese un largo de funda numérico",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
+			}else if (!$.isNumeric($('#diametro').val())) {
+		    	Swal.fire({
+		    		text: "Ingrese un diametro de funda numérico",
+		    		type: "error",
+		    		allowOutsideClick: false
+		    	});
+			}
+			else{
 				$("#loading").modal("show");
 			    let nombre = $("#nombreRpt").html();
 			    let datos = new Array(), i = 0;

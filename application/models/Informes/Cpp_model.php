@@ -155,19 +155,23 @@ class Cpp_model extends CI_Model
 				if($bandera == true){
 					$mensaje[0]["mensaje"] = "Datos guardados correctamente";
 					$mensaje[0]["tipo"] = "success";
+					$this->db->trans_commit();
 					echo json_encode($mensaje);
+					return;
 				}else{
 					$mensaje[0]["mensaje"] = "Error al guardar los datos del informe COD(2_DET)";
 					$mensaje[0]["tipo"] = "error";
-					echo json_encode($mensaje);
+					$this->db->trans_rollback();
+					echo json_encode($mensaje);					
+					return;
 				}
 			}
-
 		}else{
 			$mensaje[0]["mensaje"] = "No se pudo guardar el informe porque no exsite un codigo de 
 										monitoreo para la fecha ".date("d-m-Y")."";
 			$mensaje[0]["tipo"] = "error";
 			echo json_encode($mensaje);
+			$this->db->trans_rollback();
 			return;
 		}
 		if ($this->db->trans_status() === FALSE)
@@ -298,11 +302,15 @@ class Cpp_model extends CI_Model
 				if($bandera == true){
 					$mensaje[0]["mensaje"] = "Datos guardados correctamente";
 					$mensaje[0]["tipo"] = "success";
+					$this->db->trans_commit();
 					echo json_encode($mensaje);
+					return;
 				}else{
 					$mensaje[0]["mensaje"] = "Error al guardar los datos del informe COD(2_DET)";
 					$mensaje[0]["tipo"] = "error";
 					echo json_encode($mensaje);
+					$this->db->trans_rollback();
+					return;
 				}
 		}
 		if ($this->db->trans_status() === FALSE)
