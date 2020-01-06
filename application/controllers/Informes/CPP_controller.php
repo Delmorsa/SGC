@@ -14,7 +14,7 @@ class CPP_controller extends CI_Controller
 		$this->load->model("Informes/CNS_model");
 		$this->load->model("Informes/Rvpbp_model");
 		$this->load->model("Maquinas_model");
-		
+
 	}
 
 	public function index()
@@ -24,7 +24,7 @@ class CPP_controller extends CI_Controller
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/CPP/cpp',$data);
-		$this->load->view('footer/footer');		
+		$this->load->view('footer/footer');
 		$this->load->view('jsview/informes/cpp/jscpp');
 	}
 
@@ -41,15 +41,8 @@ class CPP_controller extends CI_Controller
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
 		$data["maq"] = $this->Maquinas_model->getMaquinas();
     	$data["lote"] = $this->CategoriaReporte_model->MostrarLote();
-<<<<<<< HEAD
-		
-		//echo json_encode($data["version"]);
-=======
 
-		
 		//echo json_encode($data["version"]);
-
->>>>>>> 79270921613774b80b964bf3f6069eaaca6e748e
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cpp/crearcpp',$data);
@@ -91,8 +84,8 @@ class CPP_controller extends CI_Controller
 		$data["pesos"] = $this->Rvpbp_model->mostrarPesos();
 		$data["niveles"] = $this->Cpp_model->mostrarNivelInspeccion();
 		$data["maq"] = $this->Maquinas_model->getMaquinas();
-		
-		$dias = $this->db->query("SELECT DATEDIFF(day, GETDATE(), FECHACREA) AS dias 
+
+		$dias = $this->db->query("SELECT DATEDIFF(day, GETDATE(), FECHACREA) AS dias
 									FROM Reportes WHERE IDREPORTE = ".$id);
 
 		if ($dias->result_array()[0]["dias"]<-1) {
@@ -103,7 +96,7 @@ class CPP_controller extends CI_Controller
 		$decision[1] = 'Rechazar';
 		$decision[2] = 'Reclasificar';
 		$decision[3] = 'Desechar';
-		$decision[4] = 'Otras';		
+		$decision[4] = 'Otras';
 		$data["decisiones"] = $decision;
 
 		//echo json_encode($data["enc"]);

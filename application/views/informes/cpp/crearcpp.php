@@ -1,7 +1,7 @@
 
 <div class="content-wrapper">
 	<section class="content-header">
-		<h3 class="text-center"> 
+		<h3 class="text-center">
 			INDUSTRIAS DELMOR, S.A.
 		</h3>
 		<h4 class="text-center">
@@ -19,7 +19,7 @@
 					}
 				}
 			?>
-		</h4>		
+		</h4>
 	</section>
 
 	<!-- Main content -->
@@ -32,7 +32,7 @@
 				</a>
 				<button class="pull-right btn btn-primary" id="btnGuardar">
 					Guardar <i class="fa fa-save"></i>
-				</button>				
+				</button>
 			</div>
 			<div class="box-body">
 					<div class="row">
@@ -42,7 +42,7 @@
 									<label>Area</label>
 									<select id="ddlAreas"  class="form-control select2" style="width: 100%;">
 										<option></option>
-										<?php 
+										<?php
 											if(!$areas){
 											}else{
 												foreach ($areas as $key) {
@@ -68,7 +68,7 @@
 									<input autocomplete="off" type="text" id="fecha" class="form-control" placeholder="Fecha ingreso">
 									<span class="fa fa-calendar form-control-feedback"></span>
 								</div>
-							</div>	
+							</div>
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Lote</label>
@@ -87,7 +87,7 @@
 									<label>Máquina</label>
 									<select id="ddlMaquina"  class="form-control select2" style="width: 100%;">
 										<option></option>
-										<?php 
+										<?php
 											if(!$maq){
 											}else{
 												foreach ($maq as $key) {
@@ -102,7 +102,7 @@
 								<div class="form-group has-feedback">
 									<label for="">Funda</label>
 									<input autofocus="" autocomplete="off" type="text" id="largo" value="" class="form-control col-xs-2" placeholder="largo">
-									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>									
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
@@ -119,7 +119,7 @@
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-							<div id="checkboxes" class="col-lg-12 form-check form-check-inline">							  
+							<div id="checkboxes" class="col-lg-12 form-check form-check-inline">
 							  <label class="form-check-label" for="chkAceptar">Aceptar</label>
 							  <input class="form-check-input" checked="true" type="radio" name="inlineRadioOptions" id="chkAceptar" value="Aceptar">
 							  <label class="form-check-label" for="chkRechazar">Rechazar</label>
@@ -130,12 +130,12 @@
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkDesechar" value="Desechar">
 							  <label class="form-check-label" for="chkOtras">Otras</label>
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkOtras" value="Otras">
-							</div>							
+							</div>
 						<!--</div>-->
 					</div>
 					<hr>
 					<div class="row">
-						<div class="col-xs-12">			
+						<div class="col-xs-12">
 							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-5">
 								<div class="form-group has-feedback">
 									<label>Nombre del producto</label><br>
@@ -145,20 +145,20 @@
 							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group">
 									<label>Peso Gr</label>
-									<input disabled="true" autocomplete="off" type="text" id="pesoGr" class="form-control" placeholder="Peso Gramos">
+									<input autocomplete="off" type="text" id="pesoGr" class="form-control" placeholder="Peso Gramos">
 								</div>
-							</div>							
+							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-xs-12">							
+						<div class="col-xs-12">
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" style="display: none;">
 								<div class="form-group has-feedback">
 									<label for="">Tamaño Muestra</label>
 									<select id="cmbTamaño" class="form-control select2" >
 										<option></option>
-										<?php 
+										<?php
 											if(!$niveles){
 											}else{
 												foreach ($niveles as $key) {
@@ -189,12 +189,12 @@
 								    Nivel Especial
 								  </label>
 								</div>
-							</div>							
+							</div>
 							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-3 especial invisible" style="display: none;">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Nivel Inspeccion Especial</label>
 									<select id="cmdNivel2" class="form-control select2" style="width: 100%;">
-										<option></option>										
+										<option></option>
 										<option value="S1">S1</option>
 										<option value="S2">S2</option>
 										<option value="S3">S3</option>
@@ -225,16 +225,16 @@
 							</div>
 							<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
-									
+
 									<button id="btnAdd" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i></button>
-									
+
 									<button id="btnDelete" class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></button>
 								</div>
 							</div>
 
 						</div>
 					</div>
-				
+
 				<table class="table table-bordered table-condensed table-striped" id="tblDatos">
 					<thead>
 						<tr>
@@ -246,10 +246,10 @@
 							<th class="text-center">Diferencia</th>
 						</tr>
 					</thead>
-					<tbody class="text-center">						
+					<tbody class="text-center">
 					</tbody>
 				</table>
-			</div>			
+			</div>
 		</div>
 	</section>
 </div>
