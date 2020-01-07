@@ -25,14 +25,14 @@ class Hana_model extends CI_Model
                 </div>';
          } else {
            return $conn;
-         }    
+         }
 	}
 
 	public function getProductosSAP($search)
 	{
         $qfilter = '';
         if($search){
-        	$qfilter = 'WHERE ("ItemName" LIKE '."'%".$search."%'".'
+        	$qfilter = 'AND ("ItemName" LIKE '."'%".$search."%'".'
                         OR "ItemCode" LIKE '."'%".$search."%'".') ';
 		}else{
             $qfilter = '';
@@ -40,8 +40,9 @@ class Hana_model extends CI_Model
         $conn = $this->OPen_database_odbcSAp();
                     $query = 'SELECT DISTINCT "ItemCode","ItemName","SWeight1"
                         FROM '.$this->BD.'."VIEW_BODEGAS_EXISTENCIAS"
-                        '.$qfilter.'
                         GROUP BY "ItemCode","ItemName","SWeight1"
+												WHERE "ItemCode" between ''1101'' and ''88101'' 
+												'.$qfilter.'
                         LIMIT 10';
 
             $resultado = @odbc_exec($conn,$query);
@@ -63,7 +64,7 @@ class Hana_model extends CI_Model
         $KG = 'KG';
         $LB = 'LB';
         $query = 'SELECT IFNULL(CASE WHEN T0."SalUnitMsr" = '."'".$KG."'".' THEN 1000 WHEN  T0."SalUnitMsr" = '."'".$LB."'".'     THEN 454 ELSE T0."SWeight1" end,0) "GRAMOS"             FROM '.$this->BD.'."OITM" T0 WHERE T0."ItemCode" = '."'".$itemcode."'";
-        //echo $query;        
+        //echo $query;
         $resultado = @odbc_exec($conn,$query);
         $json = array();
         $i = 0;
