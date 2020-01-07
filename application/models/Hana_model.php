@@ -41,7 +41,7 @@ class Hana_model extends CI_Model
                     $query = 'SELECT DISTINCT "ItemCode","ItemName","SWeight1"
                         FROM '.$this->BD.'."VIEW_BODEGAS_EXISTENCIAS"
                         GROUP BY "ItemCode","ItemName","SWeight1"
-												WHERE "ItemCode" between ''1101'' and ''88101'' 
+												WHERE "ItemCode" between '.'1101'.' and '.'88101'.' 
 												'.$qfilter.'
                         LIMIT 10';
 
