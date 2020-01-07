@@ -32,17 +32,17 @@ class Hana_model extends CI_Model
 	{
         $qfilter = '';
         if($search){
-        	$qfilter = 'AND ("ItemName" LIKE '."'%".$search."%'".'
+        	$qfilter = 'WHERE ("ItemName" LIKE '."'%".$search."%'".'
                         OR "ItemCode" LIKE '."'%".$search."%'".') ';
 		}else{
             $qfilter = '';
         }
+				//WHERE "ItemCode" between '.'1101'.' and '.'88101'.'
         $conn = $this->OPen_database_odbcSAp();
                     $query = 'SELECT DISTINCT "ItemCode","ItemName","SWeight1"
                         FROM '.$this->BD.'."VIEW_BODEGAS_EXISTENCIAS"
-                        GROUP BY "ItemCode","ItemName","SWeight1"
-												WHERE "ItemCode" between '.'1101'.' and '.'88101'.' 
 												'.$qfilter.'
+                        GROUP BY "ItemCode","ItemName","SWeight1"
                         LIMIT 10';
 
             $resultado = @odbc_exec($conn,$query);
