@@ -113,8 +113,9 @@
 			let bandera = true;
 			let tabla = $('#tblDatos').DataTable();
 			let noRegistro = tabla.data().count();
-
-			if (noRegistro>0) {
+			var selct = tabla.data()[0][1];
+			console.log($(this).val())
+			if (noRegistro>0 && (selct != $(this).val())) {
 				
 				Swal.fire({
 				  title: 'Aviso',
