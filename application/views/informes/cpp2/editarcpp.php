@@ -39,7 +39,7 @@
 				<div>
 					<div class="row">
 						<div class="col-xs-12">
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xd-12 col-sm-3 col-md-2 col-lg-3">
 								<div class="form-group">
 									<label>Area</label>
 									<select id="ddlAreas"  class="form-control select2" style="width: 100%;">
@@ -77,11 +77,11 @@
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Lote</label>
-									<input autofocus="" autocomplete="off" type="text" id="lote" value="<?php echo $enc[0]["LOTE"]?>" class="form-control col-xs-4" placeholder="Lote">
+									<input autofocus="" autocomplete="off" type="text" id="lote" value="<?php echo $enc[0]["LOTE"]?>" class="form-control col-xd-12" placeholder="Lote">
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xd-12 col-sm-3 col-md-2 col-lg-3">
 								<div class="form-group">
 									<label>Máquina</label>
 									<select id="ddlMaquina"  class="form-control select2" style="width: 100%;">
@@ -144,13 +144,13 @@
 					<hr>
 					<div class="row">
 						<div class="col-xs-12">
-							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-5">
+							<div class="col-xd-12 col-sm-12 col-md-6 col-lg-5">
 									<div class="form-group has-feedback">
 										<label>Nombre del producto</label><br>
 										<select class="select js-data-example-ajax form-control" id="ddlprod"></select>
 									</div>
 							</div>
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xd-12 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group">
 									<label>Diametro esperado</label>
 									<input autocomplete="off" type="text" id="diametroEsperado" class="form-control" placeholder="Diametro Esperado">
@@ -256,7 +256,7 @@
 									<span class="fa fa-user form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+							<div class="col-xd-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									
 									<button id="btnAdd" class="btn btn-primary"><i class="fa fa-plus"></i></button>
@@ -268,6 +268,7 @@
 						</div>
 					</div>
 				</div>
+				<div style="width: 100%; overflow-y: scroll;">
 				<table class="table table-bordered table-condensed table-striped" id="tblDatos">
 					<thead>
 						<tr>
@@ -300,6 +301,7 @@
 						?>
 					</tbody>
 				</table>
+			</div>
 			</div>			
 		</div>
 	</section>

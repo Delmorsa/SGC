@@ -64,7 +64,7 @@ class Cpp2_model extends CI_Model
 
 	public function getInformes()
 	{
-		$query = $this->db->query("SELECT T3.AREA, T1.NOMBRES+' '+T1.APELLIDOS MONITOREADO_POR, T2.IDMONITOREO,T2.SIGLA, T0.* FROM
+		$query = $this->db->query("SELECT top 20 T3.AREA, T1.NOMBRES+' '+T1.APELLIDOS MONITOREADO_POR, T2.IDMONITOREO,T2.SIGLA, T0.* FROM
 								Reportes T0
 								INNER JOIN Usuarios T1 ON T1.IDUSUARIO = T0.IDUSUARIOCREA
 								INNER JOIN Monitoreos T2 ON T2.IDMONITOREO = T0.IDMONITOREO
