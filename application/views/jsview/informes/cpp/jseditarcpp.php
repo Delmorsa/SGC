@@ -100,9 +100,9 @@
 				cache: true
 			}
 		}).trigger('change');
-				
 
-		$("#txtPeso").numeric();
+
+		$("#txtPeso,#pesoGr").numeric();
 		$("#nitrito,#kg").numeric();
 		$("#largo,#diametro").numeric();
 
@@ -115,7 +115,7 @@
 			let noRegistro = tabla.data().count();
 
 			if (noRegistro>0) {
-				
+
 				Swal.fire({
 				  title: 'Aviso',
 				  text: "Se eliminaran los registros ingresados",
@@ -149,9 +149,9 @@
 						}
 					},
 					error: function (data) {
-						$("#pesoGr").val(Number(0).toFixed(2));						
+						$("#pesoGr").val(Number(0).toFixed(2));
 					}
-				});			
+				});
 			}
 		});
 
@@ -188,7 +188,7 @@
 		let noRegistro = tabla.data().count();
 
 		if (noRegistro>0) {
-			
+
 			Swal.fire({
 				title: 'Aviso',
 				text: "Se eliminaran los registros ingresados",
@@ -296,7 +296,7 @@
    				allowOutsideClick: false
    			});
    		}
-   		
+
    		let area = $("#ddlAreas option:selected").val(),
    		fecha = $("#fecha").val(),
    		hora = $("#hora").val(),
@@ -330,18 +330,18 @@
 				codproducto,
 				descripcion,
 				gramos,
-				peso,				
-				diferencia				
+				peso,
+				diferencia
    			]).draw(false);
 
 	   		$("#txtPeso").val("");
 	   		$("#txtPeso").focus();
    		}
    });
-	
+
 
 $("#btnGuardar").click(function(){
-	
+
 	Swal.fire({
 		text: "¿Esta Seguro que Desea Guardar?",
 		type: 'question',
@@ -416,9 +416,9 @@ $("#btnGuardar").click(function(){
 				$("#loading").modal("show");
 			    let nombre = $("#nombreRpt").html();
 			    let datos = new Array(), i = 0;
-			    mensaje = '', tipo = '',	
+			    mensaje = '', tipo = '',
 				table = $("#tblDatos").DataTable();
-				
+
 				table.rows().eq(0).each(function(i, index){
 					let row = table.row(index);
 					let data = row.data();
@@ -452,7 +452,7 @@ $("#btnGuardar").click(function(){
 						let obj = jQuery.parseJSON(data);
 						$.each(obj, function(index, val) {
 							mensaje = val["mensaje"];
-							tipo = val["tipo"]; 
+							tipo = val["tipo"];
 						});
 						Swal.fire({
 							type: tipo,

@@ -7,7 +7,11 @@
  */?>
 <script type="text/javascript">
     $(document).ready(function(){
-
+        $(".clockpicker").clockpicker({
+            donetext: "Aceptar"
+        });
+        $("#version,#version1,#Codigo1,#produccion,#pesoMasaUtil,#pesoRegistrado,#Diferencia").numeric();
+        $("#CantMues,#PV,#MS,#MC,#TC,#presentacion").numeric();
         let counter = 1;
         let counter1 = 1;
         $('#tblcrear,#tblcrear1').DataTable( {
@@ -159,14 +163,14 @@
                     Defecto
                 ]).draw(false);
                 //$("#ddlAreas").val("").trigger("change");
-                $("#produccion").val("");
+                /*$("#produccion").val("");
                 $("#fechaVenc").val("");
                 $("#PV").val("");
                 $("#MS").val("");
                 $("#MC").val("");
                 $("#TC").val("");
                 $("#operario").val("");
-                $("#Defecto").val("");
+                $("#Defecto").val("");*/
             }
             counter++;
         });
@@ -250,10 +254,10 @@
                     Diferencia
                 ]).draw(false);
                 //$("#ddlAreas").val("").trigger("change");
-                $("#Codigo1").val("");
+                /*$("#Codigo1").val("");
                 $("#pesoMasaUtil").val("");
                 $("#pesoRegistrado").val("");
-                $("#Diferencia").val("");
+                $("#Diferencia").val("");*/
             }
             counter1++;
         });

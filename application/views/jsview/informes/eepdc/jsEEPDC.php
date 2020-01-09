@@ -8,6 +8,8 @@
 ?>
 <script type="text/javascript">
 $(document).ready(function () {
+    $("#version,#txtL,#txtGC,#txtGT").numeric();
+
     let counter = 1;
     $('#tblcrear').DataTable( {
         "scrollX": false,

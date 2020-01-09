@@ -8,6 +8,10 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
+        $(".clockpicker").clockpicker({
+            donetext: "Aceptar"
+        });
+        $("#version,#version1,#Codigo,#produccion,#pesoMasaUtil,#pesoRegistrado,#Diferencia").numeric();
         let counter = $("#tblcrear").DataTable().rows().count() + 1;
         $('#tblcrear').DataTable( {
             "scrollX": false,
@@ -114,10 +118,10 @@
                     Diferencia
                 ]).draw(false);
                 //$("#ddlAreas").val("").trigger("change");
-                $("#Codigo1").val("");
+               /* $("#Codigo1").val("");
                 $("#pesoMasaUtil").val("");
                 $("#pesoRegistrado").val("");
-                $("#Diferencia").val("");
+                $("#Diferencia").val("");*/
             }
             counter++;
         });

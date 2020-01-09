@@ -8,6 +8,7 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#version,#toma1,#toma2,#toma3,#toma4").numeric();
         let counter = 1;
         $("#ddlAreas").select2({
             placeholder: "Seleccione un area",
