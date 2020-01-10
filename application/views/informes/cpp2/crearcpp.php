@@ -37,7 +37,7 @@
 			<div class="box-body">
 					<div class="row">
 						<!--<div class="col-xs-12">-->
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xd-12 col-sm-12 col-md-2 col-lg-3">
 								<div class="form-group">
 									<label>Area</label>
 									<select id="ddlAreas"  class="form-control select2" style="width: 100%;">
@@ -62,27 +62,27 @@
 									<span class="fa fa-pencil form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Fecha</label>
 									<input autocomplete="off" type="text" id="fecha" class="form-control" placeholder="Fecha ingreso">
 									<span class="fa fa-calendar form-control-feedback"></span>
 								</div>
 							</div>	
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Lote</label>
 									<?php
                                         if(!$lote){
-                                            echo '<input autofocus="" autocomplete="off" type="text" id="lote" value="" class="form-control col-xs-4" placeholder="Lote">';
+                                            echo '<input autofocus="" autocomplete="off" type="text" id="lote" value="" class="form-control col-xd-12" placeholder="Lote">';
                                         }else{
-                                            echo '<input value="'.$lote.'" autocomplete="off" type="text" id="lote" value="" class="form-control col-xs-4" placeholder="Lote">';
+                                            echo '<input value="'.$lote.'" autocomplete="off" type="text" id="lote" value="" class="form-control col-xd-12" placeholder="Lote">';
                                         }
                                     ?>
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xd-12 col-sm-12 col-md-2 col-lg-3">
 								<div class="form-group">
 									<label>Máquina</label>
 									<select id="ddlMaquina"  class="form-control select2" style="width: 100%;">
@@ -98,51 +98,52 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Funda</label>
 									<input autofocus="" autocomplete="off" type="text" id="largo" value="" class="form-control col-xs-2" placeholder="largo">
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>									
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Funda</label>
 									<input autofocus="" autocomplete="off" type="text" id="diametro" value="" class="form-control col-xs-2" placeholder="diametro">
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>							
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group ">
 									<label for="">No Batch</label>
 									<input autofocus="" autocomplete="off" type="text" id="batch" class="form-control" placeholder="Batch">
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-							<div id="checkboxes" class="col-lg-12 form-check form-check-inline">							  
-							  <label class="form-check-label" for="chkAceptar">Aceptar</label>
-							  <input class="form-check-input" checked="true" type="radio" name="inlineRadioOptions" id="chkAceptar" value="Aceptar">
-							  <label class="form-check-label" for="chkRechazar">Rechazar</label>
-							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkRechazar" value="Rechazar">
-							  <label class="form-check-label" for="chkReclasificar">Reclasificar</label>
-							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkReclasificar" value="Reclasificar">
-							  <label class="form-check-label" for="chkDesechar">Desechar</label>
-							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkDesechar" value="Desechar">
-							  <label class="form-check-label" for="chkOtras">Otras</label>
-							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkOtras" value="Otras">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+								<div id="checkboxes" class="col-lg-12 form-check form-check-inline">							  
+								  <label class="form-check-label" for="chkAceptar">Aceptar</label>
+								  <input class="form-check-input" checked="true" type="radio" name="inlineRadioOptions" id="chkAceptar" value="Aceptar">
+								  <label class="form-check-label" for="chkRechazar">Rechazar</label>
+								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkRechazar" value="Rechazar">
+								  <label class="form-check-label" for="chkReclasificar">Reclasificar</label>
+								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkReclasificar" value="Reclasificar">
+								  <label class="form-check-label" for="chkDesechar">Desechar</label>
+								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkDesechar" value="Desechar">
+								  <label class="form-check-label" for="chkOtras">Otras</label>
+								  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkOtras" value="Otras">
+								</div>
 							</div>
-						<!--</div>-->
 					</div>
 					<hr>
 					<div class="row">
 						<div class="col-xs-12">													
-							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-5">
+							<div class="col-xd-12 col-sm-4 col-md-6 col-lg-5">
 								<div class="form-group has-feedback">
 									<label>Nombre del producto</label><br>
 									<select class="select js-data-example-ajax form-control" id="ddlprod"></select>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xd-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group">
 									<label>Diametro esperado</label>
 									<input autocomplete="off" type="text" id="diametroEsperado" class="form-control" placeholder="Diametro Esperado">
@@ -153,7 +154,7 @@
 
 					<div class="row">
 						<div class="col-xs-12">							
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" style="display:none;">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="display:none;">
 								<div class="form-group has-feedback">
 									<label for="">Tamaño Muestra</label>
 									<select id="cmbTamaño" class="form-control select2" style="width: 100%;">
@@ -182,7 +183,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" style="display:none;">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="display:none;">
 								<div class="form-check">
 								  <input class="form-check-input" type="checkbox" value="" id="chkEspecial">
 								  <label class="form-check-label" for="chkEspecial">
@@ -202,28 +203,28 @@
 									</select>
 							</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Muestra</label>
 									<input autocomplete="off" type="text" id="muestra" class="form-control">
 									<span class="fa fa-truck form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Diametro</label>
 									<input autocomplete="off" type="text" id="txtPeso" class="form-control">
 									<span class="fa fa-truck form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">monitoreado por</label>
 									<input readonly="" value="<?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apellidos")?>" autocomplete="off" type="text" id="monituser" class="form-control bg-info" placeholder="monitoreado por">
 									<span class="fa fa-user form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+							<div class="col-xd-12 col-sm-4 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">									
 									<button id="btnAdd" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i></button>
 									

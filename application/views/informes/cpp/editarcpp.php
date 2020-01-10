@@ -39,7 +39,7 @@
 				<div>
 					<div class="row">
 						<div class="col-xs-12">
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xd-12 col-sm-12 col-md-2 col-lg-3">
 								<div class="form-group">
 									<label>Area</label>
 									<select id="ddlAreas"  class="form-control select2" style="width: 100%;">
@@ -67,21 +67,21 @@
 									<span class="fa fa-pencil form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Fecha</label>
 									<input autocomplete="off" type="text" id="fecha" class="form-control" value="<?php echo date_format(new DateTime($enc[0]["FECHAINICIO"]), "Y/m/d") ?>" placeholder="Fecha ingreso">
 									<span class="fa fa-calendar form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Lote</label>
-									<input autofocus="" autocomplete="off" type="text" id="lote" value="<?php echo $enc[0]["LOTE"]?>" class="form-control col-xs-4" placeholder="Lote">
+									<input autofocus="" autocomplete="off" type="text" id="lote" value="<?php echo $enc[0]["LOTE"]?>" class="form-control col-xd-12" placeholder="Lote">
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-3">
+							<div class="col-xd-12 col-sm-12 col-md-2 col-lg-3">
 								<div class="form-group">
 									<label>Máquina</label>
 									<select id="ddlMaquina"  class="form-control select2" style="width: 100%;">
@@ -102,7 +102,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Funda</label>
 									<input autofocus="" autocomplete="off" type="text" id="largo" class="form-control col-xs-2"
@@ -110,7 +110,7 @@
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Funda</label>
 									<input autofocus="" autocomplete="off" type="text" id="diametro" class="form-control col-xs-2" value="<?php echo number_format($enc[0]["FUNDADIAMETRO"],2) ?>">
@@ -118,7 +118,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 									<div class="form-group has-feedback">
 										<label for="">No Batch</label>
 										<input autocomplete="off" type="text" id="batch" value="<?php echo $enc[0]["NOBATCH"]?>" class="form-control" placeholder="Batch">
@@ -144,13 +144,13 @@
 					<hr>
 					<div class="row">
 						<div class="col-xs-12">
-							<div class="col-xs-4 col-sm-4 col-md-6 col-lg-5">
+							<div class="col-xd-12 col-sm-12 col-md-6 col-lg-5">
 									<div class="form-group has-feedback">
 										<label>Nombre del producto</label><br>
 										<select class="select js-data-example-ajax form-control" id="ddlprod"></select>
 									</div>
 							</div>
-							<div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xd-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group">
 									<label>Peso Gr</label>
 									<input autocomplete="off" type="text" id="pesoGr" class="form-control" placeholder="Peso Gramos">
@@ -160,8 +160,10 @@
 					</div>
 
 					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+
+						<div class="col-xs-12">							
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+
 								<div class="form-group has-feedback">
 									<label for="">Tamaño Muestra</label>
 									<select id="cmbTamaño" class="form-control select2" style="width: 100%;">
@@ -207,7 +209,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-check">
 									<?php 	$chekde = '';
 									if ($enc[0]["ESPECIAL"]) {
@@ -235,28 +237,28 @@
 									</select>
 							</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Muestra</label>
 									<input readonly="true" autocomplete="off" type="text" id="muestra" value="<?php echo intval($enc[0]["MUESTRA"]) ?>" class="form-control">
 									<span class="fa fa-truck form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Peso</label>
 									<input autocomplete="off" type="text" id="txtPeso" class="form-control">
 									<span class="fa fa-truck form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">monitoreado por</label>
 									<input readonly="" value="<?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apellidos")?>" autocomplete="off" type="text" id="monituser" class="form-control bg-info" placeholder="monitoreado por">
 									<span class="fa fa-user form-control-feedback"></span>
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+							<div class="col-xd-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 
 									<button id="btnAdd" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i></button>
@@ -268,6 +270,7 @@
 						</div>
 					</div>
 				</div>
+				<div style="width: 100%; overflow-y: scroll;">
 				<table class="table table-bordered table-condensed table-striped" id="tblDatos">
 					<thead>
 						<tr>
@@ -300,6 +303,8 @@
 						?>
 					</tbody>
 				</table>
+				</div>
+
 			</div>
 		</div>
 	</section>

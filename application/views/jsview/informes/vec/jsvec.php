@@ -220,7 +220,7 @@ $("#btnGuardar").click(function(){
 							text: mensaje,
 							allowOutsideClick: false
 						}).then((result)=>{
-							window.location.href = "reporte_12";  
+							window.location.href = "<?php echo base_url("index.php/reporte_12")?>";
 						});				
 					},error:function(){
 						Swal.fire({

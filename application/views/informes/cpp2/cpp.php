@@ -32,7 +32,7 @@
 						<i class="fa fa-times"></i></button>-->
 				</div>
 			</div>
-			<div class="box-body">
+			<div class="box-body" style="width: 100%; overflow-y: scroll;">
 				<table class="table table-bordered table-condensed table-striped" id="tblracymp">
 					<thead>
 					<tr>
