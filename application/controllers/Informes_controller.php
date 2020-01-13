@@ -25,5 +25,6 @@ class Informes_controller extends CI_Controller
 		$this->load->view('header/menu');
 		$this->load->view('informes/informes',$data);
 		$this->load->view('footer/footer');
+		$this->load->view('jsview/informes/informes');
 	}
 }

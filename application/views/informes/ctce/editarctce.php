@@ -1,11 +1,11 @@
 
 <div class="content-wrapper">
 	<section class="content-header">
-		<h3 class="text-center"> 
+		<h3 class="text-center">
 			INDUSTRIAS DELMOR, S.A.
 		</h3>
 		<h4 class="text-center">
-			<span id="nombreRpt">REGISTRO CONTROL DE PESO EN PROCESO (CPP)</span>
+			<span id="nombreRpt">CONTROL DE TEMPERATURAS DE CONTENEDORES EXTERNOS (CTCE)</span>
 		</h4>
 		<h4 class="text-center">
 			<?php
@@ -15,7 +15,7 @@
 					echo "NO REPORTE: ".$enc[0]["IDREPORTE"]."";
 				}
 			?>
-		</h4>		
+		</h4>
 	</section>
 
 	<!-- Main content -->
@@ -35,10 +35,10 @@
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-3">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Fecha</label>
-									<input autocomplete="off" disabled type="text" id="fecha" value="<?php echo $enc[0]["FECHACREA"] ?>"  class="form-control" placeholder="Fecha ingreso">
+									<input autocomplete="off"  type="text" id="fecha" value="<?php echo $enc[0]["FECHACREA"] ?>"  class="form-control" placeholder="Fecha ingreso">
 									<span class="fa fa-calendar form-control-feedback"></span>
 								</div>
-							</div>	
+							</div>
 							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-4">
 								<div class="form-group has-feedback">
 									<label for="vigencia">Observacion general</label>
@@ -72,7 +72,7 @@
 						</tr>
 					</thead>
 					<tbody class="text-center">
-						<?php 
+						<?php
 							if(!$det)
 							{}else{
 								foreach ($det as $key) {
@@ -108,7 +108,7 @@
 						</table>
 					</div>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</section>
 </div>
