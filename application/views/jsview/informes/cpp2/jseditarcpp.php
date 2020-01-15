@@ -91,8 +91,8 @@
 					let res = [];
 					for(let i  = 0 ; i < data.length; i++) {
 						res.push({id:data[i].ItemCode, text:data[i].ItemName});
-						$("#campo").append('<input type="hidden" name="" id="'+data[i].ItemCode+'txtpeso" class="form-control" value="'+data[i].SWeight1+'">');						
-						calcularMuestra();	
+						$("#campo").append('<input type="hidden" name="" id="'+data[i].ItemCode+'txtpeso" class="form-control" value="'+data[i].SWeight1+'">');
+						calcularMuestra();
 					}
 					return {
 						results: res
@@ -101,9 +101,9 @@
 				cache: true
 			}
 		}).trigger('change');
-				
 
-		$("#txtPeso").numeric();
+
+		$("#txtPeso,#diametroEsperado").numeric();
 		$("#nitrito,#kg").numeric();
 		$("#largo,#diametro").numeric();
 
@@ -137,14 +137,14 @@
 	    }
 	});
 
-	
+
 
 	function calcularMuestra() {
 		let tabla = $('#tblDatos').DataTable();
 		let noRegistro = tabla.data().count();
 
 		if (noRegistro>0) {
-			
+
 			Swal.fire({
 				title: 'Aviso',
 				text: "Se eliminaran los registros ingresados",
@@ -179,10 +179,10 @@
 
 
 		if (tamano == '' || nivel == '') {
-			
+
 			ok = false;
 		}if (bandera == false && nivel2 =='' /*&& tamano2 == ''*/) {
-			
+
 			ok = false;
 		}
 		if(ok){
@@ -253,7 +253,7 @@
    				allowOutsideClick: false
    			});
    		}
-   		
+
    		let area = $("#ddlAreas option:selected").val(),
    		fecha = $("#fecha").val(),
    		hora = $("#hora").val(),
@@ -287,18 +287,18 @@
 				codproducto,
 				descripcion,
 				gramos,
-				peso,				
-				diferencia				
+				peso,
+				diferencia
    			]).draw(false);
 
 	   		$("#txtPeso").val("");
 	   		$("#txtPeso").focus();
    		}
    });
-	
+
 
 $("#btnGuardar").click(function(){
-	
+
 	Swal.fire({
 		text: "¿Esta Seguro que Desea Guardar?",
 		type: 'question',
@@ -373,9 +373,9 @@ $("#btnGuardar").click(function(){
 				$("#loading").modal("show");
 			    let nombre = $("#nombreRpt").html();
 			    let datos = new Array(), i = 0;
-			    mensaje = '', tipo = '',	
+			    mensaje = '', tipo = '',
 				table = $("#tblDatos").DataTable();
-				
+
 				table.rows().eq(0).each(function(i, index){
 					let row = table.row(index);
 					let data = row.data();
@@ -409,7 +409,7 @@ $("#btnGuardar").click(function(){
 						let obj = jQuery.parseJSON(data);
 						$.each(obj, function(index, val) {
 							mensaje = val["mensaje"];
-							tipo = val["tipo"]; 
+							tipo = val["tipo"];
 						});
 						Swal.fire({
 							type: tipo,

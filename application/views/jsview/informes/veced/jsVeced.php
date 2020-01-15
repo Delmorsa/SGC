@@ -12,6 +12,7 @@
 	    $("#tblVeced").DataTable();
 		let counter = 1;
 		$('#fecha').datepicker({"autoclose":true});
+		$("#version,#estibas,#pesolbs,#temperatura").numeric();
 
 		$("#btnAdd").click(function(){
 		let producto = $("#ddlprod option:selected").val();
@@ -72,12 +73,12 @@
 					observaciones,
 					acciones	   			
 	   			]).draw(false);
-			$("#estibas").val("");
+			/*$("#estibas").val("");
 			$("#monituser").val("");
 			$("#pesolbs").val("");
 			$("#temperatura").val("");
 			$("#observaciones").val("");
-			$("#acciones").val("");
+			$("#acciones").val("");*/
    		}else{
    			t.row.add([
 				counter,

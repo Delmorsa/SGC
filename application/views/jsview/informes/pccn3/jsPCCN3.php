@@ -8,6 +8,10 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function () {
+       /* $(".clockpicker").clockpicker({
+            donetext: "Aceptar"
+        });*/
+
         $('#fecha').datepicker({"autoclose":true});
         $("#temperatura,#produccion,#tiempo,#version").numeric();
         $(".js-data-example-ajax").select2({
@@ -137,12 +141,12 @@
             acciones
         ]).draw(false);
 
-        $("#entrada").val("");
+        /*$("#entrada").val("");
         $("#salida").val("");
         $("#temperatura").val("");
         $("#tiempo").val("");
         $("#observaciones").val("");
-        $("#acciones").val("");
+        $("#acciones").val("");*/
         //$("#ddlAreas").val("").trigger("change");
     }
 });

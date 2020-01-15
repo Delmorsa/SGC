@@ -8,6 +8,7 @@
 ?>
 <script type="text/javascript">
 $(document).ready(function () {
+    $("#toma1,#toma2,#toma3,#toma4").numeric();
    // let counter = $("#tblcrear").DataTable().rows().count() + 1;
     let counter = 1;
     $("#semana").daterangepicker({

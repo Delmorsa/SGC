@@ -5,7 +5,7 @@
 			INDUSTRIAS DELMOR, S.A.
 		</h3>
 		<h4 class="text-center">
-			<span id="nombreRpt">REGISTRO CONTROL DE PESO EN PROCESO (CPP)</span>
+			<span id="nombreRpt">CONTROL DE TEMPERATURAS DE CONTENEDORES EXTERNOS (CTCE)</span>
 		</h4>
 		<h4 class="text-center">
 			<?php

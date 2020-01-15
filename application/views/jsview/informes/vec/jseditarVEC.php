@@ -157,8 +157,8 @@
 				observacion
    			]).draw(false);
 
-   		$("#txtMuestreo").val("");
-   		$("#observaciones").val("");
+   		/*$("#txtMuestreo").val("");
+   		$("#observaciones").val("");*/
    		$("#txtMuestreo").focus();
    		/*$("#ppatron").val("");
    		$("#pbascula").val(""); 

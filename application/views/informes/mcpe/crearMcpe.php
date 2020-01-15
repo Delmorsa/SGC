@@ -238,9 +238,9 @@
                                                         <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                                             <div class="form-group has-feedback">
                                                                 <label for=""> </label>
-                                                                <button id="btnAdd" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                                                                <button id="btnAdd" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i></button>
                                                                 <label for=""> </label>
-                                                                <button id="btnDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                                <button id="btnDelete" class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -307,7 +307,7 @@
                                                     <div class="col-xs-2 col-sm-3 col-md-2 col-lg-2">
                                                         <div class="has-feedback">
                                                             <label for="">Hora</label>
-                                                            <input type="text" id="Hora" class="form-control">
+                                                            <input type="text" id="Hora" class="clockpicker form-control">
                                                             <span class="fa fa-clock-o form-control-feedback"></span>
                                                         </div>
                                                     </div>

@@ -94,7 +94,7 @@
                             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for="">Hora Entrada</label>
-                                    <input autocomplete="off" type="time" id="entrada" class="form-control col-xs-4" placeholder="">
+                                    <input autocomplete="off" type="time" id="entrada" class="clockpicker form-control col-xs-4" placeholder="">
                                     <span class="fa fa-clock-o form-control-feedback"></span>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     <label for="">Hora Salida</label>
                                     <input readonly="" value="<?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apellidos")?>" autocomplete="off" type="hidden" id="monituser" class="form-control" >
 
-                                    <input type="time" id="salida" class="form-control">
+                                    <input type="time" id="salida" class="clockpicker form-control">
                                     <span class="fa fa-clock-o form-control-feedback"></span>
                                 </div>
                             </div>
@@ -124,9 +124,9 @@
                             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
                                 <div class="form-group has-feedback">
                                     <label for=""> </label>
-                                    <button id="btnAdd" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                                    <button id="btnAdd" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i></button>
                                     <label for=""> </label>
-                                    <button id="btnDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <button id="btnDelete" class="btn btn-danger btn-lg"><i class="fa fa-trash"></i></button>
                                 </div>
                             </div>
                         </div>
