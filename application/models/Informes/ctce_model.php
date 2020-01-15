@@ -173,7 +173,7 @@ class ctce_model extends CI_Model
 
 	public function getEncCTCE($idreporte)
 	{
-		$query	= $this->db->query("SELECT t0.*,t1.*,t2.SIGLA 
+		$query	= $this->db->query("SELECT t0.*,t1.IDUSUARIO,t1.NOMBREUSUARIO,t1.NOMBRES,t1.APELLIDOS,t2.SIGLA 
 						FROM Reportes t0
 						inner join Usuarios t1 on t1.IDUSUARIO = t0.IDUSUARIOCREA
 						INNER JOIN Monitoreos t2 ON T2.IDMONITOREO = T0.IDMONITOREO						
