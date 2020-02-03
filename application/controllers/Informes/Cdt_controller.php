@@ -20,12 +20,17 @@ class Cdt_controller extends CI_Controller
 
     public function index()
     {
-        $data["cdt"] = $this->Cdt_model->getCdt();
         $this->load->view('header/header');
         $this->load->view('header/menu');
-        $this->load->view('informes/cdt/cdt',$data);
+        $this->load->view('informes/cdt/cdt');
         $this->load->view('footer/footer');
         $this->load->view('jsview/informes/cdt/jscdt');
+    }
+
+    public function mostrarCdt(){
+      $fecha1 = $this->input->get_post("fecha1");
+      $fecha2 = $this->input->get_post("fecha2"); 
+      $this->Cdt_model->getCdt($fecha1,$fecha2);
     }
 
     public function crearCdt()
