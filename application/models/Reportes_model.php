@@ -213,4 +213,29 @@ class Reportes_model extends CI_Model{
          echo 0; return;
 	}
 
+	public function GraficaEnvase($lote,$codigo,$maquina)
+	{
+		$json = array();$i = 0;
+				
+		/*echo 	"SELECT T1.CODIGO,T1.NOMBRE,(AVG(GC)+AVG(GT)+0.22)-AVG(L) AS CANTIDAD
+			FROM Reportes T0
+			INNER JOIN ReportesEnvases T1 ON T1.IDREPORTE = T0.IDREPORTE
+			WHERE T0.IDTIPOREPORTE = 11 
+			AND T1.LOTE = '".$lote."' AND T1.CODIGO = '".$codigo."' AND CABEZALMAQUINA = '".$maquina."'
+			GROUP BY T1.CODIGO,T1.NOMBRE";*/
+		$query = $this->db->query("SELECT T0.FECHACREA,T1.CODIGO,T1.NOMBRE,(AVG(GC)+AVG(GT)+0.22)-AVG(L) AS CANTIDAD
+			FROM Reportes T0
+			INNER JOIN ReportesEnvases T1 ON T1.IDREPORTE = T0.IDREPORTE
+			WHERE T0.IDTIPOREPORTE = 11 
+			AND T1.LOTE = '".$lote."' AND T1.CODIGO = '".$codigo."' AND CABEZALMAQUINA = '".$maquina."'
+			GROUP BY t0.FECHACREA,T1.CODIGO,T1.NOMBRE,t0.IDREPORTE");		
+
+		if($query->num_rows() > 0){
+			echo json_encode($query->result_array());
+			return;			
+		 }
+
+         echo 0; return;
+	}
+
 }
