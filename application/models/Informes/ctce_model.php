@@ -109,9 +109,9 @@ class ctce_model extends CI_Model
 		      "OBSERVACIONES" => $enc[0],
 		      //"LOTE" => $enc[7],pendiente		      
 		      "ESTADO" => 'A',
-		      "FECHAINICIO" => gmdate(date("Y-m-d H:i:s")),
-		      "FECHAFIN" => gmdate(date("Y-m-d H:i:s")),
-		      "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
+		      "FECHAINICIO" => gmdate(gmdate($enc[1])),
+		      "FECHAFIN" => gmdate(gmdate($enc[1])),
+		      "FECHACREA" => gmdate(gmdate($enc[1])),
 		      "IDUSUARIOCREA" => $this->session->userdata("id")
 			);
 

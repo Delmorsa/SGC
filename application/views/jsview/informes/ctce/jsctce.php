@@ -96,7 +96,7 @@ $("#btnGuardar").click(function(){
 				});
 				console.log("final: "+registro);
 				let form_data = {
-				    enc: [$("#observacionGeneral").val()],
+				    enc: [$("#observacionGeneral").val(),$("#fecha").val()],
 				    datos: JSON.stringify(datos)
 				};
 				if (registro == 0) {
