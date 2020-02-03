@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/datatables.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/treeview.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap-datepicker.min.css">
-	
+
 	<!--clockpicher-->
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/bootstrap-clockpicker.min.css">
     <!--daterangepicker-->
@@ -42,6 +42,17 @@
     <script src="<?php echo base_url()?>assets/js/chart/Chart.min.js"></script>
     <script src="<?php echo base_url()?>assets/js/chart/Chart.bundle.js"></script>
     <script src="<?php echo base_url()?>assets/js/chart/utils.js"></script>
+
+		<style media="screen">
+			/*.texto-busqueda{
+				color: ;
+				font-weight: 12px;
+				background-color:
+			}*/
+			.sombra{
+				box-shadow: 4px 4px 4px 4px rgba(63,191,127,0.80);
+			}
+		</style>
 
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">

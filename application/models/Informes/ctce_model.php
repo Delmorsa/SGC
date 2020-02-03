@@ -22,7 +22,7 @@ class ctce_model extends CI_Model
 		if($query->num_rows() > 0){
 			return $query->result_array();
 		}
-		return 0;	
+		return 0;
 	}
 	public function mostrarNivelInspeccion()
 	{
@@ -36,25 +36,25 @@ class ctce_model extends CI_Model
 	public function getMuestra($tamano,$nivel,/*$tamano2,*/$nivel2,$bandera){
 		$arreglo = explode("-",$tamano);
 		//print_r($arreglo);
-		
+
 		try{
-			$query = "SELECT MUESTRA FROM CatMuestras 
-					WHERE LETRA = 
+			$query = "SELECT MUESTRA FROM CatMuestras
+					WHERE LETRA =
 					(SELECT ".strval($nivel)." FROM CatNivelInspeccion WHERE Desde= ".$arreglo[0]." and Hasta <= ".$arreglo[1].")";
 
 			//echo $query."<br>";
 
-			$query = $this->db->query("SELECT MUESTRA FROM CatMuestras 
-			WHERE LETRA = (SELECT ".strval($nivel)." FROM CatNivelInspeccion WHERE Desde= ".$arreglo[0]." and Hasta <= ".$arreglo[1].")");			
-			
+			$query = $this->db->query("SELECT MUESTRA FROM CatMuestras
+			WHERE LETRA = (SELECT ".strval($nivel)." FROM CatNivelInspeccion WHERE Desde= ".$arreglo[0]." and Hasta <= ".$arreglo[1].")");
+
 			if ($query->num_rows()>0){
 				if ($bandera == "true"){
 					$muestra  = $query->result_array()[0]["MUESTRA"];
 
 
-					//echo "SELECT MUESTRA FROM CatMuestras WHERE LETRA = 
+					//echo "SELECT MUESTRA FROM CatMuestras WHERE LETRA =
 					//(SELECT ".strval($nivel2)." FROM CatNivelInspeccion WHERE (".$muestra." >= DESDE) and (".$muestra." <= HASTA)) <br>";
-					$query = $this->db->query("SELECT MUESTRA FROM CatMuestras WHERE LETRA = 
+					$query = $this->db->query("SELECT MUESTRA FROM CatMuestras WHERE LETRA =
 					(SELECT ".strval($nivel2)." FROM CatNivelInspeccion WHERE (".$muestra." >= DESDE) and (".$muestra." <= HASTA))");
 
 					if ($query->num_rows()>0) {
@@ -102,16 +102,16 @@ class ctce_model extends CI_Model
 			$encabezado = array(
 			  "IDREPORTE" => $id->result_array()[0]["ID"],
 		      "IDMONITOREO" => $query->result_array()[0]["IDMONITOREO"],
-		      "IDAREA" => null,	
+		      "IDAREA" => null,
 		      "VERSION" => '1',
 		      "IDTIPOREPORTE" => '15',
-		      "NOMBRE" => "CONTROL DE TEMPERATURAS DE CONTENEDORES EXTERNOS (CTCE)",		      
+		      "NOMBRE" => "CONTROL DE TEMPERATURAS DE CONTENEDORES EXTERNOS (CTCE)",
 		      "OBSERVACIONES" => $enc[0],
-		      //"LOTE" => $enc[7],pendiente		      
+		      //"LOTE" => $enc[7],pendiente
 		      "ESTADO" => 'A',
-		      "FECHAINICIO" => gmdate(date("Y-m-d H:i:s")),
-		      "FECHAFIN" => gmdate(date("Y-m-d H:i:s")),
-		      "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
+		      "FECHAINICIO" => gmdate($enc[1]),
+		      "FECHAFIN" => gmdate($enc[1]),
+		      "FECHACREA" => gmdate($enc[1]),
 		      "IDUSUARIOCREA" => $this->session->userdata("id")
 			);
 
@@ -121,7 +121,7 @@ class ctce_model extends CI_Model
 				$det = json_decode($datos, true);
 				foreach ($det as $obj) {
 					$idpeso = $this->db->query("SELECT ISNULL(MAX(IDTEMPESTERILIZADOR),0)+1 AS ID FROM ReportesTemperaturas");
-					
+
 					$rpt = array(
 						"IDTEMPESTERILIZADOR" => $idpeso->result_array()[0]["ID"],
 		                "IDREPORTE" => $id->result_array()[0]["ID"],
@@ -173,10 +173,10 @@ class ctce_model extends CI_Model
 
 	public function getEncCTCE($idreporte)
 	{
-		$query	= $this->db->query("SELECT t0.*,t1.IDUSUARIO,t1.NOMBREUSUARIO,t1.NOMBRES,t1.APELLIDOS,t2.SIGLA 
+		$query	= $this->db->query("SELECT t0.*,t1.*,t2.SIGLA
 						FROM Reportes t0
 						inner join Usuarios t1 on t1.IDUSUARIO = t0.IDUSUARIOCREA
-						INNER JOIN Monitoreos t2 ON T2.IDMONITOREO = T0.IDMONITOREO						
+						INNER JOIN Monitoreos t2 ON T2.IDMONITOREO = T0.IDMONITOREO
 						where t0.IDREPORTE = '".$idreporte."'");
 		if ($query->num_rows()>0) {
 			return $query->result_array();
@@ -186,7 +186,7 @@ class ctce_model extends CI_Model
 
 	public function getdetCTCE($idreporte)
 	{
-				 
+
 		$query = $this->db->query("SELECT T0.*,T1.NOMBRE,T1.COMENTARIO
 					FROM ReportesTemperaturas t0
 					INNER JOIN CatContenedores t1 on t1.IDCATCONTENEDOR = T0.IDCONTENEDOR
@@ -205,18 +205,18 @@ class ctce_model extends CI_Model
 		//echo json_encode($enc);
 		date_default_timezone_set("America/Managua");
 		$mensaje = array();
-	
+
 		$this->db->trans_begin();
 
 		$existe = $this->db->query("SELECT IDREPORTE FROM Reportes WHERE IDREPORTE = ".$id);
 		if ($existe->num_rows()>0) {
 
 			$datos = array(
-			      "OBSERVACIONES" => $enc[0],		      
+			      "OBSERVACIONES" => $enc[0],
 			      "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
 			      "IDUSUARIOEDITA" => $this->session->userdata("id")
 				);
-			
+
 			$this->db->where('IDREPORTE',$id);
 			$update = $this->db->update('Reportes',$datos);
 			$this->db->query("DELETE FROM ReportesTemperaturas WHERE IDREPORTE = ".$id);
@@ -239,7 +239,7 @@ class ctce_model extends CI_Model
 		                "USUARIOEDITA" => $this->session->userdata("id")
 				    );
 
-				    $num++;	
+				    $num++;
 				    $guardarRpt = $this->db->insert("ReportesTemperaturas",$rpt);
 				    if($guardarRpt){
 					    $bandera = true;
@@ -267,7 +267,7 @@ class ctce_model extends CI_Model
 		    $this->db->trans_commit();
 		}
 	}
-	
+
 
 	public function BajaAltaCTCE($id,$estado)
 	{
@@ -276,7 +276,7 @@ class ctce_model extends CI_Model
 		$data = array(
 			"ESTADO" => $estado
 		);
-		$this->db->where("IDREPORTE", $id);		
+		$this->db->where("IDREPORTE", $id);
 		$update = $this->db->update("ReportesPeso",$data);
 		$this->db->where("IDREPORTE", $id);
 		$update = $this->db->update("Reportes",$data);

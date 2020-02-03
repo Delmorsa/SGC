@@ -8,6 +8,9 @@
 ?>
 <script type="text/javascript">
     $(document).ready(function () {
+        cargarCdt();
+        $("#fechaFilter1,#fechaFilter2").datepicker({"autoclose":true});
+
         $("#version,#toma1,#toma2,#toma3,#toma4").numeric();
         let counter = 1;
         $("#ddlAreas").select2({
@@ -47,6 +50,81 @@
         $("#UMT4").children("li").click(function () {
             $("#textoBtnUM4").text($(this).text());
         });
+
+        $("#btnFiltrar").on("click", function(){
+          if($("#fechaFilter1").val() == "" || $("#fechaFilter2").val() == ""){
+            Swal.fire({
+                text: "Debe proporcionar ambas fechas",
+                type: "warning",
+                allowOutsideClick: false
+            });
+          }else if($("#fechaFilter1").val() > $("#fechaFilter2").val()){
+            Swal.fire({
+                text: "La primera fecha debe ser menor a la segunda fecha",
+                type: "error",
+                allowOutsideClick: false
+            });
+          }else{
+              cargarCdt();
+          }
+        })
+
+        $("#btnActualizarInfo").on("click", function(){
+          cargarCdt();
+        });
+
+        function cargarCdt(){
+        	let table = $("#tblCdt").DataTable({
+        		"ajax": {
+        			"url": "mostrarCdt",
+        			"type": "POST",
+        			"data": function ( d ) {
+        				d.fecha1 = $("#fechaFilter1").val();
+        				d.fecha2 = $("#fechaFilter2").val();
+        				// d.custom = $('#myInput').val();
+        				// etc
+        			}
+        		},
+        		"processing": true,
+        		"orderMulti": false,
+        		"info": true,
+        		"sort": true,
+        		"destroy": true,
+        		"lengthMenu": [
+        			[10,20,50,100, -1],
+        			[10,20,50,100, "Todo"]
+        		],
+        		"order": [
+        			[0, "desc"]
+        		],
+        		"language": {
+        			"info": "Registro _START_ a _END_ de _TOTAL_ entradas",
+        			"infoEmpty": "Registro 0 a 0 de 0 entradas",
+        			"zeroRecords": "No se encontro coincidencia",
+        			"infoFiltered": "(filtrado de _MAX_ registros en total)",
+        			"emptyTable": "NO HAY DATOS DISPONIBLES",
+        			"lengthMenu": '_MENU_ ',
+        			"search": '<i class="fa fa-search"></i>',
+        			"loadingRecords": "",
+        			"processing": "Procesando datos  <i class='fa fa-spin fa-refresh'></i>",
+        			"paginate": {
+        				"first": "Primera",
+        				"last": "Última ",
+        				"next": "Siguiente",
+        				"previous": "Anterior"
+        			}
+        		},
+        		"columns": [
+        		{"data" : "IDREPORTE"},
+        		{"data" : "SIGLA"},
+        		{"data" : "VERSION"},
+        		{"data" : "FECHAINICIO"},
+        		{"data" : "USUARIO"},
+        		{"data" : "ESTADO"},
+        		{"data" : "Acciones"}
+        	]
+        	});
+      }
 
         $("#btnAdd").click(function(){
             let t = $('#tblcrear').DataTable({
@@ -312,7 +390,7 @@
             row.child.hide();
             tr.removeClass("shown");
         }else{
-            mostrarDetalles(row.child,data[0],data[0]);
+            mostrarDetalles(row.child,data.IDREPORTE,data.IDREPORTE);
             tr.addClass("shown");
         }
     });
@@ -366,4 +444,3 @@
         });
     }
 </script>
-
