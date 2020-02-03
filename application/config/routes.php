@@ -183,6 +183,7 @@ $route["updateDetalle"] = "Informes/Mdtde_controller/updateDetalle";
 $route["editarmdtde/(:any)"] = "Informes/Mdtde_controller/editarmdtde/$1";
 /*******************************************************************************************/
 $route["reporte_14"] = "Informes/Cdt_controller";
+$route["mostrarCdt"] = "Informes/Cdt_controller/mostrarCdt";
 $route["crearCdt"] = "Informes/Cdt_controller/crearCdt";
 $route["guardarCdt"] = "Informes/Cdt_controller/guardarCdt";
 $route["getCdtAjax/(:any)"] = "Informes/Cdt_controller/getCdtAjax/$1";
@@ -202,4 +203,5 @@ $route["GraficaPesoDebajo"] = "Reportes_controller/GraficaPesoDebajo";
 $route["GraficaPesoArriba"] = "Reportes_controller/GraficaPesoArriba";
 
 $route["generarReportePesoDiametro2"] = "Reportes_controller/generarReportePesoDiametro2";
-
+$route["reporteEnvases"] = "Reportes_controller/reporteEnvases";
+$route["GraficaEnvase"] = "Reportes_controller/GraficaEnvase";

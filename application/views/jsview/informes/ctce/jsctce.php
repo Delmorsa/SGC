@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
-		
+
         $('.select2').select2({
 			placeholder: "Seleccione",
 			allowClear: true,
@@ -38,13 +38,13 @@
 				cache: true
 			}
 		}).trigger('change');
-				
+
 
 		$(".numeric").numeric();
 
 		$("#nitrito,#kg").numeric();
 		$('#fecha').datepicker({"autoclose":true});
-		$("#tblCNS").DataTable();	
+		$("#tblCNS").DataTable();
 
 	});
 
@@ -71,9 +71,9 @@ $("#btnGuardar").click(function(){
 			}else{
 				$("#loading").modal("show");
 			    let nombre = $("#nombreRpt").html(),
-			    mensaje = '', tipo = '',	
+			    mensaje = '', tipo = '',
 				datos = new Array(), i = 0;
-			    mensaje = '', tipo = '',	
+			    mensaje = '', tipo = '',
 				table = $("#tblDatos").DataTable();
 				var registro = 0;
 				table.rows().eq(0).each(function(i, index){
@@ -119,15 +119,15 @@ $("#btnGuardar").click(function(){
 							let obj = jQuery.parseJSON(data);
 							$.each(obj, function(index, val) {
 								mensaje = val["mensaje"];
-								tipo = val["tipo"]; 
+								tipo = val["tipo"];
 							});
 							Swal.fire({
 								type: tipo,
 								text: mensaje,
 								allowOutsideClick: false
 							}).then((result)=>{
-								window.location.href = "reporte_15";  
-							});				
+								window.location.href = "reporte_15";
+							});
 						},error:function(){
 							Swal.fire({
 								type: "error",
