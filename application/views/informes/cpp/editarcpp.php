@@ -162,8 +162,12 @@
 					<div class="row">
 
 						<div class="col-xs-12">							
+<<<<<<< HEAD
+							<!--<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+=======
 							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 
+>>>>>>> 2519c47d329fe7397fb3bd3be1505dfc5e6b235b
 								<div class="form-group has-feedback">
 									<label for="">Tamaño Muestra</label>
 									<select id="cmbTamaño" class="form-control select2" style="width: 100%;">
@@ -186,9 +190,9 @@
 										?>
 									</select>
 								</div>
-							</div>
+							</div>-->
 							<div class="col-xs-8 col-sm-6 col-md-6 col-lg-3">
-								<div class="form-group has-feedback">
+								<!--<div class="form-group has-feedback">
 									<label for="vigencia">Nivel Inspeccion</label>
 									<select id="cmdNivel" class="form-control select2" style="width: 100%;">
 										<option></option>
@@ -203,13 +207,11 @@
 											}
 
 										?>
-										<!--<option value="I">I</option>
-										<option value="II">II</option>
-										<option value="III">III</option>-->
+										
 									</select>
-								</div>
+								</div>-->
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 d-none">
 								<div class="form-check">
 									<?php 	$chekde = '';
 									if ($enc[0]["ESPECIAL"]) {
@@ -240,7 +242,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
 									<label for="">Muestra</label>
-									<input readonly="true" autocomplete="off" type="text" id="muestra" value="<?php echo intval($enc[0]["MUESTRA"]) ?>" class="form-control">
+									<input  autocomplete="off" type="text" id="muestra" value="<?php echo intval($enc[0]["MUESTRA"]) ?>" class="form-control">
 									<span class="fa fa-truck form-control-feedback"></span>
 								</div>
 							</div>

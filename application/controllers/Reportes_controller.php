@@ -65,5 +65,25 @@ class Reportes_controller extends CI_Controller{
 		$this->Reportes_model->GraficaPesoArriba($lote,$codigo,$tipo);
 	}
 
+
+	public function reporteEnvases()
+	{
+		$data["lista"] = $this->Areas_model->mostrarAreas();
+		$this->load->view('header/header');
+		$this->load->view('header/menu');
+		$this->load->view('reportes/reporteEnvase',$data);
+		$this->load->view('footer/footer');
+		$this->load->view('jsview/reportes/jsreporteenvase');
+		
+	}
+
+	public function GraficaEnvase()
+	{
+		$lote = $this->input->get_post("lote"); 
+		$codigo = $this->input->get_post("codigo"); 
+		$maquina = $this->input->get_post("maquina");
+		$this->Reportes_model->GraficaEnvase($lote,$codigo,$maquina);
+	}
+
 }
 ?>
