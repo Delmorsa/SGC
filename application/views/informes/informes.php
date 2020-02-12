@@ -8,8 +8,8 @@
  */
 ?>
 <div class="content-wrapper">
-	<section class="content-header"> 
-		 	
+	<section class="content-header">
+
 	</section>
 
 	<!-- Main content -->
@@ -17,7 +17,7 @@
 		<div class="box box-danger">
 			<div class="box-header with-border">
 				<h3 class="box-title" style="text-transform: uppercase;">
-					<?php echo str_replace("_", " ", $this->uri->segment(1))?>		
+					<?php echo str_replace("_", " ", $this->uri->segment(1))?>
 				</h3>
 
 				<div class="box-tools pull-right">
@@ -28,9 +28,19 @@
 			</div>
 			<div class="box-body">
 				<div class="row">
+								<div class="col-xs-5">
+									<div class="form-group has-feedback">
+										<input autofocus="" autocomplete="off" type="text" id="Buscar" class="form-control" placeholder="Buscar">
+									</div>
+								</div>
+								<div class="col-xs-5">
+									<button  class="btn btn-success" type="button" name="button" onclick="Buscar()">
+										Filtrar <i class="fa fa-search"></i>
+									</button>
+								</div>
 			          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			          	<!-- small box -->
-				          <?php 
+				          <?php
 				          	$colores = array("red","aqua","green","yellow");
 				          	$i = 0;
 				          	$e = 0;
@@ -39,11 +49,11 @@
 				          		foreach ($rpts as $key) {
 				          			echo '
 									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-										<div class="small-box bg-'.$colores[$e].'">
+										<div class="texto-busqueda small-box bg-'.$colores[$e].'">
 								            <div class="inner">
 								              <p class="text-bold">'.$key["SIGLA"].'</p>
 
-								              <p style="font-size:9pt;">'.$key["NOMBRE"].'</p>
+								              <p class="texto" style="font-size:9pt;">'.$key["NOMBRE"].'</p>
 								            </div>
 								            <div class="icon">
 								              <i class="fa fa-file-text-o"></i>

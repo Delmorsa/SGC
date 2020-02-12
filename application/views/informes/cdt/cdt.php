@@ -28,6 +28,30 @@
             <li class="active"></li>
         </ol>-->
         <br>
+        <div class="row">
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <div class="form-group has-feedback">
+                  <input autocomplete="off" type="text" id="fechaFilter1" class="form-control" placeholder="DESDE">
+                  <span class="fa fa-calendar form-control-feedback"></span>
+              </div>
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <div class="form-group has-feedback">
+                  <input autocomplete="off" type="text" id="fechaFilter2" class="form-control" placeholder="HASTA">
+                  <span class="fa fa-calendar form-control-feedback"></span>
+              </div>
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+              <div class="form-group has-feedback">
+                <button type="button" id="btnFiltrar" class="btn btn-success" name="">
+                  Filtrar <i class="fa fa-search"></i>
+                </button>
+                <button type="button" id="btnActualizarInfo" class="btn btn-success" name="">
+                  Actualizar <i class="fa fa-refresh"></i>
+                </button>
+              </div>
+          </div>
+        </div>
     </section>
 
     <!-- Main content -->
@@ -63,7 +87,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $estado = '';
+                                    /*$estado = '';
                                     if(!$cdt){
                                     }else{
                                         foreach ($cdt as $key) {
@@ -113,7 +137,7 @@
                                             echo"</tr>
                                             ";
                                         }
-                                    }
+                                    }*/
                                 ?>
                             </tbody>
                         </table>
@@ -129,4 +153,3 @@
 
     </section>
 </div>
-

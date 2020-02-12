@@ -31,16 +31,55 @@ class Cdt_model extends CI_Model
         return 0;
     }
 
-    public function getCdt()
+    public function getCdt($fecha1,$fecha2)
     {
-        $query = $this->db->query("SELECT t1.IDREPORTE,t1.SIGLA,t1.VERSION,t1.FECHAINICIO,t1.USUARIO,t1.ESTADO
+        $top_10 = "TOP 10"; $filtro = "";
+        if($fecha1 != "" && $fecha2 != ""){
+          $top_10 = "";
+          $filtro = "AND t1.FECHAINICIO BETWEEN '".$fecha1."' AND '".$fecha2."' ";
+        }
+        $query = $this->db->query("SELECT ".$top_10." t1.IDREPORTE,t1.SIGLA,t1.VERSION,t1.FECHAINICIO,t1.USUARIO,t1.ESTADO
                                     FROM dbo.view_InformesTemperatura t1
                                     WHERE t1.IDTIPOREPORTE = 14
+                                    ".$filtro."
                                     GROUP BY t1.IDREPORTE,t1.SIGLA,t1.VERSION,t1.FECHAINICIO,t1.USUARIO,t1.ESTADO");
         if($query->num_rows()>0){
-            return $query->result_array();
+            $i = 0; $json = array();
+            foreach ($query->result_array() as $key) {
+                $json["data"][$i]["IDREPORTE"] = $key["IDREPORTE"];
+                $json["data"][$i]["SIGLA"] = $key["SIGLA"];
+                $json["data"][$i]["VERSION"] = $key["VERSION"];
+                $json["data"][$i]["FECHAINICIO"] = date_format(new DateTime($key["FECHAINICIO"]),"Y-m-d");
+                $json["data"][$i]["USUARIO"] = $key["USUARIO"];
+                if($key["ESTADO"] == "A"){
+                      $json["data"][$i]["ESTADO"] = "<span class='text-success text-bold'>Activo</span>";
+                      $json["data"][$i]["Acciones"] = "
+                       <a class='detalles btn btn-success btn-xs' href='javascript:void(0)'>
+                           <i class='fa fa-eye'></i>
+                       </a>
+                       <a class='btn btn-primary btn-xs' href='".base_url("index.php/editarCdt/".$key["IDREPORTE"]."")."'>
+                           <i class='fa fa-pencil'></i>
+                       </a>
+                       <a onclick='DardeBaja(".'"'.$key["IDREPORTE"].'","'.$key["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+                           <i class='fa fa-trash'></i>
+                       </a>";
+                }else{
+                  $json["data"][$i]["ESTADO"] = "<span class='text-danger text-bold'>Activo</span>";
+                  $json["data"][$i]["Acciones"] = "
+                  <a class='detalles btn btn-success btn-xs disabled' href='javascript:void(0)'>
+                      <i class='fa fa-eye'></i>
+                  </a>
+                  <a class='btn btn-primary btn-xs disabled' href='javascript:void(0)'>
+                      <i class='fa fa-pencil'></i>
+                  </a>
+                  <a onclick='DardeBaja(".'"'.$key["IDREPORTE"].'","'.$key["ESTADO"].'"'.")' class='btn btn-danger btn-xs' href='javascript:void(0)'>
+                      <i class='fa fa-refresh'></i>
+                  </a>";
+                }
+                $i++;
+            }
+            echo json_encode($json);
         }
-        return 0;
     }
 
     public function getCdtAjax($idreporte)
