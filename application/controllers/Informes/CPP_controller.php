@@ -68,7 +68,7 @@ class CPP_controller extends CI_Controller
 		$data['enc'] = $this->Cpp_model->getEncCPP($id);
 		$data['det'] = $this->Cpp_model->getdetCPP($id);
 		$data["version"] = $this->CNS_model->getVersion(10);
-		echo json_encode($data['enc']);
+		//echo json_encode($data['enc']);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cpp/verCPP',$data);
