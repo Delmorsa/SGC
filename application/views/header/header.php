@@ -43,6 +43,14 @@
     <script src="<?php echo base_url()?>assets/js/chart/Chart.bundle.js"></script>
     <script src="<?php echo base_url()?>assets/js/chart/utils.js"></script>
 
+    <!-- exportacion de pdf-->
+    <script src="<?php echo base_url()?>assets/js/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/html2pdf.bundle.js"></script>
+    <script src="<?php echo base_url()?>assets/js/tableHTMLExport.js"></script>
+    <script src="<?php echo base_url()?>assets/js/html2canvas.js"></script>
+    <script src="<?php echo base_url()?>assets/js/jspdf.debug.js"></script>    
+
+
 		<style media="screen">
 			/*.texto-busqueda{
 				color: ;
@@ -56,3 +64,4 @@
 
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
+

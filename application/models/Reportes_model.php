@@ -17,13 +17,13 @@ class Reportes_model extends CI_Model{
 		$data = array();
         $i = 0;
         $concatCodigo = "";
-
-        if ($concatCodigo != null || $concatCodigo != '') {
+        
+        if ($codigo != null || $codigo != '') {
         	$concatCodigo = " and t0.CODIGOPRODUCTO = ".$codigo."";
 
-        	//echo $concatCodigo." ----";
+        	
         }
-        
+        //echo $concatCodigo." ----";
         $query = $this->db->query("SELECT isnull(t0.CODIGOPRODUCTO,t1.CODIGOPRODUCTO) CODIGOPRODUCTO, isnull(t0.NOMBREPRODUCTO,t1.NOMBREPRODUCTO) NOMBREPRODUCTO,
 				isnull(T0.LOTE,T1.LOTE) LOTE,ISNULL(T0.DIAMETRO_UTILIZADO,0) DIAMETRO_UTILIZADO,ISNULL(T0.DIAMETRO_ESPERADO,0)DIAMETRO_ESPERADO,
 				ISNULL(T0.FUNDADIAMETRO,0) FUNDADIAMETRO,ISNULL(T0.FUNDALARGO,0) FUNDALARGO,isnull(t1.PESO_ESPERADO,0)PESO_ESPERADO,
@@ -84,6 +84,39 @@ class Reportes_model extends CI_Model{
 
                 															
 
+            }
+            echo 0;
+            return;
+	}
+	
+	public function generarReporteDetallePeso($lote,$codigo){
+		
+		$data = array();
+        $i = 0;
+        $concatCodigo = "";
+        
+        if ($codigo != null || $codigo != '') {
+        	$concatCodigo = " and t0.CODIGOPRODUCTO = ".$codigo."";
+        	
+        }
+        //echo $concatCodigo." ----";
+        $query = $this->db->query("SELECT t1.*
+							from  reportes t0
+							inner join ReportesPeso t1 on t1.IDREPORTE = T0.IDREPORTE
+							where t0.IDTIPOREPORTE = 10 AND t1.CODIGO = '".$codigo."' and t0.LOTE = '".$lote."'");
+
+        	//echo json_encode($query->result_array());
+            if (count($query->result_array())>0) {
+                foreach ($query->result_array() as $key) {
+                    $data['data'][$i]["CODIGO"] = $key["CODIGO"];
+                    $data['data'][$i]["DESCRIPCION"] = $key["DESCRIPCION"];
+                    $data['data'][$i]["PESOBASCULA"] = $key["PESOBASCULA"];                    
+                    $data['data'][$i]["DIFERENCIA"] = $key["DIFERENCIA"];
+                    
+                    $i++;
+                }
+                echo json_encode($data);
+                return;
             }
             echo 0;
             return;
