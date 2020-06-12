@@ -33,6 +33,14 @@ class Reportes_controller extends CI_Controller{
 		$codigo = $this->input->get_post("codigo"); 
 		$this->Reportes_model->generarReportePesoDiametro($lote,$codigo);
 	}
+
+	
+	public function generarReporteDetallePeso()
+	{
+		$lote = $this->input->get_post("lote"); 
+		$codigo = $this->input->get_post("codigo"); 
+		$this->Reportes_model->generarReporteDetallePeso($lote,$codigo);
+	}
 	public function GraficaPeso()
 	{
 		$lote = $this->input->get_post("lote"); 
