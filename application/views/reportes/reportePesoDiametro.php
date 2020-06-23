@@ -30,7 +30,7 @@
 		                            <select class="js-data-example-ajax form-control" id="codigo"></select>
 		                      	</div>                      	
 	                    	</div>
-	                    	<div class="col-xs-4 col-sm-6 col-md-6 col-lg-4">
+	                    	<div class="col-xs-4 col-sm-6 col-md-6 col-lg-3">
 	                        	<div class="form-group has-feedback">
 		                            <label>Tipo</label><br>
 		                            <select id="tipoReporte" class="form-control">
@@ -38,6 +38,12 @@
 									  <option value="2">Diametro</option>								  
 									</select>
 		                      	</div>                      	
+	                    	</div>
+	                    	<div class="col-xs-4 col-sm-6 col-md-6 col-lg-3">
+	                        	<div class="form-group form-check">
+								    <input type="checkbox" checked class="form-check-input" id="exampleCheck1">
+								    <label class="form-check-label" for="exampleCheck1">Mostrar tabla</label>
+								  </div>
 	                    	</div>
 	                    	<div class="col-xs-4 col-sm-6 col-md-6 col-lg-2">
 	                    		<div class="form-group has-feedback">
@@ -80,7 +86,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="box-body" style="overflow-y: scroll;">
+				<div id="ocultar" class="box-body" style="overflow-y: scroll;">
 					<div class="row text-center">
 						<h3><strong>Pesos detallados</strong></h3><br>
 					</div>

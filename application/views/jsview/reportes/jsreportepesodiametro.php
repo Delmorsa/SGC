@@ -3,6 +3,18 @@
 ?>
 <script type="text/javascript">
 	var selected = 'Aceptar';
+	var show = true;
+
+	 $('#exampleCheck1').change(function() {
+        if($(this).is(":checked")) {
+        	//alert("checked")
+            $('#ocultar').show()
+        }else{
+        	//alert("no checked")
+        	$('#ocultar').hide()
+        }        
+    });
+
 	$(document).ready(function(){
 
         $('.select2').select2({
