@@ -57,10 +57,10 @@ class CNS_model extends CI_Model
 	public function mostrarCNS()
 	{
 		$top_10 = "TOP 10"; $filtro = "";
-		if($fecha1 != "" && $fecha2 != ""){
+		/*if($fecha1 != "" && $fecha2 != ""){
 			$top_10 = "";
 			$filtro = "AND t1.FECHAINICIO BETWEEN '".$fecha1."' AND '".$fecha2."' ";
-		}
+		}*/
 		$query = $this->db->query("SELECT ".$top_10." t1.SIGLA,t1.DIA,CAST(t1.HORA AS time(0)) HORA,t1.AREA,t1.ESTADODET,
 															t1.OBSERVACIONES,t1.IDREPORTE,t1.IDUSUARIOCREA,
 															CONCAT(t2.NOMBRES,' ',t2.APELLIDOS) MONITOREADO_POR
@@ -85,6 +85,7 @@ class CNS_model extends CI_Model
 				$json[$i]["NUMERO"] = $key["NUMERO"];
 				$json[$i]["FECHAINGRESO"] = date_format(new DateTime($key["FECHAINGRESO"]),"d-m-Y");
 				$json[$i]["CANTIDADNITRITO"] = number_format($key["CANTIDADNITRITO"],2);
+				$json[$i]["CANTIDADNITRITOU"] = number_format($key["CANTIDADNITRITOU"],2);
 				$json[$i]["CANTIDADKG"] = number_format($key["CANTIDADKG"],2);
 				$json[$i]["FECHACREADET"] = date_format(new DateTime($key["FECHACREADET"]),"d-m-Y");
 				$json[$i]["HORA"] = date_format(new DateTime($key["HORA"]),"H:i:s");
@@ -132,7 +133,8 @@ class CNS_model extends CI_Model
 		                "HORA" => gmdate(date("H:i:s")),
 		                "FECHAINGRESO" => $array[0],
 		                "CANTIDADNITRITO" => $array[1],
-		                "CANTIDADKG" => $array[2],
+		                "CANTIDADNITRITOU" => $array[2],
+		                "CANTIDADKG" => $array[3],
 		                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
 		                "IDUSUARIOCREA" => $this->session->userdata("id")
 				    );
@@ -215,7 +217,8 @@ class CNS_model extends CI_Model
 			                "HORA" => gmdate(date("H:i:s")),
 			                "FECHAINGRESO" => $array[0],
 			                "CANTIDADNITRITO" => $array[1],
-			                "CANTIDADKG" => $array[2],
+			                "CANTIDADNITRITOU" => $array[2],
+			                "CANTIDADKG" => $array[3],
 			                "FECHACREA" => gmdate(date("Y-m-d H:i:s")),
 			                "IDUSUARIOCREA" => $this->session->userdata("id"),
 			                "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),

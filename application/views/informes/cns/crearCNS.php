@@ -113,6 +113,13 @@
 							</div>
 							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
 								<div class="form-group has-feedback">
+									<label for="">Cantidad nitrito u.</label>
+									<input autofocus="" autocomplete="off" type="text" id="nitritoU" class="form-control" placeholder="cantidad nitrito">
+									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+								<div class="form-group has-feedback">
 									<label for="">Cantidad kg.</label>
 									<input autofocus="" autocomplete="off" type="text" id="kg" class="form-control col-xs-4" placeholder="cantidad Kg">
 									<span class="fa fa-sort-alpha-desc form-control-feedback"></span>
@@ -142,6 +149,7 @@
 						<tr>
 							<th class="text-center">Fecha de ingreso <br>a premezcla</th>
 							<th class="text-center">Canitdad de nitrito <br>solicitado</th>
+							<th class="text-center">Canitdad de nitrito <br>utilizado</th>
 							<th class="text-center">Cantidad Kg. <br>sal de cura obtenida</th>
 							<th class="text-center">Monitoreado por</th>
 						</tr>
