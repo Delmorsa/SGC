@@ -63,6 +63,7 @@
 		});
    		let fecha = $("#fecha").val(),
    		cantidad = $("#nitrito").val(),
+   		cantidad2 = $("#nitrito2").val(),
    		kg = $("#kg").val(),
    		monituser = $("#monituser").val();
 
@@ -76,6 +77,7 @@
    			t.row.add([
 				fecha,
 				cantidad,
+				cantidad2,
 				kg,
 				monituser	   			
    			]).draw(false);
@@ -123,7 +125,7 @@ $("#btnActualizar").click(function(){
 				table.rows().eq(0).each(function(i, index){
 					let row = table.row(index);
 					let data = row.data();
-					datos[i] = data[0]+","+data[1]+","+data[2];
+					datos[i] = data[0]+","+data[1]+","+data[2]+","+data[3];
 					i++;
 				});
 

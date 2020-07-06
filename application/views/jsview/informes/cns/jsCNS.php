@@ -9,7 +9,7 @@
 ?>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#nitrito,#kg,#version").numeric();
+		$("#nitrito,#nitritoU,#kg,#version").numeric();
 		$('#fecha').datepicker({"autoclose":true});
 		$('.select2').select2({
 			placeholder: "Seleccione un area",
@@ -21,13 +21,13 @@
 	});
 
 	$('#tblcrear tbody').on( 'click', 'tr', function () {
-          $(this).toggleClass('danger');
-      });
+    	$(this).toggleClass('danger');
+    });
 
 	$("#btnDelete").click(function (){
-      let table = $("#tblcrear").DataTable();
-      let rows = table.rows( '.danger' ).remove().draw();
-  });
+    	let table = $("#tblcrear").DataTable();
+    	let rows = table.rows( '.danger' ).remove().draw();
+  	});
 
    $("#btnAdd").click(function(){
    		let t = $('#tblcrear').DataTable({
@@ -63,6 +63,7 @@
 		});
    		let fecha = $("#fecha").val(),
    		cantidad = $("#nitrito").val(),
+   		cantidad2 = $("#nitritoU").val(),
    		kg = $("#kg").val(),
    		monituser = $("#monituser").val();
 
@@ -76,6 +77,7 @@
    			t.row.add([
 				fecha,
 				cantidad,
+				cantidad2,
 				kg,
 				monituser	   			
    			]).draw(false);
@@ -123,7 +125,7 @@ $("#btnGuardar").click(function(){
 				table.rows().eq(0).each(function(i, index){
 					let row = table.row(index);
 					let data = row.data();
-					datos[i] = data[0]+","+data[1]+","+data[2];
+					datos[i] = data[0]+","+data[1]+","+data[2]+","+data[3];
 					i++;
 				});
 
@@ -172,6 +174,7 @@ function mostrarDetalles(callback,id,div)
 				thead += "<tr class=''><th class='text-center bg-primary'>NumLinea</th>";
 				thead += "<th class='text-center bg-primary'>Fecha ingreso</th>";
 				thead += "<th class='text-center bg-primary'>Cant. Nitrito</th>";
+				thead += "<th class='text-center bg-primary'>Cant. Nitrito u</th>";
 				thead += "<th class='text-center bg-primary'>Cant. Kg</th>";
 				thead += "<th class='text-center bg-primary'>Fecha crea</th>";
 				thead += "<th class='text-center bg-primary'>Hora crea</th></tr>";
@@ -180,6 +183,7 @@ function mostrarDetalles(callback,id,div)
 						"<td class='text-center bg-info'>"+item["NUMERO"]+"</td>"+
 						"<td class='text-center bg-info'>"+item["FECHAINGRESO"]+"</td>"+
 						"<td class='text-center bg-info'>"+item["CANTIDADNITRITO"]+"</td>"+
+						"<td class='text-center bg-info'>"+item["CANTIDADNITRITOU"]+"</td>"+
 						"<td class='text-center bg-info'>"+item["CANTIDADKG"]+"</td>"+
 						"<td class='text-center bg-info'>"+item["FECHACREADET"]+"</td>"+
 						"<td class='text-center bg-info'>"+item["HORA"]+"</td>";
@@ -189,11 +193,13 @@ function mostrarDetalles(callback,id,div)
 				thead += "<tr class=''><th class='text-center bg-primary'>NumLinea</th>";
 				thead += "<th class='text-center bg-primary'>Fecha ingreso</th>";
 				thead += "<th class='text-center bg-primary'>Cant. Nitrito</th>";
+				thead += "<th class='text-center bg-primary'>Cant. Nitrito U</th>";
 				thead += "<th class='text-center bg-primary'>Cant. Kg</th>";
 				thead += "<th class='text-center bg-primary'>Fecha crea</th>";
 				thead += "<th class='text-center bg-primary'>Hora crea</th></tr>";
 				tbody += '<tr >' +
 					    "<td></td>"+
+						"<td></td>"+
 						"<td></td>"+
 						"<td></td>"+
 						"<td>No hay datos disponibles</td>"+
