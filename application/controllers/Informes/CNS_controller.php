@@ -21,6 +21,7 @@ class CNS_controller extends CI_Controller
 	public function index()
 	{
 		$data["cns"] = $this->CNS_model->mostrarCNS();
+		//echo json_encode($data["cns"]);
 		$this->load->view('header/header');
 		$this->load->view('header/menu');
 		$this->load->view('informes/cns/CNS',$data);

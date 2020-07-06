@@ -113,16 +113,12 @@
 			let bandera = true;
 			let tabla = $('#tblDatos').DataTable();
 			let noRegistro = tabla.data().count();
-<<<<<<< HEAD
 			var selct = tabla.data()[0][1];
 			console.log($(this).val())
 			if (noRegistro>0 && (selct != $(this).val())) {
-				
-=======
+		
 
-			if (noRegistro>0) {
-
->>>>>>> 2519c47d329fe7397fb3bd3be1505dfc5e6b235b
+			//if (noRegistro>0) {
 				Swal.fire({
 				  title: 'Aviso',
 				  text: "Se eliminaran los registros ingresados",

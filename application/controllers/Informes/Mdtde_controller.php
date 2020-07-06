@@ -60,6 +60,8 @@ class Mdtde_controller extends CI_Controller
         $data["areas"] = $this->Mdtde_model->getAreas();
         $data["detalle"] = $this->Mdtde_model->editarmdtde($id);
         $data["version"] = $this->CNS_model->getVersion(13);
+
+        //echo json_encode($data["detalle"]);
         $this->load->view('header/header');
         $this->load->view('header/menu');
         $this->load->view('informes/mdtde/editarMdtde',$data);

@@ -78,7 +78,7 @@
 										<tr>
 											<td>".$key["IDREPORTE"]."</td>
 											<td>ISO-HACCP-".$key["SIGLA"]."</td>
-											<td>".$key["DIA"]."</td>
+											<td>".$key["FECHACREA"]."</td>
 											<td>".$key["HORA"]."</td>
 											<td>".$key["AREA"]."</td>
 											<td>".$key["OBSERVACIONES"]."</td>

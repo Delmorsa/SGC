@@ -148,7 +148,7 @@ setlocale(LC_ALL,'Spanish_Nicaragua');
                                         foreach ($detalle as $key) {
                                         }
                                         echo '
-                                          <input readonly value="'.date_format(new DateTime($key["FECHAINICIO"]),"Y-m-d").'" type="text" id="Fecha" class="form-control" placeholder="">
+                                          <input  value="'.date_format(new DateTime($key["FECHAINICIO"]),"Y-m-d").'" type="text" id="Fecha" class="form-control" placeholder="">
                                           ';
                                     }
                                     ?>
@@ -166,7 +166,7 @@ setlocale(LC_ALL,'Spanish_Nicaragua');
                                     date_default_timezone_set("America/Managua");
                                     setlocale(LC_TIME, "spanish");
                                     echo '
-                                            <input value="'.strftime("%B %Y").'" readonly autocomplete="off" type="text" id="Mes" class="form-control" placeholder="">
+                                            <input value="'.strftime("%B %Y").'"  autocomplete="off" type="text" id="Mes" class="form-control" placeholder="">
                                        ';
                                     ?>
                                     <span class="fa fa-calendar form-control-feedback"></span>
@@ -177,7 +177,7 @@ setlocale(LC_ALL,'Spanish_Nicaragua');
                                     <label for="vigencia">Hora</label>
                                     <?php
                                     echo '
-                                            <input readonly value="'.date("H:i").'" autocomplete="off" type="text" id="Hora" class="form-control">
+                                            <input  value="'.date("H:i").'" autocomplete="off" type="text" id="Hora" class="form-control">
                                        ';
                                     ?>
                                     <span class="fa fa-clock-o form-control-feedback"></span>
@@ -204,7 +204,7 @@ setlocale(LC_ALL,'Spanish_Nicaragua');
                                     <label for="">Dia</label>
                                     <?php
                                     echo '
-                                            <input value="'.utf8_encode(strftime("%A")).'" readonly autocomplete="off"
+                                            <input value="'.utf8_encode(strftime("%A")).'"  autocomplete="off"
                                             type="text" id="Dia" class="form-control" placeholder="">
                                        ';
                                     ?>
@@ -310,6 +310,24 @@ setlocale(LC_ALL,'Spanish_Nicaragua');
                     </tr>
                     </thead>
                     <tbody class="text-center">
+                    <?php $i= 1;
+                    foreach ($detalle as $key) {
+                                                    echo "
+                                                    <tr>
+                                                        <td>".$i."</td>
+                                                        <td>".$key["SEMANA"]."</td>
+                                                        <td>".$key["DIA"]."</td>
+                                                        <td>".$key["TOMA1"]."</td>
+                                                        <td>".$key["TOMA2"]."</td>
+                                                        <td>".$key["TOMA3"]."</td>
+                                                        <td>".$key["TOMA4"]."</td>
+                                                        <td>".$key["OBSERVACIONES"]."</td>
+                                                    </tr>
+                                                ";
+                                                $i++;
+                                                }
+                                                
+                    ?>
                     </tbody>
                 </table>
             </div>

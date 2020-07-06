@@ -162,12 +162,10 @@
 					<div class="row">
 
 						<div class="col-xs-12">							
-<<<<<<< HEAD
+
 							<!--<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-=======
 							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 
->>>>>>> 2519c47d329fe7397fb3bd3be1505dfc5e6b235b
 								<div class="form-group has-feedback">
 									<label for="">Tamaño Muestra</label>
 									<select id="cmbTamaño" class="form-control select2" style="width: 100%;">

@@ -219,7 +219,7 @@
                     granel = 1;
                     vacio = 0;
                 }
-                if(data[6] == "Multivac (M1)"){
+                if(data[6].indexOf("(M1)") >= 0 ){
                     maquina = 3;
                 }else{
                     maquina = 4;
@@ -251,6 +251,7 @@
                 detalle[it][14] = data[14];
                 detalle[it][15] = data[15];
                 it++;
+                console.log(data[6].toString());
             });
             let mensaje='',tipo='';
             let form_data = {

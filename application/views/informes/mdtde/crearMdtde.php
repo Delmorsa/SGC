@@ -110,7 +110,7 @@
                                     date_default_timezone_set("America/Managua");
                                     setlocale(LC_TIME, 'es_NI','es_NI.UTF-8');
                                     echo '
-                                            <input value="'.date("Y-m-d").'" readonly autocomplete="off" type="text" id="Fecha" class="form-control" placeholder="">
+                                            <input value="'.date("Y-m-d").'" autocomplete="off" type="text" id="Fecha" class="form-control" placeholder="">
                                        ';
                                     ?>
                                     <span class="fa fa-calendar form-control-feedback"></span>
@@ -127,7 +127,7 @@
                                     date_default_timezone_set("America/Managua");
                                     setlocale(LC_TIME, "spanish");
                                     echo '
-                                            <input value="'.strftime("%B %Y").'" readonly autocomplete="off" type="text" id="Mes" class="form-control" placeholder="">
+                                            <input value="'.strftime("%B %Y").'"  autocomplete="off" type="text" id="Mes" class="form-control" placeholder="">
                                        ';
                                     ?>
                                     <span class="fa fa-calendar form-control-feedback"></span>
@@ -139,7 +139,7 @@
                                     <?php
                                     date_default_timezone_set("America/Managua");
                                        echo '
-                                            <input readonly value="'.date("H:i").'" autocomplete="off" type="text" id="Hora" class="form-control">
+                                            <input value="'.date("H:i").'" autocomplete="off" type="text" id="Hora" class="form-control">
                                        ';
                                     ?>
                                     <span class="fa fa-clock-o form-control-feedback"></span>
@@ -183,7 +183,7 @@
                                             break;
                                     }*/
                                     echo '
-                                            <input value="'.utf8_encode(strftime("%A")).'" readonly autocomplete="off"
+                                            <input value="'.utf8_encode(strftime("%A")).'" autocomplete="off"
                                             type="text" id="Dia" class="form-control" placeholder="">
                                        ';
                                     ?>

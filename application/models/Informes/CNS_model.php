@@ -56,19 +56,21 @@ class CNS_model extends CI_Model
 
 	public function mostrarCNS()
 	{
-		$top_10 = "TOP 10"; $filtro = "";
-		if($fecha1 != "" && $fecha2 != ""){
+		$top_10 = "TOP 30"; $filtro = "";
+		/*if($fecha1 != "" && $fecha2 != ""){
 			$top_10 = "";
 			$filtro = "AND t1.FECHAINICIO BETWEEN '".$fecha1."' AND '".$fecha2."' ";
-		}
-		$query = $this->db->query("SELECT ".$top_10." t1.SIGLA,t1.DIA,CAST(t1.HORA AS time(0)) HORA,t1.AREA,t1.ESTADODET,
+		}*/
+		$query = $this->db->query("SELECT ".$top_10." t1.FECHACREA, t1.SIGLA,t1.DIA,CAST(t1.HORA AS time(0)) HORA,t1.AREA,t1.ESTADODET,
 															t1.OBSERVACIONES,t1.IDREPORTE,t1.IDUSUARIOCREA,
 															CONCAT(t2.NOMBRES,' ',t2.APELLIDOS) MONITOREADO_POR
 															FROM view_InformesPeso t1
 															INNER JOIN Usuarios t2 ON t1.IDUSUARIOCREA = t2.IDUSUARIO
 															WHERE NOMBRE LIKE '%CONTROL DE NITRITO DE SODIO%'
 															GROUP BY IDREPORTE,SIGLA,DIA,HORA,AREA,OBSERVACIONES,IDUSUARIOCREA,
-															NOMBRES,APELLIDOS,ESTADODET");
+															NOMBRES,APELLIDOS,ESTADODET ,t1.FECHACREA
+															order by t1.FECHACREA DESC");
+		
 		if($query->num_rows() > 0)
 		{
 			return $query->result_array();
