@@ -246,6 +246,7 @@ class Cpp2_model extends CI_Model
 			      "NOMBREPRODUCTO" => $enc[4],
 			      "PESOGRAMOS" => $enc[5],
 			      "OBSERVACIONES" => $enc[6],		      
+			      "LOTE" => $enc[7],
 			      "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
 			      "OBSERVACIONES" => $enc[1],
 			      "DECISION" => $enc[14],
@@ -258,7 +259,8 @@ class Cpp2_model extends CI_Model
 				$datos = array(
 			      "IDAREA" => $enc[0],
 			      "VERSION" => '1'.'.1',
-			      "OBSERVACIONES" => $enc[6],		      
+			      "OBSERVACIONES" => $enc[6],
+			      "LOTE" => $enc[7],
 			      "FECHAEDITA" => gmdate(date("Y-m-d H:i:s")),
 			      "OBSERVACIONES" => $enc[1],
 			      "DECISION" => $enc[14],

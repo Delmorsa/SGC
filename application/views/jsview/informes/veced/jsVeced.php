@@ -89,9 +89,9 @@
    			]).draw(false);
 			$("#monituser").val("");
 			$("#pesolbs").val("");
-			$("#temperatura").val("");
-			$("#observaciones").val("");
-			$("#acciones").val("");
+			//$("#temperatura").val("");
+			//$("#observaciones").val("");
+			//$("#acciones").val("");
 			//$("#ddlprod").val("").trigger("change");
    		}
 			counter++;

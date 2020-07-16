@@ -138,14 +138,14 @@
 							<div class="col-xs-8 col-sm-10 col-md-5 col-lg-5">
 								<div class="form-group has-feedback">
 										<label for="vigencia">Observaciones</label>
-										<input autocomplete="off" type="text" id="observaciones" class="form-control" placeholder="Observaciones">
+										<input autocomplete="off" type="text" id="observaciones" class="form-control" placeholder="Observaciones" value="-">
 										<span class="fa fa-pencil form-control-feedback"></span>
 									</div>	
 							</div>
 							<div class="col-xs-8 col-sm-10 col-md-5 col-lg-5">
 								<div class="form-group has-feedback">
 										<label for="vigencia">Acciones correctivas</label>
-										<input autocomplete="off" type="text" id="acciones" class="form-control" placeholder="Acciones correctivas">
+										<input autocomplete="off" type="text" id="acciones" class="form-control" placeholder="Acciones correctivas" value="-">
 										<span class="fa fa-pencil form-control-feedback"></span>
 									</div>	
 							</div>
